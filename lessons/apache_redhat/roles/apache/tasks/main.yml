@@ -6,9 +6,11 @@
   with_items:
     - httpd
     - libselinux-python
+  tags: package
 
 - name: copy index.html
   template: src=index.html.j2 dest=/var/www/html/index.html
 
 - name: start and enable apache service
   service: name=httpd state=started enabled=yes
+  tags: service
