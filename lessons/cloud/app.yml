@@ -1,0 +1,4 @@
+- hosts: web:tag_aws_autoscaling_groupName_training
+  sudo: yes
+  roles:
+     - apache 

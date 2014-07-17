@@ -1,0 +1,97 @@
+---
+# tasks file for myapp_infra
+- name: create admin access 
+  local_action: 
+    module: ec2_group
+    name: admin_access
+    description: SSH access for admins and tower
+    region: "{{ region }}"
+    vpc_id: "{{ vpc_id }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+  tags: security_groups
+  register: admin_access
+
+
+- name: create app security group
+  local_action:
+    module: ec2_group
+    name: "{{ app_name }}"
+    description: "{{ app_name }} security group"
+    region: "{{ region }}"
+    rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 0
+        to_port: 65535
+        group_name: "{{ app_name }}"
+      - proto: udp
+        from_port: 0
+        to_port: 65535
+        group_name: "{{ app_name }}"
+      - proto: icmp
+        from_port: 0
+        to_port: 0
+        group_name: "{{ app_name }}"
+    vpc_id: "{{ vpc_id }}"
+  tags: security_groups
+  register: app_security_group
+
+
+- name: launch load balancer
+  local_action:
+    module: ec2_elb_lb
+    name: "{{ app_name }}"
+    region: "{{ region }}"
+    state: present
+    zones: "{{ zones }}"
+    listeners:
+      - protocol: http
+        load_balancer_port: 80
+        instance_port: 80
+    health_check:
+        ping_protocol: http
+        ping_port: 80
+        ping_path: "/" 
+        response_timeout: 5 
+        interval: 30 
+        unhealthy_threshold: 2
+        healthy_threshold: 10
+  tags: load_balancer
+
+- name: create launch config
+  local_action:
+    module: ec2_lc
+    name: "{{ app_name }}"
+    image_id: "{{ ami }}"
+    key_name: "{{ key_name }}"
+    region: "{{ region }}"
+    security_groups: "{{ app_security_group.group_id }},{{ admin_access.group_id }}"
+    instance_type: "{{ instance_size }}"
+  tags: launch_config
+
+- name: create autoscale groups
+  local_action:
+    module: ec2_asg
+    name: "{{ app_name }}"
+    load_balancers: "{{ app_name }}"
+    availability_zones: "{{ zones | join(',')}}"
+    launch_config_name: "{{ app_name }}"
+    min_size: "{{ min_size }}"
+    max_size: "{{ max_size }}"
+    desired_capacity: "{{ desired_capacity }}"
+    region: "{{ region }}"
+  tags:
+  - key: app
+    value: "{{ app_name }}"
+    propagate_at_launch: yes
+  tags: autoscale_group
+
+
+

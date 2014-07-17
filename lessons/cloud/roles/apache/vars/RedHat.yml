@@ -1,0 +1,5 @@
+packages:
+  - httpd
+  - libselinux-python
+apache_service: httpd
+apache_docroot: /var/www/html

@@ -1,0 +1,9 @@
+- hosts: localhost
+  roles:
+  - infra
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: waiting for ssh to start
+    wait_for: port=22 host={{ item }}
+    with_items: groups['tag_aws_autoscaling_groupName_training']

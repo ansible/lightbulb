@@ -1,0 +1,20 @@
+---
+# tasks file for apache
+
+- name: Add the OS specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+# CentOS specific package installations
+- include: RedHat.yml
+  when: ansible_os_family  == "RedHat"
+
+# Ubuntu specific package installations
+- include: Debian.yml
+  when: ansible_os_family  == "Debian"
+
+- name: copy index.html
+  template: src=index.html.j2 dest={{ apache_docroot }}/index.html
+
+- name: start and enable apache service
+  service: name={{ apache_service }} state=started enabled=yes
+  tags: service
