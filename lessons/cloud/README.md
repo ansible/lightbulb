@@ -17,6 +17,7 @@ We also wanto to show how to use extra vars, so there is a ansible-vaulted file 
 
 Will also have to discuss why this provisioning is a two step procedure and how ec2_groups are named
 
+You'll also have to override my key_name parameter for the infra role to something that you actually have -- you could that with extra vars or by sending the parameter to the role.
 
 
 Once that is setup, just run:
@@ -25,7 +26,7 @@ Once that is setup, just run:
     rm -rf ~/.ansible/tmp/ansible-ec2.*
     
 	# provision the infrastructure
-	ansible-playbook infra.yml 
+	ansible-playbook infra.yml -e "key_name=my_ec2_key"
 	
 	# provision the apps
 	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass

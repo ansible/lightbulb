@@ -4,7 +4,7 @@ region: us-east-1
 app_name: training
 #vpc_subnet_id: this is included in extra vars as to not expose to public.
 #vpc_id: this is included in extra vars as to not expose to public
-ami: ami-8d756fe4
+ami: ami-8997afe0
 desired_capacity: 3
 key_name: jmartin
 instance_size: m1.small

@@ -79,8 +79,10 @@
     exact_count: "{{ desired_capacity }}"
     count_tag:
        app: "{{ app_name }}"
+       env: training
     instance_tags:
        app: "{{ app_name }}"
+       env: training
   register: result
 
 - name: waiting for ssh to start
