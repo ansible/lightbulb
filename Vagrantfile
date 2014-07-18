@@ -68,7 +68,7 @@ cluster.vm.define "node-3" do |config|
     vm.vmx["numvcpus"] = "1"
   end
 
-  config.vm.hostname = "haproxy"
+  config.vm.hostname = "node-3"
   config.vm.network :private_network, ip: "10.42.0.8"
 end
 
