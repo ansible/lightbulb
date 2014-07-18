@@ -2,13 +2,9 @@
 # defaults file for myapp_infra
 region: us-east-1
 app_name: training
-zones:
-- us-east-1c
-- us-east-1d
-#vpc_id: this is included in extra vars as to not expose VPC id in github.
+#vpc_subnet_id: this is included in extra vars as to not expose to public.
+#vpc_id: this is included in extra vars as to not expose to public
 ami: ami-8d756fe4
-max_size: 4
-min_size: 2
-desired_capacity: 2
+desired_capacity: 3
 key_name: jmartin
 instance_size: m1.small

@@ -1,2 +1,1 @@
-- include: infra.yml
 - include: app.yml

@@ -1,12 +1,32 @@
----
 # tasks file for myapp_infra
+- name: create vpc
+  action:
+    module: ec2_vpc
+    state: present
+    cidr_block: 172.22.0.0/16
+    resource_tags: { "Name":"Training" }
+    subnets:
+      - cidr: 172.22.1.0/24
+        resource_tags: { "Name":"Training" }
+    internet_gateway: True
+    route_tables:
+      - subnets:
+          - 172.22.1.0/24
+        routes:
+          - dest: 0.0.0.0/0
+            gw: igw
+    region: "{{ region }}"
+    wait: yes
+  register: vpc
+
+
 - name: create admin access 
-  local_action: 
+  action: 
     module: ec2_group
     name: admin_access
     description: SSH access for admins and tower
     region: "{{ region }}"
-    vpc_id: "{{ vpc_id }}"
+    vpc_id: "{{ vpc.vpc_id }}"
     rules:
       - proto: tcp
         from_port: 22
@@ -17,7 +37,7 @@
 
 
 - name: create app security group
-  local_action:
+  action:
     module: ec2_group
     name: "{{ app_name }}"
     description: "{{ app_name }} security group"
@@ -39,59 +59,34 @@
         from_port: 0
         to_port: 0
         group_name: "{{ app_name }}"
-    vpc_id: "{{ vpc_id }}"
+    vpc_id: "{{ vpc.vpc_id }}"
   tags: security_groups
   register: app_security_group
 
-
-- name: launch load balancer
-  local_action:
-    module: ec2_elb_lb
-    name: "{{ app_name }}"
+- action:
+    module: ec2
+    assign_public_ip: yes
     region: "{{ region }}"
-    state: present
-    zones: "{{ zones }}"
-    listeners:
-      - protocol: http
-        load_balancer_port: 80
-        instance_port: 80
-    health_check:
-        ping_protocol: http
-        ping_port: 80
-        ping_path: "/" 
-        response_timeout: 5 
-        interval: 30 
-        unhealthy_threshold: 2
-        healthy_threshold: 10
-  tags: load_balancer
-
-- name: create launch config
-  local_action:
-    module: ec2_lc
-    name: "{{ app_name }}"
-    image_id: "{{ ami }}"
     key_name: "{{ key_name }}"
-    region: "{{ region }}"
-    security_groups: "{{ app_security_group.group_id }},{{ admin_access.group_id }}"
+    group_id:
+    - "{{ app_security_group.group_id }}"
+    - "{{ admin_access.group_id }}"
     instance_type: "{{ instance_size }}"
-  tags: launch_config
+    vpc_subnet_id: "{{ vpc.subnets[0].id }}"
+    image: "{{ ami }}"
+    wait: yes
+    wait_timeout: 500
+    exact_count: "{{ desired_capacity }}"
+    count_tag:
+       app: "{{ app_name }}"
+    instance_tags:
+       app: "{{ app_name }}"
+  register: result
 
-- name: create autoscale groups
-  local_action:
-    module: ec2_asg
-    name: "{{ app_name }}"
-    load_balancers: "{{ app_name }}"
-    availability_zones: "{{ zones | join(',')}}"
-    launch_config_name: "{{ app_name }}"
-    min_size: "{{ min_size }}"
-    max_size: "{{ max_size }}"
-    desired_capacity: "{{ desired_capacity }}"
-    region: "{{ region }}"
-  tags:
-  - key: app
-    value: "{{ app_name }}"
-    propagate_at_launch: yes
-  tags: autoscale_group
+- name: waiting for ssh to start
+  wait_for: port=22 host={{ item.public_ip }} timeout=300
+  with_items: result.tagged_instances
+
 
 
 
