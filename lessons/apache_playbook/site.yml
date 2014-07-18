@@ -3,6 +3,10 @@
   vars:
     apache_test_message: hello world
   tasks:
+
+  - name: stop iptables
+    service: name=iptables state=stopped
+
   - name: install packages
     yum: name={{ item }} state=present
     with_items:
