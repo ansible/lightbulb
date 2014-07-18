@@ -1,0 +1,10 @@
+- name: install EPEL (Red Hat)
+  yum: name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+  tags: package
+
+- name: install selinux support (Red Hat)
+  yum: name=libselinux-python state=present
+  tags: package
+
+- name: stop iptables
+  service: name=iptables state=stopped

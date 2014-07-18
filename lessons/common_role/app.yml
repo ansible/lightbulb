@@ -1,0 +1,14 @@
+- hosts: vagrant:tag_env_training
+  sudo: yes
+  roles:
+    - common
+
+- hosts: web:tag_app_training
+  sudo: yes
+  roles:
+     - apache
+
+- hosts: haproxy:tag_role_haproxy
+  sudo: yes
+  roles:
+     - haproxy 

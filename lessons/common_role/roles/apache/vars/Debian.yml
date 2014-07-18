@@ -1,0 +1,4 @@
+packages:
+  - apache2
+apache_service: apache2
+apache_docroot: /var/www

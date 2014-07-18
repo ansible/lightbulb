@@ -1,0 +1,2 @@
+- name: yum installing haproxy
+  yum: name=haproxy state=installed
