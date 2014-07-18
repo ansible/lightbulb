@@ -1,4 +1,0 @@
-- hosts: web
-  sudo: yes
-  roles:
-     - apache 
