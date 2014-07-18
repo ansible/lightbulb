@@ -31,5 +31,4 @@ This is only a starting point.  Different progressions could happen at any one o
 
 * finish delegation_and_role_deps lesson
 * Making tagging configurable
-* make sure haproxy role is load balancing
 * fix apt cache check
