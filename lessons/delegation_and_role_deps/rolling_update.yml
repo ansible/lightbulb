@@ -16,7 +16,7 @@
 
   roles:
   - common
-  - apache
+  - lameapp
 
   # These tasks run after the roles:
   post_tasks:
