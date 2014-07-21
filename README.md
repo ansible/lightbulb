@@ -1,6 +1,6 @@
 # Progressive Ansible
 
-These roles/playbooks are meant to show how to use Ansible in a progressive way. Meaning, start with simple concepts, and keep building upon those concepts along the way.
+These roles/playbooks are meant to show how to use Ansible in a progressive way. Start with simple concepts, and keep building upon those concepts along the way.
 
 In each lesson, you will find an overview of what that lesson is trying to teach.
 
@@ -24,11 +24,10 @@ You can pick your starting point, and proceed progressively.  The order is:
 7. delegation_and_role_deps
 
 
-This is only a starting point.  Different progressions could happen at any one of these points and go in a different direction as well.  
-
+This is only a starting point.  Different progressions could happen at any one of these points and go in a different direction.
 
 **TODO**:
 
 * finish delegation_and_role_deps lesson
-* Making tagging configurable
+* Make ec2 tagging configurable
 * fix apt cache check

@@ -1,8 +1,18 @@
 # ad-hoc examples
 
+### Topics Covered
+* ad-hoc ansible
+* command-line options: ```-i -u -m -a```
+* using ansible.cfg
+
+
+### General flow
+
+
 Bring up the VMs by running the following command:
 
 	vagrant up node-1 node-2
+
 	
 
 Run the following commands and experiment:
