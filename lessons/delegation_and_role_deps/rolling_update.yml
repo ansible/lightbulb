@@ -1,8 +1,8 @@
 ---
-- hosts: vagrant
+- hosts: tag_env_training
   gather_facts: yes
 
-- hosts: web
+- hosts: tag_app_training
   gather_facts: no
   serial: 1
   sudo: yes
@@ -12,19 +12,19 @@
   - name: disable the server in haproxy
     haproxy: action=disable_server host={{ inventory_hostname }} backend=web_backend
     delegate_to: "{{ item }}"
-    with_items: groups.haproxy
+    with_items: groups.tag_role_haproxy
 
   roles:
   - common
-  - apache
+  - lameapp
 
   # These tasks run after the roles:
   post_tasks:
   - name: Wait for webserver to come up
     wait_for: port=80 state=started timeout=60
 
-  - name: disable the server in haproxy
+  - name: enable the server in haproxy
     haproxy: action=enable_server host={{ inventory_hostname }} backend=web_backend
     delegate_to: "{{ item }}"
-    with_items: groups.haproxy
+    with_items: groups.tag_role_haproxy
 
