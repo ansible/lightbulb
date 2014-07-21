@@ -30,9 +30,8 @@ This brings up another node.
 
 ### General flow
 
-* Add a new haproxy role
-* Add new code to the infra role for a ec2 haproxy instance
-* update the playbook to use the common role
+
+* Add a new lameapp role that depends on apache role ( seet )
 
 
 Once that is setup, just run:
