@@ -1,0 +1,6 @@
+
+- name: apt installing haproxy
+  apt: name=haproxy update_cache=yes
+
+- name: enable haproxy service (deb)
+  copy: src=etc_default_haproxy dest=/etc/default/haproxy

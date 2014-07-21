@@ -1,0 +1,3 @@
+ansible_ssh_user: root
+iface: eth0
+web_group: tag_app_training

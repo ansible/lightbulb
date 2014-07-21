@@ -1,0 +1,14 @@
+---
+# tasks file for haproxy
+- include: RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: start haproxy service
+  service: name=haproxy state=started enabled=yes
+
+- name: Configure  haproxy
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  notify: restart haproxy

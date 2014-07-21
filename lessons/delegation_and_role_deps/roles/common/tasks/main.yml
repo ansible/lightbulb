@@ -1,0 +1,13 @@
+---
+# tasks file for common
+# CentOS specific package installations
+- include: RedHat.yml
+  when: ansible_os_family  == "RedHat"
+
+# Ubuntu specific package installations
+- include: Debian.yml
+  when: ansible_os_family  == "Debian"
+
+- name: create users
+  user: name={{ item.username }} password={{ item.password }} comment="{{ item.comment }}"
+  with_items: users

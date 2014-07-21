@@ -1,0 +1,40 @@
+---
+# This playbook does a rolling update for all webservers serially (one at a time).
+# Change the value of serial: to adjust the number of server to be updated.
+#
+# The three roles that apply to the webserver hosts will be applied: common,
+# base-apache, and web. So any changes to configuration, package updates, etc,
+# will be applied as part of the rolling update process.
+#
+
+# gather facts from monitoring nodes for iptables rules
+
+- hosts: vagrant
+  gather_facts: yes
+
+- hosts: web
+  gather_facts: no
+  serial: 1
+  sudo: yes
+
+  pre_tasks:
+
+  - name: disable the server in haproxy
+    haproxy: action=disable_server host={{ inventory_hostname }} backend=web_backend
+    delegate_to: "{{ item }}"
+    with_items: groups.haproxy
+
+  roles:
+  - common
+  - apache
+
+  # These tasks run after the roles:
+  post_tasks:
+  - name: Wait for webserver to come up
+    wait_for: port=80 state=started timeout=60
+
+  - name: disable the server in haproxy
+    haproxy: action=enable_server host={{ inventory_hostname }} backend=web_backend
+    delegate_to: "{{ item }}"
+    with_items: groups.haproxy
+

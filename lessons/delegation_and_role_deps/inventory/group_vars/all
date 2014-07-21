@@ -1,0 +1,10 @@
+users:
+  - comment: Peter Yarrow
+    username: peter
+    password: $6$rounds=100000$4IMPgE27C2uOjEv/$LmLa5LWdhzf.Y3f.brqJk.3.o45MrhsVQEg0kTrCibh0jJJe8K6p5.Y3RFy.m02Ms751nW.9Hb5qWXs6jjZkW0
+  - comment: Paul Stookey
+    username: paul
+    password: $6$rounds=100000$pcrz0gstGbe.MiNq$WdWQK2KGmCPW63Ab2aBRwUKjWMVJKWdOzX/Xmv/EXRUGIFMmSZGhhGhFbHSvrpgpyLnd5ERDRm5Y/Vkj/3K2C/
+  - comment: Mary Travers
+    username: mary
+    password: $6$rounds=100000$O6bL5gy9WYaBLR1N$fmVJtjiZBKzKc7bwmIoEXtjgUVZr92bwyk20G/qeT5qERjHwtJiBbO98.yE9XNRDDSvWtHg8orJ/KjX0cdtml1

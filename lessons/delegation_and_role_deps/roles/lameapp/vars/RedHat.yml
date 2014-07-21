@@ -1,0 +1,4 @@
+packages:
+  - httpd
+apache_service: httpd
+apache_docroot: /var/www/html
