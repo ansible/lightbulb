@@ -28,6 +28,5 @@ This is only a starting point.  Different progressions could happen at any one o
 
 **TODO**:
 
-* finish delegation_and_role_deps lesson
 * Make ec2 tagging configurable
 * fix apt cache check
