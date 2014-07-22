@@ -4,9 +4,17 @@
 10.42.0.8
 
 [haproxy]
-10.42.0.100 ansible_ssh_user=vagrant 
+10.42.0.100
 
 [vagrant:children]
 web
 haproxy
 
+[tag_app_training:children]
+web
+
+[tag_role_haproxy:children]
+haproxy
+
+[tag_env_training:children]
+vagrant

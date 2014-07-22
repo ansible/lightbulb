@@ -1,4 +1,4 @@
-- hosts: vagrant:tag_env_training
+- hosts: tag_app_training
   sudo: yes
   roles:
      - apache 

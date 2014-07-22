@@ -10,3 +10,11 @@
 web
 haproxy
 
+[tag_app_training:children]
+web
+
+[tag_role_haproxy:children]
+haproxy
+
+[tag_env_training:children]
+vagrant

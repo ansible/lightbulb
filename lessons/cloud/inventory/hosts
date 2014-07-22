@@ -3,5 +3,8 @@
 10.42.0.7
 10.42.0.8
 
+[tag_app_training:children]
+web
+
 [vagrant:children]
 web
