@@ -29,4 +29,3 @@ This is only a starting point.  Different progressions could happen at any one o
 **TODO**:
 
 * Make ec2 tagging configurable
-* fix apt cache check
