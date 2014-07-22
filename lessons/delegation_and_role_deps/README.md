@@ -32,16 +32,14 @@ This brings up another node.
 ### General flow
 
 
-* Add a new lameapp role that depends on apache role.  Show that lameapp role has passed a parameter to the apache role.  Show the custom filters.  Show how the rolling restart and delegation works and the custom modules.
+Adds a new lameapp role that depends on apache role.  Show that lameapp role has passed a parameter to the apache role.  Show the custom filters.  Show how the rolling restart and delegation works and the custom modules.
+
+### Commands
 
 
-Once that is setup, just run:
-
-    #ensure that ec2 cache is purged
-    rm -rf ~/.ansible/tmp/ansible-ec2.*
-    
 	# provision the infrastructure
-	ansible-playbook infra.yml 
+	ansible-playbook infra.yml -e "key_name=my_ec2_key" -i inventory/ec2.py
 	
 	# provision the apps
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/ec2.py
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/hosts

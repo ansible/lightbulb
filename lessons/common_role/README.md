@@ -24,20 +24,23 @@ This brings up another node.
 * including playbooks within playbooks
 * using extra vars
 
+### Requirements
+
+You'll need your AWS credentials configured either in ```$HOME/.boto``` or set in environment variables.  You'll also need your AWS ssh key in your keychain (using ssh-add). 
+
+
 ### General flow
 
 * Add a new haproxy role
 * Add new code to the infra role for a ec2 haproxy instance
 * update the playbook to use the common role
 
+### Commands
 
-Once that is setup, just run:
 
-    #ensure that ec2 cache is purged
-    rm -rf ~/.ansible/tmp/ansible-ec2.*
-    
 	# provision the infrastructure
-	ansible-playbook infra.yml 
+	ansible-playbook infra.yml -e "key_name=my_ec2_key" -i inventory/ec2.py
 	
 	# provision the apps
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/ec2.py
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/hosts

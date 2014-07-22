@@ -37,13 +37,12 @@ We also wanto to show how to use extra vars, so there is a ansible-vaulted file 
 You'll also have to override my key_name parameter for the infra role to something that you actually have -- you could that with extra vars or by sending the parameter to the role.
 
 
-Once that is setup, just run:
+### Commands
 
-    #ensure that ec2 cache is purged
-    rm -rf ~/.ansible/tmp/ansible-ec2.*
-    
+
 	# provision the infrastructure
-	ansible-playbook infra.yml -e "key_name=my_ec2_key"
+	ansible-playbook infra.yml -e "key_name=my_ec2_key" -i inventory/ec2.py
 	
 	# provision the apps
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/ec2.py
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/hosts

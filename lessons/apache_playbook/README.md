@@ -5,7 +5,7 @@ If the nodes aren't already up, you'll need to run:
 	vagrant up node-1 node-2
 
 
-## Topics covered
+### Topics covered
 
 * Inventory
 * Creating a playbook.
@@ -14,7 +14,7 @@ If the nodes aren't already up, you'll need to run:
 * Using templates
 
 
-## General flow
+### General flow
 
 Configuring systems with ad-hoc tasks can be annoying -- and ad-hoc tasks don't really keep a good record of how a system ***should*** be configured.
 

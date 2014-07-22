@@ -13,7 +13,9 @@ Bring up the VMs by running the following command:
 
 	vagrant up node-1 node-2
 
-	
+
+### Commands
+
 
 Run the following commands and experiment:
 
