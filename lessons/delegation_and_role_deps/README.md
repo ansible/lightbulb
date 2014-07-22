@@ -8,6 +8,7 @@ This brings up another node.
 
 
 ### Topics Covered
+* custom filters
 * pre and post tasks
 * serial
 * delegation
@@ -31,7 +32,7 @@ This brings up another node.
 ### General flow
 
 
-* Add a new lameapp role that depends on apache role ( seet )
+* Add a new lameapp role that depends on apache role.  Show that lameapp role has passed a parameter to the apache role.  Show the custom filters.  Show how the rolling restart and delegation works and the custom modules.
 
 
 Once that is setup, just run:
