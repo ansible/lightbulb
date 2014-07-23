@@ -1,3 +1,2 @@
 ansible_ssh_user: vagrant
-iface: eth1
 web_group: tag_app_training
