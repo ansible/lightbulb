@@ -2,8 +2,6 @@
 # defaults file for myapp_infra
 region: us-east-1
 app_name: training
-#vpc_subnet_id: this is included in extra vars as to not expose to public.
-#vpc_id: this is included in extra vars as to not expose to public
 ami: ami-8997afe0
 desired_capacity: 3
 key_name: jmartin
