@@ -1,14 +1,18 @@
+---
 - hosts: tag_env_training
   sudo: yes
+
   roles:
-    - common
+  - common
 
 - hosts: tag_app_training
   sudo: yes
+
   roles:
-     - lameapp
+  - lameapp
 
 - hosts: tag_role_haproxy
   sudo: yes
+
   roles:
-     - haproxy 
+  - haproxy 
