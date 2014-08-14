@@ -1,5 +1,6 @@
 ---
 - hosts: web
+  name: This is a Playbook
   sudo: yes
 
   roles:

@@ -3,6 +3,7 @@
   gather_facts: yes
 
 - hosts: tag_app_training
+  name: performs rolling restart
   gather_facts: no
   serial: 1
   sudo: yes
