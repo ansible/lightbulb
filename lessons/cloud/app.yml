@@ -1,4 +1,6 @@
+---
 - hosts: tag_app_training
   sudo: yes
+
   roles:
-     - apache 
+  - apache 

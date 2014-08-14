@@ -1,9 +1,11 @@
+---
 - hosts: web
   sudo: yes
+
   vars:
     apache_test_message: hello world
-  tasks:
 
+  tasks:
   - name: stop iptables
     service: name=iptables state=stopped
 
