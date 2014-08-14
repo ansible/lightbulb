@@ -16,7 +16,7 @@
       - libselinux-python
 
   - name: copy index.html
-    template: src=templates/index.html.j2 dest=/var/www/html/index.html
+    copy: src=files/index.html dest=/var/www/html/
 
   - name: start and enable apache service
     service: name=httpd state=started enabled=yes
