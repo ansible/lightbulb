@@ -1,0 +1,18 @@
+---
+- hosts: tag_app_training
+  name: Confiures apache on all the app servers
+  sudo: yes
+
+  roles:
+  - apache
+
+- hosts: apache_2.2.15
+  name: Do this on apache 2.2.15 machines
+  sudo: yes
+  tasks:
+  - service: name={{ apache_service }} state=restarted
+
+- hosts: apache_2.2.22
+  name: Do this on apache 2.2.22 machines
+  tasks:
+  - command: service {{ apache_service }} status

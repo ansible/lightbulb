@@ -18,3 +18,13 @@
 - name: start and enable apache service
   service: name={{ apache_service }} state=started enabled=yes
   tags: service
+
+- name: gather apache version
+  shell: "{{ apache_service }} -v|grep version|awk '{print $3}'|cut -f2 -d'/'"
+  register: result
+
+- name: set a fact for the apache version
+  set_fact: apache_version="{{ result.stdout }}"
+
+- name: create dynamic group with apache version
+  group_by: key=apache_{{ apache_version }}
