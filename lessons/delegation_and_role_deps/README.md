@@ -28,6 +28,11 @@ This brings up another node.
 * provisioning instances and using wait_for
 * including playbooks within playbooks
 * using extra vars
+* using ignore_errors
+* using host ranges
+* using registered variables
+* setting facts
+* using group_by
 
 ### General flow
 

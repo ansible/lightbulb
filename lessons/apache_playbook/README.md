@@ -11,8 +11,7 @@ If the nodes aren't already up, you'll need to run:
 * Creating a playbook.
 * Using vars
 * Using with_items
-* Using templates
-
+* Using host ranges
 
 ### General flow
 

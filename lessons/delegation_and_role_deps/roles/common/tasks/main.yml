@@ -11,3 +11,12 @@
 - name: create users
   user: name={{ item.username }} password={{ item.password }} comment="{{ item.comment }}"
   with_items: users
+
+- name: check for errors in /var/log/dmesg
+  shell: grep -i "Some Error" /var/log/dmesg|wc -l
+  register: log_errors
+  ignore_errors: yes
+
+- name: set log errors as fact
+  set_fact: error_count={{ log_errors.stdout }}
+  when: log_errors.stdout is defined
