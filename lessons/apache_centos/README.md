@@ -10,6 +10,7 @@ If the nodes aren't already up, you'll need to run:
 * inventory
 * roles
 * tagging
+* templates
 
 
 ### General flow
