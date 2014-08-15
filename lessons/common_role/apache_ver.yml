@@ -2,7 +2,6 @@
 - hosts: tag_app_training
   name: Confiures apache on all the app servers
   sudo: yes
-
   roles:
   - apache
 
