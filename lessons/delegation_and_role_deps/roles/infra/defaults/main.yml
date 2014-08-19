@@ -4,5 +4,5 @@ region: us-east-1
 app_name: training
 ami: ami-8997afe0
 desired_capacity: 3
-key_name: jmartin
+key_name: training
 instance_size: m1.small
