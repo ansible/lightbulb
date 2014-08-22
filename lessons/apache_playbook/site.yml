@@ -4,7 +4,9 @@
   sudo: yes
 
   vars:
-    apache_test_message: hello world
+    packages:
+    - httpd
+    - libselinux-python
 
   tasks:
   - name: stop iptables
@@ -12,9 +14,7 @@
 
   - name: install packages
     yum: name={{ item }} state=present
-    with_items:
-      - httpd
-      - libselinux-python
+    with_items: packages
 
   - name: copy index.html
     copy: src=files/index.html dest=/var/www/html/
