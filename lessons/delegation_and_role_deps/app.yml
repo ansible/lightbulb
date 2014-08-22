@@ -11,7 +11,7 @@
   sudo: yes
 
   roles:
-  - apache
+  - lameapp
 
 - hosts: tag_role_haproxy
   name: configures haproxy on the haproxy server
