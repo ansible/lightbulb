@@ -10,6 +10,10 @@
     - libselinux-python
   tags: package
 
+- name: copy httpd.conf
+  template: src=httpd.conf.j2 dest=/etc/httpd/httpd.conf
+  notify: restart apache
+
 - name: copy index.html
   template: src=index.html.j2 dest=/var/www/html/index.html
 
