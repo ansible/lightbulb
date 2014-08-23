@@ -8,6 +8,7 @@ If the nodes aren't already up, you'll need to run:
 
 * playbook
 * inventory
+* initializing a role
 * roles
 * tagging
 * templates

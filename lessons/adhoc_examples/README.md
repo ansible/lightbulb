@@ -1,6 +1,8 @@
 # ad-hoc examples
 
 ### Topics Covered
+
+* ansible isntallation methods
 * ad-hoc ansible
 * command-line options: ```-i -u -m -a```
 * using ansible.cfg
@@ -16,6 +18,9 @@ Bring up the VMs by running the following command:
 
 ### Commands
 
+Install ansible with pip, but explain other methods (brew, yum, apt, etc)
+
+	pip install ansible
 
 Run the following commands and experiment:
 
