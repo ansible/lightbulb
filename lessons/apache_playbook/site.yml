@@ -18,6 +18,11 @@
 
   - name: copy index.html
     copy: src=files/index.html dest=/var/www/html/
+    notify: something happened
 
   - name: start and enable apache service
     service: name=httpd state=started enabled=yes
+
+  handlers:
+  - name: something happened
+    shell: echo "file copied" >> /tmp/some.log
