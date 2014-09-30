@@ -2,3 +2,4 @@ packages:
   - apache2
 apache_service: apache2
 apache_docroot: /var/www
+apache_config: /etc/apache2/apache2.conf
