@@ -15,13 +15,9 @@
     delegate_to: "{{ groups.tag_role_haproxy.0 }}"
 
   roles:
-  - common
   - lameapp
 
-  # These tasks run after the roles:
   post_tasks:
-  - name: Wait for webserver to come up
-    wait_for: port=80 state=started timeout=60
 
   - name: enable the server in haproxy
     haproxy: action=enable_server host={{ inventory_hostname }} backend=web_backend
