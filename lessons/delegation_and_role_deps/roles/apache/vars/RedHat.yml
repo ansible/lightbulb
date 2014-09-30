@@ -4,3 +4,6 @@ packages:
 apache_service: httpd
 apache_docroot: /var/www/html
 apache_config: /etc/httpd/conf/httpd.conf
+apache_app_dir: /etc/httpd/conf.d
+sites_availabe: /etc/httpd/conf/sites-available
+sites_enabled: /etc/httpd/conf/sites-enabled

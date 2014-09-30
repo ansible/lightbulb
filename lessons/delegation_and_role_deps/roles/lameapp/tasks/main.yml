@@ -1,8 +1,28 @@
 ---
 # tasks file for lameapp
-#- name: Add the OS specific variables
-#  include_vars: "{{ ansible_os_family }}.yml"
 
-- name: copy file
-  template: src=lame.html.j2 dest={{ apache_docroot }}/lame.html
-  notify: restart apache
+- name: checkout lameapp
+  git: repo=https://github.com/jsmartin/lameapp.git
+       dest=/var/www/lameapp
+       version={{ lameapp_version }}
+
+- name: set permissions on app
+  file: name=/var/www/lameapp/lame.py mode=0755
+
+- name: add apache config file
+  copy: src=lameapp.conf dest={{ sites_availabe }}
+  register: result
+
+- name: link app config
+  file: src={{ sites_availabe }}/lameapp.conf dest={{ sites_enabled}}/lameapp.conf state=link
+
+- name: restart apache
+  service: name={{ apache_service }} state=restarted
+  when: result|changed
+
+- name: check for proper response
+  uri: url=http://localhost/lame return_content=yes
+  register: result
+  until: '"Hello Moon" in result.content'
+  retries: 10
+  delay: 1

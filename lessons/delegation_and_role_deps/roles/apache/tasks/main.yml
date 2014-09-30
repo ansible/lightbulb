@@ -13,6 +13,12 @@
 - include: Debian.yml
   when: ansible_os_family  == "Debian"
 
+- name: create sites directories
+  file: path={{ item }} state=directory
+  with_items:
+  - "{{ sites_availabe }}"
+  - "{{ sites_enabled }}"
+
 - name: copy index.html
   template: src=index.html.j2 dest={{ apache_docroot }}/index.html
 
@@ -33,3 +39,5 @@
 
 - name: create dynamic group with apache version
   group_by: key=apache_{{ apache_version }}
+
+
