@@ -15,9 +15,7 @@
 
 - name: create sites directories
   file: path={{ item }} state=directory
-  with_items:
-  - "{{ sites_availabe }}"
-  - "{{ sites_enabled }}"
+  with_items: apache_dirs
 
 - name: copy index.html
   template: src=index.html.j2 dest={{ apache_docroot }}/index.html
