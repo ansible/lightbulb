@@ -5,9 +5,7 @@
   
 - name: install packages
   yum: name={{ item }} state=present
-  with_items:
-    - httpd
-    - libselinux-python
+  with_items: packages
   tags: package
 
 - name: copy httpd.conf
