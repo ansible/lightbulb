@@ -11,14 +11,12 @@
 
 - name: add apache config file
   copy: src=lameapp.conf dest={{ sites_availabe }}
-  register: result
+  notify: restart apache
 
 - name: link app config
   file: src={{ sites_availabe }}/lameapp.conf dest={{ sites_enabled}}/lameapp.conf state=link
 
-- name: restart apache
-  service: name={{ apache_service }} state=restarted
-  when: result|changed
+- meta: flush_handlers
 
 - name: check for proper response
   uri: url=http://localhost/lame return_content=yes
