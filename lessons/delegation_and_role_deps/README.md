@@ -33,6 +33,8 @@ This brings up another node.
 * using registered variables
 * setting facts
 * using group_by
+* role dependencies
+* custom library
 
 ### General flow
 
