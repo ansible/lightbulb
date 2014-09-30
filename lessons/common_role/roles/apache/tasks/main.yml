@@ -17,7 +17,7 @@
   template: src=index.html.j2 dest={{ apache_docroot }}/index.html
 
 - name: copy httpd.conf
-  template: src=httpd.conf-{{ ansible_os_family }}.j2 dest=/etc/{{ apache_service }}/{{ apache_service }}.conf
+  template: src=httpd.conf-{{ ansible_os_family }}.j2 dest={{ apache_config }}
   notify: restart apache
 
 - name: start and enable apache service

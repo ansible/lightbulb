@@ -1,4 +1,6 @@
 packages:
   - httpd
+  - libselinux-python
 apache_service: httpd
 apache_docroot: /var/www/html
+apache_config: /etc/httpd/conf/httpd.conf
