@@ -1,0 +1,5 @@
+---
+packages:
+- git
+- python-requests
+- python-httplib2
