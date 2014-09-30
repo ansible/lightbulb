@@ -13,6 +13,10 @@
 - include: Debian.yml
   when: ansible_os_family  == "Debian"
 
+- name: create sites directories
+  file: path={{ item }} state=directory
+  with_items: apache_dirs
+
 - name: copy index.html
   template: src=index.html.j2 dest={{ apache_docroot }}/index.html
 
@@ -23,3 +27,5 @@
 - name: start and enable apache service
   service: name={{ apache_service }} state=started enabled=yes
   tags: service
+
+

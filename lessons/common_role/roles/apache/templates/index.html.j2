@@ -4,3 +4,5 @@ Server list: <br>
 {% for host in groups[web_group] %}
 {{ host }} <br>
 {% endfor %}
+Example Filter Plugin <br>
+Total memory: {{ ansible_memtotal_mb }}MB, 25% of that is: {{ ansible_memtotal_mb|percent(25) }}MB
