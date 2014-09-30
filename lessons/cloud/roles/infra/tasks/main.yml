@@ -1,7 +1,6 @@
 # tasks file for myapp_infra
 - name: create vpc
-  action:
-    module: ec2_vpc
+  ec2_vpc:
     state: present
     cidr_block: 172.22.0.0/16
     resource_tags: { "Name":"Training" }
@@ -19,10 +18,8 @@
     wait: yes
   register: vpc
 
-
 - name: create admin access 
-  action: 
-    module: ec2_group
+  ec2_group:
     name: admin_access
     description: SSH access for admins and tower
     region: "{{ region }}"
@@ -37,8 +34,7 @@
 
 
 - name: create app security group
-  action:
-    module: ec2_group
+  ec2_group:
     name: "{{ app_name }}"
     description: "{{ app_name }} security group"
     region: "{{ region }}"
@@ -63,8 +59,8 @@
   tags: security_groups
   register: app_security_group
 
-- action:
-    module: ec2
+- name: create instances
+  ec2:
     assign_public_ip: yes
     region: "{{ region }}"
     key_name: "{{ key_name }}"
