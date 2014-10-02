@@ -39,14 +39,29 @@ This brings up another node.
 ### General flow
 
 
-Adds a new lameapp role that depends on apache role.  Show that lameapp role has passed a parameter to the apache role.  Show the custom filters.  Show how the rolling restart and delegation works and the custom modules.
+Adds a new lameapp role that depends on apache role.  lameapp is a very simple python script. Show that lameapp role has passed a parameter to the apache role.  Show the custom filters.  Show how the rolling restart and delegation works and the custom modules.
+
+### Rolling restart flow
+
+The ```lameapp_version``` is found in the ```group_vars/all``` file.
+
+1. Default deployment is version 1.1
+2. upgrade to version 1.2, using rolling_update playbook
+3. try to upgrade to version 1.3 using rolling update playbook
+4. note failure, revert back to version 1.2
+
+Command to revert to previous version:
+	
+	ansible-playbook rolling_update.yml -v --limit 10.42.0.6,haproxy -i inventory/local
+
+
 
 ### Commands
 
 
 	# provision the infrastructure
-	ansible-playbook infra.yml -e "key_name=my_ec2_key" -i inventory/ec2.py
+	ansible-playbook infra.yml -e "key_name=my_ec2_key" -i inventory/cloud
 	
 	# provision the apps
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/ec2.py
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/hosts
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/cloud
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/local

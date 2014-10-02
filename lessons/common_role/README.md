@@ -46,5 +46,5 @@ You'll need your AWS credentials configured either in ```$HOME/.boto``` or set i
 	ansible-playbook infra.yml -e "key_name=my_ec2_key" -i inventory/ec2.py
 	
 	# provision the apps
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/ec2.py
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/hosts
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/cloud
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/local

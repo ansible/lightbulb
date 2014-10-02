@@ -30,7 +30,7 @@ You'll need your AWS credentials configured either in ```$HOME/.boto``` or set i
 
 Show how ec2.py creates the groups.  Show some of the settings for ec2.ini.
 
-We make some changes to the inventory/hosts file, basically creating aliases for the groups that line up with the groups that are created with ec2.py.  This allows use to use the same playbook in both environments, but only having to change the inventory file.  
+Show the different inventory directories, and the aliases/child groups made in inventory/cloud.  This allows use to use the same playbook in both environments, but only having to change the inventory file.  
 
 We also wanto to show how to use extra vars, so there is a ansible-vaulted file named secrets.yml, with the password of: ```password```.  Changing this will override the test message on the web pages.
 
@@ -44,5 +44,5 @@ You'll also have to override my key_name parameter for the infra role to somethi
 	ansible-playbook infra.yml -e "key_name=my_ec2_key" -i inventory/ec2.py
 	
 	# provision the apps
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/ec2.py
-	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/hosts
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/cloud
+	ansible-playbook site.yml -e @secrets.yml --ask-vault-pass -i inventory/local
