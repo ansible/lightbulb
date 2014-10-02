@@ -1,0 +1,9 @@
+[web]
+10.42.0.[6:8]
+
+[haproxy]
+10.42.0.100
+
+[vagrant:children]
+web
+haproxy
