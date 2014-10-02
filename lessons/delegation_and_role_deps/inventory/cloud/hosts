@@ -1,0 +1,9 @@
+[web:children]
+tag_app_training
+
+[haproxy:children]
+tag_role_haproxy
+
+[tag_app_training]
+[tag_role_haproxy]
+

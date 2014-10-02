@@ -1,19 +1,19 @@
 ---
-- hosts: tag_env_training
+- hosts: web:haproxy
   name: Sets up common role on all servers
   sudo: yes
 
   roles:
   - common
 
-- hosts: tag_app_training
+- hosts: web
   name: Confiures apache on all the app servers
   sudo: yes
 
   roles:
   - lameapp
 
-- hosts: tag_role_haproxy
+- hosts: haproxy
   name: configures haproxy on the haproxy server
   sudo: yes
 

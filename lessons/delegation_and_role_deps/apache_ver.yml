@@ -1,5 +1,5 @@
 ---
-- hosts: tag_app_training
+- hosts: web
   name: Confiures apache on all the app servers
   sudo: yes
 
