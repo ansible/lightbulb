@@ -2,7 +2,7 @@
 
 ### Topics Covered
 
-* ansible isntallation methods
+* ansible installation methods
 * ad-hoc ansible
 * command-line options: ```-i -u -m -a```
 * using ansible.cfg

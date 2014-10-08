@@ -1,6 +1,6 @@
 ---
 - hosts: web
-  name: Confiures apache on all the app servers
+  name: Configures apache on all the app servers
   sudo: yes
 
   roles:
