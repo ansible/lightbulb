@@ -10,11 +10,11 @@
   file: name=/var/www/lameapp/lame.py mode=0755
 
 - name: add apache config file
-  copy: src=lameapp.conf dest={{ sites_availabe }}
+  copy: src=lameapp.conf dest={{ sites_available }}
   notify: restart apache
 
 - name: link app config
-  file: src={{ sites_availabe }}/lameapp.conf dest={{ sites_enabled}}/lameapp.conf state=link
+  file: src={{ sites_available }}/lameapp.conf dest={{ sites_enabled}}/lameapp.conf state=link
 
 - meta: flush_handlers
 
