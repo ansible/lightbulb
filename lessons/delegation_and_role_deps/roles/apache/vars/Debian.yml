@@ -3,5 +3,5 @@ packages:
 apache_service: apache2
 apache_docroot: /var/www
 apache_config: /etc/apache2/apache2.conf
-sites_availabe: /etc/apache2/sites-available
+sites_available: /etc/apache2/sites-available
 sites_enabled: /etc/apache2/sites-enabled
