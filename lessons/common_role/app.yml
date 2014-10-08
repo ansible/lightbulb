@@ -7,14 +7,14 @@
   - common
 
 - hosts: web
-  name: Confiures apache on all the app servers
+  name: Configures apache on all the app servers
   sudo: yes
 
   roles:
   - apache
 
 - hosts: haproxy
-  name: configures haproxy on the haproxy server
+  name: Configures haproxy on the haproxy server
   sudo: yes
 
   roles:
