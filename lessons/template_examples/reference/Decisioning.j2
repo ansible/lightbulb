@@ -1,0 +1,38 @@
+# Simple if-then:
+
+{% if foo.expression is equalto 42 %}
+    the foo attribute evaluates to the constant 42
+{% endif %}
+{% if foo.attribute is sameas false %}
+    the foo attribute really is the `False` singleton
+{% endif %}
+
+# Real World Example (iptables config):
+
+{% if (inventory_hostname in groups['webservers']) %}
+-A INPUT -p tcp  --dport 80 -j ACCEPT
+{% endif %}
+
+# If or/and:
+
+{% if (inventory_hostname in groups['webservers']) or (inventory_hostname in groups['monitoring']) %}
+-A INPUT -p tcp  --dport 80 -j ACCEPT
+{% endif %}
+
+# If-then-elif:
+
+{% if variable is defined %}
+    value of variable: {{ variable }}
+{% else %}
+    variable is not defined
+{% endif %}
+
+{% if param1 is defined %}
+  myvariable: 'param2'
+{% elif param2 is defined %}
+  myvariable: 'param1'
+{% else %}
+  myvariable: 'default-param'
+{% endif %} 
+
+# Note for more: http://jinja.pocoo.org/docs/dev/templates/#list-of-builtin-tests

@@ -1,0 +1,68 @@
+# Loop of host in groups and simple variable placement:
+
+{% for server in groups.webservers %}
+server{{ loop.index }}  
+{% endfor %}
+
+# Real World Example (nagios monitoring config file):
+
+{% for host in groups['webservers'] %}
+define host {
+	use                     linux-server
+	host_name               {{ host }} 
+	alias                   {{ host }}
+	address                 {{ hostvars[host].ansible_default_ipv4.address }}
+	hostgroups 		webservers
+}
+{% endfor %}
+
+# Loop of host in groups and complex variable use (ipv4 address from facts):
+
+{% for server in groups.webservers %}
+server{{ loop.index }}  {{ hostvars[server].ansible_default_ipv4.address }}
+{% endfor %}
+
+# Real World Example (iptables config file):
+
+{% for host in groups['monitoring'] %}
+-A INPUT -p tcp -s {{ hostvars[host].ansible_default_ipv4.address }} --dport 5666 -j ACCEPT
+{% endfor %}
+
+# Loop with filter:
+
+{% for item in mydict|dictsort %}
+    sort the dict by key, case insensitive
+
+{% for item in mydict|dictsort(true) %}
+    sort the dict by key, case sensitive
+
+{% for item in mydict|dictsort(false, 'value') %}
+    sort the dict by value, case insensitive
+
+# Loop with Grouping:
+
+{% for group in persons|groupby('gender') %}
+    <li>{{ group.grouper }}<ul>
+    {% for person in group.list %}
+        <li>{{ person.first_name }} {{ person.last_name }}</li>
+    {% endfor %}</ul></li>
+{% endfor %}
+{% for grouper, list in persons|groupby('gender') %}
+    ...
+{% endfor %}
+
+# Loop and sort:
+
+{% for item in iterable|sort(attribute='date') %}
+    ...
+{% endfor %}
+
+# More examples:
+
+{% for user in users %}
+    <li>{{ user.username }}</li>
+{% endfor %}
+{% for number in range(10 - users|count) %}
+    <li class="empty"><span>...</span></li>
+{% endfor %}
+

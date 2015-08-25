@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  name: This is a Playbook
+  connection: local
+  gather_facts: false
+  vars_files: 
+  - vars.yml
+
+  tasks:
+  - name: register template names
+    shell: ls templates | sed s/\.j2//g
+    register: templates
+
+  - debug: var=test
+
+  - name: render templates to "render"
+    template: src=templates/{{ item }}.j2 dest=/tmp/ansible_output.{{ item }}
+    with_items: templates.stdout_lines

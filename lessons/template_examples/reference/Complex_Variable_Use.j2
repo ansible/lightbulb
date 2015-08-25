@@ -1,0 +1,26 @@
+# Access specific variables in an array:
+
+{{ ansible_eth0["ipv4"]["address"] }}
+
+# First element in an array:
+
+{{ foo[0] }}
+
+# Groups is a list of groups in inventory:
+
+{% for host in groups['app_servers'] %}
+   # something that applies to all app servers.
+{% endfor %}
+
+# Getting facts/hostvars in a loop over host groups:
+
+{% for host in groups['app_servers'] %}
+   {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+
+# Practical use (iptables config - allow monitoring hosts to accept connections from the first webserver in group webservers):
+
+{% for host in groups['monitoring'] %}
+-A INPUT -p tcp -s {{ hostvars[groups['webservers'][0]]['ansible_eth0']['ipv4']['address'] }} --dport 5666 -j ACCEPT
+{% endfor %}
+

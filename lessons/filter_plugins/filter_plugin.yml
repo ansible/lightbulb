@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  name: This is a Playbook
+  sudo: yes
+
+  tasks:

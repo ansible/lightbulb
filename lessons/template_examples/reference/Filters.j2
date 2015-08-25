@@ -1,0 +1,58 @@
+# Split Filter:
+
+{% set servers = "server1,server2,server3" %}
+{% for server in servers.split(",") %}
+{{ server }}
+{% endfor %}
+
+# Formatting Filters:
+
+{% filter upper %}
+    This text becomes uppercase
+{% endfilter %}
+
+# Default:
+
+{{ my_variable|default('my_variable is not defined') }}
+{{ ''|default('the string was empty', true) }}
+
+# Formatting:
+
+{{ "%s - %s"|format("Hello?", "Foo!") }}
+
+# Joins:
+
+{{ [1, 2, 3]|join('|') }}
+{{ [1, 2, 3]|join }}
+
+# Reject Attribute in a sequence of objects:
+
+{{ users|rejectattr("is_active") }}
+{{ users|rejectattr("email", "none") }}
+
+# Replace something:
+
+{{ "Hello World"|replace("Hello", "Goodbye") }}
+{% set my_var='this-is-a-test' %}
+{{ my_var | replace('-', '_') }}
+
+# Select something:
+{{ numbers|select("odd") }}
+
+# Combine two lists
+{{ list1 | union(list2) }}
+
+# Get a random number
+{{ 59 | random }} * * * * root /script/from/cron
+
+# md5sum of a filename
+{{ filename | md5 }}
+
+# Comparisons
+{{ ansible_distribution_version | version_compare('12.04', '>=') }}
+
+# Convert "ansible" to "able"
+{{ 'ansible' | regex_replace('^a.*i(.*)$', 'a\\1') }}
+
+# Convert "foobar" to "bar"
+{{ 'foobar' | regex_replace('^f.*o(.*)$', '\\1') }}
