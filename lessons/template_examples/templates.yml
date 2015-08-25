@@ -2,7 +2,6 @@
 - hosts: localhost
   name: This is a Playbook
   connection: local
-  gather_facts: false
   vars_files: 
   - vars.yml
 
