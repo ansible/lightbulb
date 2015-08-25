@@ -1,0 +1,79 @@
+- hosts: localhost
+  
+  vars:
+    path: /tmp/foo
+    content: foo_content
+  
+  tasks:
+  - name: start from a known state, remove foo
+    file: 
+      path: "{{ path }}"
+      state: absent 
+
+  - name: create the foo
+    foo:
+      state: present
+      content: "{{ content }}"
+      path: "{{ path }}"
+    register: result
+
+  - name: make sure thing is created successfully
+    assert: 
+      that: result.changed == True
+
+  - name: create it again to make sure task is idempotent
+    foo:
+      state: present
+      content: "{{ content }}"
+      path: "{{ path }}"
+    register: result
+
+  - name: make sure task is idempotent
+    assert: 
+      that: result.changed == False
+
+  - name: stat file
+    stat:
+      path: "{{ path }}"
+    register: p
+
+  - name: assert file exists
+    assert:
+      that: p.stat.exists
+
+  - name: get content of file
+    command: cat {{ path }}
+    register: output
+
+  - name: assert output is equal to input
+    assert:
+      that: output.stdout == content
+
+  - name: remove foo
+    foo:
+      state: absent
+      path: "{{ path }}"
+    register: result
+
+  - name: make sure foo is remove successfully
+    assert: 
+      that: result.changed == True
+
+  - name: remove foo idempotency
+    foo:
+      state: absent
+      path: "{{ path }}"
+    register: result
+
+  - name: make sure foo is remove successfully
+    assert: 
+      that: result.changed == False
+
+  - name: stat file
+    stat:
+      path: "{{ path }}"
+    register: p
+
+  - name: assert does not exists
+    assert:
+      that: p.stat.exists == False
