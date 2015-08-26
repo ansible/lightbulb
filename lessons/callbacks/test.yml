@@ -1,0 +1,7 @@
+
+- hosts: myhosts
+  vars: 
+    foo: bar
+
+  tasks:
+  - debug: var=foo

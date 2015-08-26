@@ -1,0 +1,8 @@
+[myhosts]
+host1
+host2
+host3
+
+[myhosts:vars]
+ansible_connection=local 
+ansible_python_interpreter="/usr/bin/env python"
