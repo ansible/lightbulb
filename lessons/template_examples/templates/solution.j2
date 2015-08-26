@@ -1,0 +1,34 @@
+{{ ansible_managed }}
+
+#Users
+
+##users without Snoopy
+{% for user in users %}
+{% if user !='Snoopy'%}
+{{loop.index }} - {{user}}
+{% endif %}
+{% endfor %}
+
+##CSV of Users
+{{', '.join(users) }}
+
+#States
+{{ states[1]|lower }}
+
+#Servers
+{% for server in groups['myhosts'] %}
+{{ server }}
+{% endfor %}
+
+#Foo Setting
+{% if foo_setting is defined %}
+foo_setting={{ foo_setting }}
+{% else %}
+# foo_setting not defined
+{% endif %}
+
+#Environment Variables
+
+{% for k,v in ansible_env|dictsort %}
+{{ k }}={{ v }}
+{% endfor %}

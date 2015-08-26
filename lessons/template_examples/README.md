@@ -21,7 +21,7 @@ The dynaimcally generated report should contain the following.  Each section in 
 
 **servers**
 
-1. A list of all of the servers in the "myservers" inventory group.
+1. A list of all of the servers in the "myhosts" inventory group.
 
 
 **setting**:

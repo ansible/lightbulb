@@ -8,4 +8,4 @@
   tasks:
 
   - name: render templates to "render"
-    template: src=templates/mysolution.j2 dest=/tmp/ansible-report.txt
+    template: src=templates/solution.j2 dest=/tmp/ansible-report.txt
