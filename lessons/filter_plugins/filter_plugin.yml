@@ -5,10 +5,10 @@
   tasks:
 
   - name: test
-    command: mkdir {{ item }}
+    command: mkdir -p {{ item }}
     with_items:
-    - a
-    - b
+    - /tmp/filter_test/a
+    - /tmp/filter_test/b
     register: output
     ignore_errors: true
 
@@ -19,3 +19,4 @@
   - name: output
     debug: msg="Error from mkdir"
     with_items: "{{ output.results|deeplist('stderr') }}"
+
