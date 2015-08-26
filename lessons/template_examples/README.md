@@ -1,62 +1,33 @@
-Activity for Advanced Templating:
-=================================
+# Jinja2 Workshop
 
-### Topics Covered
+This workshop is designed to test some templating skills.  Essentially, we are going to create a Jinja2-based report based on some variables and facts.  No variables should be hardcoded in the template.
 
-* Complex Variable Use
-* Loops
-* Decisioning
-* Filters
 
-The reference folder is provided to teach specific points about templating:
+The dynaimcally generated report should contain the following.  Each section in the report is identified by "section:", followed by the data to be rendered.
 
-### General flow
+**header**
 
-All playbooks provided in this section run against localhost. If you are testing a template for vagrant hosts, you'll need to add the hosts to inventory/hosts and 
-provide all vars needed to render the playbook in vars.yml
+1. A string notifying that this file is managed by ansible, as well as the timestamp when the report was generated.
 
-### Commands
+**users**
 
-Using the playbook:
+1. A line separated list of users defined in vars.yml, but not snoopy.  Each username should be preceeded by its loop index.
 
-```
-ansible-playbook -i inventory/hosts templates.yml
-```
+2. A CSV list of all the users defined in vars.yml.
 
-Activity:
+**state**
 
-Create template for iptables config file that does the following:
+1. The second state defined in vars.yml, in lower-case.
 
-* if, elif decisioning 
-* nested inside this is a for loop to place rules for hostgroups
-* in that for loop, we access specific host variables
+**servers**
 
-### Reference:
+1. A list of all of the servers in the "myservers" inventory group.
 
-http://jinja.pocoo.org/docs/dev/templates/
 
-* For Decisioning:
-http://jinja.pocoo.org/docs/dev/templates/#tests
-http://jinja.pocoo.org/docs/dev/templates/#if
-http://jinja.pocoo.org/docs/dev/templates/#list-of-builtin-tests
+**setting**:
 
-* For Looping:
-http://jinja.pocoo.org/docs/dev/templates/#for
-http://jinja.pocoo.org/docs/dev/templates/#macros
-http://jinja.pocoo.org/docs/dev/templates/#call
+1. If `foo_setting` is defined, we want to declare it, otherwise, we want to make a comment noting that it is undefined.
 
-* For Filters:
-http://jinja.pocoo.org/docs/dev/templates/#id11
-http://jinja.pocoo.org/docs/dev/templates/#builtin-filters
-https://docs.ansible.com/ansible/playbooks_filters.html#other-useful-filters
 
-* Complex Variable Use:
-http://jinja.pocoo.org/docs/dev/templates/#variables
-http://jinja.pocoo.org/docs/dev/templates/#assignments
-http://jinja.pocoo.org/docs/dev/templates/#block-assignments
-http://jinja.pocoo.org/docs/dev/templates/#filters
-http://jinja.pocoo.org/docs/dev/templates/#list-of-global-functions
-
-* Other:
-http://jinja.pocoo.org/docs/dev/templates/#expressions
-http://jinja.pocoo.org/docs/dev/templates/#whitespace-control (Note trim_blocks is called in the template module)
+**environment variables**
+A line separated list of discovered environment variables and their values, sorted by key.
