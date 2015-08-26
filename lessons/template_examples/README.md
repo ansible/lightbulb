@@ -30,4 +30,5 @@ The dynaimcally generated report should contain the following.  Each section in 
 
 
 **environment variables**
-A line separated list of discovered environment variables and their values, sorted by key.
+
+1. A line separated list of discovered environment variables and their values, sorted by key.
