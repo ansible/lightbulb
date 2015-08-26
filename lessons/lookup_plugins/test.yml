@@ -1,0 +1,10 @@
+
+- hosts: localhost
+  vars:
+    msg: is not exciting
+    target_url: "https://gist.githubusercontent.com/jsmartin/bb07b94316d6ed0b2561/raw/b8f7fa2e7dcb6108c9d6edd1f63ab7377d0aa245/gistfile1.txt"
+
+  tasks:
+  - template:
+      src: "{{lookup('template_url', target_url)}}"
+      dest: /tmp/remote_template
