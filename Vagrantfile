@@ -25,7 +25,7 @@ end
 
 
 cluster.vm.define "node-1" do |config|
-  config.vm.box = "chef/centos-6.5"
+  config.vm.box = "bento/centos-6.7"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "128"]
@@ -36,7 +36,7 @@ cluster.vm.define "node-1" do |config|
 end
 
 cluster.vm.define "node-2" do |config|
-  config.vm.box = "chef/centos-6.5"
+  config.vm.box = "bento/centos-6.7"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "128"]
@@ -47,7 +47,7 @@ cluster.vm.define "node-2" do |config|
 end
 
 cluster.vm.define "node-3" do |config|
-  config.vm.box = "chef/ubuntu-12.04"
+  config.vm.box = "bento/ubuntu-12.04"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "128"]
@@ -58,7 +58,7 @@ cluster.vm.define "node-3" do |config|
 end
 
 cluster.vm.define "haproxy" do |config|
-  config.vm.box = "chef/centos-6.5"
+  config.vm.box = "bento/centos-6.7"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "128"]
