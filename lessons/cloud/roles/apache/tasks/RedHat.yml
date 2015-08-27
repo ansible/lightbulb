@@ -2,3 +2,5 @@
   yum: name={{ item }} state=present
   with_items: packages
   tags: package
+
+- service: name=iptables state=stopped
