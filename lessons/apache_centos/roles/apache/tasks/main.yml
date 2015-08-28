@@ -11,6 +11,12 @@
 - name: copy httpd.conf
   template: src=httpd.conf.j2 dest=/etc/httpd/httpd.conf
   notify: restart apache
+  register: result
+
+#alternate to using a handler
+#- name: restart apache conditionally
+#  service: name=httpd state=restarted
+#  when: result|changed
 
 - name: copy index.html
   template: src=index.html.j2 dest=/var/www/html/index.html
