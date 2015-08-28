@@ -6,6 +6,7 @@ class FilterModule(object):
     def filters(self):
         return {
             'deeplist': self.deeplist,
+            'percent' : self.percent
         }
 
     def deeplist(self, obj, key):
@@ -14,3 +15,6 @@ class FilterModule(object):
             if key in x:
                 r.append(x[key])
         return r
+
+    def percent(self, percent, total):
+        return (total * (float(str(percent).strip('%')) / 100.0))

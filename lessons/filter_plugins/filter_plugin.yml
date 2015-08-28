@@ -35,7 +35,11 @@
 
   - debug: var=output.results|deeplist("stdout")
 
-  - name: output
-    debug: msg="output from ifconfig"
+  - name: output from ifconfig
+    debug: msg="{{ item }}"
     with_items: "{{ output.results|deeplist('stdout') }}"
+
+  - name: 42% of 100 perecent
+    debug: msg="{{ 100|percent(42) }}"
+
 
