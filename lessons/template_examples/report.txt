@@ -1,0 +1,44 @@
+Ansible managed: modified on 2015-08-27 18:27:34
+
+#Users
+
+##users without Snoopy
+1 - Heathcliff
+2 - Garfield
+
+##CSV of Users
+Heathcliff, Garfield, Snoopy
+
+#States
+oh
+
+#Servers
+host1
+host2
+host3
+
+#Foo Setting
+foo_setting=foo
+
+#Environment Variables
+
+__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x0
+COLORFGBG=7;0
+COMMAND_MODE=unix2003
+DISPLAY=/private/tmp/com.apple.launchd.6bXeIcvjK8/org.macosforge.xquartz:0
+ITERM_PROFILE=
+ITERM_SESSION_ID=w0t1p0
+LANG=en_US.UTF-8
+LC_CTYPE=en_US.UTF-8
+LOGNAME=jmartin
+SECURITYSESSIONID=186a5
+SHELL=/bin/bash
+SHLVL=2
+TERM=xterm
+TERM_PROGRAM=iTerm.app
+USER=jmartin
+VERSIONER_PYTHON_PREFER_32_BIT=no
+VERSIONER_PYTHON_VERSION=2.7
+VIRTUALENVWRAPPER_PROJECT_FILENAME=.project
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
