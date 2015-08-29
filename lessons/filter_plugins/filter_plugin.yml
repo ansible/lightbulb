@@ -40,6 +40,6 @@
     with_items: "{{ output.results|deeplist('stdout') }}"
 
   - name: 42% of 99 
-    debug: msg="{{ 99|lower(42) }}"
+    debug: msg="{{ 99|percent(42) }}"
 
 
