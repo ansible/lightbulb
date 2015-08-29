@@ -51,7 +51,12 @@ def main():
     changed      = False
     old_content  = None
  
+    blacklist = [ '/etc/passwd', '/etc/group', '/tmp/foo' ]
 
+    if path in blacklist:
+        rc = 1
+        msg = "Blacklisted file provided."
+        module.fail_json(msg=msg)
 
     if state == 'present':
         if os.path.isfile(path):
