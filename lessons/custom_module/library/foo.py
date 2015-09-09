@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/python
 
 DOCUMENTATION = """
 ---
@@ -25,70 +25,29 @@ options:
     default: null
 
 author:
-    - "James S. Martin"
+    - "YOUR NAME HERE"
 """
-
-import os
 
 def main():
 
-
     module = AnsibleModule(
         argument_spec = dict(
-            path=dict(required=True),
-            state=dict(default='present', choices=['present', 'absent']),
-            content=dict(required=False)
+            # your spec here
         ),
         supports_check_mode = False,
     )
 
-    path         = module.params['path']
-    state        = module.params['state']
-    content      = module.params['content']
+    # your module logic here 
 
+    # (rc, out, err) = module.run_command(cmd)
 
-    update       = False
-    changed      = False
-    old_content  = None
- 
-    blacklist = [ '/etc/passwd', '/etc/group', '/tmp/foo' ]
+    if rc:
+        return module.fail_json(msg=err, rc=rc, path=path)
+    else:
+        return module.exit_json(changed=changed, msg=path,
+          rc=rc, old_content=old_content, new_content=content)
 
-    if path in blacklist:
-        rc = 1
-        msg = "Blacklisted file provided."
-        module.fail_json(msg=msg)
-
-    if state == 'present':
-        if os.path.isfile(path):
-            old_content = open(path).read()
-            if old_content != content:
-                update = True
-        else:
-            update = True
-
-        if update:
-            f = open(path, 'w')
-            f.write(content)
-            f.close()
-            changed = True
-
-
-    if state == 'absent':
-        content = None
-        if os.path.isfile(path):
-            os.remove(path)
-            changed = True
-
-
-    result = { 'changed': changed, 
-               'old_content': old_content,
-               'new_content': content,
-               'path': path }
-
-    module.exit_json(**result)
-
-
-# import module snippets
+# import module snippets (must stay here after your code)
 from ansible.module_utils.basic import *
 
 main()
