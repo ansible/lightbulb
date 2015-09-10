@@ -1,21 +1,21 @@
 ---
 - hosts: web:haproxy
   name: Sets up common role on all servers
-  sudo: yes
+  become: yes
 
   roles:
   - common
 
 - hosts: web
   name: Confiures apache on all the app servers
-  sudo: yes
+  become: yes
 
   roles:
   - lameapp
 
 - hosts: haproxy
   name: configures haproxy on the haproxy server
-  sudo: yes
+  become: yes
 
   roles:
   - haproxy 

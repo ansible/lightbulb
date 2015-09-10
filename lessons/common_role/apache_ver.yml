@@ -1,7 +1,7 @@
 ---
 - hosts: web
   name: Configures apache on all the app servers
-  sudo: yes
+  become: yes
 
   roles:
   - apache 
@@ -10,15 +10,12 @@
     shell: "{{ apache_service }} -v|grep version|awk '{print $3}'|cut -f2 -d'/'"
     register: result
 
-  - name: set a fact for the apache version
-    set_fact: apache_version="{{ result.stdout }}"
-
   - name: create dynamic group with apache version
-    group_by: key=apache_{{ apache_version }}
+    group_by: key=apache_{{ result.stdout }}
 
 - hosts: apache_2.2.15
   name: Do this on apache 2.2.15 machines
-  sudo: yes
+  become: yes
   tasks:
   - service: name={{ apache_service }} state=restarted
 

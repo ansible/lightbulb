@@ -1,7 +1,7 @@
 ---
 - hosts: web
   name: This is a Playbook
-  sudo: yes
+  become: yes
 
   roles:
   - apache 

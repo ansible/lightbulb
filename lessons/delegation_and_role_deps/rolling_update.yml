@@ -6,7 +6,7 @@
   name: performs rolling restart
   gather_facts: no
   serial: 1
-  sudo: yes
+  become: yes
 
   pre_tasks:
 

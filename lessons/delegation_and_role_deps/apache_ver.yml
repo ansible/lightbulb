@@ -1,7 +1,7 @@
 ---
 - hosts: web
   name: Configures apache on all the app servers
-  sudo: yes
+  become: yes
 
   roles:
   - apache 
@@ -18,7 +18,7 @@
 
 - hosts: apache_2.2.15
   name: Do this on apache 2.2.15 machines
-  sudo: yes
+  become: yes
   tasks:
   - service: name={{ apache_service }} state=restarted
 
