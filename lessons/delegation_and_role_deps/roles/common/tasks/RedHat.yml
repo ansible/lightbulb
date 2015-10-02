@@ -1,3 +1,6 @@
+- name: install epel-release
+  yum: name=epel-release state=present
+  
 - name: install commons packages (Red Hat)
   yum: name={{ item }} state=present
   with_items: packages
