@@ -41,6 +41,10 @@ This brings up another node.
 
 Adds a new lameapp role that depends on apache role.  lameapp is a very simple python script. Show that lameapp role has passed a parameter to the apache role.  Show the custom filters.  Show how the rolling restart and delegation works and the custom modules.
 
+The app is hosted at: http://10.42.0.100/lame
+
+The vault password is 'password'.
+
 ### Rolling restart flow
 
 The ```lameapp_version``` is found in the ```group_vars/all``` file.

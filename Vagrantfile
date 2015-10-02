@@ -50,7 +50,7 @@ cluster.vm.define "node-3" do |config|
   config.vm.box = "bento/ubuntu-12.04"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
-    vb.customize ["modifyvm", :id, "--memory", "128"]
+    vb.customize ["modifyvm", :id, "--memory", "384"]
     vb.customize ["modifyvm", :id, "--cpus", "1"]
   end
   config.vm.hostname = "node-3"
