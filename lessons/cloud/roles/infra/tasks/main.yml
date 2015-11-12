@@ -82,7 +82,10 @@
   register: result
 
 - name: waiting for ssh to start
-  wait_for: port=22 host={{ item.public_ip }} timeout=300
+  wait_for: 
+    port: 22 
+    host: "{{ item.public_ip }}"
+    timeout: 300
   with_items: result.tagged_instances
 
 

@@ -14,18 +14,27 @@
   when: ansible_os_family  == "Debian"
 
 - name: create sites directories
-  file: path={{ item }} state=directory
+  file: 
+    path: "{{ item }}"
+    state: directory
   with_items: apache_dirs
 
 - name: copy index.html
-  template: src=index.html.j2 dest={{ apache_docroot }}/index.html
+  template: 
+    src: index.html.j2 
+    dest: "{{ apache_docroot }}/index.html"
 
 - name: copy httpd.conf
-  template: src=httpd.conf-{{ ansible_os_family }}.j2 dest={{ apache_config }}
+  template: 
+    src: httpd.conf-{{ ansible_os_family }}.j2 
+    dest: "{{ apache_config }}"
   notify: restart apache
 
 - name: start and enable apache service
-  service: name={{ apache_service }} state=started enabled=yes
+  service: 
+    name: "{{ apache_service }}"
+    state: started 
+    enabled: yes
   tags: service
 
 
