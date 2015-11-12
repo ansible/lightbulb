@@ -7,9 +7,14 @@
   when: ansible_os_family == 'Debian'
 
 - name: Configure  haproxy
-  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  template: 
+    src: haproxy.cfg.j2 
+    dest: /etc/haproxy/haproxy.cfg
   notify: restart haproxy
 
 - name: start haproxy service
-  service: name=haproxy state=started enabled=yes
+  service: 
+    name: haproxy 
+    state: started 
+    enabled: yes
 
