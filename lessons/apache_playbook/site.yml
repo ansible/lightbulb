@@ -10,18 +10,27 @@
 
   tasks:
   - name: stop iptables
-    service: name=iptables state=stopped
+    service: 
+      name: iptables 
+      state: stopped
 
   - name: install packages
-    yum: name={{ item }} state=present
+    yum: 
+      name: "{{ item }}" 
+      state: present
     with_items: packages
 
   - name: copy index.html
-    copy: src=files/index.html dest=/var/www/html/
+    copy: 
+      src: files/index.html 
+      dest: /var/www/html/
     notify: something happened
 
   - name: start and enable apache service
-    service: name=httpd state=started enabled=yes
+    service: 
+      name: httpd 
+      state: started 
+      enabled: yes
 
   handlers:
   - name: something happened
