@@ -68,4 +68,15 @@ cluster.vm.define "haproxy" do |config|
   config.vm.network :private_network, ip: "10.42.0.100"
 end
 
+
+cluster.vm.define "tower" do |config|
+  config.vm.box = "http://vms.ansible.com/ansible-tower-2.3.1-virtualbox.box"
+  config.ssh.insert_key = false
+  config.vm.provider :virtualbox do |vb, override|
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--cpus", "1"]
+  end
+  config.vm.hostname = "tower"
+end
+
 end
