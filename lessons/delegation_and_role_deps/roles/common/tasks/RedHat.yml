@@ -1,9 +1,16 @@
-- name: install epel-release
-  yum: name=epel-release state=present
-  
+- name: install epel
+  yum: 
+    name: epel-release
+    state: present
+
 - name: install commons packages (Red Hat)
-  yum: name={{ item }} state=present
+  yum: 
+    name: "{{ item }}"
+    state: present
   with_items: packages
 
 - name: stop iptables
-  service: name=iptables state=stopped
+  service: 
+    name: iptables
+    state: stopped
+

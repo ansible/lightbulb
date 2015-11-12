@@ -17,5 +17,8 @@
   include_vars: users.yml
 
 - name: create users
-  user: name={{ item.username }} password={{ item.password }} comment="{{ item.comment }}"
+  user: 
+    name: "{{ item.username }}"
+    password: "{{ item.password }}"
+    comment: "{{ item.comment }}"
   with_items: users
