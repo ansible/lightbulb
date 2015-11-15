@@ -1,0 +1,11 @@
+---
+# defaults file for collectd
+collectd_hostname: localhost
+collectd_fqdn_lookup: true
+collectd_basedir: /usr/var/lib/collectd
+collectd_pidfile: /usr/var/run/collectd.pid
+collectd_plugindir: /usr/lib/collectd
+collectd_types_db: /usr/share/collectd/types.db
+collectd_interval: 10
+collectd_timeout: 2
+collectd_read_threads: 5

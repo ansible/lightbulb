@@ -1,0 +1,25 @@
+# An basic collectd configuration file for the Ansible roles workshop.
+
+# This section should be customizable by the collectd role
+Hostname    "localhost"
+FQDNLookup   true
+BaseDir     "/usr/var/lib/collectd"
+PIDFile     "/usr/var/run/collectd.pid"
+PluginDir   "/usr/lib/collectd"
+TypesDB     "/usr/share/collectd/types.db"
+Interval     10
+Timeout      2
+ReadThreads  5
+
+# This section can be left as static boilerplate configuration
+# for the purpose of this exercise.
+LoadPlugin syslog
+<Plugin syslog>
+        LogLevel info
+</Plugin>
+LoadPlugin cpu
+LoadPlugin interface
+LoadPlugin load
+LoadPlugin memory
+Include "/etc/collectd.d"
+
