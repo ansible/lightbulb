@@ -1,0 +1,20 @@
+--- 
+- hosts: web
+  name: Setup collectd on all web servers
+  vars:
+    collectd_packages:
+      - collectd
+      - collectd-rrdtool
+  tasks:
+    - name: collectd packages installed
+      yum: 
+        name: "{{ item }}" 
+        state: present
+      with_items: collectd_packages
+      notify: restart collectd
+  handlers:
+    - name: restart collectd
+      service: 
+        name: collectd 
+        state: restarted 
+        enabled: yes
