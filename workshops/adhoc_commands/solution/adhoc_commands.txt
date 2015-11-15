@@ -1,0 +1,8 @@
+ansible web -i inventory/hosts -u vagrant -m ping 
+
+ansible web -i inventory/hosts -u vagrant -m yum -a "name=epel-release state=latest" -s
+
+ansible web -i inventory/hosts -u vagrant -m yum -a "name=nginx state=present" -s
+
+ansible web -i inventory/hosts -u vagrant -m service -a "name=nginx state=started" -s
+
