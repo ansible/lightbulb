@@ -1,5 +1,0 @@
----
-# vars file for apache
-packages:
-- httpd
-- libselinux-python
