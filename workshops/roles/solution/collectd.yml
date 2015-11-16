@@ -1,0 +1,5 @@
+---
+- hosts: web
+  name: Setup collectd on all web servers using a role
+  roles:
+  - { role: collectd, collectd_interval: 5 }
