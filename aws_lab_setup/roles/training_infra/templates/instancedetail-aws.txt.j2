@@ -1,0 +1,31 @@
+[all:vars]
+ansible_ssh_user=ec2-user
+ansible_ssh_pass=changeme123
+
+
+[web]
+{% for grouper, list in instances.results|groupby('item') if grouper[0] == item %}
+{% for vm in list %}
+{% if 'control' not in vm.invocation.module_complex_args.instance_tags.Name and 'haproxy' not in vm.invocation.module_complex_args.instance_tags.Name%}
+{{ vm.invocation.module_complex_args.instance_tags.Name | regex_replace('.*-([\w]*)', '\\1') }} ansible_ssh_host={{ vm.tagged_instances[0].public_ip }}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+[control]
+{% for grouper, list in instances.results|groupby('item') if grouper[0] == item %}
+{% for vm in list %}
+{% if 'control' in vm.invocation.module_complex_args.instance_tags.Name %}
+{{ vm.invocation.module_complex_args.instance_tags.Name | regex_replace('.*-([\w]*)', '\\1') }} ansible_ssh_host={{ vm.tagged_instances[0].public_ip }}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+[haproxy]
+{% for grouper, list in instances.results|groupby('item') if grouper[0] == item %}
+{% for vm in list %}
+{% if 'haproxy' in vm.invocation.module_complex_args.instance_tags.Name %}
+{{ vm.invocation.module_complex_args.instance_tags.Name | regex_replace('.*-([\w]*)', '\\1') }} ansible_ssh_host={{ vm.tagged_instances[0].public_ip }}
+{% endif %}
+{% endfor %}
+{% endfor %}

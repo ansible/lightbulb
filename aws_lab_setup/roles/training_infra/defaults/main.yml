@@ -1,0 +1,33 @@
+# aws_key_name:
+# name_prefix:
+provision: no
+email: no
+bootstrap: no
+instance_types:
+  rhel7:
+    ami_id: ami-a540a5e1
+    size: t2.micro
+    os_type: linux
+  rhel7-tower:
+    ami_id: ami-a540a5e1
+    size: t2.medium
+    os_type: linux
+aws_region: us-west-1
+vpc_subnet_id: subnet-25b9157c
+admin_password: changeme123
+users:
+  # - username: jdavila
+  #   email: jdavila@ansible.com
+
+
+types:
+  - name: control
+    type: rhel7-tower
+  - name: node1
+    type: rhel7
+  - name: node2
+    type: rhel7
+  - name: node3
+    type: rhel7
+  - name: haproxy
+    type: rhel7
