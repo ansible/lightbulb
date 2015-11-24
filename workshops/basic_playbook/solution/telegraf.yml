@@ -4,6 +4,9 @@
   name: Setup telegraf on all web servers
   vars:
     telegraf_install_version: stable
+    packages:
+      - vim
+      - epel-release
   tasks:
     - name: Add InfluxDB repository file [RHEL/CentOS]
       template:
@@ -11,6 +14,12 @@
         dest: /etc/yum.repos.d/influxdb.repo
         force: yes
         backup: yes
+
+    - name: install support packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: packages
 
     - name: install telegraf
       yum:
