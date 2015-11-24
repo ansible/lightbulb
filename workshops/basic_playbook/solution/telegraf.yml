@@ -4,6 +4,9 @@
   name: Setup telegraf on all web servers
   vars:
     telegraf_install_version: stable
+    telegraf_flush_retries: 2
+    influxdb_db_name: telegraf
+    influxdb_url: http://localhost:8086
     packages:
       - vim
       - epel-release
