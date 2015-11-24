@@ -1,6 +1,9 @@
 --- 
 - hosts: web
+  become: yes
   name: Setup telegraf on all web servers
+  vars:
+    telegraf_install_version: stable
   tasks:
     - name: Add InfluxDB repository file [RHEL/CentOS]
       template:
@@ -17,7 +20,7 @@
 
     - name: configure telegraf
       template:
-        src: telegraf.conf
+        src: telegraf.conf.j2
         dest: /etc/opt/telegraf/telegraf.conf
       notify: restart telegraf
 
