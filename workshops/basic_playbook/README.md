@@ -12,8 +12,30 @@ This workshop begins your foray into developing your first Ansible playbook. In 
 
 ### The Assignment
 
-Create a basic playbook that installs collectd and collectd-rrdtools using yum. The playbook should also (re)start the service up only if necesseary.
+Create a basic playbook that 
 
-### Requirements
+* creates a list as a variable that includes vim & epel-release
+* defines a variable named telegraf_install_version and is set to "stable"
+* installs the above packages in a loop
+* it should also create the telegraf yum repository (template file included)
+* installs the telegraf package
+* configures the telegraf package with a template
+* starts and enables the telegraf client
 
-You will need to have the EPEL repo enabled on your remote nodes.
+The playbook should also (re)start the service up only if necesseary.
+
+
+You should be able to verify that telegraf is working properly by running:
+
+	[user@node-1]# /opt/telegraf/telegraf -test -config /etc/opt/telegraf/telegraf.conf
+	* Plugin: cpu, Collection 1
+	> cpu_time_user,cpu=cpu0 value=25.99 1448378995373412842
+	> cpu_time_system,cpu=cpu0 value=18.56 1448378995373448280
+	> cpu_time_idle,cpu=cpu0 value=3605.88 1448378995373456059
+	> cpu_time_nice,cpu=cpu0 value=0 1448378995373463851
+	> cpu_time_iowait,cpu=cpu0 value=5.81 1448378995373470204
+	> cpu_time_irq,cpu=cpu0 value=0.01 1448378995373477438
+	> cpu_time_softirq,cpu=cpu0 value=2.69 1448378995373487361
+	> cpu_time_steal,cpu=cpu0 value=0 1448378995373494417
+	> cpu_time_guest,cpu=cpu0 value=0 1448378995373500291
+	> cpu_time_guest_nice,cpu=cpu0 value=0 1448378995373506909
