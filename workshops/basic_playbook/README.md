@@ -15,8 +15,11 @@ This workshop begins your foray into developing your first Ansible playbook. In 
 Create a basic playbook that 
 
 * creates a list as a variable that includes vim & epel-release
-* defines a variable named telegraf_install_version and is set to "stable"
 * installs the above packages in a loop
+* defines a variable named `telegraf_install_version` and is set to `stable`
+* defines a variable named `telegraf_flush_retries` and is set to `2` (integer)
+* defines a variable named `influxdb_db_name` that is set to `telegraf`
+* defines a variable named `influxdb_url` that is set to `http://localhost:8086`
 * it should also create the telegraf yum repository (template file included)
 * installs the telegraf package
 * configures the telegraf package with a template
