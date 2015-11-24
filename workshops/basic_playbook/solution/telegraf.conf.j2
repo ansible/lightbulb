@@ -37,7 +37,7 @@
   # ie, a jitter of 5s and interval 10s means flush will happen every 10-15s
   flush_jitter = "5s"
   # Number of times to retry each data flush
-  flush_retries = 2
+  flush_retries = {{ telegraf_flush_retries }}
 
   # Run telegraf in debug mode
   debug = false
@@ -51,14 +51,15 @@
 
 [outputs]
 
+
 # Configuration for influxdb server to send metrics to
 [outputs.influxdb]
   # The full HTTP endpoint URL for your InfluxDB instance
   # Multiple urls can be specified for InfluxDB cluster support. Server to
   # write to will be randomly chosen each interval.
-  #urls = ["http://localhost:8086"] # required.
+  urls = ["{{influxdb_url}}"] # required.
   # The target database for metrics. This database must already exist
-  #database = "mydatabase" # required.
+  database = "{{influxdb_db_name}}" # required.
   # Precision of writes, valid values are n, u, ms, s, m, and h
   # note: using second precision greatly helps InfluxDB compression
   precision = "s"
@@ -72,7 +73,6 @@
 
   # Set the user agent for the POSTs (can be useful for log differentiation)
   # user_agent = "telegraf"
-
 
 ###############################################################################
 #                                  PLUGINS                                    #
