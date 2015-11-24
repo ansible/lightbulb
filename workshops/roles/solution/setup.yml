@@ -11,8 +11,8 @@
       state: installed
 
   roles:
-  - influxdb
-  - grafana
+  - rossmcdonald.influxdb
+  - jmartin.grafana
   
 
 - hosts: web
