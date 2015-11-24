@@ -1,5 +1,22 @@
 ---
-- hosts: web
-  name: Setup collectd on all web servers using a role
+
+- name: setup influxdb and grafana
+  hosts: grafana
+  become: yes
+  pre_tasks:
+
+  - name: Install epel
+    yum:
+      name: epel-release
+      state: installed
+
   roles:
-  - { role: collectd, collectd_interval: 5 }
+  - influxdb
+  - grafana
+  
+
+- hosts: web
+  become: yes
+  name: Setup telegraf on servers
+  roles:
+  - telegraf
