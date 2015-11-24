@@ -9,19 +9,32 @@ This workshop builds on your assignment from the prior basic playbook workshop. 
 * parameterizing roles
 * defaults values
 * creating a configuration file with a template
+* using ansible galaxy
 
 ### The Assignment
 
-Refactor your basic collectd playbook in to a role with the following added features:
+* use ansible-galaxy to install a influxdb role created by Ross McDonald, and a grafana role created by James Martin.
 
-* Generates a configuration file
+#### Playbook to role
+
+Using the telegraf playbook in the previous workshop, refactor it into a role.  It should have the following features.
+
+* Generates a configuration file that points to the influxdb server.
 * The configuration can be modified thru parameters passed in to the role.
 * Has default values if a configuration (role) parameter is not passed in.
 
-Create a simple playbook that uses the role and passes one parameter to the role.
 
-The file collectd.conf.example has been provided to help get you started.
+#### Playbook Creation
 
-### Requirements
+The playbook should be composed of 2 plays.  The first play will target the grafana and influxdb roles against your influxdb server.  Before those roles are executed, use a pre_task to setup the epel-release package.
 
-You will need to have the EPEL repo enabled on your remote nodes.
+
+* Generates a configuration file that points to the influxdb
+* The configuration can be modified thru parameters passed in to the role.
+* Has default values if a configuration (role) parameter is not passed in.
+
+#### Freebies
+
+You will need to pass the `vars.yml` file as extra vars to your ansible-playbook command.  `training-dashboard.json` is used to populate a dashboard in grafana. When referencing make sure the path to `training-dashboard.json` in vars.yml is relative to the playbook path.
+
+The default username and password for grafana is  **admin** / **password**.
