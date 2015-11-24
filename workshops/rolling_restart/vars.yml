@@ -1,6 +1,7 @@
 influxdb_configuration_dir: /etc/opt/influxdb
-iface: enp0s8 
-influxdb_url: http://10.42.0.100:8086 
+iface: enp0s8
+telegraf_flush_retries: 3
+influxdb_url: http://10.42.0.100:8086
 grafana_custom_dashboard: ../training-dashboard.json
 grafana_data_source:
   isDefault: yes
