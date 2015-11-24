@@ -1,0 +1,7 @@
+<powershell>
+$admin = [adsi]("WinNT://./administrator, user")
+$admin.psbase.invoke("SetPassword", "{{ admin_password }}")
+</powershell>
+<script>
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/ansible/ansible/stable-1.9/examples/scripts/ConfigureRemotingForAnsible.ps1'))"
+</script>

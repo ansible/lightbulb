@@ -1,0 +1,75 @@
+  - name: ensure required vars are set
+    assert:
+      that:
+        - name_prefix | default('') | length > 0
+        - aws_key_name | default('') | length > 0
+
+  - name: ensure security group
+    local_action: ec2_group
+    args:
+      name: insecure_all
+      description: all ports open
+      region: '{{ aws_region }}'
+      vpc_id: vpc-ce1f9aab
+      rules:
+        - proto: all
+          type: all
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          type: all
+          cidr_ip: 0.0.0.0/0
+
+  - name: setup instances (wait)
+    local_action: ec2
+    args:
+      assign_public_ip: yes
+      image: '{{ instance_types[item.1.type].ami_id }}'
+      key_name: '{{ aws_key_name }}'
+      region: '{{aws_region}}'
+      exact_count: 1
+      count_tag:
+        Name: "{{ name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
+      instance_tags:
+        Name: "{{ name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
+      instance_type: "{{ instance_types[item.1.type].size }}"
+      user_data: '{{ instance_types[item.1.type].user_data | default(omit) }}'
+      group: insecure_all
+      wait: yes
+      vpc_subnet_id: '{{vpc_subnet_id}}'
+    with_nested:
+      - users
+      - types
+    register: instances
+
+  - name: wait for instances to answer on SSH
+    local_action: wait_for
+    args:
+      port: 22
+      host: '{{ item.tagged_instances[0].public_ip }}'
+      search_regex: OpenSSH
+      timeout: 500
+    with_items: instances.results
+
+  - name: generate student inventories
+    local_action: template
+    args:
+      src: instancedetail-aws.txt.j2
+      dest: ./{{ item.username }}-instances.txt
+    with_items: users
+
+  - name: add hosts
+    add_host:
+        name: "{{ item.invocation.module_complex_args.instance_tags.Name }}"
+        ansible_ssh_host: "{{ item.tagged_instances[0].public_ip }}"
+        ansible_ssh_user: ec2-user
+        groups: managed_hosts
+    with_items: instances.results
+    register: add_host_output
+
+  - name: generate instructor inventory
+    local_action: template
+    args:
+      src: instructor_inventory.j2
+      dest: ./instructor_inventory
+    run_once: yes
