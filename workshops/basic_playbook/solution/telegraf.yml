@@ -1,0 +1,34 @@
+--- 
+- hosts: web
+  name: Setup telegraf on all web servers
+  tasks:
+    - name: Add InfluxDB repository file [RHEL/CentOS]
+      template:
+        src: influxdb.repo.j2
+        dest: /etc/yum.repos.d/influxdb.repo
+        force: yes
+        backup: yes
+
+    - name: install telegraf
+      yum:
+        name: telegraf
+        state: present
+      notify: restart telegraf
+
+    - name: configure telegraf
+      template:
+        src: telegraf.conf
+        dest: /etc/opt/telegraf/telegraf.conf
+      notify: restart telegraf
+
+    - name: start telegraf
+      service: 
+        name: telegraf
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: restart telegraf
+      service: 
+        name: telegraf 
+        state: restarted 
