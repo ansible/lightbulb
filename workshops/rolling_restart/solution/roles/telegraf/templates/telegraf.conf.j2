@@ -37,7 +37,7 @@
   # ie, a jitter of 5s and interval 10s means flush will happen every 10-15s
   flush_jitter = "5s"
   # Number of times to retry each data flush
-  flush_retries = 2
+  flush_retries = {{ telegraf_flush_retries }}
 
   # Run telegraf in debug mode
   debug = false
@@ -50,6 +50,7 @@
 ###############################################################################
 
 [outputs]
+
 
 # Configuration for influxdb server to send metrics to
 [outputs.influxdb]
@@ -72,7 +73,6 @@
 
   # Set the user agent for the POSTs (can be useful for log differentiation)
   # user_agent = "telegraf"
-
 
 ###############################################################################
 #                                  PLUGINS                                    #
