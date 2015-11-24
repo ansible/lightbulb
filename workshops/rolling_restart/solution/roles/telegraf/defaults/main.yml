@@ -1,4 +1,5 @@
 ---
 # defaults file for telegraf
 telegraf_install_version: stable
+telegraf_flush_retries: 2
 influxdb_db_name: telegraf
