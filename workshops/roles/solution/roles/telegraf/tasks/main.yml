@@ -15,7 +15,7 @@
 
 - name: configure telegraf
   template:
-    src: telegraf.conf
+    src: telegraf.conf.j2
     dest: /etc/opt/telegraf/telegraf.conf
   notify: restart telegraf
 
