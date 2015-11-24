@@ -1,0 +1,15 @@
+influxdb_configuration_dir: /etc/opt/influxdb
+iface: enp0s8 
+influxdb_url: http://10.42.0.100:8086 
+grafana_custom_dashboard: ../training-dashboard.json
+grafana_data_source:
+  isDefault: yes
+  database: telegraf
+  user: root
+  password: root
+  name: training
+  type: influxdb
+  url: http://localhost:8086
+  access: proxy
+  basicAuth: false
+
