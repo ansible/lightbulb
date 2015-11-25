@@ -9,9 +9,9 @@
     - mod_wsgi
 
   tasks:
-  - name: stop iptables
+  - name: stop firewalld
     service: 
-      name: iptables 
+      name: firewalld 
       state: stopped
 
   - name: install libselinux-python
@@ -30,11 +30,6 @@
     copy: 
       src: files/index.html 
       dest: /var/www/html/
-
-  - name: start iptables
-    service: 
-      name: iptables 
-      state: started
 
   handlers:
   - name: restart apache service

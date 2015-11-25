@@ -1,3 +1,8 @@
+- name: stop firewalld
+  service:
+    name: firewalld
+    state: stopped
+    
 - name: install packages (Red Hat)
   yum: 
     name: "{{ item }}"

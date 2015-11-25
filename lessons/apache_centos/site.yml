@@ -11,10 +11,6 @@
     apache_max_keep_alive_requests: 115
 
   tasks:
-  - name: stop iptables
-    service: 
-      name: iptables 
-      state: stopped
 
   - name: install libselinux-python
     yum:
@@ -33,7 +29,7 @@
   - name: copy httpd.conf
     template: 
       src: httpd.conf.j2 
-      dest: /etc/httpd/httpd.conf
+      dest: /etc/httpd/conf/httpd.conf
     notify: restart apache service
     tags: config
 
@@ -42,10 +38,10 @@
       src: index.html.j2 
       dest: /var/www/html/index.html
 
-  - name: start iptables
+  - name: stop firewalld
     service: 
-      name: iptables 
-      state: started
+      name: firewalld 
+      state: stopped
 
   handlers:
   - name: restart apache service
