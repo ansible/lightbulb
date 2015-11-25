@@ -7,22 +7,23 @@
   - apache 
   tasks:
   - name: gather apache version
-    shell: "{{ apache_service }} -v|grep version|awk '{print $3}'|cut -f2 -d'/'"
+    shell: "{{ apache_service}} -v|grep version|awk '{print $3}'|cut -f2 -d'/'"
     register: result
 
-  - name: set a fact for the apache version
-    set_fact: apache_version="{{ result.stdout }}"
-
   - name: create dynamic group with apache version
-    group_by: key=apache_{{ apache_version }}
+    group_by: 
+      key: apache_{{ result.stdout }}
 
 - hosts: apache_2.2.15
   name: Do this on apache 2.2.15 machines
   become: yes
   tasks:
-  - service: name={{ apache_service }} state=restarted
+  - debug: 
+      msg: "This task will occur on the 2.2.15 machines"
 
-- hosts: apache_2.2.22
-  name: Do this on apache 2.2.22 machines
+- hosts: apache_2.4.6
+  name: Do this on apache 2.4.6 machines
   tasks:
-  - command: service {{ apache_service }} status
+  tasks:
+  - debug: 
+      msg: "This task will occur on the 2.4.6 machines."
