@@ -1,3 +1,3 @@
 ansible_ssh_user: vagrant
 web_group: web
-iface: eth1
+iface: enp0s8
