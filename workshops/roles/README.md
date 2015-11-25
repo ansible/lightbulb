@@ -13,14 +13,15 @@ This workshop builds on your assignment from the prior basic playbook workshop. 
 
 ### The Assignment
 
-* use ansible-galaxy to install a influxdb role created by Ross McDonald, and a grafana role created by James Martin.
+#### usinging ansible-galaxy
 
-#### Playbook to role
+* use ansible-galaxy to install a influxdb role created by Ross McDonald, and a grafana role created by James Martin.  
 
-Using the telegraf playbook in the previous workshop, refactor it into a role.  It should have the following features.
+#### Convert previous playbook to role
+
+Refactor the previous playbook into a role.  It should have the following features.
 
 * Generates a configuration file that points to the influxdb server.
-* The configuration can be modified thru parameters passed in to the role.
 * Has default values if a configuration (role) parameter is not passed in.
 
 
