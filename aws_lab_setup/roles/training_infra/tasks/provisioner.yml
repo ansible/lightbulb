@@ -10,7 +10,7 @@
       name: insecure_all
       description: all ports open
       region: '{{ aws_region }}'
-      vpc_id: vpc-ce1f9aab
+      vpc_id: '{{ vpc_id }}' 
       rules:
         - proto: all
           type: all
@@ -62,7 +62,7 @@
     add_host:
         name: "{{ item.invocation.module_complex_args.instance_tags.Name }}"
         ansible_ssh_host: "{{ item.tagged_instances[0].public_ip }}"
-        ansible_ssh_user: ec2-user
+        ansible_ssh_user: "{{ ssh_user }}" 
         groups: managed_hosts
     with_items: instances.results
     register: add_host_output

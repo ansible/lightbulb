@@ -4,30 +4,40 @@ provision: no
 email: no
 bootstrap: no
 instance_types:
+  centos7:
+    ami_id: ami-61bbf104
+    size: t2.micro
+    os_type: linux
+  centos7-tower:
+    ami_id: ami-61bbf104
+    size: t2.medium
+    os_type: linux
   rhel7:
-    ami_id: ami-a540a5e1
+    ami_id: ami-12663b7a 
     size: t2.micro
     os_type: linux
   rhel7-tower:
-    ami_id: ami-a540a5e1
+    ami_id: ami-12663b7a
     size: t2.medium
     os_type: linux
-aws_region: us-west-1
-vpc_subnet_id: subnet-25b9157c
+aws_region: us-east-1
+vpc_id: vpc-06c9a463
+vpc_subnet_id: subnet-a2169ed5 
+ssh_user: centos
 admin_password: changeme123
 users:
-  # - username: jdavila
-  #   email: jdavila@ansible.com
+   - username: jdavila
+     email: jdavila@ansible.com
 
 
 types:
   - name: control
-    type: rhel7-tower
+    type: centos7-tower
   - name: node1
-    type: rhel7
+    type: centos7
   - name: node2
-    type: rhel7
+    type: centos7
   - name: node3
-    type: rhel7
+    type: centos7
   - name: haproxy
-    type: rhel7
+    type: centos7

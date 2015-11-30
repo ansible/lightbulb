@@ -20,7 +20,7 @@
           It looks something similar to:<br>
           <br>
           [all:vars]<br>
-          ansible_ssh_user=ec2-user<br>
+          ansible_ssh_user={{ ssh_user }}<br>
           ansible_ssh_pass=changeme123
           <br>
           <br>
@@ -37,7 +37,7 @@
           <br>
           <br>
           Please verify you can SSH into each $SOMEIPADDRESS*<br>
-          The username is 'ec2-user' and the password is 'changeme123'.<br>
+          The username is '{{ ssh_user }}' and the password is 'changeme123'.<br>
           If you have any issues connecting, please reply to this email to let me know.
 
     to_addresses: "{{ item.email }}"
