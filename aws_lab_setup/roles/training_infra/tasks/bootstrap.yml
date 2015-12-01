@@ -12,7 +12,7 @@
     #password: "{{ 'changeme123'|password_hash('sha512') }}"
     password: "$6$rounds=100000$W3Cs5AoklPdUV.Yg$hoRZfL/iVGGki9ZHVU2cXXOyb3WgyifTm09/hp5NhmFd0zvFpm3k5tDxJicOKsjS88ZfirsIyF9UAQnvEizPx/"
   with_items:
-  - ec2-user
+  - "{{ ssh_user }}" 
 
 - name: ensure libselinux-python
   yum:
@@ -26,4 +26,28 @@
   lineinfile:
       dest: /etc/sudoers
       state: present
-      line: 'ec2-user ALL=(ALL) NOPASSWD: ALL'
+      line: '{{ ssh_user }} ALL=(ALL) NOPASSWD: ALL'
+
+- name: disable selinux
+  lineinfile:
+      line: SELINUX=permissive
+      state: present
+      dest: /etc/selinux/config
+      regexp: ^SELINUX=
+  register: selinux_disable
+
+- name: reboot server
+  command: shutdown -r 1 "selinux change...rebooting..." 
+  async: 0
+  poll: 0
+  ignore_errors: yes
+  when: selinux_disable|changed
+
+- name: wait for instance 
+  local_action: wait_for
+  args:
+    port: 22
+    host: '{{ ansible_ssh_host }}'
+    search_regex: OpenSSH
+    timeout: 500
+  when: selinux_disable|changed

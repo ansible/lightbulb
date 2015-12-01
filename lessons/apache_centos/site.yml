@@ -26,6 +26,11 @@
     notify: restart apache service
     tags: package
 
+  - name: create sites-enabled dir
+    file:
+      state: directory
+      path: /etc/httpd/conf/sites-enabled/
+
   - name: copy httpd.conf
     template: 
       src: httpd.conf.j2 
