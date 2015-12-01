@@ -38,4 +38,6 @@ The playbook should be composed of 2 plays.  The first play will target the graf
 
 You will need to pass the `extra_vars.yml` file as extra vars to your ansible-playbook command.  `training-dashboard.json` is used to populate a dashboard in grafana. When referencing make sure the path to `training-dashboard.json` in vars.yml is relative to the playbook path.
 
+Go to http://your_grafana_ip:3000 to login to your grafana server.
+
 The default username and password for grafana is  **admin** / **password**.
