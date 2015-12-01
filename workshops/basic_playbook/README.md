@@ -24,6 +24,7 @@ Create a basic playbook that
 * installs the telegraf package
 * configures the telegraf package with a [template](solution/telegraf.conf.j2)
 * starts and enables the telegraf client
+* uses a handler to notify the restart of the telegraf service when the telegraf package is installed or the telegraf configuration file has changed
 
 The playbook should also (re)start the service up only if necesseary.
 
