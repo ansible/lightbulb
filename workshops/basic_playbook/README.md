@@ -20,9 +20,9 @@ Create a basic playbook that
 * defines a variable named `telegraf_flush_retries` and is set to `2` (integer)
 * defines a variable named `influxdb_db_name` that is set to `telegraf`
 * defines a variable named `influxdb_url` that is set to `http://localhost:8086`
-* it should also create the telegraf yum repository (template file included)
+* it should also create the influx yum repository using this template [template](solution/influxdb.repo.j2)
 * installs the telegraf package
-* configures the telegraf package with a template
+* configures the telegraf package with a [template](solution/telegraf.conf.j2)
 * starts and enables the telegraf client
 
 The playbook should also (re)start the service up only if necesseary.
