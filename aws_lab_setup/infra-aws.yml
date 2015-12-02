@@ -12,7 +12,7 @@
 - name: Bootstrap Training Nodes
   hosts: managed_hosts
   gather_facts: yes
-  sudo: yes
+  become: yes
   roles:
     - role: training_infra
       bootstrap: yes
