@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    foo: Hello World
+  tasks:
+  - debug:
+      msg: "{{ foo | reverse_me }}"
+
