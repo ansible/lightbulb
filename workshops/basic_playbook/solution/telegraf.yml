@@ -1,0 +1,49 @@
+--- 
+- hosts: web
+  become: yes
+  name: Setup telegraf on all web servers
+  vars:
+    telegraf_install_version: stable
+    telegraf_flush_retries: 2
+    influxdb_db_name: telegraf
+    influxdb_url: http://localhost:8086
+    packages:
+      - vim
+      - epel-release
+  tasks:
+    - name: Add InfluxDB repository file [RHEL/CentOS]
+      template:
+        src: influxdb.repo.j2
+        dest: /etc/yum.repos.d/influxdb.repo
+        force: yes
+        backup: yes
+
+    - name: install support packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: packages
+
+    - name: install telegraf
+      yum:
+        name: telegraf
+        state: present
+      notify: restart telegraf
+
+    - name: configure telegraf
+      template:
+        src: telegraf.conf.j2
+        dest: /etc/opt/telegraf/telegraf.conf
+      notify: restart telegraf
+
+    - name: start telegraf
+      service: 
+        name: telegraf
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: restart telegraf
+      service: 
+        name: telegraf 
+        state: restarted 

@@ -1,0 +1,22 @@
+---
+
+- name: setup influxdb and grafana
+  hosts: grafana
+  become: yes
+  pre_tasks:
+
+  - name: Install epel
+    yum:
+      name: epel-release
+      state: installed
+
+  roles:
+  - rossmcdonald.influxdb
+  - jmartin.grafana
+  
+
+- hosts: web
+  become: yes
+  name: Setup telegraf on servers
+  roles:
+  - telegraf

@@ -1,0 +1,4 @@
+---
+# defaults file for telegraf
+telegraf_install_version: stable
+influxdb_db_name: telegraf

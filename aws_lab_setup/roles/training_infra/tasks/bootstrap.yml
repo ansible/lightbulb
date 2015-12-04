@@ -1,0 +1,53 @@
+- name: enable password auth
+  lineinfile:
+    line: PasswordAuthentication yes
+    regexp: ^PasswordAuthentication
+    dest: /etc/ssh/sshd_config
+  notify: restart sshd
+
+- name: ensure users/passwords
+  user:
+    name: '{{ item }}'
+    # crypt() on MacOS is not interoperable; hardcoding password hash...
+    #password: "{{ 'changeme123'|password_hash('sha512') }}"
+    password: "$6$rounds=100000$W3Cs5AoklPdUV.Yg$hoRZfL/iVGGki9ZHVU2cXXOyb3WgyifTm09/hp5NhmFd0zvFpm3k5tDxJicOKsjS88ZfirsIyF9UAQnvEizPx/"
+  with_items:
+  - "{{ ssh_user }}" 
+
+- name: ensure libselinux-python
+  yum:
+      name: "{{ item }}"
+      enablerepo: rhui-REGION-rhel-server-extras, rhui-REGION-rhel-server-optional
+      update_cache: yes
+  with_items:
+      - libselinux-python
+
+- name: allow passwordless sudo for centos user
+  lineinfile:
+      dest: /etc/sudoers
+      state: present
+      line: '{{ ssh_user }} ALL=(ALL) NOPASSWD: ALL'
+
+- name: disable selinux
+  lineinfile:
+      line: SELINUX=permissive
+      state: present
+      dest: /etc/selinux/config
+      regexp: ^SELINUX=
+  register: selinux_disable
+
+- name: reboot server
+  command: shutdown -r 1 "selinux change...rebooting..." 
+  async: 0
+  poll: 0
+  ignore_errors: yes
+  when: selinux_disable|changed
+
+- name: wait for instance 
+  local_action: wait_for
+  args:
+    port: 22
+    host: '{{ ansible_ssh_host }}'
+    search_regex: OpenSSH
+    timeout: 500
+  when: selinux_disable|changed

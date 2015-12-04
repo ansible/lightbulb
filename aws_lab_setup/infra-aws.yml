@@ -1,0 +1,27 @@
+---
+- name: Create Training Infrastructure
+  hosts: localhost
+  gather_facts: no
+  roles:
+    - role: training_infra
+      # aws_key_name: jdavila
+      # name_prefix: MAXIMUS
+      provision: yes
+
+
+- name: Bootstrap Training Nodes
+  hosts: managed_hosts
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: training_infra
+      bootstrap: yes
+
+
+- name: Email Inventory Files to Students
+  hosts: localhost
+  connection: local
+  roles:
+    - role: training_infra
+      email: yes
+      # instructor_email: jdavila@ansible.com

@@ -1,0 +1,49 @@
+- include: provisioner.yml
+  when: provision
+
+- include: bootstrap.yml
+  when: bootstrap
+
+- name: Email Hosts file
+  run_once: yes
+  delegate_to: localhost
+  sendgrid:
+    username: "{{ sendgrid_user }}"
+    password: "{{ sendgrid_pass }}"
+    subject: "[Ansible] Important Training Details"
+    body: |
+          Hi,<br>
+          <br>
+          Attached is the Ansible inventory file to be used for training.<br>
+          Please check your ability to connect to each of the hosts.<br>
+          <br>
+          It looks something similar to:<br>
+          <br>
+          [all:vars]<br>
+          ansible_ssh_user={{ ssh_user }}<br>
+          ansible_ssh_pass=changeme123
+          <br>
+          <br>
+          [web]<br>
+          node1 ansible_ssh_host=$SOMEIPADDRESS1<br>
+          node2 ansible_ssh_host=$SOMEIPADDRESS2<br>
+          node3 ansible_ssh_host=$SOMEIPADDRESS3
+          <br>
+          [control]<br>
+          control ansible_ssh_host=$SOMEIPADDRESS4
+          <br>
+          [haproxy]<br>
+          haproxy ansible_ssh_host=$SOMEIPADDRESS5<br>
+          <br>
+          <br>
+          Please verify you can SSH into each $SOMEIPADDRESS*<br>
+          The username is '{{ ssh_user }}' and the password is 'changeme123'.<br>
+          If you have any issues connecting, please reply to this email to let me know.
+
+    to_addresses: "{{ item.email }}"
+    html_body: yes
+    from_address: "{{ instructor_email }}"
+    attachments:
+      - "{{item.username}}-instances.txt"
+  with_items: users
+  when: email

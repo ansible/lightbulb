@@ -6,3 +6,8 @@
     cache_valid_time: 3600
   with_items: packages
   tags: package
+
+- name: enable CGI
+  apache2_module:
+    name: cgi
+    state: present

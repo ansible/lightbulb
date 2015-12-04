@@ -1,0 +1,5 @@
+grafana ansible_ssh_host=10.42.0.100
+[web]
+node-1 ansible_ssh_host=10.42.0.6
+node-2 ansible_ssh_host=10.42.0.7
+node-3 ansible_ssh_host=10.42.0.8

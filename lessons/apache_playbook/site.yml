@@ -1,37 +1,39 @@
 ---
 - hosts: web
   name: This is a play within a playbook
-  sudo: yes
+  become: yes
 
   vars:
-    packages:
+    httpd_packages:
     - httpd
-    - libselinux-python
+    - mod_wsgi
 
   tasks:
-  - name: stop iptables
+  - name: stop firewalld
     service: 
-      name: iptables 
+      name: firewalld 
       state: stopped
 
-  - name: install packages
+  - name: install libselinux-python
+    yum:
+      name: libselinux-python
+      state: present
+
+  - name: install httpd packages
     yum: 
       name: "{{ item }}" 
-      state: present
-    with_items: packages
+      state: latest
+    with_items: httpd_packages
+    notify: restart apache service
 
   - name: copy index.html
     copy: 
       src: files/index.html 
       dest: /var/www/html/
-    notify: something happened
-
-  - name: start and enable apache service
-    service: 
-      name: httpd 
-      state: started 
-      enabled: yes
 
   handlers:
-  - name: something happened
-    shell: echo "file copied" >> /tmp/some.log
+  - name: restart apache service
+    service: 
+      name: httpd 
+      state: restarted 
+      enabled: yes

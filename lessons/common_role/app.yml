@@ -16,6 +16,7 @@
 - hosts: haproxy
   name: Configures haproxy on the haproxy server
   become: yes
-
+  pre_tasks:
+    - debug: var=web_group
   roles:
   - haproxy 

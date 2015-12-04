@@ -1,0 +1,43 @@
+# aws_key_name:
+# name_prefix:
+provision: no
+email: no
+bootstrap: no
+instance_types:
+  centos7:
+    ami_id: ami-61bbf104
+    size: t2.micro
+    os_type: linux
+  centos7-tower:
+    ami_id: ami-61bbf104
+    size: t2.medium
+    os_type: linux
+  rhel7:
+    ami_id: ami-12663b7a 
+    size: t2.micro
+    os_type: linux
+  rhel7-tower:
+    ami_id: ami-12663b7a
+    size: t2.medium
+    os_type: linux
+aws_region: us-east-1
+vpc_id: vpc-06c9a463
+vpc_subnet_id: subnet-a2169ed5 
+ssh_user: centos
+admin_password: changeme123
+users:
+   - username: jdavila
+     email: jdavila@ansible.com
+
+
+types:
+  - name: control
+    type: centos7-tower
+  - name: node1
+    type: centos7
+  - name: node2
+    type: centos7
+  - name: node3
+    type: centos7
+  - name: haproxy
+    type: centos7
