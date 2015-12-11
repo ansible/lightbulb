@@ -10,7 +10,7 @@
       name: insecure_all
       description: all ports open
       region: '{{ aws_region }}'
-      vpc_id: '{{ vpc_id }}' 
+      vpc_id: '{{ vpc_id }}'
       rules:
         - proto: all
           type: all
@@ -37,6 +37,11 @@
       group: insecure_all
       wait: yes
       vpc_subnet_id: '{{vpc_subnet_id}}'
+      volumes:
+        - device_name: /dev/sda1
+          volume_type: gp2
+          volume_size: "{{ instance_types[item.1.type].disk_space }}"
+          delete_on_termination: true
     with_nested:
       - users
       - types
@@ -62,7 +67,7 @@
     add_host:
         name: "{{ item.invocation.module_complex_args.instance_tags.Name }}"
         ansible_ssh_host: "{{ item.tagged_instances[0].public_ip }}"
-        ansible_ssh_user: "{{ ssh_user }}" 
+        ansible_ssh_user: "{{ ssh_user }}"
         groups: managed_hosts
     with_items: instances.results
     register: add_host_output
