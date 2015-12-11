@@ -5,12 +5,14 @@
     state: latest
 
 - name: Clone lightbulb into home directories
+  become: no
   git:
     accept_hostkey: yes
     dest: /home/centos/lightbulb
     repo: https://github.com/jsmartin/lightbulb.git
 
 - name: Create lab inventory directory
+  become: no
   file:
     state: directory
     path: /home/centos/lightbulb/lessons/lab_inventory
@@ -20,6 +22,7 @@
     student: '{{ inventory_hostname | regex_replace("\w*-(\w*)-\w*", "\\1") }}'
 
 - name: Setup student inventory in proper spot
+  become: no
   copy:
     src: ./{{ student }}-instances.txt
     dest: /home/centos/lightbulb/lessons/lab_inventory/hosts
