@@ -1,0 +1,26 @@
+
+- name: Install git on control
+  yum:
+    name: git
+    state: latest
+
+- name: Clone lightbulb into home directories
+  git:
+    accept_hostkey: yes
+    dest: /home/centos/lightbulb
+    repo: https://github.com/jsmartin/lightbulb.git
+
+- name: Create lab inventory directory
+  file:
+    state: directory
+    path: /home/centos/lightbulb/lessons/lab_inventory
+
+- name: Set student fact
+  set_fact:
+    student: '{{ inventory_hostname | regex_replace("\w*-(\w*)-\w*", "\\1") }}'
+
+- name: Setup student inventory in proper spot
+  copy:
+    src: ./{{ student }}-instances.txt
+    dest: /home/centos/lightbulb/lessons/lab_inventory/hosts
+  when: "student in inventory_hostname"
