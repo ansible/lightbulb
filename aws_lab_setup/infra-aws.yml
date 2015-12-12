@@ -16,6 +16,8 @@
   roles:
     - role: training_infra
       bootstrap: yes
+    - role: vim-ansible-syntax 
+      when: "'control' in inventory_hostname"
 
 
 - name: Email Inventory Files to Students
