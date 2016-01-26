@@ -20,6 +20,37 @@
           type: all
           cidr_ip: 0.0.0.0/0
 
+  - name: setup instances (async)
+    local_action: ec2
+    args:
+      assign_public_ip: yes
+      image: '{{ instance_types[item.1.type].ami_id }}'
+      key_name: '{{ aws_key_name }}'
+      region: '{{aws_region}}'
+      exact_count: 1
+      count_tag:
+        Name: "{{ name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
+      instance_tags:
+        Name: "{{ name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
+      instance_type: "{{ instance_types[item.1.type].size }}"
+      user_data: '{{ instance_types[item.1.type].user_data | default(omit) }}'
+      group: insecure_all
+      wait: no
+      vpc_subnet_id: '{{vpc_subnet_id}}'
+      volumes:
+        - device_name: /dev/sda1
+          volume_type: gp2
+          volume_size: "{{ instance_types[item.1.type].disk_space }}"
+          delete_on_termination: true
+    with_nested:
+      - users
+      - types
+    register: async_instances
+
+  - name: wait a bit for async-started instances 
+    pause: seconds=90
+    when: async_instances | changed
+
   - name: setup instances (wait)
     local_action: ec2
     args:
