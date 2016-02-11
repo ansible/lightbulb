@@ -1,4 +1,4 @@
 - src: jmartin.grafana
   path: roles
-- src: rossmcdonald.influxdb
+- src: tima.influxdb
   path: roles

@@ -13,31 +13,28 @@ This workshop builds on your assignment from the prior basic playbook workshop. 
 
 ### The Assignment
 
-#### usinging ansible-galaxy
+#### Using ansible-galaxy
 
-* use ansible-galaxy to install a influxdb role created by Ross McDonald, and a grafana role created by James Martin.  
+* Use ansible-galaxy to find and install a influxdb role created by Timothy Appnel (tima) and a grafana role created by James Martin (jsmartin).  
 
-#### Convert previous playbook to role
+#### Refactor your basic playbook to role
 
-Refactor the previous playbook into a role.  It should have the following features.
+Start from the basic playbook you developed in the previous workshop, where you installed and setup telegraf on each web node, and refactor into a role.  It should have the following features:
 
-* Generates a configuration file that points to the influxdb server.
-* Has default values if a configuration (role) parameter is not passed in.
-
-
-#### Playbook Creation
-
-The playbook should be composed of 2 plays.  The first play will target the grafana and influxdb roles against your influxdb server.  Before those roles are executed, use a pre_task to setup the epel-release package.
-
-
-* Generates a configuration file that points to the influxdb
+* Creates a configuration file that points to the influxdb server.
 * The configuration can be modified thru parameters passed in to the role.
 * Has default values if a configuration (role) parameter is not passed in.
 
+#### Playbook Creation
+
+The playbook should be composed of 2 plays.  The first play will target the grafana and influxdb roles against the grafana server in your inventory. Before those roles are executed, use a pre_task to setup the epel-release package. The second play will target your newly created telegraf role against the web nodes in your inventory.
+
 #### Freebies
 
-You will need to pass the `extra_vars.yml` file as extra vars to your ansible-playbook command.  `training-dashboard.json` is used to populate a dashboard in grafana. When referencing make sure the path to `training-dashboard.json` in vars.yml is relative to the playbook path.
+You will need to pass the `extra_vars.yml` file as extra vars to your ansible-playbook command.  
 
-Go to http://your_grafana_ip:3000 to login to your grafana server.
+The file `training-dashboard.json` is used to populate a dashboard in grafana. When referencing make sure the path to `training-dashboard.json` in vars.yml is relative to the playbook path.
+
+Go to http://your_grafana_ip_here:3000 to login to your grafana server.
 
 The default username and password for grafana is  **admin** / **password**.
