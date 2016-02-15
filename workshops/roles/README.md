@@ -15,7 +15,7 @@ This workshop builds on your assignment from the prior basic playbook workshop. 
 
 #### Using ansible-galaxy
 
-* Use ansible-galaxy to find and install a influxdb role created by Timothy Appnel (tima) and a grafana role created by James Martin (jsmartin).  
+* Use ansible-galaxy to find and install a influxdb and a grafana role created by James Martin (jsmartin).  Extra points if you use requirements.yml
 
 #### Refactor your basic playbook to role
 
