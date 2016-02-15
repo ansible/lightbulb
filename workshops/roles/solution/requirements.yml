@@ -1,4 +1,4 @@
 - src: jmartin.grafana
   path: roles
-- src: tima.influxdb
+- src: jmartin.influxdb
   path: roles
