@@ -9,7 +9,7 @@
 
 - name: install telegraf
   yum:
-    name: telegraf
+    name: telegraf-{{ telegraf_version }}
     state: present
   notify: restart telegraf
 
@@ -20,7 +20,7 @@
   notify: restart telegraf
 
 - name: start telegraf
-  service: 
+  service:
     name: telegraf
     state: started
     enabled: yes
