@@ -1,9 +1,9 @@
---- 
+---
 - hosts: web
   become: yes
   name: Setup telegraf on all web servers
   vars:
-    telegraf_install_version: stable
+    telegraf_version: 0.2.4
     telegraf_flush_retries: 2
     influxdb_db_name: telegraf
     influxdb_url: http://localhost:8086
@@ -26,7 +26,7 @@
 
     - name: install telegraf
       yum:
-        name: telegraf
+        name: telegraf-{{ telegraf_version }}
         state: present
       notify: restart telegraf
 
@@ -37,13 +37,13 @@
       notify: restart telegraf
 
     - name: start telegraf
-      service: 
+      service:
         name: telegraf
         state: started
         enabled: yes
 
   handlers:
     - name: restart telegraf
-      service: 
-        name: telegraf 
-        state: restarted 
+      service:
+        name: telegraf
+        state: restarted
