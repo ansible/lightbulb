@@ -47,8 +47,8 @@ cluster.vm.define "node-2" do |config|
 end
 
 cluster.vm.define "node-3" do |config|
-  #config.vm.box = "bento/centos-7.2"
-  config.vm.box = "bento/ubuntu-14.04"
+  config.vm.box = "bento/centos-7.2"
+  #config.vm.box = "bento/ubuntu-14.04"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "256"]
