@@ -11,9 +11,9 @@
       state: installed
 
   roles:
-  - tima.influxdb
-  - jmartin.grafana
-  
+  - jsmartin.influxdb
+  - jsmartin.grafana
+
 
 - hosts: web
   become: yes
