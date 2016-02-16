@@ -1,7 +1,7 @@
 influxdb_configuration_dir: /etc/opt/influxdb
-iface: enp0s8
 telegraf_flush_retries: 3
-influxdb_url: http://{{ hostvars['grafana']['ansible_default_ipv4']['address'] }}:8086 
+iface: enp0s8 #interface which telegraf clients will connect to on the grafana machine.
+influxdb_url: http://{{ hostvars['grafana']['ansible_' + iface]['ipv4']['address'] }}:8086
 grafana_custom_dashboard: ../training-dashboard.json
 grafana_data_source:
   isDefault: yes
@@ -13,4 +13,3 @@ grafana_data_source:
   url: http://localhost:8086
   access: proxy
   basicAuth: false
-

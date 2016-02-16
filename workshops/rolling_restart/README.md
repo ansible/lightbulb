@@ -15,13 +15,13 @@ Your manager wants you to create a playbook to change the `telegraf_flush_retrie
 
 The playbook should also:
 
+* Have a task-less play that only collects facts from the grafana server.
+
 * echo to a log file ( /var/log/telegraf-maint.log ) on the grafana server with informational messages showing when the system is under maintenance and when it is over.
 
 
 ```timestamp - inventory_hostname - telegraf begin maintenance```
-    
-    
-    
-```timestamp - inventory_hostname - telegraf maintenance over```
-     
 
+
+
+```timestamp - inventory_hostname - telegraf maintenance over```
