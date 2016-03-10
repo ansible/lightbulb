@@ -71,7 +71,7 @@ end
 
 
 cluster.vm.define "tower" do |config|
-  config.vm.box = "http://vms.ansible.com/ansible-tower-2.3.1-virtualbox.box"
+  config.vm.box = "http://vms.ansible.com/ansible-tower-2.4.4-virtualbox.box"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
