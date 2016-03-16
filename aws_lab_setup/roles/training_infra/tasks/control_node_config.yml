@@ -1,15 +1,24 @@
 
-- name: Install git on control
+- name: Install packages on control
   yum:
-    name: git
+    name: "{{ item }}"
     state: latest
+  with_items:
+    - unzip
+    - git
 
-- name: Clone lightbulb into home directories
-  become: no
-  git:
-    accept_hostkey: yes
-    dest: /home/centos/lightbulb
-    repo: https://github.com/jsmartin/lightbulb.git
+- name: unzip lightbulb master
+  unarchive:
+    copy: yes
+    src: lightbulb.tar.gz
+    dest: /home/centos/
+
+- name: change ownership
+  file:
+    recurse: yes
+    owner: centos
+    group: centos
+    path: /home/centos/lightbulb
 
 - name: Create lab inventory directory
   become: no
