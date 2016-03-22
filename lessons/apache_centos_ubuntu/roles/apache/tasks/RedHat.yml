@@ -2,10 +2,10 @@
   service:
     name: firewalld
     state: stopped
-    
+
 - name: install packages (Red Hat)
   yum: 
     name: "{{ item }}"
     state: present
-  with_items: packages
+  with_items: "{{ packages }}"
   tags: package
