@@ -1,5 +1,5 @@
 ---
 packages:
-- libselinux-python
-- git
-- python-httplib2
+  - libselinux-python
+  - git
+  - python-httplib2

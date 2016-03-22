@@ -1,16 +1,16 @@
 - name: install epel
   yum: 
-    name: epel-release
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
     state: present
 
 - name: install commons packages (Red Hat)
   yum: 
     name: "{{ item }}"
     state: present
-  with_items: packages
+  with_items: "{{ packages }}"
 
-- name: stop iptables
+- name: stop firewalld 
   service: 
-    name: iptables
+    name: firewalld
     state: stopped
 

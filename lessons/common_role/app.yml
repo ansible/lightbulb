@@ -2,21 +2,22 @@
 - hosts: web:haproxy
   name: Sets up common role on all servers
   become: yes
-
   roles:
-  - common
+    - common
+
 
 - hosts: web
   name: Configures apache on all the app servers
   become: yes
-
   roles:
-  - apache
+    - apache
+
 
 - hosts: haproxy
   name: Configures haproxy on the haproxy server
   become: yes
   pre_tasks:
-    - debug: var=web_group
+    - debug:
+        var: web_group
   roles:
-  - haproxy 
+    - haproxy 
