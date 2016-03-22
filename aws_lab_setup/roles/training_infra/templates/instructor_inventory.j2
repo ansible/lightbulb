@@ -1,6 +1,5 @@
 [all:vars]
-ansible_ssh_user={{ ssh_user }}
-ansible_ssh_pass=changeme123
+ansible_ssh_user={{ login }}
 
 
 
@@ -13,7 +12,11 @@ ansible_ssh_pass=changeme123
 {% if 'control' in host %}
 {{ user.username }}_control ansible_ssh_host={{ hostvars[host]['ansible_ssh_host'] }}
 {% else %}
-{{ user.username }}_managed{{counter}} ansible_ssh_host={{ hostvars[host]['ansible_ssh_host'] }}
+{% if 'node' in host %}
+{{ user.username }}_node-{{counter}} ansible_ssh_host={{ hostvars[host]['ansible_ssh_host'] }}
+{% elif 'haproxy' in host %}
+{{ user.username }}_haproxy ansible_ssh_host={{ hostvars[host]['ansible_ssh_host'] }}
+{% endif %}
 {% endif %}
 {% endif %}
 {% endfor %}
