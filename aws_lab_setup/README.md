@@ -12,7 +12,7 @@ Usage
 
 Ensure you have boto installed and configured, and that your public key is installed in the target region. The lab will get created in us-west-1 by default.
 
-Add users and their emails to the users list in roles/training_infra/defaults/main.yml
+Add users and their emails to a YAML file, for example `users.yml` 
 ```yml
 users:
   - username: jdavila
@@ -21,18 +21,10 @@ users:
     email: jdoe@example.com
 ```
 
-Inside of host_vars/localhost/general.yml specify your SendGrid credentials
-
-```yml
-sendgrid_user: example
-sendgrid_pass: password
-```
-
-
 Then to setup the lab:
 
 ```
-ansible-playbook -i hosts infra-aws.yml -e "name_prefix=(yourname)-training aws_key_name=your-pubkey-name instructor_email=youremail@example.com"
+ansible-playbook infra-aws.yml -e "name_prefix=(yourname)-training aws_key_name=your-pubkey-name instructor_email=youremail@example.com sendgrid_user=yourusername sendgrid_pass=somepassword" -e @users.yml
 ```
 
 The playbook will start the instances, configure them for password auth, and dump an ansible inventory  file for each user with their IPs and credentials into the current directory, then it will email every user their respective inventory file. This will also generate an 'instructor' inventory file in the current directory which will let the instructor access the nodes of any student by simply targeting the the username as a host group.

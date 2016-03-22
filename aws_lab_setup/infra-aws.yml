@@ -4,8 +4,8 @@
   gather_facts: no
   roles:
     - role: training_infra
-      # aws_key_name: jdavila
-      # name_prefix: MAXIMUS
+#      aws_key_name: jdavila
+#      name_prefix: LabTestJdavila 
       provision: yes
 
 
@@ -16,6 +16,19 @@
   roles:
     - role: training_infra
       bootstrap: yes
+
+
+- name: Bootstrap Training Nodes
+  hosts: managed_hosts
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: training_infra
+      user_setup: yes
+
+    - role: training_infra
+      bootstrap_controller: yes
+
     - role: vim-ansible-syntax 
       when: "'control' in inventory_hostname"
 
@@ -26,4 +39,4 @@
   roles:
     - role: training_infra
       email: yes
-      # instructor_email: jdavila@ansible.com
+      instructor_email: jdavila@redhat.com

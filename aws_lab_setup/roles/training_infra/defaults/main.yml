@@ -1,8 +1,12 @@
 # aws_key_name:
 # name_prefix:
+user_setup: no
+async: no
 provision: no
 email: no
 bootstrap: no
+bootstrap_controller: no
+
 instance_types:
   centos7:
     ami_id: ami-61bbf104
@@ -28,17 +32,16 @@ instance_types:
 aws_region: us-east-1
 vpc_id: vpc-06c9a463
 vpc_subnet_id: subnet-a2169ed5
-ssh_user: centos
 admin_password: changeme123
 
 types:
   - name: control
-    type: centos7-tower
+    type: rhel7-tower
   - name: node1
-    type: centos7
+    type: rhel7
   - name: node2
-    type: centos7
+    type: rhel7
   - name: node3
-    type: centos7
+    type: rhel7
   - name: haproxy
-    type: centos7
+    type: rhel7
