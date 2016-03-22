@@ -6,6 +6,7 @@ provision: no
 email: no
 bootstrap: no
 bootstrap_controller: no
+install_ansible: yes
 
 instance_types:
   centos7:
