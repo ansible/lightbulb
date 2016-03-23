@@ -1,5 +1,5 @@
 ---
 packages:
-- git
-- python-requests
-- python-httplib2
+  - git
+  - python-requests
+  - python-httplib2

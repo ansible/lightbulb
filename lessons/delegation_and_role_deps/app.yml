@@ -2,20 +2,17 @@
 - hosts: web:haproxy
   name: Sets up common role on all servers
   become: yes
-
   roles:
-  - common
+    - common
 
 - hosts: web
   name: Confiures apache on all the app servers
   become: yes
-
   roles:
-  - lameapp
+    - lameapp
 
 - hosts: haproxy
   name: configures haproxy on the haproxy server
   become: yes
-
   roles:
-  - haproxy 
+    - haproxy 

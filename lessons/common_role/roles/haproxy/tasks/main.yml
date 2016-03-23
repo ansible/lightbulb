@@ -1,10 +1,6 @@
 ---
 # tasks file for haproxy
-- include: RedHat.yml
-  when: ansible_os_family == 'RedHat'
-
-- include: Debian.yml
-  when: ansible_os_family == 'Debian'
+- include: "{{ ansible_os_family }}.yml"
 
 - name: Configure  haproxy
   template: 

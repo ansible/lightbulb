@@ -9,30 +9,33 @@
     - mod_wsgi
 
   tasks:
+  - name: install packages 
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - libselinux-python
+      - firewalld
+
   - name: stop firewalld
     service: 
       name: firewalld 
       state: stopped
 
-  - name: install libselinux-python
+  - name: Install httpd packages
     yum:
-      name: libselinux-python
+      name: "{{ item }}"
       state: present
-
-  - name: install httpd packages
-    yum: 
-      name: "{{ item }}" 
-      state: latest
-    with_items: httpd_packages
-    notify: restart apache service
+    with_items: "{{ httpd_packages }}"
 
   - name: copy index.html
     copy: 
       src: files/index.html 
       dest: /var/www/html/
+    notify: restart apache
 
   handlers:
-  - name: restart apache service
+  - name: restart apache 
     service: 
       name: httpd 
       state: restarted 

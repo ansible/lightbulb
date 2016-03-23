@@ -1,3 +1,24 @@
+- block:
+    - name: Install EPEL
+      yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        state: present
+    
+    - name: Install Base Packages 
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - python-pip
+        - python-devel
+        - sshpass
+        - gcc
+
+    - name: Install Ansible via PIP
+      pip:
+        name: ansible
+        state: present
+  when: install_ansible
 
 - name: Install packages on control
   yum:
@@ -29,6 +50,7 @@
     dest: /home/{{ username }}/lightbulb
     key_file: /home/{{ username }}/.ssh/id_rsa
     repo: git@github.com:defionscode/lightbulb-1.git
+    force: yes
 
 - name: Remove deployment key
   file:
@@ -52,6 +74,20 @@
     - resources
     - Vagrantfile
     - README.md
+
+- name: Find ansible.cfg files
+  find:
+    paths: /home/{{ username }}/lightbulb/lessons/
+    recurse: yes
+    use_regex: yes
+    patterns: ansible.cfg
+  register: ansible_configs
+
+- name: Replace configs with aws lab based config
+  copy:
+    src: ansible.cfg
+    dest: "{{ item.path }}"
+  with_items: "{{ ansible_configs.files }}" 
 
 - name: Create lab inventory directory
   file:

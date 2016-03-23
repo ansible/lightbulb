@@ -2,30 +2,28 @@
 - hosts: web:haproxy
   gather_facts: yes
 
+
 - hosts: web
   name: performs rolling restart
   gather_facts: no
   serial: 1
   become: yes
-
   pre_tasks:
-
-  - name: disable the server in haproxy
-    haproxy: 
-      state: disabled 
-      host: "{{ inventory_hostname }}"
-      backend: web_backend
-    delegate_to: "{{ groups.haproxy.0 }}"
+    - name: disable the server in haproxy
+      haproxy: 
+        state: disabled 
+        host: "{{ inventory_hostname }}"
+        backend: web_backend
+      delegate_to: "{{ groups.haproxy.0 }}"
 
   roles:
-  - lameapp
+    - lameapp
 
   post_tasks:
-
-  - name: enable the server in haproxy
-    haproxy: 
-      state: enabled 
-      host: "{{ inventory_hostname }}"
-      backend: web_backend
-    delegate_to: "{{ groups.haproxy.0 }}"
+    - name: enable the server in haproxy
+      haproxy: 
+        state: enabled 
+        host: "{{ inventory_hostname }}"
+        backend: web_backend
+      delegate_to: "{{ groups.haproxy.0 }}"
 
