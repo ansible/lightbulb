@@ -13,6 +13,8 @@
         - python-devel
         - sshpass
         - gcc
+        - libffi-devel
+        - openssl-devel
 
     - name: Install Ansible via PIP
       pip:
