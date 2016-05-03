@@ -4,7 +4,7 @@
 
 - name: Control Node Bootstrap
   include: control_node_config.yml
-  when: bootstrap_controller and 'control' in inventory_hostname 
+  when: bootstrap_controller and 'control' in inventory_hostname
 
 - name: Setup lab user
   include: user_setup.yml

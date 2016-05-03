@@ -3,8 +3,8 @@
       yum:
         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
         state: present
-    
-    - name: Install Base Packages 
+
+    - name: Install Base Packages
       yum:
         name: "{{ item }}"
         state: present
@@ -89,7 +89,7 @@
   copy:
     src: ansible.cfg
     dest: "{{ item.path }}"
-  with_items: "{{ ansible_configs.files }}" 
+  with_items: "{{ ansible_configs.files }}"
 
 - name: Create lab inventory directory
   file:

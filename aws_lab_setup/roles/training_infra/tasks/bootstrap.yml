@@ -6,10 +6,10 @@
 
 - name: ensure libselinux-python
   yum:
-    name: libselinux-python 
+    name: libselinux-python
     update_cache: yes
 
-- name: allow passwordless sudo for user 
+- name: allow passwordless sudo for user
   lineinfile:
     dest: /etc/sudoers
     state: present

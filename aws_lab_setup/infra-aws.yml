@@ -5,7 +5,7 @@
   roles:
     - role: training_infra
 #      aws_key_name: jdavila
-#      name_prefix: LabTestJdavila 
+#      name_prefix: LabTestJdavila
       provision: yes
 
 
@@ -29,7 +29,7 @@
     - role: training_infra
       bootstrap_controller: yes
 
-    - role: vim-ansible-syntax 
+    - role: vim-ansible-syntax
       when: "'control' in inventory_hostname"
 
 
