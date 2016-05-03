@@ -44,4 +44,5 @@
         host: '{{ ansible_ssh_host }}'
         search_regex: OpenSSH
         timeout: 500
+        delay: 120
   when: selinux_disable|changed
