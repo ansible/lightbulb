@@ -1,13 +1,9 @@
-ssh-add ~/.vagrant.d/insecure_private_key
+ansible web -m setup
 
-ansible web -i inventory/hosts -u vagrant -m setup
+ansible web -b -m yum -a "name=httpd state=present"
 
-ansible web -i inventory/hosts -u vagrant -m yum -a "name=httpd state=present" -s
+ansible web -b -m service -a "name=httpd state=started"
 
-ansible web -i inventory/hosts -u vagrant -m service -a "name=httpd state=started" -s
+ansible web -b -m service -a "name=httpd state=stopped"
 
-ansible web -i inventory/hosts -u vagrant -m service -a "name=httpd state=stopped" -s
-
-ansible web -i inventory/hosts -u vagrant -m yum -a "name=httpd state=absent" -s
-
-
+ansible web -b -m yum -a "name=httpd state=absent"
