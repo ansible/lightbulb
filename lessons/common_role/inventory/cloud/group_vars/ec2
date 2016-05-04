@@ -1,3 +1,3 @@
-ansible_ssh_user: root
+ansible_user: ec2-user
 web_group: web
 iface: 0
