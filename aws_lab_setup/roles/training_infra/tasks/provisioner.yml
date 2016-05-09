@@ -106,8 +106,8 @@
 - name: add hosts
   add_host:
     name: "{{ item.invocation.module_args.instance_tags.Name }}"
-    ansible_ssh_host: "{{ item.tagged_instances[0].public_ip }}"
-    ansible_ssh_user: "{{ login }}"
+    ansible_host: "{{ item.tagged_instances[0].public_ip }}"
+    ansible_user: "{{ login }}"
     groups: managed_hosts
   with_items: "{{ instances.results }}"
   register: add_host_output

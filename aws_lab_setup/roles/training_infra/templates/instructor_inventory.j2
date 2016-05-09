@@ -1,5 +1,5 @@
 [all:vars]
-ansible_ssh_user={{ login }}
+ansible_user={{ login }}
 
 
 
@@ -10,12 +10,12 @@ ansible_ssh_user={{ login }}
 {% if user.username in host %}
 {% set counter = counter + 1 %}
 {% if 'control' in host %}
-{{ user.username }}_control ansible_ssh_host={{ hostvars[host]['ansible_ssh_host'] }}
+{{ user.username }}_control ansible_host={{ hostvars[host]['ansible_host'] }}
 {% else %}
 {% if 'node' in host %}
-{{ user.username }}_node-{{counter}} ansible_ssh_host={{ hostvars[host]['ansible_ssh_host'] }}
+{{ user.username }}_node-{{counter}} ansible_host={{ hostvars[host]['ansible_host'] }}
 {% elif 'haproxy' in host %}
-{{ user.username }}_haproxy ansible_ssh_host={{ hostvars[host]['ansible_ssh_host'] }}
+{{ user.username }}_haproxy ansible_host={{ hostvars[host]['ansible_host'] }}
 {% endif %}
 {% endif %}
 {% endif %}
