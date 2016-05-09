@@ -15,11 +15,17 @@
         - gcc
         - libffi-devel
         - openssl-devel
+        - vim
 
     - name: Install Ansible via PIP
       pip:
         name: ansible
         state: present
+
+    - name: Upgrade setuptools via PIP
+      pip:
+        name: setuptools
+        state: latest
   when: install_ansible
 
 - name: Install packages on control
@@ -51,7 +57,7 @@
     clone: yes
     dest: /home/{{ username }}/lightbulb
     key_file: /home/{{ username }}/.ssh/id_rsa
-    repo: git@github.com:defionscode/lightbulb-1.git
+    repo: git@github.com:ansible/lightbulb.git
     force: yes
 
 - name: Remove deployment key
@@ -77,19 +83,12 @@
     - Vagrantfile
     - README.md
 
-- name: Find ansible.cfg files
-  find:
-    paths: /home/{{ username }}/lightbulb/lessons/
-    recurse: yes
-    use_regex: yes
-    patterns: ansible.cfg
-  register: ansible_configs
-
-- name: Replace configs with aws lab based config
+- name: Install AWS ansible.cfg in home directory
   copy:
     src: ansible.cfg
-    dest: "{{ item.path }}"
-  with_items: "{{ ansible_configs.files }}"
+    dest: /home/{{ username }}/.ansible.cfg
+    owner: "{{ username }}"
+    group: "{{ username }}"
 
 - name: Create lab inventory directory
   file:

@@ -18,7 +18,7 @@
     wait: yes
   register: vpc
 
-- name: create admin access 
+- name: create admin access
   ec2_group:
     name: admin_access
     description: SSH access for admins and tower
@@ -82,12 +82,8 @@
   register: result
 
 - name: waiting for ssh to start
-  wait_for: 
-    port: 22 
+  wait_for:
+    port: 22
     host: "{{ item.public_ip }}"
     timeout: 300
-  with_items: result.tagged_instances
-
-
-
-
+  with_items: "{{ result.tagged_instances }}"

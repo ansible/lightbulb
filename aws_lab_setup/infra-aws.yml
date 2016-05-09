@@ -4,8 +4,6 @@
   gather_facts: no
   roles:
     - role: training_infra
-#      aws_key_name: jdavila
-#      name_prefix: LabTestJdavila
       provision: yes
 
 

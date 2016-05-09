@@ -17,8 +17,8 @@
       tags: package
 
     - name: install httpd packages
-      yum: 
-        name: "{{ item }}" 
+      yum:
+        name: "{{ item }}"
         state: latest
       with_items: "{{ httpd_packages }}"
       notify: restart apache service
@@ -30,25 +30,26 @@
         path: /etc/httpd/conf/sites-enabled/
 
     - name: copy httpd.conf
-      template: 
-        src: httpd.conf.j2 
+      template:
+        src: httpd.conf.j2
         dest: /etc/httpd/conf/httpd.conf
       notify: restart apache service
       tags: config
 
     - name: copy index.html
-      template: 
-        src: index.html.j2 
+      template:
+        src: index.html.j2
         dest: /var/www/html/index.html
 
     - name: stop firewalld
-      service: 
-        name: firewalld 
+      service:
+        name: firewalld
         state: stopped
+      ignore_errors: yes
 
   handlers:
     - name: restart apache service
-      service: 
-        name: httpd 
-        state: restarted 
+      service:
+        name: httpd
+        state: restarted
         enabled: yes
