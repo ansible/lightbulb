@@ -1,5 +1,5 @@
 influxdb_configuration_dir: /etc/opt/influxdb
-iface: enp0s8 #interface which telegraf clients will connect to on the grafana machine.
+iface: eth0 #interface which telegraf clients will connect to on the grafana machine.
 influxdb_url: http://{{ hostvars['grafana']['ansible_' + iface]['ipv4']['address'] }}:8086
 grafana_custom_dashboard: ../training-dashboard.json
 grafana_data_source:
