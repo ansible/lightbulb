@@ -39,6 +39,7 @@
 
     - name: wait for instance
       delegate_to: localhost
+      become: no
       wait_for:
         port: 22
         host: '{{ ansible_host }}'
