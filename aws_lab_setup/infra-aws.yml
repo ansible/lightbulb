@@ -16,7 +16,7 @@
       bootstrap: yes
 
 
-- name: Bootstrap Training Nodes
+- name: Create user accounts and configure contol node
   hosts: managed_hosts
   gather_facts: yes
   become: yes
