@@ -29,3 +29,12 @@ ansible_ssh_pass=changeme123
 {% endif %}
 {% endfor %}
 {% endfor %}
+
+[grafana]
+{% for grouper, list in instances.results|groupby('item') if grouper[0] == item %}
+{% for vm in list %}
+{% if 'haproxy' in vm.invocation.module_args.instance_tags.Name %}
+grafana ansible_host={{ vm.tagged_instances[0].public_ip }}
+{% endif %}
+{% endfor %}
+{% endfor %}
