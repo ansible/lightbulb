@@ -87,7 +87,7 @@
 
 - name: generate student inventories
   template:
-    src: instancedetail-aws.txt.j2
+    src: instances.txt.j2
     dest: ./{{ item.username }}-instances.txt
   with_items: "{{ users }}"
 
