@@ -103,7 +103,7 @@
   when: "'rhel' in item.type"
   with_items: "{{ types }}"
 
-- name: add hosts
+- name: Add hosts to managed_hosts group
   add_host:
     name: "{{ item.invocation.module_args.instance_tags.Name }}"
     ansible_host: "{{ item.tagged_instances[0].public_ip }}"
