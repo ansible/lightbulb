@@ -1,8 +1,8 @@
-ansible web -i inventory/hosts -m ping 
+ansible web -m ping
 
 ansible web -i inventory/hosts -m yum -a "name=epel-release state=latest" -s
 
-ansible web -i inventory/hosts -m yum -a "name=nginx state=present" -s
+ansible web -b -m yum -a "name=nginx state=present"
 
-ansible web -i inventory/hosts -m service -a "name=nginx state=started" -s
+ansible web -b -m service -a "name=nginx state=started"
 
