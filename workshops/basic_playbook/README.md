@@ -4,7 +4,7 @@
 
 This workshop begins your foray into developing your first Ansible playbook. In this workshop will exercise the following concepts:
 
-* playbook struture 
+* playbook struture
 * tasks
 * handlers
 * loops
@@ -12,24 +12,22 @@ This workshop begins your foray into developing your first Ansible playbook. In 
 
 ### The Assignment
 
-Create a basic playbook that 
+Create a basic playbook that
 
-* creates a list as a variable that includes vim & epel-release
+* creates a variable that is a list of `vim` and `https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm`
 * installs the above packages in a loop
-* defines a variable named `telegraf_install_version` and is set to `0.2.4`
+* defines a variable named `telegraf_version` and is set to `0.2.4`
 * defines a variable named `telegraf_flush_retries` and is set to `2` (integer)
 * defines a variable named `influxdb_db_name` that is set to `telegraf`
 * defines a variable named `influxdb_url` that is set to `http://localhost:8086`
-* it should also create the influx yum repository using this template [template](solution/influxdb.repo.j2)
-* installs the telegraf package
-* configures the telegraf package with a [template](solution/telegraf.conf.j2)
-* starts and enables the telegraf client
-* uses a handler to notify the restart of the telegraf service when the telegraf package is installed or the telegraf configuration file has changed
-
-The playbook should also (re)start the service up only if necesseary.
+* copies the yum repository `solution/influxdb.repo.j2` using the template module
+* installs `telegraf-0.2.4` package using the `telegraf_version` variable
+* copies `solution/telegraf.conf.j2` to `/etc/opt/telegraph/telegraph.conf` using the template module
+* starts and enables the `telegraf` service
+* uses a handler to restart the `telegraf` service when the `telegraf` package is installed or the `telegraf` configuration file has changed
 
 
-You should be able to verify that telegraf is working properly by running:
+Verify that telegraf is working properly by running:
 
 	[user@node-1]# /opt/telegraf/telegraf -test -config /etc/opt/telegraf/telegraf.conf
 	* Plugin: cpu, Collection 1
