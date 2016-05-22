@@ -1,6 +1,6 @@
 [all:vars]
 ansible_user={{ item.username }}
-ansible_ssh_pass=changeme123
+ansible_ssh_pass={{ admin_password }}
 
 
 [web]

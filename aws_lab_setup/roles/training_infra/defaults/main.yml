@@ -34,6 +34,7 @@ aws_region: us-east-1
 vpc_id: vpc-06c9a463
 vpc_subnet_id: subnet-a2169ed5
 admin_password: changeme123
+admin_password_hash: '$6$rounds=100000$W3Cs5AoklPdUV.Yg$hoRZfL/iVGGki9ZHVU2cXXOyb3WgyifTm09/hp5NhmFd0zvFpm3k5tDxJicOKsjS88ZfirsIyF9UAQnvEizPx/'
 
 types:
   - name: control
