@@ -37,4 +37,3 @@
   roles:
     - role: training_infra
       email: yes
-      instructor_email: jdavila@redhat.com
