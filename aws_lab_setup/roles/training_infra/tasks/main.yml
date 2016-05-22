@@ -38,3 +38,5 @@
       - "{{item.username}}-instances.txt"
   with_items: "{{ users }}"
   when: email
+  tags:
+    - email
