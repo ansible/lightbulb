@@ -5,7 +5,7 @@
   git: 
     repo: https://github.com/jsmartin/lameapp.git
     dest: /var/www/lameapp
-    version: "{{ lameapp_version }}"
+    version: "{{ lameapp_version | string }}"
 
 - name: set permissions on app
   file: 
