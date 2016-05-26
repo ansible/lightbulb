@@ -1,18 +1,26 @@
 ## usage lookup('template_url', 'https://myserver/template.j2')
+from __future__ import (absolute_import, division, print_function)
+__metaclass__ = type
+
+from ansible.errors import AnsibleError, AnsibleParserError
+from ansible.plugins.lookup import LookupBase
+from ansible.module_utils.urls import *
+
+try:
+    from __main__ import display
+except ImportError:
+    from ansible.utils.display import Display
+    display = Display()
+
 import urllib2
 import tempfile
 import os
 
-from ansible import utils
-from ansible.module_utils.urls import open_url, ConnectionError, SSLValidationError
-from ansible.utils.unicode import to_unicode
-from glob import glob
-
-class LookupModule(object):
+class LookupModule(LookupBase):
     def __init__(self, basedir=None, **kwargs):
         self.basedir = basedir
 
-    def run(self, terms, inject=None, **kwargs):
+    def run(self, terms, variables=None, **kwargs):
 
         if isinstance(terms, basestring):
             terms = [ terms ]
@@ -32,7 +40,7 @@ class LookupModule(object):
                 utils.warnings("Error validating the server's certificate for %s: %s" % (term, str(e)))
             except ConnectionError as e:
                 raise utils.warnings("Error connecting to %s: %s" % (term, str(e)))
- 
+
             for line in response.read().splitlines():
                 temp_file.write(line)
             ret.append(templ_path)
