@@ -2,44 +2,47 @@
 - hosts: localhost
   connection: local
 
+
   tasks:
+    - name: test 1
+      command: mkdir {{ item }}
+      with_items:
+        - /tmp/filter_test/a
+        - /tmp/filter_test/b
+      register: output
+      ignore_errors: yes
 
+    - debug:
+        var: output
 
-  - name: test 1
-    command: mkdir  {{ item }}
-    with_items:
-    - /tmp/filter_test/a
-    - /tmp/filter_test/b
-    register: output
-    ignore_errors: true
+    - debug:
+        var: output.results | deeplist("stderr")
 
+    - name: output
+      debug:
+        msg: "Error from mkdir"
+      with_items: "{{ output.results | deeplist('stderr') }}"
 
-  - debug: var=output
+    - name: test 2
+      shell: 'ifconfig {{ item }} | grep ether | awk ''{print $2}'''
+      with_items: "{{ (ansible_interfaces | sort )[0:-1] }}"
+      register: output
+      changed_when: no
+      ignore_errors: yes
 
-  - debug: var=output.results|deeplist("stderr")
+    - debug:
+        var: output
 
-  - name: output
-    debug: msg="Error from mkdir"
-    with_items: "{{ output.results|deeplist('stderr') }}"
+    - debug:
+        var: output.results | deeplist("stdout")
 
-  - name: test 2
-    shell: ifconfig {{ item }} |grep ether|awk '{print $2}'
-    with_items:
-    - en0  #these should change based on host os
-    - en1
-    register: output
-    ignore_errors: true
+    - name: output from ifconfig
+      debug:
+        msg: "{{ item }}"
+      with_items: "{{ output.results | deeplist('stdout') }}"
 
-
-  - debug: var=output
-
-  - debug: var=output.results|deeplist("stdout")
-
-  - name: output from ifconfig
-    debug: msg="{{ item }}"
-    with_items: "{{ output.results|deeplist('stdout') }}"
-
-  - name: 42% of 99 
-    debug: msg="{{ 99|percent(42) }}"
+    - name: 42% of 99
+      debug:
+        msg: "{{ 99 | percent(42) }}"
 
 
