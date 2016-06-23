@@ -8,28 +8,19 @@
 * using ansible.cfg
 
 
-### General flow
-
-
-Bring up the VMs by running the following command:
-
-	vagrant up node-1 node-2
-
-
 ### Commands
 
-Install ansible with pip, but explain other methods (brew, yum, apt, etc)
+Install ansible with yum, but explain other methods (brew, pip, apt, etc)
 
-	pip install ansible
+	yum install ansible
 
 Run the following commands and experiment:
 
-	ansible web -i inventory/hosts -u vagrant -m setup
+	ansible web -i inventory/hosts -m setup
 
-	ansible web -i inventory/hosts -u vagrant -m yum -a "name=httpd state=present" -s
+	ansible web -i inventory/hosts -m yum -a "name=httpd state=present" -s
 
-Specifying the inventory and user is annoying, so open up ansible.cfg and uncomment the entries for hostfile and remote_user.
-
+Specifying the inventory is annoying, so open up ansible.cfg and uncomment the entries for hostfile.
 
 	ansible web -m service -a "name=httpd state=started" -s
 

@@ -11,7 +11,7 @@
 
 Install Ansible on your controller machine using pip and then perform the following operations using ad-hoc commands:
 
-1. Test Ansible is setup correctly to communicate with your remote nodes with th ping module.
+1. Test Ansible is setup correctly to communicate with your remote nodes with the ping module.
 1. Install the latest ‘epel-release’ package using the yum on all your nodes.
 1. Install ‘nginx’ using the yum module on all your nodes.
 1. Start ‘nginx’ using the service module.

@@ -16,7 +16,7 @@ Create a basic playbook that
 
 * creates a list as a variable that includes vim & epel-release
 * installs the above packages in a loop
-* defines a variable named `telegraf_install_version` and is set to `stable`
+* defines a variable named `telegraf_install_version` and is set to `0.2.4`
 * defines a variable named `telegraf_flush_retries` and is set to `2` (integer)
 * defines a variable named `influxdb_db_name` that is set to `telegraf`
 * defines a variable named `influxdb_url` that is set to `http://localhost:8086`

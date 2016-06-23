@@ -28,7 +28,7 @@ instance_types:
     ami_id: ami-12663b7a
     size: t2.medium
     os_type: linux
-    disk_space: 10
+    disk_space: 20
 
 aws_region: us-east-1
 vpc_id: vpc-06c9a463
