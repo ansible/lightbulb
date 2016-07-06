@@ -29,6 +29,7 @@
           Please check your ability to connect to each of the hosts.<br>
           <br>
           The username is '{{ item.username }}' and the password is 'changeme123'.<br>
+          The username is '{{ item.username }}' and the password is '{{ admin_password }}'.<br>
           If you have any issues connecting, please reply to this email to let me know.
 
     to_addresses: "{{ item.email }}"
