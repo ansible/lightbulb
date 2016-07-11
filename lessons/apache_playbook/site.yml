@@ -5,38 +5,38 @@
 
   vars:
     httpd_packages:
-    - httpd
-    - mod_wsgi
+      - httpd
+      - mod_wsgi
 
   tasks:
-  - name: install packages 
-    yum:
-      name: "{{ item }}"
-      state: present
-    with_items:
-      - libselinux-python
-      - firewalld
+    - name: install packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - libselinux-python
+        - firewalld
 
-  - name: stop firewalld
-    service: 
-      name: firewalld 
-      state: stopped
+    - name: stop firewalld
+      service:
+        name: firewalld
+        state: stopped
 
-  - name: Install httpd packages
-    yum:
-      name: "{{ item }}"
-      state: present
-    with_items: "{{ httpd_packages }}"
+    - name: Install httpd packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ httpd_packages }}"
 
-  - name: copy index.html
-    copy: 
-      src: files/index.html 
-      dest: /var/www/html/
-    notify: restart apache
+    - name: copy index.html
+      copy:
+        src: files/index.html
+        dest: /var/www/html/
+      notify: restart apache
 
   handlers:
-  - name: restart apache 
-    service: 
-      name: httpd 
-      state: restarted 
-      enabled: yes
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes
