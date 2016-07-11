@@ -22,7 +22,7 @@ Create a basic playbook that
 * defines a variable named `influxdb_url` that is set to `http://localhost:8086`
 * copies the yum repository `solution/influxdb.repo.j2` using the template module
 * installs `telegraf-0.2.4` package using the `telegraf_version` variable
-* copies `solution/telegraf.conf.j2` to `/etc/opt/telegraph/telegraph.conf` using the template module
+* copies `solution/telegraf.conf.j2` to `/etc/opt/telegraf/telegraf.conf` using the template module
 * starts and enables the `telegraf` service
 * uses a handler to restart the `telegraf` service when the `telegraf` package is installed or the `telegraf` configuration file has changed
 
