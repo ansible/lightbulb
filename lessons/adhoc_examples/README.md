@@ -16,17 +16,17 @@ Install ansible with yum, but explain other methods (brew, pip, apt, etc)
 
 Run the following commands and experiment:
 
-	ansible web -i inventory/hosts -m setup
+	ansible web -m setup
 
-	ansible web -i inventory/hosts -m yum -a "name=httpd state=present" -s
+	ansible web -m yum -a "name=httpd state=present" -b
 
 Specifying the inventory is annoying, so open up ansible.cfg and uncomment the entries for hostfile.
 
-	ansible web -m service -a "name=httpd state=started" -s
+	ansible web -m service -a "name=httpd state=started" -b
 
-	ansible web -m service -a "name=httpd state=stopped" -s
+	ansible web -m service -a "name=httpd state=stopped" -b
 
-	ansible web -m yum -a "name=httpd state=absent" -s
+	ansible web -m yum -a "name=httpd state=absent" -b
 
 
 Imagine the calories saved by less typing.
