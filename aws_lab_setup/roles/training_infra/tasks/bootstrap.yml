@@ -1,7 +1,8 @@
-- name: enable password auth
-  copy:
-    src: sshd_config
+- name: Copy sshd_config
+  template:
+    src: sshd_config.j2
     dest: /etc/ssh/sshd_config
+    validate: /sbin/sshd -t -f %s
   notify: restart sshd
 
 - name: Install firewalld and libselinux-python
@@ -21,19 +22,18 @@
     state: present
     line: '{{ username }} ALL=(ALL) NOPASSWD: ALL'
 
-- name: disable requiretty
+- name: Disable requiretty
   lineinfile:
     dest: /etc/sudoers
     state: present
     line: Defaults    !requiretty
     regexp: ^Defaults
+    validate: visudo -cf %s
 
-- name: disable selinux
-  lineinfile:
-    line: SELINUX=permissive
-    state: present
-    dest: /etc/selinux/config
-    regexp: ^SELINUX=
+- name: Disable SELinux
+  selinux:
+    state: permissive
+    policy: targeted
   register: selinux_disable
 
 - block:
@@ -47,9 +47,9 @@
       delegate_to: localhost
       become: no
       wait_for:
-        port: 22
-        host: '{{ ansible_host }}'
+        port: "{{ ssh_port }}"
+        host: "{{ ansible_host }}"
         search_regex: OpenSSH
         timeout: 500
         delay: 120
-  when: selinux_disable|changed
+  when: selinux_disable | changed

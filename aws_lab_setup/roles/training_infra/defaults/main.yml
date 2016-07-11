@@ -1,5 +1,5 @@
-# aws_key_name:
-# name_prefix:
+current_ssh_port: 22
+ssh_port: 22
 user_setup: no
 async: no
 provision: no

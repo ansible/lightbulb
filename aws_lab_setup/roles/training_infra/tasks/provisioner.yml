@@ -75,43 +75,62 @@
     - "{{ types }}"
   register: instances
   when: not async
+  tags:
+    - always
 
-- name: wait for instances to answer on SSH
-  wait_for:
-    port: 22
-    host: "{{ item.tagged_instances[0].public_ip }}"
-    search_regex: OpenSSH
-    timeout: 500
-  with_items: "{{ instances.results }}"
-
+- block:
+  - name: Wait for instances to answer on SSH
+    wait_for:
+      port: "{{ current_ssh_port }}"
+      host: "{{ item.tagged_instances[0].public_ip }}"
+      search_regex: OpenSSH
+      timeout: 600
+    with_items: "{{ instances.results }}"
+  rescue:
+    - name: Wait for instances to answer on SSH
+      wait_for:
+        port: "{{ ssh_port }}"
+        host: "{{ item.tagged_instances[0].public_ip }}"
+        search_regex: OpenSSH
+        timeout: 600
+      with_items: "{{ instances.results }}"
 
 - name: generate student inventories
   template:
     src: instances.txt.j2
     dest: ./{{ item.username }}-instances.txt
   with_items: "{{ users }}"
+  tags:
+    - ssh
 
 - name: Set Login Name
   set_fact:
     login: centos
   when: "'centos' in item.type"
   with_items: "{{ types }}"
+  tags:
+    - always
 
 - name: Set Login Name
   set_fact:
     login: ec2-user
   when: "'rhel' in item.type"
   with_items: "{{ types }}"
+  tags:
+    - always
 
 - name: Add hosts to managed_hosts group
   add_host:
     name: "{{ item.invocation.module_args.instance_tags.Name }}"
     ansible_host: "{{ item.tagged_instances[0].public_ip }}"
     ansible_user: "{{ login }}"
+    ansible_port: "{{ ssh_port }}"
     groups: managed_hosts
   with_items: "{{ instances.results }}"
   register: add_host_output
   changed_when: no
+  tags:
+    - always
 
 - name: Set Username
   set_fact:
@@ -125,3 +144,5 @@
     src: instructor_inventory.j2
     dest: ./instructor_inventory
   run_once: yes
+  tags:
+    - ssh

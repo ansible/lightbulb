@@ -1,6 +1,6 @@
 - name: Debug Setup Stuff
   debug:
-    msg: "user_setup={{ user_setup }} & provision={{provision}} & boostrap={{bootstrap}}"
+    msg: "user_setup={{ user_setup }} & provision={{ provision }} & boostrap={{ bootstrap }}"
 
 - name: Control Node Bootstrap
   include: control_node_config.yml
