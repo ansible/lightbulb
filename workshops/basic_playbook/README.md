@@ -14,13 +14,14 @@ This workshop begins your foray into developing your first Ansible playbook. In 
 
 Create a basic playbook that
 
+* targets your **entire** inventory
 * creates a variable that is a list of `vim` and `https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm`
 * installs the above packages in a loop
 * defines a variable named `telegraf_version` and is set to `0.2.4`
 * defines a variable named `telegraf_flush_retries` and is set to `2` (integer)
 * defines a variable named `influxdb_db_name` that is set to `telegraf`
 * defines a variable named `influxdb_url` that is set to `http://localhost:8086`
-* copies the yum repository `solution/influxdb.repo.j2` using the template module
+* copies the yum repository `solution/influxdb.repo.j2` using the template module. (Hint: Repos are located at /etc/yum.repos.d/SOMENAME.repo)
 * installs `telegraf-0.2.4` package using the `telegraf_version` variable
 * copies `solution/telegraf.conf.j2` to `/etc/opt/telegraf/telegraf.conf` using the template module
 * starts and enables the `telegraf` service

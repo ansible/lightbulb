@@ -4,16 +4,16 @@ Ansible AWS training provisioner
 This is an automated lab setup for ansible training. It creates 5 nodes per user in the `users` list.
 
 * One control node from which ansible will be executed from
-* Three web nodes that coincide with the three nodes in lightbulbs original design
+* Three web nodes that coincide with the three nodes in lightbulb's original design
 * And one node where haproxy is installed (via lightbulb lesson)
 
 Usage
 -----
 
 ## AWS Setup
-To set up the lab for Ansible training in EMEA, follow these steps. I've done this using the eu-west (Ireland) datacentre, so you will need to modify if you want to use eu-central (Frankfurt) - in particular the AMI IDs may be different.
+To set up the lab for Ansible training, follow these steps. 
 
-1. Create an Amazon AWS account registered to your Red Hat email address and credit card if you do not have one already.
+1. Create an Amazon AWS account.
 
 2. Create an ssh key pair called 'ansible' (Network & Security->Key Pairs->Create Key Pair). Download the private key to your .ssh directory, e.g. to .ssh/ansible.pem. Alternatively, you can upload your own public key into AWS
 

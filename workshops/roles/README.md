@@ -17,6 +17,8 @@ This workshop builds on your assignment from the prior basic playbook workshop. 
 
 * Use `ansible-galaxy` to find and install a `influxdb` and a `grafana` role created by James Martin (`jsmartin`). Extra points if you use `requirements.yml`.
 
+* Modify the grafana role you installed and add, as the final task of the role, a task that calls firewalld and opens port 3000.
+
 #### Refactor your basic playbook to role
 
 Start from the basic playbook you developed in the previous workshop, where you installed and setup `telegraf` on each web node, and refactor into a role. It should have the following features:
