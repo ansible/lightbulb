@@ -4,28 +4,15 @@
         name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
         state: present
 
-    - name: Install Base Packages
+    - name: Install base packages and Ansible
       yum:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - python-pip
-        - python-devel
-        - sshpass
-        - gcc
-        - libffi-devel
-        - openssl-devel
-        - vim
-
-    - name: Install Ansible via PIP
-      pip:
-        name: ansible
-        state: present
-
-    - name: Upgrade setuptools via PIP
-      pip:
-        name: setuptools
+        name:
+          - sshpass
+          - vim
+          - ansible
         state: latest
+        enablerepo: epel-testing
+
   when: install_ansible
 
 - name: Install packages on control
