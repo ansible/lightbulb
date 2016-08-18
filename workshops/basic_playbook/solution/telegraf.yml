@@ -9,7 +9,7 @@
     influxdb_url: http://localhost:8086
     packages:
       - vim
-      - epel-release
+      - https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
   tasks:
     - name: Add InfluxDB repository file [RHEL/CentOS]
       template:
