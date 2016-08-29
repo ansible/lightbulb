@@ -1,4 +1,3 @@
----
 - hosts: web
   name: This is a play within a playbook
   become: yes
@@ -7,26 +6,20 @@
     httpd_packages:
       - httpd
       - mod_wsgi
+      - libselinux-python
+      - firewalld
 
   tasks:
     - name: install packages
       yum:
         name: "{{ item }}"
         state: present
-      with_items:
-        - libselinux-python
-        - firewalld
+      with_items: "{{ httpd_packages }}"
 
     - name: stop firewalld
       service:
         name: firewalld
         state: stopped
-
-    - name: Install httpd packages
-      yum:
-        name: "{{ item }}"
-        state: present
-      with_items: "{{ httpd_packages }}"
 
     - name: copy index.html
       copy:
