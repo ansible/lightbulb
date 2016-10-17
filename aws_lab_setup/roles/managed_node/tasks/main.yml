@@ -1,0 +1,46 @@
+- name: Configure sshd and sudoers
+  lineinfile:
+    dest: "{{ item.dest }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: "{{ item.state | default('present') }}"
+    validate: "{{ item.validate | default(omit) }}"
+    backup: no
+  with_items: "{{ managed_node_config_options }}"
+  notify: restart ssh
+  tags:
+    - ssh
+    - sudo
+
+- name: Install firewalld and libselinux-python
+  yum:
+    name:
+      - libselinux-python
+      - firewalld
+    state: present
+  when:
+    - "ansible_os_family == 'RedHat' or ansible_os_family == 'CentOS'"
+    - "ansible_distribution_major_version | int >= 7"
+
+- name: Disable SELinux
+  selinux:
+    state: permissive
+    policy: targeted
+  register: selinux_disable
+
+- block:
+    - name: Reboot server
+      shell: sleep 2 && reboot
+      async: 30
+      poll: 0
+
+    - name: wait for instance
+      delegate_to: localhost
+      become: no
+      wait_for:
+        port: "{{ ssh_port }}"
+        host: "{{ ansible_host }}"
+        search_regex: OpenSSH
+        timeout: 500
+        delay: 120
+  when: selinux_disable | changed
