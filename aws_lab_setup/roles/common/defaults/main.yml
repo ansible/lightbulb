@@ -1,4 +1,4 @@
-managed_node_config_options:
+common_node_config_options:
   - dest: /etc/ssh/sshd_config
     regexp: '^#?Port'
     line: Port {{ ssh_port }}

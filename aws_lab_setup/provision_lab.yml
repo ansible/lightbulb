@@ -19,19 +19,19 @@
         - user_accounts
         - users
 
+- name: Configure common options on managed nodes and control nodes
+  hosts: "managed_nodes:control_nodes"
+  become: yes
+  roles:
+    - role: common
+      tags: common
+
 - name: Configure control node
   hosts: control_nodes
   become: yes
   roles:
     - role: control_node
       tags: control_node
-
-- name: Configure managed nodes
-  hosts: managed_nodes
-  become: yes
-  roles:
-    - role: managed_node
-      tags: managed_node
 
 - name: Email inventory to students
   hosts: localhost

@@ -6,7 +6,7 @@
     state: "{{ item.state | default('present') }}"
     validate: "{{ item.validate | default(omit) }}"
     backup: no
-  with_items: "{{ managed_node_config_options }}"
+  with_items: "{{ common_node_config_options }}"
   notify: restart ssh
   tags:
     - ssh
