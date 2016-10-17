@@ -27,7 +27,9 @@
   become: yes
   roles:
     - role: control_node
-      tags: control_node
+      tags:
+        - control_node
+        - control
 
 - name: Email inventory to students
   hosts: localhost
