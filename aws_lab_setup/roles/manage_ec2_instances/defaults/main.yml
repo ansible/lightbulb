@@ -1,0 +1,66 @@
+ec2_name_prefix: TRAINING
+ec2_security_group: insecure_all
+ec2_region: us-east-1
+ec2_vpc_id: vpc-06c9a463
+ec2_vpc_subnet_id: subnet-a2169ed5
+ec2_key_name: training
+ec2_exact_count: 1
+
+admin_password: changeme123
+admin_password_hash: "{{ admin_password | password_hash(salt='sRvXWmR5BBwqRlih') }}"
+
+users:
+  - name: Brue Wayne
+    username: bwayne
+    email: bwayne@we.com
+
+ec2_instance_types:
+  centos7:
+    ami_id: ami-61bbf104
+    size: t2.micro
+    os_type: linux
+    disk_space: 10
+
+  centos7-tower:
+    ami_id: ami-61bbf104
+    size: t2.medium
+    os_type: linux
+    disk_space: 20
+
+  rhel7:
+    ami_id: ami-12663b7a
+    size: t2.micro
+    os_type: linux
+    disk_space: 10
+
+  rhel7-tower:
+    ami_id: ami-12663b7a
+    size: t2.medium
+    os_type: linux
+    disk_space: 20
+
+ec2_login_names:
+  rhel7-tower: ec2-user
+  rhel7: ec2-user
+  centos7: centos
+
+ec2_lab_node_types:
+  - name: control
+    type: rhel7-tower
+
+  - name: node1
+    type: rhel7
+
+  - name: node2
+    type: rhel7
+
+  - name: node3
+    type: rhel7
+
+  - name: haproxy
+    type: rhel7
+
+
+# Backwards compatability
+types: "{{ ec2_lab_node_types }}"
+aws_key_name: "{{ ec2_key_name }}"
