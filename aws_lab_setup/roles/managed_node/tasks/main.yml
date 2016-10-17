@@ -27,20 +27,8 @@
     state: permissive
     policy: targeted
   register: selinux_disable
+  notify:
+    - reboot
+    - wait for instance
 
-- block:
-    - name: Reboot server
-      shell: sleep 2 && reboot
-      async: 30
-      poll: 0
-
-    - name: wait for instance
-      delegate_to: localhost
-      become: no
-      wait_for:
-        port: "{{ ssh_port }}"
-        host: "{{ ansible_host }}"
-        search_regex: OpenSSH
-        timeout: 500
-        delay: 120
-  when: selinux_disable | changed
+- meta: flush_handlers
