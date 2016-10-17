@@ -1,0 +1,2 @@
+admin_password: changeme123
+admin_password_hash: "{{ admin_password | password_hash(salt='sRvXWmR5BBwqRlih') }}"
