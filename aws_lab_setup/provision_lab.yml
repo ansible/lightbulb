@@ -39,4 +39,3 @@
   roles:
     - role: email
       tags: email
-      when: email
