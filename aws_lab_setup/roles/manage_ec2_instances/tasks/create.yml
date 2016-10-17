@@ -64,6 +64,8 @@
   with_items: "{{ users }}"
   tags:
     - inventory
+    - users
+    - user_accounts
 
 - name: Generate instructor inventory
   template:
@@ -71,3 +73,5 @@
     dest: ./instructor_inventory.txt
   tags:
     - inventory
+    - users
+    - user_accounts
