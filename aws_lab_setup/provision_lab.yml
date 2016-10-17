@@ -1,0 +1,40 @@
+- name: Create lab instances in AWS
+  hosts: localhost
+  connection: local
+  become: no
+  gather_facts: no
+  vars:
+    current_ssh_port: 22
+    ssh_port: 22
+  roles:
+    - role: manage_ec2_instances
+      tags: provision
+
+- name: Create user accounts
+  hosts: lab_hosts
+  become: yes
+  roles:
+    - role: user_accounts
+      tags:
+        - user_accounts
+        - users
+
+- name: Configure control nodes
+  hosts: control_nodes
+  become: yes
+  roles:
+    - control_node
+
+- name: Configure managed nodes
+  hosts: managed_nodes
+  become: yes
+  roles:
+    - managed_node
+
+- name: Email inventory to students
+  hosts: localhost
+  connection: local
+  become: no
+  gather_facts: no
+  roles:
+    - email

@@ -1,0 +1,12 @@
+- name: Destroy lab instances in AWS
+  hosts: localhost
+  connection: local
+  become: no
+  gather_facts: no
+  vars:
+    current_ssh_port: 22
+    ssh_port: 22
+    ec2_exact_count: 0
+  roles:
+    - role: manage_ec2_instances
+      tags: provision
