@@ -5,6 +5,11 @@ managed_node_config_options:
     validate: sshd -t -f %s
 
   - dest: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication yes'
+    validate: sshd -t -f %s
+
+  - dest: /etc/ssh/sshd_config
     regexp: '^#?UseDNS'
     line: 'UseDNS no'
     validate: sshd -t -f %s
