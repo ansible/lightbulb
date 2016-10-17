@@ -10,8 +10,8 @@
     - role: manage_ec2_instances
       tags: provision
 
-- name: Create user accounts
-  hosts: lab_hosts
+- name: Configure common options on managed nodes and control nodes
+  hosts: "managed_nodes:control_nodes"
   become: yes
   roles:
     - role: user_accounts
@@ -19,10 +19,6 @@
         - user_accounts
         - users
 
-- name: Configure common options on managed nodes and control nodes
-  hosts: "managed_nodes:control_nodes"
-  become: yes
-  roles:
     - role: common
       tags: common
 
@@ -41,3 +37,4 @@
   roles:
     - role: email
       tags: email
+      when: email
