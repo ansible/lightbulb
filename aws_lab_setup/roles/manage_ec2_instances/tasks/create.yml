@@ -57,17 +57,17 @@
   tags:
     - always
 
-# - name: Generate student inventories
-#   template:
-#     src: instances.txt.j2
-#     dest: ./{{ item.username }}-instances.txt
-#   with_items: "{{ users }}"
-#   tags:
-#     - inventory
+- name: Generate student inventories
+  template:
+    src: instances.txt.j2
+    dest: ./{{ item.username }}-instances.txt
+  with_items: "{{ users }}"
+  tags:
+    - inventory
 
-# - name: Generate instructor inventory
-#   template:
-#     src: instructor_inventory.j2
-#     dest: ./instructor_inventory
-#   tags:
-#     - inventory
+- name: Generate instructor inventory
+  template:
+    src: instructor_inventory.j2
+    dest: ./instructor_inventory.txt
+  tags:
+    - inventory
