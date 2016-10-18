@@ -1,2 +1,0 @@
-ansible_python_interpreter: '/usr/bin/env python'
-ssh_port: 22
