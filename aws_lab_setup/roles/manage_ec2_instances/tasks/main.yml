@@ -28,7 +28,7 @@
       Name: "{{ ec2_name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
     instance_tags:
       Name: "{{ ec2_name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
-    wait: no
+    wait: "{{ ec2_wait }}"
     vpc_subnet_id: "{{ ec2_vpc_subnet_id | default(omit) }}"
     volumes:
       - device_name: /dev/sda1
