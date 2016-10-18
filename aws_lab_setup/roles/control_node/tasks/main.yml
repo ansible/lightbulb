@@ -2,6 +2,9 @@
   yum:
     name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
+  tags:
+    - control_node
+    - control
 
 - name: Install base packages and Ansible
   yum:
@@ -12,6 +15,9 @@
       - git
     state: latest
     enablerepo: epel-testing
+  tags:
+    - control_node
+    - control
 
 - name: Clone lightbulb
   git:
@@ -21,6 +27,9 @@
     repo: https://github.com/ansible/lightbulb.git
     force: yes
   become_user: "{{ username }}"
+  tags:
+    - control_node
+    - control
 
 - name: Remove things that students don't need
   file:
@@ -31,6 +40,9 @@
     - resources
     - Vagrantfile
     - README.md
+  tags:
+    - control_node
+    - control
 
 - name: Install AWS ansible.cfg in home directory
   copy:
@@ -38,11 +50,17 @@
     dest: ~{{ username }}/.ansible.cfg
     owner: "{{ username }}"
     group: "{{ username }}"
+  tags:
+    - control_node
+    - control
 
 - name: Create lab inventory directory
   file:
     state: directory
     path: /home/{{ username }}/lightbulb/lessons/lab_inventory
+  tags:
+    - control_node
+    - control
 
 - name: Put student inventory in proper spot
   copy:
@@ -51,3 +69,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
   when: username in inventory_hostname
+  tags:
+    - control_node
+    - control
+
