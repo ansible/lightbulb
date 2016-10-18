@@ -3,33 +3,21 @@
   connection: local
   become: no
   gather_facts: no
-  vars:
-    current_ssh_port: 22
-    ssh_port: 22
   roles:
-    - role: manage_ec2_instances
-      tags: provision
+    - manage_ec2_instances
 
 - name: Configure common options on managed nodes and control nodes
   hosts: "managed_nodes:control_nodes"
   become: yes
   roles:
-    - role: user_accounts
-      tags:
-        - user_accounts
-        - users
-
-    - role: common
-      tags: common
+    - user_accounts
+    - common
 
 - name: Configure control node
   hosts: control_nodes
   become: yes
   roles:
-    - role: control_node
-      tags:
-        - control_node
-        - control
+    - control_node
 
 - name: Email inventory to students
   hosts: localhost
@@ -37,5 +25,4 @@
   become: no
   gather_facts: no
   roles:
-    - role: email
-      tags: email
+    - email

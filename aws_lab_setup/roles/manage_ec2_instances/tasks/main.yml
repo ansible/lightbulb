@@ -13,6 +13,7 @@
   when: ec2_exact_count >= 1
   tags:
     - always
+    - provision
 
 - name: Create or destroy EC2 instances
   ec2:
@@ -40,6 +41,7 @@
   register: instances
   tags:
     - always
+    - provision
 
 - name: Include tasks only needed when creating instances
   include: create.yml
