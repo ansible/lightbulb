@@ -6,14 +6,6 @@ ec2_vpc_subnet_id: subnet-a2169ed5
 ec2_key_name: training
 ec2_exact_count: 1
 
-admin_password: changeme123
-admin_password_hash: "{{ admin_password | password_hash(salt='sRvXWmR5BBwqRlih') }}"
-
-users:
-  - name: Brue Wayne
-    username: bwayne
-    email: bwayne@we.com
-
 ec2_instance_types:
   centos7:
     ami_id: ami-61bbf104
