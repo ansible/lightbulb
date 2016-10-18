@@ -20,14 +20,15 @@ ec2_instance_types:
     os_type: linux
     disk_space: 20
 
+  # Look for owner 309956199498 to find official Red Hat AMIs
   rhel7:
-    ami_id: ami-12663b7a
+    ami_id: ami-85241def
     size: t2.micro
     os_type: linux
     disk_space: 10
 
   rhel7-tower:
-    ami_id: ami-12663b7a
+    ami_id: ami-85241def
     size: t2.medium
     os_type: linux
     disk_space: 20
