@@ -1,8 +1,9 @@
 - name: Send email to students with inventroy attached
   delegate_to: localhost
   sendgrid_22:
-    username: "{{ sendgrid_user }}"
-    password: "{{ sendgrid_pass }}"
+    username: "{{ sendgrid_user | default(omit) }}"
+    password: "{{ sendgrid_pass | default(omit) }}"
+    api_key: "{{ sendgrid_api_key | default(omit) }}"
     subject: "[Ansible] Important Training Details"
     body: |
           Attached is the Ansible inventory to be used for training.<br>
