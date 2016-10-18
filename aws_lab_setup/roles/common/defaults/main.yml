@@ -1,7 +1,7 @@
 common_node_config_options:
   - dest: /etc/ssh/sshd_config
     regexp: '^#?Port'
-    line: Port {{ ssh_port }}
+    line: Port {{ ssh_port | default('22') }}
     validate: sshd -t -f %s
 
   - dest: /etc/ssh/sshd_config
