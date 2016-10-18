@@ -44,15 +44,19 @@
     - control_node
     - control
 
-- name: Install AWS ansible.cfg in home directory
+- name: Install ansible.cfg and vimrc in home directory
   copy:
-    src: ansible.cfg
-    dest: ~{{ username }}/.ansible.cfg
+    src: "{{ item }}"
+    dest: ~{{ username }}/.{{ item }}
     owner: "{{ username }}"
     group: "{{ username }}"
+  with_items:
+    - ansible.cfg
+    - vimrc
   tags:
     - control_node
     - control
+    - vim
 
 - name: Create lab inventory directory
   file:
