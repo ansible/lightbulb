@@ -5,6 +5,7 @@ ec2_vpc_id: vpc-06c9a463
 ec2_vpc_subnet_id: subnet-a2169ed5
 ec2_key_name: training
 ec2_exact_count: 1
+ec2_wait: yes
 
 ec2_instance_types:
   centos7:

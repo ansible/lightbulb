@@ -3,7 +3,14 @@
   connection: local
   become: no
   gather_facts: no
+
   vars:
     ec2_exact_count: 0
+    ec2_wait: no
+
   roles:
     - manage_ec2_instances
+
+  post_tasks:
+    - name: Cleanup local files
+      shell: rm -f *.txt
