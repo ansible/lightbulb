@@ -1,19 +1,10 @@
-- block:
-  - name: Wait for instances to answer on SSH
-    wait_for:
-      port: "{{ current_ssh_port }}"
-      host: "{{ item.tagged_instances[0].public_ip }}"
-      search_regex: OpenSSH
-      timeout: 600
-    with_items: "{{ instances.results }}"
-  rescue:
-    - name: Wait for instances to answer on SSH
-      wait_for:
-        port: "{{ ssh_port }}"
-        host: "{{ item.tagged_instances[0].public_ip }}"
-        search_regex: OpenSSH
-        timeout: 600
-      with_items: "{{ instances.results }}"
+- name: Wait for instances to finish initializing
+  pause:
+    seconds: 60
+  when: instances | changed
+  tags:
+    - always
+    - provision
 
 - name: Set login name
   set_fact:
@@ -21,6 +12,7 @@
   with_items: "{{ ec2_lab_node_types }}"
   tags:
     - always
+    - provision
 
 - name: Add hosts to control_nodes group
   add_host:
@@ -34,6 +26,7 @@
   changed_when: no
   tags:
     - always
+    - provision
 
 - name: Add hosts to groups
   add_host:
@@ -47,6 +40,7 @@
   changed_when: no
   tags:
     - always
+    - provision
 
 - name: Set local username to create on instances
   set_fact:
@@ -56,6 +50,7 @@
   delegate_facts: yes
   tags:
     - always
+    - provision
 
 - name: Generate student inventories
   template:
