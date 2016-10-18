@@ -1,4 +1,5 @@
 ssh_port: 22
+
 users:
   - name: Brue Wayne
     username: bwayne

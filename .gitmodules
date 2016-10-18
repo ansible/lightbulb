@@ -1,3 +1,0 @@
-[submodule "jmartin.vim-ansible-syntax"]
-	path = aws_lab_setup/roles/vim-ansible-syntax
-	url = https://github.com/jsmartin/vim-ansible-syntax.git
