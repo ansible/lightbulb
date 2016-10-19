@@ -48,7 +48,7 @@ end
 
 cluster.vm.define "node-3" do |config|
   config.vm.box = "centos/7"
-  #config.vm.box = "bento/ubuntu-14.04"
+  #config.vm.box = "ubuntu/trusty64"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "256"]
@@ -71,7 +71,7 @@ end
 
 
 cluster.vm.define "tower" do |config|
-  config.vm.box = "http://vms.ansible.com/ansible-tower-2.4.4-virtualbox.box"
+  config.vm.box = "ansible/tower"
   config.ssh.insert_key = false
   config.vm.provider :virtualbox do |vb, override|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
