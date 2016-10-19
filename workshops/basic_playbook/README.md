@@ -14,7 +14,7 @@ This workshop begins your foray into developing your first Ansible playbook. In 
 
 Create a basic playbook that
 
-* targets your **entire** inventory
+* targets your **web** hosts
 * creates a variable that is a list of `vim` and `https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm`
 * installs the above packages in a loop
 * defines a variable named `telegraf_version` and is set to `0.2.4`
