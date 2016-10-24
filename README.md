@@ -25,7 +25,3 @@ You can pick your starting point, and proceed progressively.  The order is:
 
 
 This is only a starting point.  Different progressions could happen at any one of these points and go in a different direction.
-
-**TODO**:
-
-* Make ec2 tagging configurable
