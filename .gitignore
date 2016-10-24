@@ -1,5 +1,4 @@
 secrets.yml
 users.yml
 *.txt
-instructor*
 .vagrant
