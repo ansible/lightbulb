@@ -40,7 +40,7 @@ To set up the lab for Ansible training, follow these steps.
     chmod 600 ~/.aws/credentials
 
     # The file should contain the following:
-    [deafult]
+    [default]
     aws_access_key_id = [access key ID]
     aws_secret_access_key = [secret key]
     ```
