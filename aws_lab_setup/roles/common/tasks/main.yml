@@ -36,6 +36,13 @@
   tags:
     - common
 
+- name: Stop and disable firewall
+  service:
+    name: firewalld
+    state: stopped
+  tags:
+    - common
+
 - meta: flush_handlers
   tags:
     - common
