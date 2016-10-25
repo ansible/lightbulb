@@ -2,7 +2,7 @@
   hosts: localhost
   connection: local
   become: no
-  gather_facts: no
+  gather_facts: yes
 
   vars:
     ec2_exact_count: 0
@@ -12,5 +12,14 @@
     - manage_ec2_instances
 
   post_tasks:
-    - name: Cleanup local files
-      shell: rm -f *.txt
+    - name: Find .txt files
+      find:
+        paths: "{{ ansible_env.PWD }}"
+        patterns: '*.txt'
+      register: files
+
+    - name: Remove inventory files
+      file:
+        state: absent
+        path: "{{ item }}"
+      with_items: "{{ files.files }}"
