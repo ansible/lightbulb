@@ -12,14 +12,7 @@
     - manage_ec2_instances
 
   post_tasks:
-    - name: Find .txt files
-      find:
-        paths: "{{ ansible_env.PWD }}"
-        patterns: '*.txt'
-      register: files
-
     - name: Remove inventory files
-      file:
-        state: absent
-        path: "{{ item }}"
-      with_items: "{{ files.files }}"
+      shell: rm -vf {{ playbook_dir }}/*.txt
+      register: removal
+      changed_when: removal.stdout_lines | length > 0
