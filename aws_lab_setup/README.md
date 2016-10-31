@@ -64,6 +64,8 @@ To set up the lab for Ansible training, follow these steps.
       ec2_key_name: username                # SSH key in AWS to put in all the instances
       ec2_region: us-west-1                 # region where the nodes will live
       ec2_name_prefix: TRAINING-LAB         # name prefix for all the VMs
+      ec2_vpc_id: vpc-1234aaaa              # EC2 VPC ID in your region
+      ec2_vpc_subnet_id: subnet-5678bbbb    # EC2 subnet ID in your VPC
       sendgrid_user: username               # username for the Sendgrid module
       sendgrid_pass: 'passwordgoeshere'     # sendgrid accound password
       sendgrid_api_key: 'APIkey'            # Instead of username and password, you may use an API key. Don't define both.
