@@ -15,7 +15,7 @@ ec2_instance_types:
     disk_space: 10
 
   centos7-tower:
-    ami_id: ami-61bbf104
+    ami_id: ami-a86614bf
     size: t2.medium
     os_type: linux
     disk_space: 20
@@ -36,6 +36,7 @@ ec2_instance_types:
 ec2_login_names:
   rhel7-tower: ec2-user
   rhel7: ec2-user
+  centos7-tower: centos
   centos7: centos
 
 ec2_lab_node_types:
