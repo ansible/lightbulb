@@ -1,3 +1,8 @@
+- name: Set version specific variables
+  include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+  tags:
+    - always
+
 - name: Configure sshd and sudoers
   lineinfile:
     dest: "{{ item.dest }}"
@@ -13,15 +18,13 @@
     - sudo
     - common
 
-- name: Install firewalld and libselinux-python
+- name: Install {{ firewall_name }} and libselinux-python
   yum:
     name:
       - libselinux-python
-      - firewalld
+      - "{{ firewall_name }}"
     state: present
-  when:
-    - "ansible_os_family == 'RedHat' or ansible_os_family == 'CentOS'"
-    - "ansible_distribution_major_version | int >= 7"
+  when: ansible_os_family == 'RedHat'
   tags:
     - common
 
@@ -30,6 +33,7 @@
     state: permissive
     policy: targeted
   register: selinux_disable
+  when: ansible_os_family == 'RedHat'
   notify:
     - reboot
     - wait for instance
@@ -38,7 +42,7 @@
 
 - name: Stop and disable firewall
   service:
-    name: firewalld
+    name: "{{ firewall_name }}"
     state: stopped
   tags:
     - common
