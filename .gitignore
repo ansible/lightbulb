@@ -1,5 +1,6 @@
 secrets.yml
 users.yml
+extra_vars.yml
 *.txt
 instructor*
 .vagrant/*
