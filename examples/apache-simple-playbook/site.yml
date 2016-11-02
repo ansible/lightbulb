@@ -1,0 +1,20 @@
+---
+- hosts: web
+  name: install and start apache
+  become: yes
+
+  tasks:
+  - name: install apache
+    yum:
+      name: httpd
+      state: present
+
+  - name: copy index.html
+    copy:
+      src: files/index.html
+      dest: /var/www/html/
+
+  - name: start httpd
+    service:
+      name: httpd
+      state: started
