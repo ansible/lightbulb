@@ -1,34 +1,41 @@
+---
 - hosts: web
   name: This is a play within a playbook
   become: yes
-
   vars:
     httpd_packages:
       - httpd
       - mod_wsgi
-      - libselinux-python
-      - firewalld
+    apache_test_message: This is a test message
+    apache_max_keep_alive_requests: 115
 
   tasks:
-    - name: install packages
+    - name: install httpd packages
       yum:
         name: "{{ item }}"
         state: present
       with_items: "{{ httpd_packages }}"
+      notify: restart apache service
 
-    - name: stop firewalld
-      service:
-        name: firewalld
-        state: stopped
+    - name: copy httpd.conf
+      template:
+        src: templates/httpd.conf.j2
+        dest: /etc/httpd/conf/httpd.conf
+      notify: restart apache service
 
     - name: copy index.html
-      copy:
-        src: files/index.html
-        dest: /var/www/html/
-      notify: restart apache
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+
+    - name: start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
 
   handlers:
-    - name: restart apache
+    - name: restart apache service
       service:
         name: httpd
         state: restarted

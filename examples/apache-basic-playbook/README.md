@@ -1,24 +1,24 @@
-# apache_playbook
+# apache-centos
 
 If the nodes aren't already up, you'll need to run:
 
 	vagrant up node-1 node-2
 
-
 ### Topics covered
 
-* Inventory
-* Creating a playbook.
-* Using vars
-* Using with_items
-* Using host ranges
+* playbook
+* inventory
+* initializing a role
+* roles
+* tagging
+* templates
+
 
 ### General flow
 
-Configuring systems with ad-hoc tasks can be annoying -- and ad-hoc tasks don't really keep a good record of how a system ***should*** be configured.
+Plain-old playbooks are not very re-usable.  So here we've taken the same concepts in the apache-paybook example and built an apache role.  
 
 
-In this example, we show how to use a simple playbook to setup Apache on 2 hosts.
-
+### Commands
 
 	ansible-playbook site.yml
