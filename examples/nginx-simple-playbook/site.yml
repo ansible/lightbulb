@@ -1,0 +1,21 @@
+# In keeping things simple, this example assumes the epel repo is enabled on each node
+---
+- hosts: web
+  name: install and start nginx
+  become: yes
+
+  tasks:
+  - name: install nginx
+    yum:
+      name: nginx
+      state: present
+
+  - name: copy index.html
+    copy:
+      src: files/index.html
+      dest: /usr/share/nginx/html 
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
