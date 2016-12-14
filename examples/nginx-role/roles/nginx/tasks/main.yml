@@ -1,0 +1,32 @@
+---
+# tasks file for nginx
+- name: install nginx packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ nginx_packages }}"
+  notify: restart nginx service
+
+- name: install uwsgi
+  pip:
+    name: uwsgi
+    state: present
+  notify: restart nginx service
+
+- name: copy default.conf
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    backup: yes
+  notify: restart nginx service
+
+- name: copy index.html
+  template:
+    src: templates/index.html.j2
+    dest: /usr/share/nginx/html/index.html
+
+- name: start nginx service
+  service:
+    name: nginx
+    state: started
+    enabled: yes

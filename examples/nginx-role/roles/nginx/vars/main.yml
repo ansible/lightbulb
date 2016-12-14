@@ -1,0 +1,7 @@
+---
+# vars file for nginx
+nginx_packages:
+  - nginx
+  - python-pip
+  - python-devel
+  - gcc
