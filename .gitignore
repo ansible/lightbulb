@@ -3,4 +3,6 @@ users.yml
 *.txt
 instructor*
 .vagrant/*
+ansible.cfg
+hosts
 
