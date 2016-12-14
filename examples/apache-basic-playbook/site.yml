@@ -17,6 +17,11 @@
       with_items: "{{ httpd_packages }}"
       notify: restart apache service
 
+    - name: create site-enabled directory
+      file:
+        name: /etc/httpd/conf/sites-enabled
+        state: directory
+
     - name: copy httpd.conf
       template:
         src: templates/httpd.conf.j2
