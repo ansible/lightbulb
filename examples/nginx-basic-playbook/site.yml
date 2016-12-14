@@ -38,7 +38,7 @@
         src: templates/index.html.j2
         dest: /usr/share/nginx/html/index.html
 
-    - name: start nginx
+    - name: start nginx service
       service:
         name: nginx
         state: started
