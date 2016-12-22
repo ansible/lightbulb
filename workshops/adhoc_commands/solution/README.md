@@ -29,4 +29,4 @@ ansible all -m ping --limit '!control'
 
 #### NOTE
 
-You will need to make sure each student successfully installed the EPEL repo. Later workshop assignments ask students to install Nginx. Without EPEL enabled `yum` will not be able to locate the package.
+You will need to make sure each student successfully installed the EPEL repo here. Later workshop assignments ask students to install Nginx. Without EPEL enabled on each web host `yum` will not be able to locate the package.
