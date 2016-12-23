@@ -8,7 +8,7 @@ This workshop is also a good way to verify their lab environments are properly c
 
 The following commands are the solution for the workshop and extra credit assignments.
 
-```
+```bash
 ansible all -m ping
 
 ansible all -m setup

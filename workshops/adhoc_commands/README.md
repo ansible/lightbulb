@@ -36,4 +36,4 @@ Perform the following operations using ad-hoc commands:
 * [setup module](http://docs.ansible.com/ansible/setup_module.html)
 * [yum module](http://docs.ansible.com/ansible/yum_module.html)
 * [command module](http://docs.ansible.com/ansible/command_module.html)
-
+* [Introduction To Ad-Hoc Commands](http://docs.ansible.com/ansible/intro_adhoc.html)
