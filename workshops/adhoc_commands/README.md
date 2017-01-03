@@ -11,7 +11,7 @@
 
 * How to test your Ansible configuration and connectivity
 * How to get and display Ansible facts
-* Hot to install a package
+* How to install a package
 
 ### The Assignment
 
