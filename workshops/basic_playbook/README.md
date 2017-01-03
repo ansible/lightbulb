@@ -1,0 +1,55 @@
+# Workshop: Basic Playbook
+
+### Topics Covered
+
+* Using `ansible-playbook`
+* YAML syntax basics
+* Basic Ansible playbook structure
+* Tasks and modules
+* Handlers
+* Variables
+* Loops
+
+### What You Will Learn
+
+* How to use `ansible-playbook`
+* The basics of YAML syntax and Ansible playbook structure
+* Now to deploy and configure an application onto a group of hosts
+
+### The Assignment
+
+Create an Ansible playbook that will assure nginx is present, configured and running on all hosts in the "web" group:
+
+1. Has variables for `nginx_test_message` and `nginx_keepalive_timeout`.
+1. Assures that the following yum packages are present on the each web host:
+    * nginx
+    * python-pip
+    * python-devel
+    * gcc
+1. Assure that the uwsgi pip package is present on each host.
+1. Generate a host-specific home page with the value of `nginx_test_message` for each host using the provided `index.html.j2` template.
+1. Generate a configuration with the value of `nginx_keepalive_timeout` for each host using the provided `nginx.conf.j2` template.
+1. Assure that nginx is running on each host.
+1. The playbook should restart nginx if the homepage or configuration file is altered.
+
+While developing the playbook use the `--syntax-check` to check your work and debug problems. Run your playbook in verbose mode using the `-v` switch to get more information on what Ansible is doing. Try `-vv` and `-vvv` for added verbosity. Also consider running `--check` to do a dry-run as you are developing. 
+
+#### NOTE
+
+You will need to make sure each host in web has setup the EPEL repo to find the nginx package.
+
+#### Extra Credit
+
+1. Add a smoke test to your playbook using the `uri` module that test nginx is serving the sample home page.
+1. Create a seperate playbook that stops and removes nginx along with its configuration file and home page.
+
+### Resources
+
+* YAML Basics Tutorial???
+* Playbook doc page
+* yum module
+* pip module
+* template module
+* service module
+* uri module
+* file module
