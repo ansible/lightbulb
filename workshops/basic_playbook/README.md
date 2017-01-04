@@ -45,11 +45,14 @@ You will need to make sure each host in web has setup the EPEL repo to find the 
 
 ### Resources
 
-* YAML Basics Tutorial???
-* Playbook doc page
-* yum module
-* pip module
-* template module
-* service module
-* uri module
-* file module
+* [YAML Syntax](http://docs.ansible.com/ansible/YAMLSyntax.html)
+* [Intro to Ansible Playbooks](http://docs.ansible.com/ansible/playbooks_intro.html)
+    * [Handlers](http://docs.ansible.com/ansible/playbooks_intro.html#handlers-running-operations-on-change)
+    * [Variables](http://docs.ansible.com/ansible/playbooks_variables.html)
+    * [Loops](http://docs.ansible.com/ansible/playbooks_loops.html)
+* [yum module](http://docs.ansible.com/ansible/yum_module.html)
+* [pip module](http://docs.ansible.com/ansible/pip_module.html)
+* [template module](http://docs.ansible.com/ansible/template_module.html)
+* [service module](http://docs.ansible.com/ansible/service_module.html)
+* [uri module](http://docs.ansible.com/ansible/template_module.html)
+* [file module](http://docs.ansible.com/ansible/file_module.html)
