@@ -4,6 +4,14 @@ Here students are tasked with refactoring their previous work from the Basic Pla
 
 You should emphasize roles value in better organizing playbooks as they grow in sophistication and making Ansible automation more portable and reusable than a basic playbook.
 
+#### Defaults vs. Vars
+
+A common question that is asked "when do I put a variable in defaults instead of a vars?" It depends on the usage of a variable in the context of a role. It all comes down to variable precedence. 
+
+If a variable holds a data that someone using the role may want to override anyway numbers of ways, then it's best stored under `defaults/`. If a variable holds data that is internal to the function of the role and rarely (or in practice should never) be modified, then it's best stored under `vars/` where its much hard to be overridden by other variables sources.
+
+Applying these guidelines to this assignment, `nginx_packages` would go in `vars/` while `nginx_test_message` and `nginx_keepalive_timeout` would go in `defaults/`.
+
 #### NOTE
 
 The extra credit assignment should use the `include_role` module that was introduced in version 2.2. Students working with older versions of Ansible will have trouble completing the assignment.
