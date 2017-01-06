@@ -1,31 +1,19 @@
-# Progressive Ansible
+# Ansible Lightbulb
 
-These roles/playbooks are meant to show how to use Ansible in a progressive way. Start with simple concepts, and keep building upon those concepts along the way.
+The Ansible Lightbulb project is an effort to provide a reference and educational content for rapidly communicating and learning Ansible and Ansible Tower essentials.
 
-In each lesson, you will find an overview of what that lesson is trying to teach.
+Lightbulb began life as the content that supported Ansible's training program before it joined the Red Hat family focused solely on Linux server automation.
 
-In their current form, they don't provide detailed instruction -- that is left up to the instructor. Think of these more as instructor's notes than student material, but of course they could be used as reference.
+This content is now taking on a new life as a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal workshop training in various forms -- instructor-led, hands-on or self-paced. 
 
-## Requirements
+Over time lightbulb will be expanded to include advanced and developer topics in addition to expanding beyond linux server automation and into Windows and network automation.
 
-Each lesson should state its own requirements.
+To support these objectives, the project provides a lab provisiover tool for creating an environment to present and work with lightbulb content. 
 
-## Order
+**NOTE:** Lightbulb "v2" is currenly a work in progress and still has not met all of its intended goals. 
 
-You can pick your starting point, and proceed progressively.  The order is:
+#### Assumed Knowledge
 
+For hands-on or self-paced training, students should have working knowledge of using SSH and command line shell (BASH). The ability to SSH from their personal laptop to a lab environment hosted in a public cloud can also be required based dependent on the format and presentation of the context. 
 
-1. adhoc_examples
-2. apache_playbook
-3. apache_centos
-4. apache_centos_ubuntu
-5. cloud
-6. common_role
-7. delegation_and_role_deps
-
-
-This is only a starting point.  Different progressions could happen at any one of these points and go in a different direction.
-
-**TODO**:
-
-* Make ec2 tagging configurable
+For demos and instrcutor-led exercises, conceptual understanding of linux system admin, DevOps and distributed application architecture is all that is required.
