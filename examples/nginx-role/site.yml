@@ -4,4 +4,4 @@
   name: This is a Playbook
   become: yes
   roles:
-    - nginx
+    - nginx-simple

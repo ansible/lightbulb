@@ -30,3 +30,13 @@
     name: nginx
     state: started
     enabled: yes
+
+# smoke test that nginx came up and is serving home page
+- name: check for proper response
+  uri:
+    url: http://localhost/
+    return_content: yes
+  register: response
+  until: 'nginx_test_message in response.content'
+  retries: 10
+  delay: 1
