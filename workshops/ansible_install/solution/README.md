@@ -2,7 +2,7 @@
 
 This brief exercise demonstrates how easy it can be to install and configure ansible and begin automating.
 
-TODO: If and how you conduct this workshop depends on how you configured the provisioner to run. To save time, you can have lab control machines setup with ansible. If you have you can skip with workshop.
+NOTE: If and how you conduct this workshop depends on how you configured the provisioner to run. To save time, you can have lab control machines setup with ansible. If so, you can skip with workshop.
 
 We use pip because it's OS indepdendent and always has the absolute latest stable release of Ansible. Other package repos such as EPEL can sometime lag behind for days or even weeks. For this reason, Ansible by Red Hat recommends using PIP.
 

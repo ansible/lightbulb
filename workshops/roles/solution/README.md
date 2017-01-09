@@ -18,4 +18,4 @@ The extra credit assignment should use the `include_role` module that was introd
 
 ### Solution
 
-The solution to this workshop is `nginx-role` under `examples/`. This example also includes the solution to the extra credit assignment. See `remove.yml` and `roles/nginx-basic/tasks/remove.yml`. <-- TODO 
+The solution to this workshop is `nginx-role` under `examples/`. This example also includes the solution to the extra credit assignment. See `remove.yml` and `roles/nginx-basic/tasks/remove.yml`.  
