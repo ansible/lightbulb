@@ -30,7 +30,7 @@ ec2_regions:
   us-east-1:
     vpc: vpc-06c9a463
     subnet_id: subnet-a2169ed5
-    key_name: training
+    key_name: "{{ ec2_key_name | default('training') }}"
     amis:
       centos7: ami-61bbf104
       centos7-tower: ami-ebedc8fc
@@ -40,7 +40,7 @@ ec2_regions:
   us-west-1:
     vpc: vpc-ce1f9aab
     subnet_id: subnet-25b9157c
-    key_name: training
+    key_name: "{{ ec2_key_name | default('training') }}"
     amis:
       centos7: ami-af4333cf
       centos7-tower: ami-c04a00a0
