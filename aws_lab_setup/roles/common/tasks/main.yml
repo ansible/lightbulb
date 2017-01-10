@@ -1,7 +1,7 @@
 - name: Include Red Hat tasks
   include: "{{ ansible_os_family }}.yml"
   static: no
-  when: ansible_distribution == 'RedHat'
+  when: ansible_os_family == 'RedHat'
 
 - name: Include Ubuntu tasks
   include: "{{ ansible_distribution }}.yml"
