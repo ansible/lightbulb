@@ -7,7 +7,7 @@ ec2_regions:
     key_name: "{{ ec2_key_name | default('training') }}"
     amis:
       centos7: ami-61bbf104
-      centos7-tower: ami-a86614bf
+      centos7-tower: ami-877b9e91
       rhel7: ami-85241def
       rhel7-tower: ami-85241def
       ubuntu14: ami-feed08e8
