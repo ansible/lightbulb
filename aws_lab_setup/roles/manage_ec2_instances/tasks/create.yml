@@ -6,19 +6,11 @@
     - always
     - provision
 
-- name: Set login name
-  set_fact:
-    login: "{{ ec2_login_names[item.type] }}"
-  with_items: "{{ ec2_lab_node_types }}"
-  tags:
-    - always
-    - provision
-
 - name: Add hosts to control_nodes group
   add_host:
     name: "{{ item.invocation.module_args.instance_tags.Name }}"
     ansible_host: "{{ item.tagged_instances[0].public_ip }}"
-    ansible_user: "{{ login }}"
+    ansible_user: "{{ ec2_login_names[item.item.1.type] }}"
     ansible_port: "{{ ssh_port }}"
     groups: lab_hosts,control_nodes
   with_items: "{{ instances.results }}"
@@ -32,7 +24,7 @@
   add_host:
     name: "{{ item.invocation.module_args.instance_tags.Name }}"
     ansible_host: "{{ item.tagged_instances[0].public_ip }}"
-    ansible_user: "{{ login }}"
+    ansible_user: "{{ ec2_login_names[item.item.1.type] }}"
     ansible_port: "{{ ssh_port }}"
     groups: lab_hosts,managed_nodes
   with_items: "{{ instances.results }}"
