@@ -14,7 +14,7 @@
 
 * How to use `ansible-playbook`
 * The basics of YAML syntax and Ansible playbook structure
-* Now to deploy and configure an application onto a group of hosts
+* How to deploy and configure an application onto a group of hosts
 
 ### The Assignment
 
