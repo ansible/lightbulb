@@ -6,18 +6,29 @@
     - control_node
     - control
 
-- name: Install base packages and Ansible
+- name: Install base packages
   yum:
     name:
-      - sshpass
       - vim
-      - ansible
       - git
     state: latest
     enablerepo: epel-testing
   tags:
     - control_node
     - control
+
+- name: Install Ansible
+  yum:
+    name:
+      - sshpass
+      - ansible
+    state: latest
+    enablerepo: epel-testing
+  tags:
+    - control_node
+    - control
+  when: control_node_install_ansible
+
 
 - name: Clone lightbulb
   git:
