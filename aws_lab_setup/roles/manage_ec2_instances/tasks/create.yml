@@ -1,6 +1,6 @@
 - name: Wait for instances to finish initializing
   pause:
-    seconds: 60
+    seconds: 90
   when: instances | changed
   tags:
     - always
