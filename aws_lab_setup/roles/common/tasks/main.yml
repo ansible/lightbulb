@@ -1,7 +1,12 @@
-- name: Set version specific variables
-  include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-  tags:
-    - always
+- name: Include Red Hat tasks
+  include: "{{ ansible_os_family }}.yml"
+  static: no
+  when: ansible_distribution == 'RedHat'
+
+- name: Include Ubuntu tasks
+  include: "{{ ansible_distribution }}.yml"
+  static: no
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Configure sshd and sudoers
   lineinfile:
@@ -16,35 +21,6 @@
   tags:
     - ssh
     - sudo
-    - common
-
-- name: Install {{ firewall_name }} and libselinux-python
-  yum:
-    name:
-      - libselinux-python
-      - "{{ firewall_name }}"
-    state: present
-  when: ansible_os_family == 'RedHat'
-  tags:
-    - common
-
-- name: Disable SELinux
-  selinux:
-    state: permissive
-    policy: targeted
-  register: selinux_disable
-  when: ansible_os_family == 'RedHat'
-  notify:
-    - reboot
-    - wait for instance
-  tags:
-    - common
-
-- name: Stop and disable firewall
-  service:
-    name: "{{ firewall_name }}"
-    state: stopped
-  tags:
     - common
 
 - meta: flush_handlers
