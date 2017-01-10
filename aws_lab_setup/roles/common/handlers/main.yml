@@ -1,6 +1,6 @@
 - name: restart ssh
   service:
-    name: sshd
+    name: "{{ common_ssh_service_name }}"
     state: restarted
 
 - name: reboot
