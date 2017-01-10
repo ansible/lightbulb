@@ -16,3 +16,7 @@ To support these objectives, the project provides a lab provisiover tool for cre
 
 For hands-on or self-paced training, students should have working knowledge of using SSH and command line shell (BASH). The ability to SSH from their personal laptop to a lab environment hosted in a public cloud can also be required based dependent on the format and presentation of the context. 
 
+### Reference
+
+* [Ansible Documentation](http://docs.ansible.com)
+* [Ansible Best Practices: The Essentials](https://www.ansible.com/blog/ansible-best-practices-essentials)
