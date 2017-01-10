@@ -1,0 +1,28 @@
+- name: Create lab instances in AWS
+  hosts: localhost
+  connection: local
+  become: no
+  gather_facts: no
+  roles:
+    - manage_ec2_instances
+
+- name: Configure common options on managed nodes and control nodes
+  hosts: "managed_nodes:control_nodes"
+  become: yes
+  roles:
+    - user_accounts
+    - common
+
+- name: Configure control node
+  hosts: control_nodes
+  become: yes
+  roles:
+    - control_node
+
+- name: Email inventory to students
+  hosts: localhost
+  connection: local
+  become: no
+  gather_facts: no
+  roles:
+    - email

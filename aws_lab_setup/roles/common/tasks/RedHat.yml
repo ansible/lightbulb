@@ -1,0 +1,31 @@
+- name: RHEL | Set version specific variables
+  include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+  tags:
+    - always
+
+- name: RHEL | Install {{ firewall_name }} and libselinux-python
+  yum:
+    name:
+      - libselinux-python
+      - "{{ firewall_name }}"
+    state: present
+  tags:
+    - common
+
+- name: RHEL | Disable SELinux
+  selinux:
+    state: permissive
+    policy: targeted
+  register: selinux_disable
+  notify:
+    - reboot
+    - wait for instance
+  tags:
+    - common
+
+- name: RHEL | Stop and disable firewall
+  service:
+    name: "{{ firewall_name }}"
+    state: stopped
+  tags:
+    - common

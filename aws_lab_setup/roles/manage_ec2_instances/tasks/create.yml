@@ -1,0 +1,64 @@
+- name: Wait for instances to finish initializing
+  pause:
+    seconds: 90
+  when: instances | changed
+  tags:
+    - always
+    - provision
+
+- name: Add hosts to control_nodes group
+  add_host:
+    name: "{{ item.invocation.module_args.instance_tags.Name }}"
+    ansible_host: "{{ item.tagged_instances[0].public_ip }}"
+    ansible_user: "{{ ec2_login_names[item.item.1.type] }}"
+    ansible_port: "{{ ssh_port }}"
+    groups: lab_hosts,control_nodes
+  with_items: "{{ instances.results }}"
+  when: "'control' in item.invocation.module_args.instance_tags.Name"
+  changed_when: no
+  tags:
+    - always
+    - provision
+
+- name: Add hosts to groups
+  add_host:
+    name: "{{ item.invocation.module_args.instance_tags.Name }}"
+    ansible_host: "{{ item.tagged_instances[0].public_ip }}"
+    ansible_user: "{{ ec2_login_names[item.item.1.type] }}"
+    ansible_port: "{{ ssh_port }}"
+    groups: lab_hosts,managed_nodes
+  with_items: "{{ instances.results }}"
+  when: "'control' not in item.invocation.module_args.instance_tags.Name"
+  changed_when: no
+  tags:
+    - always
+    - provision
+
+- name: Set local username to create on instances
+  set_fact:
+    username: "{{ item | regex_replace('.*-(\\w*)-\\w*$','\\1') }}"
+  with_items: "{{ groups.lab_hosts }}"
+  delegate_to: "{{ item }}"
+  delegate_facts: yes
+  tags:
+    - always
+    - provision
+
+- name: Generate student inventories
+  template:
+    src: instances.txt.j2
+    dest: ./{{ item.username }}-instances.txt
+  with_items: "{{ users }}"
+  tags:
+    - inventory
+    - users
+    - user_accounts
+
+- name: Generate instructor inventory
+  template:
+    src: instructor_inventory.j2
+    dest: ./instructor_inventory.txt
+  tags:
+    - inventory
+    - users
+    - user_accounts
