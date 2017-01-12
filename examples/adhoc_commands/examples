@@ -1,9 +1,0 @@
-ansible web -m setup
-
-ansible web -b -m yum -a "name=httpd state=present"
-
-ansible web -b -m service -a "name=httpd state=started"
-
-ansible web -b -m service -a "name=httpd state=stopped"
-
-ansible web -b -m yum -a "name=httpd state=absent"
