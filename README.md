@@ -28,7 +28,7 @@ The content in `examples/` is the heart of what lightbulb has to offer. They are
 
 These examples are an excellent educational reference for communciating how Ansible works in a clear, focused and consistent manner using recommended best practices.
 
-This content is a great source for canned demos or something you can walk-thru to illustrate automating with Ansible to a group. So of the examples are serve as the solutions to the workshops.
+This content is a great source for canned demos or something you can walk-thru to illustrate automating with Ansible to a group. Some of the examples are serve as the solutions to the workshops.
 
 #### Workshops
 
