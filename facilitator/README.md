@@ -1,4 +1,4 @@
-# The Ansible Lightbulb Presenters Guide
+# The Ansible Lightbulb Facilitators Guide
 
 **NOTE**: This document is mostly complete however Lightbulb v2 is still a work in progress and some parts are not complete yet.
 

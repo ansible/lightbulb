@@ -20,7 +20,7 @@ The Ansible Lightbulb project has been designed to be used as a toolkit and best
 * Workshops
 * Presentation Decks
 * Lab Provisioner
-* Presenter Guide
+* Facilitator Guide
 
 #### Examples
 
@@ -34,7 +34,7 @@ This content is a great source for canned demos or something you can walk-thru t
 
 The content of `workshops/` are a collection of Markdown documents and applicable resources for providing hands-on assignments for learning how to automate with Ansible. 
 
-Instructor notes on the execution and solution to all workshops can be found in `presenter/solutions/`. 
+Instructor notes on the execution and solution to all workshops can be found in `facilitator/solutions/`. 
 
 #### Presentation Decks
 
@@ -46,11 +46,11 @@ Lightbulb provides a lab provisioner utility for creating a personal lab environ
 
 **Coming Soon.** Vagrant support for self-paced learning is planned. Legacy support from the previous generation of lightbulb remains, but is in need of an overhaul. 
 
-#### Presenter Guide
+#### Facilitator Guide
 
-**Coming Soon.** In `presenter/` provides documentation on recommnded ways Lightbulb content can be assembled and used for a wide range of purposes and scenarios. 
+In `facilitator/` provides documentation on recommended ways Lightbulb content can be assembled and used for a wide range of purposes and scenarios. 
 
-If you are planning on using lightbulb for some sort of informal training on automating with Ansible this documentation should be your next stop.
+If you are planning on using lightbulb for some sort of informal training on automating with Ansible [this documentation](facilitator/README.md) should be your next stop.
 
 ### Requirements
 
