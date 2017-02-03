@@ -2,9 +2,9 @@
 
 **NOTE**: This document is mostly complete however Lightbulb v2 is still a work in progress and some parts are not complete yet.
 
-The Ansible Lightbulb project is an effort to provide a reference and educational content for rapidly communicating and learning Ansible and Ansible Tower essentials. Lightbulb has been designed as a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal workshop training in various forms -- instructor-led, hands-on or self-paced. 
+The Ansible Lightbulb project is an effort to provide a reference and educational content for rapidly communicating and learning Ansible and Ansible Tower essentials. Lightbulb has been designed as a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal workshop training in various forms -- instructor-led, hands-on or self-paced.
 
-This guide covers different ways Ansible suggests they are assembled for various scenarios. If you haven't read it already, 
+This guide covers different ways Ansible suggests they are assembled for various scenarios. If you haven't read it already,
 
 ## Getting Started
 
@@ -18,15 +18,15 @@ The Lightbulb project provides a lab provisiover tool for creating an environmen
 
 ## Lightbulb Modules
 
-Lightbulb modules are collections of this content that have been to bundled to communicate and/or teach automating with Ansible based on objectives and scenarios. These modules are the "uses cases" that all Lightbulb content was specifically developed. The project has endeavored to be as modular and flexible as possible to make other uses possible. 
+Lightbulb modules are collections of this content that have been bundled to communicate and/or teach automating with Ansible based on objectives and scenarios. These modules are the "use cases" that all Lightbulb content was specifically developed. The project has endeavored to be as modular and flexible to make other uses possible.
 
 ### Live Demostration
 
-**Scenario**: Quickly demonstrating how Ansible or Ansible Tower works to an audience that is has little to no knowledge on the topic.
+**Scenario**: Quickly demonstrating how Ansible or Ansible Tower works to an audience that has little to no knowledge on the topic.
 
 **Run Time**: ~5-10 minutes to briefly explain and execute one example.
 
-The content in `examples/` can be used to effectively demonstrate Ansible's features to supplement a presentation. These examples have been carefully currated to communicate how Ansible works in a simple and focused way and are easy to demonstrate live and in-action.
+The content in `examples/` can be used to effectively demonstrate Ansible's features to supplement a presentation. These examples have been carefully curated to communicate how Ansible works in a simple and focused way and are easy to demonstrate live and in-action.
 
 For a basic linux server automation demonstration we recommend `examples/apache-basic-playbook`. This example is a single playbook you can put up on a screen with limited scrolling and virtually no file system navigation. For a slightly more sophisticated linux server example, use the Nginx variant in `examples/nginx-basic-playbook`.
 
@@ -40,7 +40,7 @@ This module is designed to provide some valuable instruction with a limited amou
 
 #### Presentation Deck
 
-For a basic linux server automation use DECK FILE HERE and only navigate to the right. Going down will take you thru the more in-depth content and workshops of the Ansible Essentials Hands-on Workshop.
+For a basic linux server automation use DECK FILE HERE and only navigate to the right. Going down will take you through the more in-depth content and workshops of the Ansible Essentials Hands-on Workshop.
 
 #### Examples & Workshops
 
@@ -50,7 +50,7 @@ For a basic linux server automation use DECK FILE HERE and only navigate to the 
 * apache-basic-playbook
 * apache-roles
 
-Besides walking students thru these examples, the facilitator of this module will also be asked to install ansible using pip and demonstrate some ad-hoc commands use. Installing Ansible is optional though highly recommended as it shows how easy it is to get started.
+Besides walking students through these examples, the facilitator of this module will also be asked to install Ansible using pip and demonstrate some ad-hoc commands use. Installing Ansible is optional though highly recommended as it shows how easy it is to get started.
 
 An alternative option for delivering this module to a more sophisticated audience is to use the Nginx variants of the apache examples instead:
 
@@ -60,7 +60,7 @@ An alternative option for delivering this module to a more sophisticated audienc
 
 ##### Workshops
 
-None. 
+None.
 
 #### Lab Environment
 
@@ -72,19 +72,19 @@ Only the facilitator of the workshop needs a lab environment making this module 
 
 **Run Time**: 4 Hours
 
-This module is designed to provide students with direct introductory instruction and guidance to beginning to automate with Ansible. It is the ideal starting point for students intent on becoming more proficient with Ansible thru other Lightbulb modules and their own usage.
+This module is designed to provide students with direct introductory instruction and guidance to beginning to automate with Ansible. It is the ideal starting point for students intent on becoming more proficient with Ansible through other Lightbulb modules and their own usage.
 
-It is ideal for addressing small to medium size audiences of students that are commited to learning how to automate with Ansible. 
+It is ideal for addressing small to medium size audiences of students that are committed to learning how to automate with Ansible.
 
-This module is the 2 hour workshop with a little bit of extra depth and hands-on workshops. Delivering this module means providing each student with a lab environment and, depending on the size and skill-level of the students in your audience, having one or more assistants to help students during the workshops. 
+This module is the 2 hour workshop with a bit of extra depth and hands-on workshops. Delivering this module means providing each student with a lab environment and depending on the size and skill-level of the students in your audience, having one or more assistants to help students during the workshops.
 
 #### Presentation Deck
 
-For a basic linux server automation use DECK FILE HERE navigating down when given the option. 
+For a basic linux server automation use DECK FILE HERE navigating down when given the option.
 
 #### Examples & Workshops
 
-Unlike the 2 hour non-interactive Ansible Essentials Workshop, this module makes use of both the apache and nginx set of examples. The apache examples are used by the facilitator to demonstrate and walk-thru with the class. The nginx examples are the solutions to the workshops they will be assigned. 
+Unlike the 2 hour non-interactive Ansible Essentials Workshop, this module makes use of both the apache and nginx set of examples. The apache examples are used by the facilitator to demonstrate and walk-thru with the class. The nginx examples are the solutions to the workshops they will be assigned.
 
 ##### Examples
 
@@ -103,17 +103,17 @@ Unlike the 2 hour non-interactive Ansible Essentials Workshop, this module makes
 * basic_playbook
 * roles
 
-When pressed for time or dealing with a more technical audience you can opt to skip the "simple" examples and workshops. The "basic" ones build ones cover the same topics and more. 
+When pressed for time or dealing with a more technical audience you can opt to skip the "simple" examples and workshops. The "basic" ones cover the same topics and more.
 
-When applicable, most workshops provide "extra credit" assignments for students that are more advanced or fast-learners. 
+When applicable, most workshops provide "extra credit" assignments for students that are more advanced or fast-learners.
 
-Facilitators can opt to pre-install Ansible on each control machine for the students allowing you to skip that workshops. We recommend you don't do that though to show how easy it is to get started using Ansible. It should take 10 minutes or less to do.
+Facilitators can opt to pre-install Ansible on each control machine for the students allowing you to skip that workshop. We recommend you don't do that though, to show how easy it is to get started using Ansible. It should take 10 minutes or less.
 
 #### Lab Environment
 
-This lab requires each student have their own lab environment into order to perform the workshop assignments. Use the Lightbulb provisioner tool to provision these student labs in advance. 
+This lab requires each student have their own lab environment in order to perform the workshop assignments. Use the Lightbulb provisioner tool to provision these student labs in advance.
 
-We generally recommend **NOT** using Vagrant with groups. In our experience too much time gets spent helping students install, configure and troubleshoot Vagrant along with their lab environment that could be better spent on Ansible teaching. 
+We generally recommend **NOT** using Vagrant with groups. In our experience too much time gets spent helping students install, configure and troubleshoot Vagrant along with their lab environment that could be better spent on Ansible teaching.
 
 Sharing a single lab environment amongst a group of students simply will not work.
 
@@ -133,25 +133,25 @@ This module is designed to provide some valuable instruction on using Ansible To
 
 #### Presentation Deck
 
-For automating with Ansible Tower use DECK FILE HERE and only navigate to the right. Going down will take you thru the more in-depth content and workshops of the Introduction to Ansible Tower Hands-On Workshop.
+For automating with Ansible Tower use DECK FILE HERE and only navigate to the right. Going down will take you through the more in-depth content and workshops of the Introduction to Ansible Tower Hands-On Workshop.
 
 #### Examples & Workshops
 
 ##### Examples
 
-The example(s) here are mostly at the facilitators decresion. We recommend the apache-roles or nginx-roles example since those are the most sophisticated one students are exposed to in the Essentials workshops that should have preceeded this module. 
+The example(s) here are mostly at the facilitators discretion. We recommend the apache-roles or nginx-roles example since those are the most sophisticated one students are exposed to in the Essentials workshops that should have preceded this module.
 
 ##### Workshops
 
-None. 
+None.
 
 #### Lab Environment
 
-Only the facilitator of the workshop needs a lab environment making this module ideal for scenarios where time and facilities are limited. We recommend the instructors lab environment be made up of a single "control" host in a group of the same name and 3 CentOS or RHEL linux hosts in a group called "web". While the web hosts need only minimal resources, the control instance will take addition memory and storage requirements required by Ansible Tower system on it. 
+Only the facilitator of the workshop needs a lab environment making this module ideal for scenarios where time and facilities are limited. We recommend the instructors lab environment be made up of a single "control" host in a group of the same name and 3 CentOS or RHEL linux hosts in a group called "web". While the web hosts need only minimal resources, the control instance will take addition memory and storage requirements required by Ansible Tower system on it.
 
 ### Introduction to Ansible Tower Hands-On Workshop
 
-**Scenario**: Providing hands-on instruction to students with limited experience Ansible Tower to how it works and can be used to facilitate and manage Ansible automation in their organization.
+**Scenario**: Providing hands-on instruction to students with limited experience with Ansible Tower on how it works and how it can be used to facilitate and manage Ansible automation in their organization.
 
 
 **Run Time**: 2 Hours
@@ -170,26 +170,26 @@ For automating with Ansible Tower use DECK FILE HERE and only navigate to the ri
 
 ##### Examples
 
-The example(s) here are mostly at the facilitators decresion. We recommend the apache-roles or nginx-roles example since those are the most sophisticated one students are exposed to in the Essentials workshops that should have preceeded this module. 
+The example(s) here are mostly at the facilitators decresion. We recommend the apache-roles or nginx-roles example since those are the most sophisticated one students are exposed to in the Essentials workshops that should have preceeded this module.
 
 ##### Workshops
 
 * tower_install (optional though high recommended)
 * tower_basic_setup
 
-When applicable, most workshops provide "extra credit" assignments for students that are more advanced or fast-learners. 
+When applicable, most workshops provide "extra credit" assignments for students that are more advanced or fast-learners.
 
-Facilitators can opt to pre-install Ansible Tower on each control machine for the students allowing you to skip that workshops. 
+Facilitators can opt to pre-install Ansible Tower on each control machine for the students allowing you to skip that workshops.
 
 #### Lab Environment
 
-This lab requires each student have their own lab environment into order to perform the workshop assignments. Use the Lightbulb provisioner tool to provision these student labs in advance. 
+This lab requires each student have their own lab environment into order to perform the workshop assignments. Use the Lightbulb provisioner tool to provision these student labs in advance.
 
-We generally recommend **NOT** using Vagrant with groups. In our experience too much time gets spent helping students install, configure and troubleshoot Vagrant along with their lab environment that could be better spent on Ansible teaching. 
+We generally recommend **NOT** using Vagrant with groups. In our experience too much time gets spent helping students install, configure and troubleshoot Vagrant along with their lab environment that could be better spent on Ansible teaching.
 
 Sharing a single lab environment amongst a group of students simply will not work.
 
-We recommend the lab environments be made up of a single "control" host in a group of the same name and 3 CentOS or RHEL linux hosts in a group called "web". While the web hosts need only minimal resources, the control instance will take addition memory and storage requirements required by Ansible Tower system on it. 
+We recommend the lab environments be made up of a single "control" host in a group of the same name and 3 CentOS or RHEL linux hosts in a group called "web". While the web hosts need only minimal resources, the control instance will take addition memory and storage requirements required by Ansible Tower system on it.
 
 ### Introduction to Ansible and Ansible Tower Workshop
 
@@ -199,12 +199,12 @@ We recommend the lab environments be made up of a single "control" host in a gro
 
 This module is designed to provide basic instruction on using Ansible and Ansible Tower with a limited amount of time and/or resources.
 
-This module is the combination of two modules: 
+This module is the combination of two modules:
 
 * Ansible Essentials
 * Introduction to Ansible Tower
 
-Refer to the docs on those modules and run concurrently. 
+Refer to the docs on those modules and run concurrently.
 
 ### Introduction to Ansible and Ansible Tower Hands-On Workshop
 
@@ -212,12 +212,11 @@ Refer to the docs on those modules and run concurrently.
 
 **Run Time**: 6 Hours
 
-This module is designed to provide hands-on interactive instruction on using Ansible and Ansible Tower 
+This module is designed to provide hands-on interactive instruction on using Ansible and Ansible Tower
 
-This module is the combination of two modules: 
+This module is the combination of two modules:
 
 * Ansible Essentials Hands-On
 * Introduction to Ansible Tower Hands-On
 
 Refer to the docs on those modules and run concurrently.
-
