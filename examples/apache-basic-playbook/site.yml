@@ -10,30 +10,30 @@
     apache_max_keep_alive_requests: 115
 
   tasks:
-    - name: install httpd packages
+    - name: httpd packages are present
       yum:
         name: "{{ item }}"
         state: present
       with_items: "{{ httpd_packages }}"
       notify: restart apache service
 
-    - name: create site-enabled directory
+    - name: site-enabled directory is present
       file:
         name: /etc/httpd/conf/sites-enabled
         state: directory
 
-    - name: copy httpd.conf
+    - name: latest httpd.conf is present
       template:
         src: templates/httpd.conf.j2
         dest: /etc/httpd/conf/httpd.conf
       notify: restart apache service
 
-    - name: copy index.html
+    - name: latest index.html is present
       template:
         src: templates/index.html.j2
         dest: /var/www/html/index.html
 
-    - name: start httpd
+    - name: httpd is started and enabled
       service:
         name: httpd
         state: started
@@ -44,4 +44,3 @@
       service:
         name: httpd
         state: restarted
-        enabled: yes

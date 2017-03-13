@@ -5,17 +5,17 @@
   become: yes
 
   tasks:
-  - name: install nginx
+  - name: nginx package is present
     yum:
       name: nginx
       state: present
 
-  - name: copy index.html
+  - name: latest index.html is present
     copy:
       src: files/index.html
       dest: /usr/share/nginx/html 
 
-  - name: start nginx
+  - name: nginx service is started
     service:
       name: nginx
       state: started

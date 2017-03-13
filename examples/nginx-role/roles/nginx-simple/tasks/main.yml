@@ -1,38 +1,38 @@
 ---
 # tasks file for nginx
-- name: install nginx packages
+- name: nginx packages are present
   yum:
     name: "{{ item }}"
     state: present
   with_items: "{{ nginx_packages }}"
   notify: restart nginx service
 
-- name: install uwsgi
+- name: uwsgi package is present
   pip:
     name: uwsgi
     state: present
   notify: restart nginx service
 
-- name: copy default.conf
+- name: latest default.conf is present 
   template:
     src: templates/nginx.conf.j2
     dest: /etc/nginx/nginx.conf
     backup: yes
   notify: restart nginx service
 
-- name: copy index.html
+- name: latest index.html is present
   template:
     src: templates/index.html.j2
     dest: /usr/share/nginx/html/index.html
 
-- name: start nginx service
+- name: nginx service is started and enabled
   service:
     name: nginx
     state: started
     enabled: yes
 
 # smoke test that nginx came up and is serving home page
-- name: check for proper response
+- name: proper response from localhost is received
   uri:
     url: http://localhost/
     return_content: yes

@@ -4,23 +4,23 @@
   become: yes
 
   tasks:
-    - name: stop nginx service
+    - name: nginx service is stopped
       service:
         name: nginx
         state: stopped
       ignore_errors: yes
       
-    - name: remove nginx package
+    - name: nginx package is absent
       yum:
         name: nginx
         state: absent
 
-    - name: remove uwsgi
+    - name: uwsgi package is absent
       pip:
         name: uwsgi
         state: absent
 
-    - name: clean up files created by nginx-simple
+    - name: files created by nginx-simple are absent
       file:
         name: "{{ item }}"
         state: absent
