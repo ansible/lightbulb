@@ -70,3 +70,9 @@ For hands-on or self-paced training, students should have working knowledge of u
 
 * [Ansible Documentation](http://docs.ansible.com)
 * [Ansible Best Practices: The Essentials](https://www.ansible.com/blog/ansible-best-practices-essentials)
+
+### License
+
+Red Hat, the Shadowman logo, Ansible, and Ansible Tower are trademarks or registered trademarks of Red Hat, Inc. or its subsidiaries in the United States and other countries.
+
+All other parts of Ansible Lightbulb are made available under the terms of the [MIT License](LICENSE).
