@@ -14,7 +14,7 @@ We also recommend reading about [the Lightbulb philosophy](../PHILOSOPHY.md) for
 
 If you are already somewhat familar with automating with Ansible, we recommend that you are also familiar with the best practices this content incorporates. See [this blog post](https://www.ansible.com/blog/ansible-best-practices-essentials) and [video presentation from AnsibleFest Brooklyn (October 2016)](https://www.ansible.com/ansible-best-practices).
 
-The Lightbulb project provides a lab provisiover tool for creating an environment to present and work with lightbulb content. Currently the provisioner only supports provisioning lab environments using Amazon Web Services. (A Vagrant option will be developed particular for self-paced learning.) See the [Ansible AWS Lab Provisioner README](../aws_lab_setup/README.md) for details on requirements, setup and configuration.
+The Lightbulb project provides a lab provisiover tool for creating an environment to present and work with lightbulb content. Currently the provisioner only supports provisioning lab environments using Amazon Web Services. (A Vagrant option will be developed particular for self-paced learning.) See the [Ansible AWS Lab Provisioner README](../tools/aws_lab_setup/README.md) for details on requirements, setup and configuration.
 
 ## Lightbulb Modules
 
