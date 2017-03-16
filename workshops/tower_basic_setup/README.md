@@ -1,7 +1,5 @@
 # Workshop: Ansible Tower Basic Setup
 
-**THIS WORKSHOP IS CURRENTLY A WORK IN PROGRESS**
-
 ### Topics Covered
 
 * Credentials
@@ -20,27 +18,26 @@
 
 * A running instance of Ansible Tower with sufficient permissions to create credentials, inventory sources, projects etc.
 
+### Before You Begin
+
+Before doing this assignment you will need to perform a task you typical won't have to do when setting up Ansible Tower: manually enter your inventory. Commonly, Ansible Tower will be setup with one or more dynamic inventory sources such as AWS EC2 or vSphere or internal CMDB as a source of truth. Given the size and static nature of the Lightbulb lab environment, taking the time to setup and configure dynamic inventory is unnecessary. 
+
 ### The Assignment
 
-1. Create a machine credential called "Ansible Lab SSH" with the username and password for the hosts in your lab.
-2. Create a cloud credential called "Ansible Lab AWS" with the XXXXXX for the hosts in your lab.
-3. Create an inventory source called "AWS" and an inventory group named "Lab" that uses EC2 and the "Ansible Lab AWS" cloud credential.
-4. Create a project called "Ansible Workshop" with:
-    * URL:
-    * BLAH:
-    * BLAH:
-5. In the "Ansible Workshop" project, create a job template called "Deploy Nginx Web Servers" with:
-    * PARAM
-    * PARAM
-6. Run that Job Template and check that it runs without errors and the Nginx web servers are serving the home page.
-7. Add an extra variable... test_message to "???" and execute the job template again. After running, load the 
+NOTE: Create all new entities under the "Default" organization Ansible Tower create during setup unless noted otherwise.
 
-### Extra Credit 
+1. Enter your lab inventory's groups and hosts into Tower. (See "Before You Begin" above.)
+2. Create a machine credential called "Ansible Lab Machine" with the username and password for the hosts in your lab.
+4. Create an inventory source called "Ansible Lightbulb Lab" and create the groups and hosts in your static inventory file.
+5. Create a project called "Ansible Lightbulb Examples Project" with a SCM type of Git and URL of https://github.com/ansible/lightbulb. You should also enable "Update on Launch".
+6. Create a Job Template called "Nginx Role Example" with the machine credential, inventory and project you created in the previous steps. Select "examples/nginx-role/site.yml" as the playbook.
+7. Execute the job template. Check that it runs without errors and the web servers are serving the home page.
+8. Add an extra variables of `nginx_test_message` with a string like "Hello World" then run the "Nginx Role Example" job tempalte again. Again, check that it executes without errors and the web servers are serving the home page with the new test message.
 
-* Create a user... and give them permission to only execute the "Deploy Nginx..." job template... and build a survey to change the test message.
-* scheduled refresh? 
+### Extra Credit
 
+Setup a self-service user simulation with the playbook
 
-### Results
-
-At the end of this exercise, you should have successfully run the Telegraf example playbook.
+* Create a "Normal" user with the name "someuser"
+* Assign the new user "Execute" permissions on the "Nginx Role Example" job template
+* Create a user survey on the job template that enables users to update the test message on the home page
