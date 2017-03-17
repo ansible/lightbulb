@@ -9,13 +9,13 @@
 
 - name: latest httpd.conf file is present
   template:
-    src: templates/httpd.conf.j2
+    src: httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
   notify: restart apache service
 
 - name: latest index.html file is present
   template:
-    src: templates/index.html.j2
+    src: index.html.j2
     dest: /var/www/html/index.html
 
 - name: httpd service is started and enabled
