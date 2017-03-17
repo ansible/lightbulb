@@ -38,7 +38,7 @@ Instructor notes on the execution and solution to all workshops can be found in 
 
 #### Presentation Decks
 
-**Coming Soon.** The content of `decks/` are collection of presentation decks in Reveal.js format for delivering instructor-led or hands-on instruction. 
+*Coming Soon.** The content of `decks/` are collection of presentation decks in Reveal.js format for delivering instructor-led or hands-on instruction. 
 
 #### Lab Provisioner
 
@@ -76,3 +76,9 @@ For hands-on or self-paced training, students should have working knowledge of u
 Red Hat, the Shadowman logo, Ansible, and Ansible Tower are trademarks or registered trademarks of Red Hat, Inc. or its subsidiaries in the United States and other countries.
 
 All other parts of Ansible Lightbulb are made available under the terms of the [MIT License](LICENSE).
+=======
+#### Assumed Knowledge
+
+For hands-on or self-paced training, students should have working knowledge of using SSH and command line shell (BASH). The ability to SSH from their personal laptop to a lab environment hosted in a public cloud can also be required based dependent on the format and presentation of the context. 
+
+For demos and instrcutor-led exercises, conceptual understanding of linux system admin, DevOps and distributed application architecture is all that is required.
