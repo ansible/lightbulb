@@ -14,10 +14,17 @@ From that control machine:
 
 ```bash
 sudo pip install ansible
+sudo yum install -y ansible
 
 ansible --verison
 
 ansible --help
+
+mkdir -p ~/.ansible/retry-files
+vi ~/.ansible.cfg
+# add forks and retry_files_save_path
+
+
 ```
 
 #### NOTE
