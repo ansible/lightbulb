@@ -379,68 +379,6 @@ Options (= is mandatory):
           </aside>
         </section>
         <section>
-          <h2>Ad-Hoc Commands</h2>
-          <pre><code>
-# check all my inventory hosts are ready to be
-# managed by Ansible
-$ ansible all -m ping
-
-# collect and display the discovered for the
-# localhost
-$ ansible localhost -m setup
-
-# run the uptime command on all hosts in the
-# web group
-$ ansible web -m command -a &quot;uptime&quot;
-          </code></pre>
-          <aside class="notes">
-            <p class="speaker">Ad-hoc commands are quick checks on your servers that you don’t want to preserve in an Ansible playbook.</p>
-            <p>An ad-hoc command can be used to do quick tasks that you might not necessarily want to write a full playbook and save for later.</p>
-            <p>This is a good place to start to understand the basics of what Ansible can do prior to learning about playbooks where the true power of Ansible automation lies.</p>
-            <p>For more information see <a href="http://docs.ansible.com/ansible/intro_adhoc.html">Introduction To Ad-Hoc Commands</a>.</p>
-          </aside>
-        </section>
-        <section>
-          <h2>Sidebar: Discovered Facts</h2>
-          <pre><code>
-$ ansible localhost -m setup
-localhost | success >> {
-  "ansible_facts": {
-      "ansible_default_ipv4": {
-          "address": "192.168.1.37",
-          "alias": "wlan0",
-          "gateway": "192.168.1.1",
-          "interface": "wlan0",
-          "macaddress": "c4:85:08:3b:a9:16",
-          "mtu": 1500,
-          "netmask": "255.255.255.0",
-          "network": "192.168.1.0",
-          "type": "ether"
-      },
-          </code></pre>
-          <aside class="notes">
-            <p class="speaker">The second ad-hoc command example from the previous slide provides the following json output of a localhost facts run.</p>
-            <p>Facts are information derived from examining a host systems that are stored as variables for later use. An example of this might be the ip address of the host, or what operating system it is running. The facts Ansible will discover about a host is extensive. What's shown here is just a small sample. Run <code>ansible localhost -m setup</code> for a more complete represenation.</p>
-            <p>Ansible collects facts using the <code>setup</code> module. By default, Ansible will run the <code>setup</code> module before any other tasks are executed in a playbook.</p>
-          </aside>
-        </section>
-        <section>
-          <section data-state="title alt">
-            <h1>Demo Time: <br/>Ad-Hoc Commands</h1>
-            <aside class="notes">
-              <p>To demonstrate ad-hoc commands in action, open an SSH session to your control host and run the ad-hoc commands in the previous slides.</p>
-            </aside>
-          </section>
-          <section data-state="title alt">
-            <h1>Workshop: <br/>Ad-Hoc Commands</h1>
-            <aside class="notes">
-              <p>See</p>
-              <pre><code>workshops/adhoc_commands</code></pre>
-              <p>in the Ansible Lightbulb repo.</p>
-            </aside>
-          </section>
-        </section>
-        <section>
           <h2>Inventory</h2>
           <p>Inventory is a collection of hosts (nodes) with associated data and groupings that Ansible can connect and manage.</p>
           <ul>
@@ -508,6 +446,90 @@ ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
             </ul>
             <p>This is just the basics. There's a lot more to inventory that is not covered here. See the <a href="http://docs.ansible.com/ansible/intro_inventory.html">Ansible inventory documentation</a> for more details.</p>
           </aside>
+        </section>
+        <section>
+          <section>
+            <h2>Ad-Hoc Commands</h2>
+            <p>An ad-hoc command is a single Ansible task to perform quickly, but don’t want to save for later.</p>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <h2>Ad-Hoc Commands: Common Options</h2>
+            <ul style="font-size: 0.75em;">
+              <li><b>-m MODULE_NAME, --module-name=MODULE_NAME</b><br/>Module name to execute the ad-hoc command</li>
+              <li><b>-a MODULE_ARGS, --args=MODULE_ARGS</b><br/>Module arguments for the ad-hoc command</li>
+              <li><b>-b, --become</b><br/>Run ad-hoc command with elevated rights such as sudo, the default method</li>
+              <li><b>-e EXTRA_VARS, --extra-vars=EXTRA_VARS</b><br/>Set additional variables as key=value or YAML/JSON</li>
+              <li><b>--version</b><br/>Display the version of Ansible</li>
+              <li><b>--help</b><br/>Display the MAN page for the ansible tool</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+        <section>
+          <h2>Ad-Hoc Commands</h2>
+          <pre><code>
+# check all my inventory hosts are ready to be
+# managed by Ansible
+$ ansible all -m ping
+
+# collect and display the discovered facts
+# for the localhost
+$ ansible localhost -m setup
+
+# run the uptime command on all hosts in the
+# web group
+$ ansible web -m command -a &quot;uptime&quot;
+          </code></pre>
+          <aside class="notes">
+            <p class="speaker">Ad-hoc commands are quick checks on your servers that you don’t want to preserve in an Ansible playbook.</p>
+            <p>An ad-hoc command can be used to do quick tasks that you might not necessarily want to write a full playbook and save for later.</p>
+            <p>This is a good place to start to understand the basics of what Ansible can do prior to learning about playbooks where the true power of Ansible automation lies.</p>
+            <p>For more information see <a href="http://docs.ansible.com/ansible/intro_adhoc.html">Introduction To Ad-Hoc Commands</a>.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Sidebar: Discovered Facts</h2>
+          <p>Facts are bits of information derived from examining a host systems that are stored as variables for later use in a play.</p>
+          <pre><code>
+$ ansible localhost -m setup
+localhost | success >> {
+  "ansible_facts": {
+      "ansible_default_ipv4": {
+          "address": "192.168.1.37",
+          "alias": "wlan0",
+          "gateway": "192.168.1.1",
+          "interface": "wlan0",
+          "macaddress": "c4:85:08:3b:a9:16",
+          "mtu": 1500,
+          "netmask": "255.255.255.0",
+          "network": "192.168.1.0",
+          "type": "ether"
+      },
+          </code></pre>
+          <aside class="notes">
+            <p class="speaker">The second ad-hoc command example from the prior slide provides the following json output of a localhost facts run.</p>
+            <p>Facts are bits of information derived from examining a host systems that are stored as variables for later use. An example of this might be the ip address of the host, or what operating system it is running. The facts Ansible will discover about a host is extensive. What's shown here is just a small sample. Run <code>ansible localhost -m setup</code> for a more complete represenation.</p>
+            <p>Ansible collects facts using the <code>setup</code> module. By default, Ansible will run the <code>setup</code> module before any other tasks are executed in a playbook.</p>
+          </aside>
+        </section>
+        <section>
+          <section data-state="title alt">
+            <h1>Demo Time: <br/>Ad-Hoc Commands</h1>
+            <aside class="notes">
+              <p>To demonstrate ad-hoc commands in action, open an SSH session to your control host and run the ad-hoc commands in the previous slides.</p>
+            </aside>
+          </section>
+          <section data-state="title alt">
+            <h1>Workshop: <br/>Ad-Hoc Commands</h1>
+            <aside class="notes">
+              <p>See</p>
+              <pre><code>workshops/adhoc_commands</code></pre>
+              <p>in the Ansible Lightbulb repo.</p>
+            </aside>
+          </section>
         </section>
         <section>
           <h2>Variables</h2>
