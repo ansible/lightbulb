@@ -1,3 +1,0 @@
-ansible_user: vagrant
-web_group: web
-iface: 1

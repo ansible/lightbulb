@@ -1,7 +1,0 @@
-packages:
-  - apache2
-apache_service: apache2
-apache_docroot: /var/www/html
-apache_config: /etc/apache2/apache2.conf
-sites_available: /etc/apache2/sites-available
-sites_enabled: /etc/apache2/sites-enabled

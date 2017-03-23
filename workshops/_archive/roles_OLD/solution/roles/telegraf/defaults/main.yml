@@ -1,5 +1,0 @@
----
-# defaults file for telegraf
-telegraf_version: 0.2.4
-influxdb_db_name: telegraf
-telegraf_flush_retries: 3

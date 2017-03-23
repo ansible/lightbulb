@@ -1,2 +1,0 @@
-# Workshop: Tower - Quickstart 
-
