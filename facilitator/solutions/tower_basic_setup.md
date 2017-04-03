@@ -14,7 +14,35 @@ Stepping thru the solution provides an excellent opportunity to briefly mention 
 
 The focus of this exercise is to familiarize students with how to use the Ansible Tower UI. The following screenshots approximate the steps required to complete the workshop.
 
-TODO: Screenshots or video?
+#### 1
+![creating inventory](../images/creating_inventory.png)
+
+#### 1.a
+![creating hosts](../images/creating_host.png)
+
+#### 1.b
+![final inventory](../images/finalized_inv.ong)
+
+#### 2 
+![creating machine credential](../images/LBcreatingcred.png)
+
+#### 3
+![cteaing a project](../images/project_creation.png)
+
+#### 4 
+![creating job template](../images/job_template.png)
+
+#### 5
+![launch job template](../images/running_job.png)
+
+#### 5.a
+![succesful job completion](../images/succes_job.png)
+
+#### 6
+![adding extra vars](../images/extra_variables.png)
+
+
+
 
 NOTE: These screenshots where taken using Ansible Tower 3.1.1.
 
