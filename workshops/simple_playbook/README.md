@@ -12,6 +12,14 @@
 * How to use `ansible-playbook`
 * The basics of YAML syntax and Ansible playbook structure
 
+### Before You Begin
+
+If you're not familar with the structure and authoring YAML files take a moment to read thru the Ansible [YAML Syntax](http://docs.ansible.com/ansible/YAMLSyntax.html) guide.
+
+#### NOTE
+
+You will need to assure each host in "web" group has setup the EPEL repository to find and install the nginx package with yum.
+
 ### The Assignment
 
 Create an Ansible playbook that targets members of the "web" group has the following state:
@@ -21,10 +29,6 @@ Create an Ansible playbook that targets members of the "web" group has the follo
 1. Nginx is started on each host.
 
 While developing the playbook use the `--syntax-check` to check your work and debug problems. Run your playbook in verbose mode using the `-v` switch to get more information on what Ansible is doing. Try `-vv` and `-vvv` for added verbosity. Also consider running `--check` to do a dry-run as you are developing. 
-
-#### NOTE
-
-You will need to make sure each host in web has setup the EPEL repo to find the nginx package.
 
 ### Resources
 
