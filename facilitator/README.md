@@ -40,7 +40,7 @@ This module is designed to provide some valuable instruction with a limited amou
 
 #### Presentation Deck
 
-For a basic linux server automation use DECK FILE HERE and only navigate to the right. Going down will take you through the more in-depth content and workshops of the Ansible Essentials Hands-on Workshop.
+For a basic linux server automation use `decks/ansible-essentials.html` and only navigate to the right. Going down will take you through the more in-depth content and workshops of the Ansible Essentials Hands-on Workshop.
 
 #### Examples & Workshops
 
@@ -72,7 +72,7 @@ Only the facilitator of the workshop needs a lab environment making this module 
 
 **Run Time**: 4 Hours
 
-This module is designed to provide students with direct introductory instruction and guidance to beginning to automate with Ansible. It is the ideal starting point for students intent on becoming more proficient with Ansible through other Lightbulb modules and their own usage.
+This module is designed to provide students with direct introductory instruction and guidance to beginning to automate with Ansible. It is the starting point for students intent on becoming more proficient with Ansible through other Lightbulb modules and their own usage.
 
 It is ideal for addressing small to medium size audiences of students that are committed to learning how to automate with Ansible.
 
@@ -80,7 +80,7 @@ This module is the 2 hour workshop with a bit of extra depth and hands-on worksh
 
 #### Presentation Deck
 
-For a basic linux server automation use DECK FILE HERE navigating down when given the option.
+For a basic linux server automation use `decks/ansible-essentials.html` navigating down when given the option.
 
 #### Examples & Workshops
 
