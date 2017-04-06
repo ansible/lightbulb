@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Introduction to Ansible Tower</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+
+    <link rel="stylesheet" href="css/theme/ansible.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+
+  </head>
+  <body>
+  <div class="ans-mark">
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-449 450 125 125" style="enable-background:new -449 450 125 125;" xml:space="preserve">
+      <g id="XMLID_3_">
+        <circle id="XMLID_7_" class="circle" cx="-386.5" cy="512.5" r="62"/>
+        <path id="XMLID_4_" class="a-mark" d="M-356.9,537.1l-24.7-59.4c-0.7-1.7-2.1-2.6-3.9-2.6c-1.7,0-3.2,0.9-4,2.6l-27.1,65.2h9.2 l10.7-26.9l32,25.9c1.3,1,2.2,1.5,3.4,1.5c2.4,0,4.6-1.8,4.6-4.5C-356.5,538.5-356.6,537.8-356.9,537.1z M-385.4,488.4l16.1,39.6 l-24.2-19L-385.4,488.4z"/>
+      </g>
+    </svg>
+  </div>
+    <div class="reveal">
+      <div class="slides">
+      <section data-state="cover">
+          <p class="ans-logo"><img src="images/ansible-wordmark-white.svg" width="260" alt="" /></p>
+          <h1>Introduction to Ansible Tower</h1>
+          <!--p>NAME HERE, TITLE HERE</p>
+          <p>COMPANY HERE</p-->
+      </section>
+        <section>
+          <h2>What You Will Learn</h2>
+          <p style="width: 80%">Ansible Tower by Red Hat helps you scale IT automation, manage complex deployments and speed productivity. Centralize and control your IT infrastructure with a visual dashboard, role-based access control, job scheduling and graphical inventory management.</p><br>
+          <ul>
+            <li>What is Ansible Tower</li>
+            <li>How Ansible Tower Works</li>
+            <li>Installing Ansible Tower</li>
+            <li>Key Features</li>
+          </ul>
+        </section>
+        <section>
+            <h2>What is Ansible Tower?</h2>
+            <p style="width: 80%">Ansible Tower is an <strong>enterprise framework</strong> for controlling, securing and managing your Ansible automation – with a <strong>UI and RESTful API</strong></p><br>
+            <ul>
+              <li style="width: 80%"><strong>Role-based access control</strong> keeps environments secure, and teams efficient</li>
+              <li style="width: 80%">Non-privileged users can <strong>safely deploy</strong> entire applications with <strong>push-button deployment</strong> access</li>
+              <li style="width: 80%">All Ansible automations are <strong>centrally logged</strong>, ensuring <strong>complete auditability and compliance</strong></li>
+            </ul>
+            <aside class="notes">
+            </aisde>
+        </section>
+        <section>
+          <img src="images/ansible-tower-platform-diagram.svg">
+          <aside class="notes">
+            <p>Tower is a strong and powerful tool that is entreprise ready.</p>
+            <p>With easy to use features, whether you are new to ansible or a seasoned veteran, Ansible Tower can help you and your team become more efficient and crush complexity within the work space.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Platform Overview</h2>
+          <img src="images/ansible-platform-overview.svg"/>
+          <aside class="notes">
+            <p>Tower is a graphically-enabled framework accessible via a web interface and a REST API endpoint for Ansible Core.</p>
+            <p>Ansible Tower allows for the granting of permissions to perform a specific task (such as to view, create, or modify a file) to different teams or explicit users through role-based access control (RBAC).</p>
+            <p>Tower features a powerful provisioning callback feature that allows nodes to request configuration on demand. While optional, this is an ideal solution for a cloud auto-scaling scenario.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Installing Ansible Tower</h2>
+          <pre><code>
+# the most common and preferred way of
+# installation for RHEL CentOS or Ubuntu
+$ wget https://bit.ly/ansibletower
+
+# bundled installer can be downloaded for
+# CentOS or RHEL at
+$ wget https://bit.ly/ansibletowerbundle
+          </code></pre>
+          <aside class="notes speaker">
+            <p>Installation methods listed here are the most common used.</p>
+            <p>The standard installer can be used with normal internet access but if you are in a restricted network environment, the bundled installer will be your best choice. </p>
+          </aside>
+        </section>
+        <section>
+          <h2>Requirements</h2>
+          <ul>
+            <li>Red Hat Enterprise Linux (RHEL) 7, CentOS 7 and Ubuntu 14.04. 64-bit support required (kernel and runtime).</li>
+            <li>A currently supported version of Mozilla Firefox or Google Chrome.</li>
+            <li>2 GB RAM minimum (4+ GB RAM highly recommended)</li>
+            <li>20 GB of dedicated hard disk space</li>
+          </ul>
+          <aside class="notes">
+            <p>Other HTML5 compliant web browsers may work but are not fully tested or supported.</p>
+            <p>10 GB of the 20 GB requirement must be dedicated to /var/, where Tower stores its files and working directories (dedicating less space will cause the installation to fail)</p>
+          </aside>
+        </section>
+        <section>
+          <section data-state="title alt">
+          <h1>Demo Time: <br/>Installing Ansible Tower</h1>
+          <aside class="notes">
+            <p>Installing Ansible Tower is simple and quick. Go ahead and open up a terminal and connect to VM with an os of your choice.</p>
+          </aside>
+          </section>
+          <section data-state="title alt">
+          <h1>Workshop: <br/>Installing Ansible Tower</h1>
+          <aside class="notes">
+            <p>See</p>
+            <pre><code>workshops/tower_install</code></pre>
+            <p>in the Ansible Lightbulb repo.</p>
+          </aside>
+          </section>
+        </section>
+        <section>
+          <h2>Key Features of Ansible Tower</h2>
+            <ul>
+              <li>Dashboard and User Interface</li>
+              <li>User Base -- Organizations, Teams &amp; Users</li>
+              <li>Credentials</li>
+              <li>Inventories</li>
+              <li>Projects</li>
+              <li>Job Templates &amp; Jobs</li>
+              <li>Role Based Access Control (RBAC)</li>
+            </ul>
+          <aside class="notes">
+            <p></p>
+          </aside>
+        </section>
+        <section>
+          <h2 style="text-align:center">Dashboard and User Interface</h2>
+          <div style="text-align: center;"><img src="images/ansible-tower3-monitor-1x.png"/></div>
+          <aside class="notes">
+            <p>Ansible Tower Dashboard is the home of all things Tower.</p>
+            <p>From here you can navigate to running a job, configuring and syncing inventory or to adding a new user. And that is just scratching the surface!</p>
+          </aside>
+        </section>
+        <section>
+          <h2>User Base</h2><br>
+            <p>A <strong>user</strong> is an account to access Tower and its services given the permissions granted to it.</p>
+            <p>An <strong>organization</strong> is a logical collection of users, teams, projects, inventories and more. All entities belong to an organization with the exception of users.</p>
+            <p><strong>Teams</strong> provide a means to implement role-based access control schemes and delegate responsibilities across organizations.</p>
+            <aside class="notes">
+              <p>Users are individuals and can be added to teams and or organizations. RBACs can be given on each level of the user base.</p>
+            </aside>
+        </section>
+        <section>
+          <h2>Credentials</h2>
+          <p style= "width:80%">Credentials are utilized by Tower for authentication with various external resources:</p>
+          <ul>
+            <li>Connecting to <strong>remote machines</strong> to run jobs</li>
+            <li>Syncing with <strong>inventory</strong> sources</li>
+            <li>Importing project content from <strong>version control systems</strong></li>
+            <li>Connecting to and managing <strong>networking devices</strong>
+          </ul>
+          <p style= "width:80%">Centralized management of various credentials allows end users to leverage a  secret without ever exposing that secret to them.</p>
+          <aside class="notes">
+            <p style="width: 80%">Credentials are utilized by Tower for authentication when launching Jobs against machines, synchronizing with inventory sources, and importing project content from a version control system.</p>
+            <p> Tower encrypts passwords and key information in the Tower database and never makes secret information visible via the API.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Inventory</h2>
+          <p style="width:80%">Inventory is a collection of hosts (nodes) with associated data and groupings that Tower can connect to and manage.</p>
+          <ul>
+            <li>Hosts (nodes)</li>
+            <li>Groups</li>
+            <li>Inventory-specific data (variables)</li>
+            <li>Static or dynamic sources</li>
+          </ul>
+          <aside class="notes">
+          <p>Inventory is a collection of the hosts (nodes) with associated metadata and groupings that Ansible can connect and manage. An inventory source can be static files or dynamically retreived from an external system.</p>
+          <p>You can specify a different inventory file using the <code>-i &lt;path&gt;</code> option on the commandline.</p>
+        </aside>
+        </section>
+        <section>
+          <h2>Projects</h2>
+          <p style="width: 80%">A Project is a logical collection of Ansible Playbooks, represented in Tower.</p>
+          <p style="width: 80%">You can manage Playbooks and Playbook directories by placing them in a <strong>source code management system</strong> supported by Tower, including Git, Subversion, and Mercurial.</li>
+          <aside class="notes">
+            <p class="speaker">Projects map to a single playbook repository.</p>
+            <p>By default, the Project Base Path is <pre><code>/var/lib/awx/projects</code></pre>, but this may have been modified by the Tower administrator.</p>
+            <p>You can have multiple projects for doing any range of job types.</p>
+            <p>You can manually place playbooks under the Project Base Path on your Tower server instead of using version control. This is not recommended in general and considered an advanced use case.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Job Templates</h2>
+          <p style="width: 80%">A job template is a definition and set of parameters for running an Ansible Playbook. <br><br>Job templates are useful to <strong>execute</strong> the same job many times and encourage the <strong>reuse</strong> of Ansible Playbook content and collaboration between teams.</p>
+          <aside class="notes">
+            <p>Job templates allow for the reuse and collaboration beetween teams and is where the notion <strong>push button</strong> automation stems from</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Jobs</h2>
+          <p style="width: 80%">A job is an instance of Tower launching an Ansible Playbook against an inventory of hosts.</p>
+            <ul>
+              <li>Job results can be easily viewed</li>
+              <li>View the standard out for a more in-depth look</li>
+            </ul>
+          <aside class="notes">
+            <p>Jobs can be searched by Job Failed?, job ID, or Status</p>
+            <p>The Standard Out display shows the full results of running the SCM Update or Inventory Sync playbook.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Role Based Access Control (RBAC)</h2>
+          <p style="width: 80%">Role-Based Access Controls (RBAC) are built into Ansible Tower and allow administrators to <strong>delegate access</strong> to server inventories, organizations, and more. These controls allow Tower to help you <strong>increase security</strong> and <strong>streamline management</strong> of your Ansible automation.</p>
+          <aside class="notes">
+            <p>RBAC is at the core of how Tower scales organizations while increasing the security of automating.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Role Based Access Control (RBAC)</h2><br>
+          <img src="images/ansible-tower-rbac.svg">
+          <aside class="notes">
+            <p>Roles can be granted to individual users, teams and as well as to organizations.</p>
+            <p>Roles control access to projects, inventories and job templates in the form of permissions.</p>
+            <p>Tower security centers around role based access for users and teams.</p>
+            <p>Security can be applied granularly to Credentials, Inventories, Projects, Job Templates and API Access based on the user or team role.</p>
+          </section>
+        <section>
+          <section data-state="title alt">
+          <h1>Demo Time:<br/>Ansible Tower Basic Setup<br>&amp; Job Run</h1>
+          <aside class="notes">
+            <p>Installing Ansible Tower is simple and quick. Go ahead and open up a terminal and connect to VM with an os of your choice..</p>
+          </aside>
+          </section>
+          <section data-state="title alt">
+          <h1>Workshop:<br/>Ansible Tower Basic Setup<br>&amp; Your First Job Run</h1>
+          <aside class="notes">
+            <p>See</p>
+            <pre><code>workshops/tower_basic_setup</code></pre>
+            <p>in the Ansible Lightbulb repo.</p>
+          </aside>
+          </section>
+        <section>
+          <section>
+            <h2>Dynamic Inventory in Ansible Tower</h2>
+            <p>Dynamic inventory is a script that queries a service, like a cloud provider API or a management application. This data is formatted in an Ansible-specific JSON data structure and is used in lieu of static inventory files.</p>
+            <ul>
+              <li>Groups are generated based on host metadata</li>
+              <li>Single source of truth saves time, avoids duplication and reduces human error</li>
+              <li>Dynamic and static inventory sources can be used together</li>
+            </ul>
+            <aside class="notes">
+              <p>Ansible can take inventory from a wide variety of sources on-the-fly. It can draw from many different systems such as VMWare, Openstack, Amazon EC2, Digital Ocean, and other provisioning systems like Cobbler. You can also create your own inventory module to interface with any proprietary or in-house CMDB systems.</p>
+              <p>Ideally, the source of data for our dynamic inventory scripts is 100% correct, and is automatically updated as infrastructure changes. This is especially useful in environments where machines are coming on and offline all the time, like a cloud or virtual environment.</p>
+            </aside>
+          </section>
+          <section data-state="title alt">
+          <h1>Demo:<br/>Ansible Tower Dynamic Inventory</h1>
+          <aside class="notes speaker">
+            <p>Setup a cloud credential in Tower to (presumably) AWS EC2 and then manually trigger an inventory update. Show the inventory in the Tower UI. Note how it generated groups and job templates can be setup to run inventory updates before executing.</p>
+            <p>Alternatively you can open a terminal window and use Ansible core to demonstrate dyanmic inventory at work. Assuming you have your local credentials setup, run the inventory script and pipe it to less. Then run an ad-hoc ping command using <code>-i</code> switch to call your dynamic inventory.</p>
+          </aside>
+          </section>
+        </section>
+        <section>
+          <h2>More with Ansible Tower</h2>
+          <ul>
+            <li>User Surveys (Self-Service)</li>
+            <li>Job Scheduling</li>
+            <li>Notifications</li>
+            <li>Ad-Hoc Commands</li>
+            <li>Workflows (New in v3.1)</li>
+            <li>System Scanning</li>
+            <li>Logging Aggregation (New in v3.1)</li>
+            <li>Advance Configuration Options</li>
+          </ul>
+          <aside class="notes speaker">
+            <p>Advance Configuration Options such as external databases, LDAP/AD authentication, disaster recovery and clustering (New in v3.1) schemes.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Next Steps</h2>
+          <ul>
+            <li><strong>It’s easy to get started</strong><br/>ansible.com/get-started</li>
+            <li><strong>Try Ansible Tower for free:</strong><br/>ansible.com/tower-trial</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        width: "85%",
+        height: "90%",
+        transition: "fade",
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        // Notes plugin must remain local for now.
+        // See https://github.com/ansible/lightbulb/issues/125
+        dependencies: [
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js' },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>

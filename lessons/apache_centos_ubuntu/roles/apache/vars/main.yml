@@ -1,5 +1,0 @@
----
-# vars file for apache
-apache_dirs:
-- "{{ sites_available }}"
-- "{{ sites_enabled }}"

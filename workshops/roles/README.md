@@ -2,41 +2,32 @@
 
 ### Topics Covered
 
-This workshop builds on your assignment from the prior basic playbook workshop. This workshop challenges you to make your work more reusable by refactoring what you've done in to a role. In this workshop will exercise the following concepts:
+* Roles
 
-* roles structure and behavior
-* using roles in playbooks
-* parameterizing roles
-* defaults values
-* creating a configuration file with a template
-* using ansible galaxy
+### What You Will Learn
+
+* How Ansible roles are developed and structured
+* How to use a role in a playbook
 
 ### The Assignment
 
-#### Using ansible-galaxy
+Your assignment is simple: refactor the Ansible playbook you've been developing into a role called "nginx-simple".
 
-* Use `ansible-galaxy` to find and install a `influxdb` and a `grafana` role created by James Martin (`jsmartin`). Extra points if you use `requirements.yml`.
+This assignment should result in a drop in replacement that is portable and more modular. It does not add any new tasks or functionality.
 
-* Modify the grafana role you installed and add, as the final task of the role, a task that calls firewalld and opens port 3000.
+1. Initialize your role with `ansible-galaxy init` in a new subdirectory `roles/`.
+1. Refactor your existing basic playbook and associated resources into your role.
+1. Create a new playbook that uses the role still targeting the "web" group.
+1. Remove any empty files and directories from your role.
 
-#### Refactor your basic playbook to role
+#### Extra Credit
 
-Start from the basic playbook you developed in the previous workshop, where you installed and setup `telegraf` on each web node, and refactor into a role. It should have the following features:
+1. Refactor and merge the Nginx remove and uninstall playbook from the Basic Playbook Extra Credit assignments into your "nginx-simple" role. Create a seperate playbook to execute that function of the role.
 
-* Creates a configuration file that points to the `influxdb` server.
-* The configuration can be modified through parameters passed in to the role.
-* Has default values if a configuration (role) parameter is not passed in.
+### Resources
 
-#### Playbook Creation
+* [Ansible Roles](http://docs.ansible.com/ansible/playbooks_roles.html#roles)
+* [Create Roles (with ansible-galaxy)](http://docs.ansible.com/ansible/galaxy.html#create-roles)
+* [inculde_role](http://docs.ansible.com/ansible/include_role_module.html)
 
-The playbook should be composed of two plays. The first play will target the `grafana` and `influxdb` roles against the `grafana` server in your inventory. Before those roles are executed, use a `pre_task` to setup the `epel-release` package (Use `https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm` as the package name on RHEL). The second play will target your newly created `telegraf` role against the web nodes in your inventory.
 
-#### Freebies
-
-You will need to pass the `extra_vars.yml` file as extra vars to your ansible-playbook command.
-
-The file `training-dashboard.json` is used to populate a dashboard in `grafana`. When referencing make sure the path to `training-dashboard.json` in vars.yml is relative to the playbook path.
-
-Go to http://your_grafana_ip_here:3000 to login to your grafana server.
-
-The default username and password for grafana is **admin** / **password**.

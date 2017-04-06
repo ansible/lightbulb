@@ -2,4 +2,7 @@ secrets.yml
 users.yml
 extra_vars.yml
 *.txt
-.vagrant
+instructor*
+.vagrant/*
+ansible.cfg
+hosts

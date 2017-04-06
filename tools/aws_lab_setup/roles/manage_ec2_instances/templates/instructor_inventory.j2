@@ -1,0 +1,13 @@
+[all:vars]
+{% if ssh_port is defined %}
+ansible_port={{ ssh_port }}
+{% endif %}
+
+{% for user in users %}
+[{{ user.username }}]
+{% for host in instances.results %}
+{% if user.username in host.invocation.module_args.instance_tags.Name %}
+{{ host.invocation.module_args.instance_tags.Name | regex_replace(ec2_name_prefix ~ '-','') }} ansible_host={{ hostvars[host.invocation.module_args.instance_tags.Name]['ansible_host'] }} ansible_user={{ ec2_login_names[host.item.1.type] }}
+{% endif %}
+{% endfor %}
+{% endfor %}

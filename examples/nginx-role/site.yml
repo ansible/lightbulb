@@ -1,0 +1,7 @@
+# In keeping things simple, this example assumes the epel repo is enabled on each node
+---
+- hosts: web
+  name: This is a Playbook
+  become: yes
+  roles:
+    - nginx-simple

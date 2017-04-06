@@ -1,8 +1,0 @@
-ansible web -m ping
-
-ansible web -b -m yum -a "name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present"
-
-ansible web -b -m yum -a "name=nginx state=present"
-
-ansible web -b -m service -a "name=nginx state=started"
-

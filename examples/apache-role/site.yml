@@ -1,0 +1,6 @@
+---
+- hosts: web
+  name: This is a Playbook
+  become: yes
+  roles:
+    - apache-simple

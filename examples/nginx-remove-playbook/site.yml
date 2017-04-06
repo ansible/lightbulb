@@ -1,0 +1,29 @@
+---
+- hosts: web
+  name: removes nginx with wsgi
+  become: yes
+
+  tasks:
+    - name: nginx service is stopped
+      service:
+        name: nginx
+        state: stopped
+      ignore_errors: yes
+      
+    - name: nginx package is absent
+      yum:
+        name: nginx
+        state: absent
+
+    - name: uwsgi package is absent
+      pip:
+        name: uwsgi
+        state: absent
+
+    - name: files created by nginx-simple are absent
+      file:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - /etc/nginx/nginx.conf
+        - /usr/share/nginx/html/index.html

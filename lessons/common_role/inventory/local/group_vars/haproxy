@@ -1,3 +1,0 @@
-ansible_user: centos
-web_group: web
-iface: 0

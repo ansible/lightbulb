@@ -1,0 +1,61 @@
+# In keeping things simple, this example assumes the epel repo is enabled on each node
+---
+- hosts: web
+  name: install and start nginx with wsgi
+  become: yes
+  vars:
+    nginx_packages:
+      - nginx
+      - python-pip
+      - python-devel
+      - gcc
+    nginx_test_message: This is a test message
+    nginx_keepalive_timeout: 115
+
+  tasks:
+    - name: nginx packages are present
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ nginx_packages }}"
+      notify: restart nginx service
+
+    - name: uwsgi package is present
+      pip:
+        name: uwsgi
+        state: present
+      notify: restart nginx service
+
+    - name: latest default.conf is present
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        backup: yes
+      notify: restart nginx service
+
+    - name: latest index.html is present
+      template:
+        src: templates/index.html.j2
+        dest: /usr/share/nginx/html/index.html
+
+    - name: nginx service is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    # smoke test that nginx came up and is serving home page
+    - name: proper response from localhost can be received
+      uri:
+        url: http://localhost/
+        return_content: yes
+      register: response
+      until: 'nginx_test_message in response.content'
+      retries: 10
+      delay: 1
+
+  handlers:
+    - name: restart nginx service
+      service:
+        name: nginx
+        state: restarted

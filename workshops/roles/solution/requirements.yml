@@ -1,4 +1,0 @@
-- src: jsmartin.grafana
-  path: roles
-- src: jsmartin.influxdb
-  path: roles

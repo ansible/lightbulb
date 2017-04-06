@@ -1,0 +1,20 @@
+---
+- hosts: web
+  name: install and start apache
+  become: yes
+
+  tasks:
+  - name: httpd package is present 
+    yum:
+      name: httpd
+      state: present
+
+  - name: latest httpd.conf file is present
+    copy:
+      src: files/index.html
+      dest: /var/www/html/
+
+  - name: httpd is started
+    service:
+      name: httpd
+      state: started

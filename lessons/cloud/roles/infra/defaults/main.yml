@@ -1,8 +1,0 @@
----
-# defaults file for myapp_infra
-region: us-east-1
-app_name: training
-ami: ami-12663b7a
-desired_capacity: 3
-key_name: training
-instance_size: t2.micro

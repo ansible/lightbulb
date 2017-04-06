@@ -1,0 +1,10 @@
+---
+- hosts: web
+  name: Removes nginx and uwsgi
+  become: yes
+
+  tasks:
+    - name: Run remove tasks from nginx-simple role
+      include_role:
+        name: nginx-simple
+        tasks_from: remove

@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  name: sets up ec2 infrastructure
-  connection: local
-  roles:
-    - infra
