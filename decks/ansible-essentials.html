@@ -590,7 +590,7 @@ $ ansible web -m command -a &quot;uptime&quot;
             <p>If variables of the same name are defined in multiple sources, they get overwritten in a certain and specific order. This is why this variable precedence is important to understand.</p>
             <p>There are 16 levels of variable precedence as of Ansible 2.x. The <code>extra_vars</code> (passed thru the commandline) always take precedence vs. role defaults which will always get overridden by any other source. The previous inventory example defines vars at 13 and 14 (higlighted in the list) in the variable precedence chain.</p>
             <p>It&apos;s a good idea to limit the different sources where a specific variable is being set. While Ansible's variable precedence handling is comprehensive and well-defined, it can laborious to keep the resolution of multiple sources straight.</p>
-            <p>NOTE: The inventory variables sources showed in the static inventory example a couple of slides back have been higlighted.</p>
+            <p>NOTE: The inventory variables sources showed in the static inventory example a couple of slides back are in bold type.</p>
           </aside>
         </section>
         <section>
@@ -605,7 +605,7 @@ $ ansible web -m command -a &quot;uptime&quot;
             <li><b>git</b>: Clone a source code repository</li>
           </ul>
           <aside class="notes">
-            <p>We've been reviewed modules, the batteries and tools Ansible provides. Tasks are the specific application of a module to perform a unit of automation.</p>
+            <p>We&apos;ve already reviewed modules, the batteries and tools Ansible provides. Tasks are the specific application of a module to perform a unit of automation.</p>
             <p>Here we see a list of examples of common modules being applied to do something.</p>
           <aside>
         </section>
@@ -632,8 +632,8 @@ tasks:
             <p>This example shows the task list of an Ansible playbook.</p>
             <p>
               <ol>
-                <li>The first task assures the latest nginx pacakge is installed using yum.</li>
-                <li>The next uses the copy module to assure a static home page file has been published.</li>
+                <li>The first task assures the latest nginx package is installed using yum.</li>
+                <li>The next uses the copy module to assure the latest version of a static home page file has been published.</li>
                 <li>The last task restarts the nginx service with the service module</li>
               </ol>
             </p>
@@ -671,7 +671,7 @@ tasks:
           </code></pre>
           <aside class="notes">
             <p>Here is our previous example with a few slight modifications that have bene highlighted.</p>
-            <p>In this version of our example, we add a <code>notify</code> keyword to the first task to trigger a handler task if it returns &quot;changed.&quot; as being true. The third tasks now is under a &quot;handlers&quot; section that signifies that the handler task will run on notification at the end of the play of change occurs during the first task.</p>
+            <p>In this version of our example, we add a <code>notify</code> keyword to the first task to trigger a handler task if it returns &quot;changed&quot; as being true. The third tasks now is under a &quot;handlers&quot; section that signifies that the handler task will run on notification at the end of the play of change occurs during the first task.</p>
           </aside>
         </section>
         <section>
@@ -741,7 +741,7 @@ tasks:
           </code></pre>
           <aside class="notes">
             <p>Every play and each task in it can be assigned a name that describes its objective in the automation workflow and is output during execution.</p>
-            <p>It&apos;s best practice to always name your plays and tasks. Adding name with a human meaningful description better communicates the intent to users when running a play.</p>
+            <p>It&apos;s best practice to always name your plays and tasks. Adding name with a human-meaningful description better communicates the intent to users when running a play.</p>
           </aside>
         </section>
 
@@ -947,7 +947,7 @@ tasks:
   <mark>when: ansible_os_family == &quot;RedHat&quot;</mark>
             </code></pre>
             <aside class="notes">
-              <p>Conditionals are another instance of Jinja2 in action within Ansible plays themselves. In the provided example &quot;ansible_os_family&quot; is a fact variable Ansible sets.</p>
+              <p>Conditionals are another instance of Jinja2 in action within Ansible plays themselves. In the provided example &quot;ansible_os_family&quot; is a fact variable Ansible will set.</p>
               <p>There are other forms of conditional clauses, but <code>when</code> is usually all that is needed.</p>
               <p>NOTE: Conditional clauses are consdered to be raw Jinja2 expression without double curly braces.</p>
             </aside>
