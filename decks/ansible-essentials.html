@@ -588,7 +588,7 @@ $ ansible web -m command -a &quot;uptime&quot;
           </div>
           <aside class="notes">
             <p>If variables of the same name are defined in multiple sources, they get overwritten in a certain and specific order. This is why this variable precedence is important to understand.</p>
-            <p>There are 16 levels of variable precedence as of Ansible 2.x. The `extra_vars` (passed thru the commandline) always take precedence vs. role defaults which will always get overridden by any other source. The previous inventory example defines vars at 13 and 14 (higlighted in the list) in the variable precedence chain.</p>
+            <p>There are 16 levels of variable precedence as of Ansible 2.x. The <code>extra_vars</code> (passed thru the commandline) always take precedence vs. role defaults which will always get overridden by any other source. The previous inventory example defines vars at 13 and 14 (higlighted in the list) in the variable precedence chain.</p>
             <p>It&apos;s a good idea to limit the different sources where a specific variable is being set. While Ansible's variable precedence handling is comprehensive and well-defined, it can laborious to keep the resolution of multiple sources straight.</p>
             <p>NOTE: The inventory variables sources showed in the static inventory example a couple of slides back have been higlighted.</p>
           </aside>
