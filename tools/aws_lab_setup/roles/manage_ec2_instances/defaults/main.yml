@@ -20,6 +20,6 @@ ec2_lab_node_types:
   - name: node3
     type: rhel7
 
-  - name: haproxy
-    type: rhel7
+#  - name: haproxy
+#    type: rhel7
 
