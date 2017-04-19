@@ -50,6 +50,11 @@
             <li>Installing Ansible Tower</li>
             <li>Key Features</li>
           </ul>
+          <aside class="notes">
+            <p>Ansible Tower provides a frame work for running ansible inside of an enterprise.</p>
+            <p>Tower allows you to easily manage existing automation through job templates and projects</p>
+            <P> You can manage user access through Tower's Role Based Access control features and store credentials that cannot be retrieved in plain text through the command line</p>
+          </aside>
         </section>
         <section>
             <h2>What is Ansible Tower?</h2>
@@ -60,13 +65,16 @@
               <li style="width: 80%">All Ansible automations are <strong>centrally logged</strong>, ensuring <strong>complete auditability and compliance</strong></li>
             </ul>
             <aside class="notes">
+              <p>Role based access control can be given on the individual user level and also at the team level.</p>
+              <p>Push button Deployment-Access your favorite projects and re-trigger execution from the web interface with a minimum of clicking. Tower will ask for input variables, prompt for your credentials, kick off and monitor the job, and display results and host history over time.
+              <p>All Ansible job launches are tracked and logged centrally. They can be viewed no matter the status of the job.</p>
             </aisde>
         </section>
         <section>
           <img src="images/ansible-tower-platform-diagram.svg">
           <aside class="notes">
             <p>Tower is a strong and powerful tool that is entreprise ready.</p>
-            <p>With easy to use features, whether you are new to ansible or a seasoned veteran, Ansible Tower can help you and your team become more efficient and crush complexity within the work space.</p>
+            <p>With easy to use features, whether you are new to ansible or a seasoned veteran, Ansible Tower can help you and your team become more efficient and crush complexity.</p>
           </aside>
         </section>
         <section>
@@ -92,6 +100,7 @@ $ wget https://bit.ly/ansibletowerbundle
           <aside class="notes speaker">
             <p>Installation methods listed here are the most common used.</p>
             <p>The standard installer can be used with normal internet access but if you are in a restricted network environment, the bundled installer will be your best choice. </p>
+            <p>There are also Vagrant Images and AWS AMIs available. To find out more, visit ansible.com/tower-trial</p>
           </aside>
         </section>
         <section>
@@ -135,7 +144,12 @@ $ wget https://bit.ly/ansibletowerbundle
               <li>Role Based Access Control (RBAC)</li>
             </ul>
           <aside class="notes">
-            <p></p>
+            <p>Ansible Tower has a lot of features but here are some of the key features that will help you get your feet in the water into learning how Tower works in conjunction with core. </p>
+            <p>An easy to navigate UI and home dashboard that displays recent job runs and how many hosts are up (get correct terminology ping #tima).</p>
+            <p>Secure and easily managed Role Based Access allows for credentials to be created and used throughout your organization. </p>
+            <p>Store and manage all of your Ansible hosts with quick access to your inventories.</p>
+            <p>Use projects to easily manage all of your ansible playbooks</p>
+            <p>Job Templates allow you to extend the use of playbooks to other users that may not be veteran ansible users.</p>
           </aside>
         </section>
         <section>
@@ -210,8 +224,8 @@ $ wget https://bit.ly/ansibletowerbundle
               <li>View the standard out for a more in-depth look</li>
             </ul>
           <aside class="notes">
-            <p>Jobs can be searched by Job Failed?, job ID, or Status</p>
-            <p>The Standard Out display shows the full results of running the SCM Update or Inventory Sync playbook.</p>
+            <p>Jobs can be searched by Job Failed, Job ID, or Status</p>
+            <p>The Standard Out display shows the full results of running an ansible playbook.</p>
           </aside>
         </section>
         <section>
