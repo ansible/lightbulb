@@ -373,6 +373,18 @@ div.ans-mark .a-mark{
     transition: all 300ms ease-in-out;
 }
 
+.reveal p,
+.reveal li{
+  width: 80%;
+}
+
+.reveal p.fullwidth,
+.reveal .col p,
+.reveal .col li,
+.reveal aside p{
+  width: 100%;
+}
+
 .reveal ul,
 .reveal ol{
   margin-left: 2em;
