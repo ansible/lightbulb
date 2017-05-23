@@ -118,7 +118,7 @@ mark span.hljs-string{
 .reveal ol,
 .reveal dl,
 .reveal ul {
-  display: inline-block;
+  /*display: inline-block;*/
   text-align: left;
   margin: 0 0 0 1em; }
   
