@@ -12,17 +12,6 @@
   tags:
     - common
 
-- name: RHEL | Disable SELinux
-  selinux:
-    state: permissive
-    policy: targeted
-  register: selinux_disable
-  notify:
-    - reboot
-    - wait for instance
-  tags:
-    - common
-
 - name: RHEL | Stop and disable firewall
   service:
     name: "{{ firewall_name }}"
