@@ -28,11 +28,11 @@ To set up the lab for Ansible training, follow these steps.
 
 3. Create an [Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).
 
-1. Install `boto`.
+4. Install `boto`.
 
         pip install boto
 
-1. Create a `boto` configuration file containing your AWS access key ID and secret access key.
+5. Create a `boto` configuration file containing your AWS access key ID and secret access key.
 
     ```bash
     mkdir ~/.aws
@@ -45,20 +45,24 @@ To set up the lab for Ansible training, follow these steps.
     aws_secret_access_key = [secret key]
     ```
 
-4. Create a free [Sendgrid](http://sendgrid.com) account if you don't have one. Optionally, create an API key to use with this the playbook.
+6. Create a free [Sendgrid](http://sendgrid.com) account if you don't have one. Optionally, create an API key to use with this the playbook.
 
-5. Install the `sendgrid` python library:
+7. Install the `sendgrid` python library:
 
     **Note:** The `sendgrid` module does not work with `sendgrid >= 3`. Please install the latest `2.x` version.
 
         pip install sendgrid==2.2.1
+        
+8. Install the `passlib` library
 
-6. Clone the lightbulb repo:
+        pip install passlib
+
+9. Clone the lightbulb repo:
 
         git clone https://github.com/ansible/lightbulb.git
         cd lightbulb/tools/aws_lab_setup
 
-7. Define the following variables, either in a file passed in using `-e @extra_vars.yml` or directly in a `vars` section in `aws_lab_setup\infra-aws.yml`:
+10. Define the following variables, either in a file passed in using `-e @extra_vars.yml` or directly in a `vars` section in `aws_lab_setup\infra-aws.yml`:
 
       ```yaml
       ec2_key_name: username                # SSH key in AWS to put in all the instances
@@ -73,7 +77,7 @@ To set up the lab for Ansible training, follow these steps.
       admin_password: changeme123           # Set this to something better if you'd like. Defaults to 'LearnAnsible[two digit month][two digit year]', e.g., LearnAnsible0416
       ```
 
-8. Create a `users.yml` by copying `sample-users.yml` and adding all your students:
+11. Create a `users.yml` by copying `sample-users.yml` and adding all your students:
 
      ```yaml
      users:
@@ -86,11 +90,11 @@ To set up the lab for Ansible training, follow these steps.
           email: jsmith@acme.com
      ```
 
-9. Run the playbook:
+12. Run the playbook:
 
         ansible-playbook provision_lab.yml -e @extra_vars.yml -e @users.yml
 
-10. Check on the EC2 console and you should see instances being created like:
+13. Check on the EC2 console and you should see instances being created like:
 
         TRAINING-LAB-<student_username>-node1|2|3|haproxy|tower|control
 
