@@ -12,9 +12,17 @@
   tags:
     - common
 
-- name: RHEL | Stop and disable firewall
+- name: RHEL | Start firewalld
   service:
-    name: "{{ firewall_name }}"
-    state: stopped
-  tags:
-    - common
+    name: "{{ firewalld_service }}"
+    state: started
+
+- name: RHEL | Enable specific firewall ports
+  firewalld:
+    immediate: yes
+    permanent: yes
+    service: "{{ item }}"
+    state: enabled
+  with_items: "{{ firewall_ports }}"
+  notify: restart firewalld
+

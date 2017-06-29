@@ -23,3 +23,10 @@ common_node_config_options:
     regexp: '^Defaults.*requiretty'
     line: 'Defaults    !requiretty'
     validate: visudo -cf %s
+
+firewall_ports:
+  - http
+  - https
+  - ssh
+
+firewalld_service: firewalld
