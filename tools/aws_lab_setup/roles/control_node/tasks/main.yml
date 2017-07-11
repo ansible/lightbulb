@@ -11,6 +11,8 @@
     name:
       - vim
       - git
+      - wget
+      
     state: latest
     enablerepo: epel-testing
   tags:
@@ -87,4 +89,3 @@
   tags:
     - control_node
     - control
-
