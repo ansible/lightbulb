@@ -28,5 +28,7 @@ firewall_ports:
   - http
   - https
   - ssh
+  - 5432
+  - 5672
 
 firewalld_service: firewalld
