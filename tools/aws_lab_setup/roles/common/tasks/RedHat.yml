@@ -17,12 +17,12 @@
     name: "{{ firewalld_service }}"
     state: started
 
-- name: RHEL | Enable specific firewall ports
+- name: RHEL | Enable specific firewall services
   firewalld:
     immediate: yes
     permanent: yes
-    service: "{{ item }}"
+    port: "{{ item.port ~ '/' ~ item.protocol if (item.port is defined and item.protocol is defined) else omit }}"
+    service: "{{ item.service | default(omit) }}"
     state: enabled
-  with_items: "{{ firewall_ports }}"
+  with_items: "{{ firewall_rules }}"
   notify: restart firewalld
-
