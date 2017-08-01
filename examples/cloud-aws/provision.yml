@@ -1,0 +1,128 @@
+---
+- name: servers are provisioned in vpc
+  hosts: localhost
+  gather_facts: false
+  vars:
+    # requires ec2_stack_name, ec2_region and ec2_key_name
+    ec2_exact_count: 1
+    ec2_vpcidr: 10.251.0.0/16
+    ec2_subnetcidr: 10.251.1.0/24
+    ec2_az: a
+
+  tasks:
+  - name: vpc is present
+    ec2_vpc_net:
+      state: present
+      region: "{{ ec2_region }}"
+      cidr_block: "{{ ec2_vpcidr }}"
+      name: "{{ ec2_stack_name }}-vpc"
+      tags:
+        tool: ansible
+    register: network
+
+  - name: vpc subnet is present
+    ec2_vpc_subnet:
+      region: "{{ ec2_region }}"
+      state: present
+      cidr: "{{ ec2_subnetcidr }}"
+      az: "{{ ec2_region }}{{ ec2_az }}"
+      resource_tags:
+        tool: ansible
+        Name: "{{ ec2_stack_name }}-subnet-{{ ec2_az }}"
+      vpc_id: "{{ network.vpc.id }}"
+    register: vpc_subnet
+
+  - name: vpc internet gateway is present
+    ec2_vpc_igw:
+      region: "{{ ec2_region }}"
+      vpc_id: "{{ network.vpc.id }}"
+      state: present
+    register: igw 
+   
+  - name: vpc public subnet route table is present
+    ec2_vpc_route_table:
+      region: "{{ ec2_region }}"
+      vpc_id: "{{ network.vpc.id }}"
+      tags:
+        Name: "{{ ec2_stack_name }}-public"
+      subnets: 
+        - "{{ vpc_subnet.subnet.id }}"
+      routes:
+        - dest: 0.0.0.0/0
+          gateway_id: "{{ igw.gateway_id }}"
+
+  - name: vpc security group is present
+    ec2_group:
+      name: "{{ ec2_stack_name }}-webservers"
+      region: "{{ ec2_region }}"
+      description: SSH and HTTP/HTTPS
+      vpc_id: "{{ network.vpc.id }}"
+      rules:
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 443
+          to_port: 443
+          cidr_ip: 0.0.0.0/0
+
+  - name: search for the latest centos7 ami
+    ec2_ami_find:
+      owner: "410186602215"
+      region: "{{ ec2_region }}"
+      name: "CentOS Linux 7 x86_64 HVM EBS*"
+    register: find_results
+
+  - name: exact count of stack ec2 instances running
+    ec2:
+      key_name: "{{ ec2_key_name }}"
+      group: "{{ ec2_stack_name }}-webservers"
+      volumes:
+      - device_name: /dev/sda1
+        volume_type: gp2
+        volume_size: 8
+        delete_on_termination: true
+      vpc_subnet_id: "{{ vpc_subnet.subnet.id }}"
+      instance_type: t2.micro
+      image: "{{ find_results.results[0].ami_id }}"
+      wait: true
+      region: "{{ ec2_region }}"
+      exact_count: "{{ ec2_exact_count }}"
+      count_tag:
+        Count: "{{ ec2_stack_name }}"
+      instance_tags:
+        Name: "{{ ec2_stack_name }}"
+        Count: "{{ ec2_stack_name }}"
+      assign_public_ip: true
+    register: ec2
+
+  - name: display stack instances info
+    debug:
+      var: ec2
+      verbosity: 1
+
+  - name: all instances are ready
+    wait_for:
+      port: 22
+      host: "{{ item.public_ip }}"
+      search_regex: OpenSSH
+    with_items: "{{ ec2.tagged_instances }}"
+
+  - name: pause to let cloud init to complete
+    pause:
+      seconds: 90
+
+  - name: build group of instances
+    add_host:
+      name: "{{ item.public_dns_name }}"
+      groups: web
+      ansible_user: centos
+      ansible_host: "{{ item.public_ip }}"
+      ansible_ssh_private_key_file: "{{ ec2_private_key_file | default(omit) }}"
+    with_items: "{{ ec2.tagged_instances }}"
+

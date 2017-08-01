@@ -1,0 +1,6 @@
+---
+- hosts: web
+  name: apache server is present and running with example home page
+  become: yes
+  roles:
+    - apache-simple
