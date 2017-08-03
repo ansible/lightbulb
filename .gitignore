@@ -6,3 +6,7 @@ instructor*
 .vagrant/*
 ansible.cfg
 hosts
+TODO
+TODO.md
+bak/
+*.BAK
