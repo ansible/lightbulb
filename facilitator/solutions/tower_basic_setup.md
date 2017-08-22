@@ -15,19 +15,24 @@ Stepping thru the solution provides an excellent opportunity to briefly mention 
 The focus of this exercise is to familiarize students with how to use the Ansible Tower UI. The following screenshots approximate the steps required to complete the workshop.
 
 #### 1
+First we will need to create the inventory in which our hosts will be housed. To do so, simply select that Inventory tile at the top of your Ansible Tower dashboard
 ![creating inventory](../images/creating_inventory.png)
 
 #### 1.a
+As we spoke about before, this step is something that is not widely done in production as you can take advantage of Ansible Tower's dynamic inventory support. To create a host, simply select "+Add Host"
 ![creating hosts](../images/creating_host.png)
 
 #### 1.b
-![final inventory](../images/finalized_inv.ong)
+Once you have put in the necessary information for one host, click Save and it will return you to your respective Inventory page. From here, you can either add more hosts or move on to the things needed to connect to the machines, credentials. 
+![final inventory](../images/finalized_inv.png)
 
 #### 2 
+Credentails are essential in automating with ansible. To create a credential within Ansible Tower, select the gear in the top right hand corner of the screen. This will take you to the admin where you can select credentials box. This will display any current credentials you have in your Tower instance. To create a new credential, simply click +Add. This will bring up a new page where you can enter the relevant information for your credential. Since we are creating a machine credential, we will select machine from the Type dropdown and enter the needed information. Once done, select save and your credential will be saved. 
 ![creating machine credential](../images/LBcreatingcred.png)
 
 #### 3
-![cteaing a project](../images/project_creation.png)
+Adding a project to Ansible Tower so that you can use your playbooks is very simple. To start the process, simply select the Project tile from the top of your Ansible Tower dashboard. This will display any current projects that you have added to your Tower Instance. From here, select "+Add" to create a new project. This will then display the New Project page. From here, you can add the required information to get your repository added 
+![creating a project](../images/project_creation.png)
 
 #### 4 
 ![creating job template](../images/job_template.png)
@@ -54,7 +59,7 @@ NOTE: These screenshots where taken using Ansible Tower 3.1.1.
 * Create Template
 * Extra Variables 
 
-#### Extras Credit
+#### Extra Credit
 
 * Create Users
 * Assign Execution Permission to User in Job Templates
