@@ -48,12 +48,14 @@ mark span.hljs-string{
 ::selection {
   color: #fff;
   background: rgba(0, 0, 0, 0.99);
-  text-shadow: none; }
+  text-shadow: none;
+}
 
 .reveal .slides > section,
 .reveal .slides > section > section {
   line-height: 1.3;
-  font-weight: inherit; }
+  font-weight: inherit;
+}
   
   
 .text-center{
@@ -61,7 +63,7 @@ mark span.hljs-string{
 }
 
 .text-small{
-  font-size: 80% !important;
+  font-size: 70% !important;
 }
 
 /*********************************************
@@ -95,10 +97,14 @@ mark span.hljs-string{
   font-size: 1.35em; }
 
 .reveal h3 {
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  color: #555;
+}
 
 .reveal h4 {
-  font-size: 1em; }
+  font-size: 1em;
+  color: #555;
+}
 
 .reveal h1 {
   text-shadow: none; }
@@ -181,16 +187,19 @@ mark span.hljs-string{
 .reveal q {
   font-style: italic; }
 
-.reveal pre {
+.reveal pre,
+.reveal pre[class*=language-] {
   display: block;
   position: relative;
-  margin: 20px auto;
+  margin: 10px auto;
   text-align: left;
   font-size: 0.55em;
   font-family: monospace;
-  line-height: 1.2em;
+  line-height: 1em;
   word-wrap: break-word;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  padding: 0px;
+}
 
 .reveal code {
   font-family: monospace; }
@@ -199,8 +208,9 @@ mark span.hljs-string{
   display: block;
   padding: 5px;
   overflow: auto;
-  max-height: 45vh;
-  word-wrap: normal; }
+  max-height: 55vh;
+  word-wrap: normal;
+}
 
 .reveal table {
   margin: auto;
