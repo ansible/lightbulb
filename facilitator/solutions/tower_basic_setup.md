@@ -31,13 +31,15 @@ Credentails are essential in automating with ansible. To create a credential wit
 ![creating machine credential](../images/LBcreatingcred.png)
 
 #### 3
-Adding a project to Ansible Tower so that you can use your playbooks is very simple. To start the process, simply select the Project tile from the top of your Ansible Tower dashboard. This will display any current projects that you have added to your Tower Instance. From here, select "+Add" to create a new project. This will then display the New Project page. From here, you can add the required information to get your repository added 
+Adding a project to Ansible Tower so that you can use your playbooks is very simple. To start the process, simply select the Project tile from the top of your Ansible Tower dashboard. This will display any current projects that you have added to your Tower Instance. From here, select "+Add" to create a new project. This will then display the New Project page. From here, you can add the required information to get your repository added as a project.
 ![creating a project](../images/project_creation.png)
 
 #### 4 
+Job templates are a visual realization of the ansible-playbook command and all flags you can utilize when executing from the command line. Everything you used on the command line, such as calling the invenotry or specifying a credential is done here. Creating a job template is simple and direct. Everything you need for it is outlined but has extra options and capabilities to make it eeven more powerful. To create a Job Tempalte, simply select "Templates" tile from the top of your Ansible Tower dashboard. This will bring you to the Templates page where any current templates you have created will be shown. To create a new one, click the +Add drop down box and select Job Templates. Here, everything that you can add to your Job Templates can be found here. The portions that are denoted with a * are a required option, things such as credentials, which project and playbook you want to use are all needed before you can save the Template.
 ![creating job template](../images/job_template.png)
 
 #### 5
+
 ![launch job template](../images/running_job.png)
 
 #### 5.a
