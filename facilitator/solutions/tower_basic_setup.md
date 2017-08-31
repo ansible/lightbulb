@@ -39,13 +39,15 @@ Job templates are a visual realization of the ansible-playbook command and all f
 ![creating job template](../images/job_template.png)
 
 #### 5
-
+Launching a Job Template in Ansible Tower is easy. If you are starting from your Ansible Tower dashboard, just select Templates and the templates that you have created will be there (including the one that you just created for the previus example) Once you are at the tempaltes page, next to each template, there is a rocket. Once you click that, Ansible Tower will start to execute that job. Launching a task in ansible tower is that simple. 
 ![launch job template](../images/running_job.png)
 
 #### 5.a
+Seeing a succesful job means that the changes that were outlined were completed. On the details panel, everything that you need to know from the date to who launched the job to what inventory the template was run against can be found there. You can also search through previous job runs and see this exact information for each time this job was run.
 ![succesful job completion](../images/succes_job.png)
 
 #### 6
+
 ![adding extra vars](../images/extra_variables.png)
 
 
