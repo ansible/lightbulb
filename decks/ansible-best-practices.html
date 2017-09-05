@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Ansible Essentials Workshop</title>
+    <title>Ansible Best Practices: The Essentials</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.css">
 
@@ -115,15 +115,15 @@
 
               <p>“Creating automation workflows.”</p>
               <p>“Grammar”</p>
-              
+
               <p>Mention code reviews.</p>
             </aisde>
         </section>
-        
+
         <section>
             <h2>Project Layouts: Basic</h2>
             <h3>The Ansible Way</h3>
-            
+
             <p class="monospace">
               basic-project/<br/>
               ├── inventory<br/>
@@ -132,21 +132,21 @@
               │   └── hosts<br/>
               └── site.yml
             </p>
-            
+
             <aside class="notes">
               <p>Start simple, roles and playbooks, and inventory, in one place, then push out the roles you want to share into individual repos and manage with requirements.yml</p>
 
               <p>What defines a project?</p>
-              
+
               <p>One stack or application?</p>
-              
+
               <p>Later -- RBAC control implications?</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Project Layouts: Organizational Roles</h2>
-            
+
             <p class="monospace">
               myapp/<br/>
               ├── roles<br/>
@@ -160,13 +160,13 @@
               │       └── etc.etc<br/>
               └── site.yml
             </p>
-            
+
             <aside class="notes"></aside>
         </section>
-        
+
         <section>
             <h2>Project Layouts: Shared Roles</h2>
-            
+
             <p class="monospace">
               myapp/<br/>
               ├── config.yml<br/>
@@ -175,15 +175,15 @@
               │   └── requirements.yml<br/>
               └── site.yml
             </p>
-            
+
             <aside class="notes"></aside>
         </section>
-        
+
         <section>
             <h2>Inventory</h2>
             <h3>Give inventory nodes human-meaningful names rather than IPs or DNS hostnames.</h3>
             <p>&nbsp;</p>
-            
+
             <div class="columns monospace text-small">
                 <div class="col" style="flex-grow:1;">
                   <p>
@@ -212,17 +212,17 @@
                   </p>
                 </div>
             </div>
-            
+
             <aside class="notes">
               <p>A meaningful inventory hostname can point to a resolvable address, making inventory and ansible-playbook output easier to read and understand.</p>
               <p>Important to end users not familiar with your host naming schemes… improves readability.</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Inventory</h2>
             <h3>Group hosts for easier inventory selection and less conditional tasks -- the more groups the better.</h3>
-            
+
             <div class="columns">
                 <div class="col">
                   <h4>What</h4>
@@ -269,33 +269,33 @@
                   </p>
                 </div>
             </div>
-            
+
             <aside class="notes">
               <p>This is a common pattern we’ve seen in shops with sophisticated Ansible automation workflows.</p>
 
               <p>Explain what we have here -- static inventory groups with host aliases we saw in the previous slide.</p>
-              
+
               <p>Inventory groups allow you to separate your systems into what, where and when. Let the Ansible host selectors query your inventory and do the work of creating unions, intersections and filter.</p>
-              
+
               <p>Hosts can belong to as many groups. Ansible inventory does not have to be a hierarchy.</p>
-              
+
               <p>What: an application, stack or microservice</p>
               <p>Where: a datacenter or region</p>
               <p>When: development stage </p>
-              
+
               <p>Note the use of the ranges shorthand under the “what”</p>
-              
+
               <p>While more groups are generally better, you can have too much of a good thing.</p>
-              
+
               <p>(Dynamic tagging? Need to resolve.)</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Inventory</h2>
             <h3>Use a single source of truth if you have it -- even if you have multiple sources, Ansible can unify them.</h3>
             <p>&nbsp;</p>
-            
+
             <div class="columns">
                 <div class="col" style="flex-grow: 1;">
                   <ul>
@@ -303,18 +303,18 @@
                       <li>Reduce human error</li>
                   </ul>
                 </div>
-                
+
                 <div class="col" style="flex-grow: 2;">
                     <img src="images/public-private-cloud.png" alt="" />
                 </div>
             </div>
 
-            
+
             <aside class="notes">
               <p>Static inventory if fine when you’re starting out or managing a relatively small environment that doesn’t change often such as a development environment. Dynamic inventory is an imperative when is come to large environments especially dynamic ones using public/private/hybrid cloud technology.</p>
             </aside>
         </section>
-        
+
         <section>
           <h2>Variables</h2>
           <h3>Proper variable naming can make plays more readable and avoid variable name conflicts</h3>
@@ -327,18 +327,18 @@
   apache_port: 80
   tomcat_port: 8080
           </pre></code>
-          
+
           <aside class="notes">
             <p>Talk about flat naming space by design.</p>
 
             <p>Highlight how if we just used “port” you could end up configuring you could create port conflict when your apache and tomcat servers both try to listen to port 80. By  prefixing the apache and tomcat port, they stay seperate...</p>
-            
+
             <p>This is where having something in your style guide and some documentation comes in handy. </p>
-            
+
             <p>Improves readability.</p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Variables</h2>
           <h3>Make the most of variables</h3>
@@ -346,14 +346,14 @@
             <li>Find the appropriate place for your variables based on what, where and when they are set or modified</li>
             <li>Separate logic (tasks) from variables to reduce repetitive patterns and provided added flexibility.</li>
           </ul>
-          
+
           <aside class="notes">
             <p>Shortcut/human readable variables to improve task declaration readability and clarity</p>
 
             <p>Remember you can’t override a variable or parameter if it’s been embedded into a task. Let’s take a look at what I mean…</p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Separate Logic From Variables</h2>
           <div class="columns">
@@ -366,22 +366,22 @@
         file:
           state: directory
           path: /home/{{ username }}/.ssh
-  
+
       - name: Set Deployment Key
         copy:
           src: files/deploy_key
           dest: /home/{{ username }}/.ssh/id_rsa
-  
+
       - name: Clone repo
         git:
           accept_hostkey: yes
           clone: yes
           dest: /home/{{ username }}/lightbulb
-          key_file: /home/{{ username }}/.ssh/id_rsa   
+          key_file: /home/{{ username }}/.ssh/id_rsa
           repo: git@github.com:example/apprepo.git
               </code></pre>
             </div>
-            
+
             <div class="col">
               <h3>Exhibit A</h3>
               <ul class="text-small">
@@ -390,7 +390,7 @@
               </ul>
             </div>
           </div>
-          
+
           <aside class="notes">
             <p>This works just fine but…</p>
 
@@ -399,14 +399,14 @@
                 <li>Not clear what the params the play is working with without reading thru</li>
                 <li>Parameters like the local path to clone the repo cannot be modified without changing the play. This alone is the most valuable reason alone for doing this even if the others don’t matter. </li>
             </ul>
-            
+
             <p>Sometimes embedding values is intended with good reason (you don’t want user to override something).</p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Separate Logic From Variables</h2>
-          
+
           <div class="columns">
             <div class="col">
               <pre class="language-yaml"><code>
@@ -422,22 +422,22 @@
         file:
           state: directory
           path: "{{ user_ssh }}"
-  
+
       - name: Set Deployment Key
         copy:
           src: files/deploy_key
           dest: "{{ deploy_key }}"
-  
+
       - name: Clone repo
         git:
           dest: "{{ app_dest }}"
           key_file: "{{ deploy_key }}"
-          repo: git@github.com:example/exampleapp.git    
+          repo: git@github.com:example/exampleapp.git
           accept_hostkey: yes
           clone: yes
               </code></pre>
             </div>
-            
+
             <div class="col">
               <h3>Exhibit B</h3>
               <ul class="text-small">
@@ -449,7 +449,7 @@
           </div>
           <aside class="notes">
             <p>Here we have a refactored version of the previous example where logic (tasks) have been separated from variables as we’ve discussed. It’s a bit longer but more readable.</p>
-            
+
             <ul>
                 <li>Variables are separated out. We know what parameters are being feed to our tasks.</li>
                 <li>User home can be set once and used by other variables.</li>
@@ -457,11 +457,11 @@
                 <li>You can easily override any of the variables to change the default behaviour of the play.</li>
                 <li>Bonus: Makes refactoring a play into a role easier.</li>
             </ul>
-            
+
             <p>INSERT COMMAND LINE EXAMPLE. Setup root user?</p>
           </aside>
         </section>
-        
+
         <section>
             <h2>Plays & Tasks</h2>
             <h3>Use native YAML syntax to maximize the readability of your plays</h3>
@@ -470,12 +470,12 @@
                 <li>Supports complex parameter values</li>
                 <li>Works better with editor syntax highlighting in editors</li>
             </ul>
-            
+
             <aside class="notes">
               <p>At its core, the Ansible playbook runner is a YAML parser with added logic such as commandline key=value pairs shorthand. While convenient when cranking out a quick playbook or a docs example, that style of formatting reduces readability. We recommend you refrain from using that shorthand (even with YAML folded style) as a best practice.</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Use Native YAML Syntax</h2>
             <h3>No!</h3>
@@ -483,21 +483,21 @@
   - name: install telegraf
     yum: name=telegraf-{{ telegraf_version }} state=present update_cache=yes disable_gpg_check=yes enablerepo=telegraf
     notify: restart telegraf
-    
+
   - name: configure telegraf
     template: src=telegraf.conf.j2 dest=/etc/telegraf/telegraf.conf
-    
+
   - name: start telegraf
     service: name=telegraf state=started enabled=yes
             </code></pre>
-            
+
             <aside class="notes">
               <p>Vertical scanning is easier to spot parameters and what is being passed.</p>
               <p>Reduces the amount of horizontal scrolling the eyes must do. Modules such as ec2 that require a lot of parameters create long lines scroll off the screen which is really inefficient and makes it hard to read.</p>
               <p>Syntax highlighting is suboptimal -- Ansible overloads key=value notation onto the standard python YAML parser. A YAML parser sees all of those key value.</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Use Native YAML Syntax</h2>
             <h3>Better, but no</h3>
@@ -517,12 +517,12 @@
 - name: start telegraf
   service: name=telegraf state=started enabled=yes
             </code></pre>
-            
+
             <aside class="notes">
               <p>This refactored version of the last example uses what’s called YAML folded syntax to “stack” the first task with the line that ran off our screen. It’s an improvement in that it reduces horizontal scrolling and lines running off your screen, but it still breaks syntax highlighting and we can do better. If you are going this far with white spacing though why not go all the way?</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Use Native YAML Syntax</h2>
             <h3>Yes!</h3>
@@ -535,20 +535,20 @@
       disable_gpg_check: yes
       enablerepo: telegraf
     notify: restart telegraf
-  
+
   - name: configure telegraf
     template:
       src: telegraf.conf.j2
       dest: /etc/telegraf/telegraf.conf
     notify: restart telegraf
-  
+
   - name: start telegraf
     service:
       name: telegraf
       state: started
       enabled: yes
             </code></pre>
-            
+
             <aside class="notes">
               <p>Native YAML has more lines; however, those lines are shorter, reducing horizontal scrolling your eyes have to do and line wrapping in your editor. It lets the eyes scan straight down the play. </p>
               <p>The task parameters are stacked and easily distinguished from the next. </p>
@@ -556,7 +556,7 @@
               <p>NOTE: Some of our own docs use this shorthand for legacy reasons though we’re progressively changing that. (Documentation pull requests accepted.)</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Plays & Tasks</h2>
             <h3>Names improve readability and user feedback</h3>
@@ -564,7 +564,7 @@
                 <li>Give all your playbooks, tasks and blocks brief, reasonably unique and human-meaningful names</li>
             </ul>
         </section>
-        
+
         <section>
             <h2>Plays & Tasks</h2>
             <h3>Exhibit A</h3>
@@ -576,39 +576,39 @@
     - yum:
         name: httpd
         state: latest
-  
+
     - service:
         name: httpd
         state: started
         enabled: yes
                     </code></pre>
                 </div>
-                
+
                 <div class="col">
                     <pre class="language-yaml"><code>
   PLAY [web]
   ********************************
-  
+
   TASK [setup]
   ********************************
   ok: [web1]
-  
+
   TASK [yum]
   ********************************
   ok: [web1]
-  
+
   TASK [service]
   ********************************
   ok: [web1]
                     </code></pre>
                 </div>
             </div>
-            
+
             <aside class="notes">
               <p>Here we have a simple example of a working a play. It works fine but what is happening here? yum is installing what? is service starting or shutting down something? what was this play supposed to do anyways?  If you just wrote this play you know now or maybe you forgot. Others will have no clue unless they open the playbook and look to become familiar with it.</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Plays & Tasks</h2>
             <h3>Exhibit B</h3>
@@ -622,7 +622,7 @@
         yum:
           name: httpd
           state: latest
-  
+
       - name: starts apache service
         service:
           name: httpd
@@ -630,69 +630,69 @@
           enabled: yes
                     </code></pre>
                 </div>
-                
+
                 <div class="col">
                     <pre class="language-yaml"><code>
   PLAY [install and starts apache]
   ********************************
-  
+
   TASK [setup]
   ********************************
   ok: [web1]
-  
+
   TASK [install apache packages]
   ********************************
   ok: [web1]
-  
+
   TASK [starts apache service]
   ********************************
   ok: [web1]
                     </code></pre>
                 </div>
             </div>
-            
+
             <aside class="notes">
               <p>Here is the same play with names. By adding descriptive human-meaningful names to the play declaration and tasks we get output that give you  and users of this automation better feedback and clarity to what is being performed. </p>
             </aside>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Focus avoids complexity</h3>
           <ul>
             <li>Keep plays and playbooks focused. Multiple simple ones are better than having a huge single playbook full of conditionals.</li>
           </ul>
-          
+
           <aside class="notes">
             <p>Monoliths!</p>
 
             <p>As your automation grows in sophistication and scope refactor your plays -- includes & roles to compose automation workflows.</p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Clean up your debugging tasks</h3>
           <ul>
             <li>Make them optional with the verbosity parameter so they’re only displayed when they are wanted.</li>
           </ul>
-          
+
           <pre class="language-yaml"><code>
   - debug:
      msg: "This always displays"
-  
+
   - debug:
      msg: "This only displays with ansible-playbook -vv+"
      verbosity: 2
           </code></pre>
-          
+
           <aside class="notes">
             <p>Debugging messages and variable dumps in your plays can be helpful when you are developing or debugging automation automation, but not all the time. Displaying debugging pollutes the standard usage with a lot of noise. It can also scare anxious end users that don’t trust this automation stuff when some JSON dump of information explodes onto their screens.</p>
 
             <p>The verbosity parameter was added to the debug module in v2.1. </p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Don’t just start services -- use smoke tests </h3>
@@ -706,12 +706,12 @@
     retries: 10
     delay: 1
           </code></pre>
-          
+
           <aside class="notes">
             <p>Just because a service started or an instances has initialized -- maybe it hit an error initializing and crashed. Use modules like uri and wait_for to smoke test that they are ready to go. </p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Use blocks to  reduce verbosity and repetitive task declarations.</h3>
@@ -721,7 +721,7 @@
       EXAMPLE HERE
           </code></pre>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Use run commands sparingly</h3>
@@ -729,16 +729,16 @@
             <li>Use the run command modules like shell and command as a last resort</li>
             <li>Use the command module unless you really need I/O redirection that shell permits -- but be very careful.</li>
           </ul>
-          
+
           <aside class="notes">
             <p>Run commands are...</p>
-            
+
             <p>Explain how run command modules have no concept of state.  (See slide from essentials deck here.) </p>
-            
+
             <p>Command will escape redirection characters such a pipe so they cannot be embedded in a variable and used for something malicious. You really shouldn’t be using a variable provided by a user anyway.</p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Always seek out a module first</h3>
@@ -747,28 +747,28 @@
               <pre class="language-yaml"><code>
   - name: add user
     command: useradd appuser
-  
+
   - name: install apache
     command: yum install httpd
-  
+
   - name: start apache
     shell: |
       service httpd start && chkconfig httpd on
               </code></pre>
             </div>
-            
+
             <div class="col">
               <pre class="language-yaml"><code>
   - name: add user
     user:
       name: appuser
       state: present
-  
+
   - name: install apache
     yum:
       name: httpd
       state: latest
-  
+
   - name: start apache
     service:
       name: httpd
@@ -778,7 +778,7 @@
             </div>
           </div>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Still using run commands a lot?</h3>
@@ -791,17 +791,17 @@
     - name: check cert
       shell: certify --list --name={{ cert_name }} --cert_store={{ cert_store }} | grep "{{ cert_name }}"
       register: output
-  
+
     - name: create cert
       command: certify --create --user=chris --name={{ cert_name }} --cert_store={{ cert_store }}
       when: output.stdout.find(cert_name)" != -1
       register: output
-  
+
     - name: sign cert
       command: certify --sign  --name={{ cert_name }} --cert_store={{ cert_store }}
       when: output.stdout.find("created")" != -1
           </code></pre>
-          
+
           <aside class="notes">
 <p>Here “certify” is a fictitious command line tool to illustrate an in-house private tool an organization may have developed for its own use.</p>
 
@@ -816,7 +816,7 @@
 <p>Sometimes this cannot be avoided because a module doesn’t exist and you need something fast. In that case...</p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Develop your own module</h3>
@@ -834,7 +834,7 @@
        name: "{{ cert_name }}"
        cert_store: "{{ cert_store }}"
           </code></pre>
-          
+
           <aside class="notes">
 <p>Modules do the heavy lifting in Ansible. Modules and playbooks work together to provide a simple and easy to read  abstraction from the underlying complexity and sophistication that give Ansible it’s power. </p>
 
@@ -847,7 +847,7 @@
 <p>http://docs.ansible.com/ansible/developing_modules.html</p>
           </aside>
         </section>
-        
+
         <section>
           <h2>Plays & Tasks</h2>
           <h3>Separate provisioning from deployment and configuration tasks</h3>
@@ -866,7 +866,7 @@
             <p>Helpful if you are using different cloud providers -- whether public or private or hybrid -- vagrant or bare metal you can apply the same configuration to different computing platforms and environments.</p>
           </aside>
         </section>
-        
+
         <section>
             <h2>Templates</h2>
             <h3>Jinja2 is powerful but you needn't use all of it</h3>
@@ -894,7 +894,7 @@
               <p>Expand upon Jinja2 being powerful. There is a bit of grey and a zen to deciding how to how to design your templates. Strive for simplicity. complexity kills.</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Templates</h2>
             <h3>Identify generated files</h3>
@@ -903,12 +903,12 @@
               <li>Consider using the ansible_managed variable with the comment filter</li>
             </ul>
             <p class="monospace" style="margin-left: 2em;">{{ ansible_managed | comment }}</p>
-            
+
             <aside class="notes">
               <p>This is useful to tell users that a file has been placed by Ansible and manual changes are likely to be overwritten.</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Roles</h2>
             <ul>
@@ -917,13 +917,13 @@
               <li>Follow the Ansible Galaxy pattern for roles that are to be shared beyond a single project</li>
               <li>Limit role dependencies</li>
             </ul>
-            
+
             <aside class="notes">
               <p>One “thing” per role — being able to understand the structure</p>
               <p>Loosely coupled</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Roles</h2>
             <ul>
@@ -934,7 +934,7 @@
                 <li>Always peg a role to a specific version such as a tag or commit</li>
             </ul>
         </section>
-        
+
         <section>
             <h2>Scaling Your Ansible Workflow</h2>
             <h3>Command line tools have their limitations</h3>
@@ -945,12 +945,12 @@
               <li>Provide self-service or delegation...</li>
               <li>Integrate automation with enterprise systems...</li>
             </ul>
-            
+
             <aside class="notes">
               <p>There are limits to a command line tool...</p>
             </aside>
         </section>
-        
+
         <section>
             <h2>Next Steps</h2>
             <h3>Next Steps</h3>
