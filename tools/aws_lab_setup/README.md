@@ -20,13 +20,13 @@ To set up the lab for Ansible training, follow these steps.
 
 1. Create an Amazon AWS account.
 
-2. Create an ssh key pair called 'ansible' (Network & Security->Key Pairs->Create Key Pair). Download the private key to your `.ssh` directory, e.g. to `.ssh/ansible.pem`. Alternatively, you can upload your own public key into AWS.
+2. Create an ssh key pair called 'ansible' (My Security Credentials->Network & Security->Key Pairs->Create Key Pair). Download the private key to your `.ssh` directory, e.g. to `.ssh/ansible.pem`. Alternatively, you can upload your own public key into AWS.
 
       If using an AWS generated key add it to the ssh-agent:
 
         ssh-add ~/.ssh/ansible.pem
 
-3. Create an [Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).
+3. Create an [Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-setting-up.html).
 
 4. Install `boto`.
 
