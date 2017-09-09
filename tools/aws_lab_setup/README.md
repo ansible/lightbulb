@@ -109,4 +109,4 @@ To destroy all the EC2 instaances after training is complete:
 
 1. Run the playbook:
 
-        ansible-playbook teardown_lab.yml -e @extra_vars.yml
+        ansible-playbook teardown_lab.yml -e @extra_vars.yml -e @users.yml
