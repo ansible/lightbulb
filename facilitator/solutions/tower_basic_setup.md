@@ -47,7 +47,9 @@ Seeing a succesful job means that the changes that were outlined were completed.
 ![succesful job completion](../images/succes_job.png)
 
 #### 6
+Extra Variables are variables that can be passed in many parts of Ansible Tower. From Inventory configuration, Job Templates and Surveys, extra variables can be tricky if they are not kept track of. For example, say that you have a defined variable for an inventory for debug = true. It is entirely possible that this variable, debug = true, can be overridden in a job template survey.
 
+To ensure that the variables you need to pass are not overridden, ensure they are included by redefining them in the survey. Keep in mind that extra variables can be defined at the inventory, group, and host levels.
 ![adding extra vars](../images/extra_variables.png)
 
 
@@ -65,6 +67,23 @@ NOTE: These screenshots where taken using Ansible Tower 3.1.1.
 
 #### Extra Credit
 
-* Create Users
+* Create Users 
 * Assign Execution Permission to User in Job Templates
 * User Surveys
+
+### Create Users
+Creating users is simple and easy. To get other people on your team involved, select the settings gear in the top right and select users. This will take you to the users page. Select the green “+Add” button and a user creation page will be displayed. From here, you will need to enter some information about the user such as their name and email address. Once you have added the necessary information, click save and the user will be added to your Ansible Tower instance!
+![adding extra vars](../images/create_user.png)
+
+### Assign Execution Permission
+Assigning permissions to users on what they can and cannot do, what they can and cannot see is crucial to the Ansible Tower story. Role Based Access Control (RBAC) is at the core of how Tower scales organizations while increasing the security of automating. By delegating access to resources within tower, you are removing an element of human error. 
+
+Assigning Execution permissions is a big step in implementing RBAC throughout your team. To add execution permissions for users on a Job Template, nevigate to the job template that you would like te user(s) to have execution permission on. Once you are on the editing page for this job template (pencil) select the "Permissions" box at the top then click the "+Add" box on the right hand side. 
+
+This will display a box that displays users and teams within your Organization. Select the Users box (Tower does by default) then select the user you wish to add to the Job Template. This will prompt a drop down selection to appear for the role. From that dropdown box, select "Execute" and hit Save.
+
+It is done! That user know has execution privileges on that Job Template! 
+![adding extra vars](../images/add_perms.png)
+
+### User Surveys
+
