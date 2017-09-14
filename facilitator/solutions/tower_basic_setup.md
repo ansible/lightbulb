@@ -86,4 +86,13 @@ It is done! That user know has execution privileges on that Job Template!
 ![adding extra vars](../images/add_perms.png)
 
 ### User Surveys
+Job types of Run or Check will provide a way to set up surveys in the Job Template creation or editing screens. Surveys set extra variables for the playbook similar to ‘Prompt for Extra Variables’ does, but in a user-friendly question and answer way. Surveys also allow for validation of user input. (Don't forget our earlier discussion about Extra variables, survey answers are passed as Extra Variables so make sure you don't over ride variables with Survey Questions)
 
+Use cases for surveys are numerous. An example might be if operations wanted to give developers a “push to stage” button they could run without advanced Ansible knowledge. When launched, this task could prompt for answers to questions such as, “What tag should we release?” Many types of questions can be asked, including multiple-choice questions. 
+
+To create a survey, navigate to the Job Template you wish to add the survey to and select the blue "Add Survey" button from the top. From here, a blank survey form will appear for you to fill out. 
+![adding extra vars](../images/blank_survey.png)
+From here you will fill out the prompt, the Answer Variable name and the type of answer that will be provided. Examples can include Integers, Text, and passwords. 
+
+Once you have everything filled out to your liking, click the Add button and the survey will now be prompt each user that attempts to execute the Job Template. 
+![adding extra vars](../images/filled_out_survey.png)
