@@ -451,11 +451,13 @@ svg .a-mark{
 
 .columns{
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
-.columns > *{
-  flex-basis: 33.3333%;
+.reveal .columns > *{
+  flex-basis: 31%;
+  margin-right: 2.333%;
+  flex-grow: 1;
 }
 
 .reveal .progress span {
