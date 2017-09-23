@@ -10,8 +10,6 @@ Over time lightbulb will be expanded to include advanced and developer topics in
 
 To support these objectives, the project provides a lab provisioner tool for creating an environment to present and work with lightbulb content.
 
-**NOTE:** Lightbulb "v2" is currenly a work in progress and still has not met all of its intended goals.
-
 ### What's Provided
 
 The Ansible Lightbulb project has been designed to be used as a toolkit and best practices reference for Ansible presentations ranging from demos thru self-paced learning thru hands-on workshops. Here you will find:
