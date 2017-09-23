@@ -20,7 +20,7 @@ To set up the lab for Ansible training, follow these steps.
 
 1. Create an Amazon AWS account.
 
-2. Create an ssh key pair called 'ansible' (Services -> EC2 -> Pick the correct AWS region -> Network & Security on left hand menu -> Key Pairs). Download the private key to your `.ssh` directory, e.g. to `.ssh/ansible.pem`. Alternatively, you can upload your own public key into AWS.
+2. Create an ssh key pair called 'ansible'. (To create go Services -> EC2 -> Network & Security -> Key Pairs) Download the private key to your `.ssh` directory, e.g. to `.ssh/ansible.pem`. Alternatively, you can upload your own public key into AWS.
 
       If using an AWS generated key add it to the ssh-agent:
 
