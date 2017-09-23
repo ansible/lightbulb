@@ -25,6 +25,18 @@ ec2_regions:
       ubuntu14: ami-6ebcec0e
       ubuntu16: ami-b05203d0
 
+  eu-west-1:
+    vpc: vpc-48141c2a
+    subnet_id: subnet-70f9f012
+    key_name: "{{ ec2_key_name | default('training') }}"
+    amis:
+      centos7: ami-af4333cf
+      centos7-tower: ami-c04a00a0
+      rhel7: ami-2b9d6c52
+      rhel7-tower: ami-2b9d6c52
+      ubuntu14: ami-6ebcec0e
+      ubuntu16: ami-b05203d0
+
 # Instance types used for lab configurations
 ec2_instance_types:
   centos7:
