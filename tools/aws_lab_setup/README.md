@@ -7,6 +7,8 @@ This is an automated lab setup for Ansible training. It creates five nodes per u
 * Three web nodes that coincide with the three nodes in lightbulb's original design
 * And one node where `haproxy` is installed (via lightbulb lesson)
 
+**NOTE**: Because of [a bug introduced in Ansible v2.2.1](https://github.com/ansible/lightbulb/issues/112) you will need to run this provisioner with v2.3.2 or higher.
+
 ## Usage ##
 
 
@@ -14,7 +16,7 @@ This is an automated lab setup for Ansible training. It creates five nodes per u
 
 The `provision_lab.yml` playbook creates instances, configures them for password authentication, creates an inventory file for each user with their IPs and credentials, and emails every user their respective inventory file. An instructor inventory file is also created in the current directory which will let the instructor access the nodes of any student by simply targeting the the username as a host group. The lab is created in `us-east-1` by default.  Currently only works with `us-east-1`, `us-west-1` and `eu-west-1`.
 
-**Note:** Emails are sent _every_ time the playbook is run. To prevent emails from being sent on subsequent runs of the playbook, add `email: no` to `extra_vars.yml`.
+**NOTE:** Emails are sent _every_ time the playbook is run. To prevent emails from being sent on subsequent runs of the playbook, add `email: no` to `extra_vars.yml`.
 
 To set up the lab for Ansible training, follow these steps.
 
