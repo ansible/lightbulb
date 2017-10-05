@@ -32,9 +32,9 @@ To set up the lab for Ansible training, follow these steps.
 
 4. Create Amazon VPC.   Use the wizard and just accept the defaults.   It should create a VPC and a subnet. Save this info for later.
 
-5. Install `boto`.
+5. Install `boto` and `boto3`.
 
-        pip install boto
+        pip install boto boto3
 
 6. Create a `boto` configuration file containing your AWS access key ID and secret access key.
 
