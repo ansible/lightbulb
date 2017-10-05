@@ -12,7 +12,7 @@
       - vim
       - git
       - wget
-      
+
     state: latest
     enablerepo: epel-testing
   tags:
@@ -25,7 +25,7 @@
       - sshpass
       - ansible
     state: latest
-    enablerepo: epel-testing
+    enablerepo: rhui-REGION-rhel-server-extras
   tags:
     - control_node
     - control
