@@ -36,6 +36,54 @@ ec2_regions:
       rhel7-tower: ami-2b9d6c52
       ubuntu14: ami-6ebcec0e
       ubuntu16: ami-b05203d0
+  
+  ap-southeast-1:
+    vpc: vpc-xxxxxxxx
+    subnet_id: subnet-xxxxxxxx
+    key_name: "{{ ec2_key_name | default('training') }}"
+    amis:
+      centos7: ami-7d2eab1e
+      centos7-tower: ami-c7ed91a4
+      rhel7: ami-dccc04bf
+      rhel7-tower: ami-dccc04bf
+      ubuntu14: ami-adb51dce
+      ubuntu16: ami-87b917e4
+
+  ap-southeast-2:
+    vpc: vpc-xxxxxxxxa
+    subnet_id: subnet-xxxxxxxx
+    key_name: "{{ ec2_key_name | default('training') }}"
+    amis:
+      centos7: ami-34171d57
+      centos7-tower: ami-01b45763
+      rhel7: ami-286e4f4b
+      rhel7-tower: ami-286e4f4b
+      ubuntu14: ami-940e0bf7
+      ubuntu16: ami-e6b58e85
+
+  ap-south-1:
+    vpc: vpc-xxxxxxxx
+    subnet_id: subnet-xxxxxxxx
+    key_name: "{{ ec2_key_name | default('training') }}"
+    amis:
+      centos7: ami-3c0e7353
+      centos7-tower: ami-5b145434
+      rhel7: ami-cdbdd7a2
+      rhel7-tower: ami-cdbdd7a2
+      ubuntu14: ami-533e4e3c
+      ubuntu16: ami-dd3442b2
+
+  ap-northeast-1:
+    vpc: vpc-xxxxxxxx
+    subnet_id: subnet-xxxxxxxx
+    key_name: "{{ ec2_key_name | default('training') }}"
+    amis:
+      centos7: ami-29d1e34e
+      centos7-tower: ami-0d05d46b
+      rhel7: ami-a05854ce
+      rhel7-tower: ami-a05854ce
+      ubuntu14: ami-3995e55e
+      ubuntu16: ami-18afc47f
 
 # Instance types used for lab configurations
 ec2_instance_types:
