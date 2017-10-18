@@ -11,8 +11,8 @@
     organization: "Default" #Default org setup by Tower Install
     inventory_name: "Ansible Lightbulb Lab" #Follows inventory_name in docs for Lightbulb
     group_name:
-      - "Web"
-      - "Control"
+      - "web"
+      - "control"
 
   tasks:
   - name: Install pip and ansible-tower-cli
