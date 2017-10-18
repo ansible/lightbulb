@@ -9,8 +9,9 @@ This is an automated lab setup for Ansible training. It creates five nodes per u
 
 **NOTE**: Because of [a bug introduced in Ansible v2.2.1](https://github.com/ansible/lightbulb/issues/112) you will need to run this provisioner with v2.3.2 or higher.
 
-## Usage ##
-
+## Table Of Contents
+- [AWS Setup](#aws-setup)
+- [AWS Teardown](#aws-teardown)
 
 ### AWS Setup ###
 
@@ -38,16 +39,7 @@ To set up the lab for Ansible training, follow these steps.
 
 6. Create a `boto` configuration file containing your AWS access key ID and secret access key.
 
-    ```bash
-    mkdir ~/.aws
-    touch ~/.aws/credentials
-    chmod 600 ~/.aws/credentials
-
-    # The file should contain the following:
-    [default]
-    aws_access_key_id = [access key ID]
-    aws_secret_access_key = [secret key]
-    ```
+      Use the quickstart directions provided here: [http://boto3.readthedocs.io/en/latest/guide/quickstart.html](http://boto3.readthedocs.io/en/latest/guide/quickstart.html)
 
 7. Create a free [Sendgrid](http://sendgrid.com) account if you don't have one. Optionally, create an API key to use with this the playbook.
 
@@ -102,7 +94,7 @@ To set up the lab for Ansible training, follow these steps.
 
         TRAINING-LAB-<student_username>-node1|2|3|haproxy|tower|control
 
-If successful all your students will be emailed the details of their hosts including addresses and credentials, and an `instructor_inventory.txt` file will be created listing all the student machines.
+      If successful all your students will be emailed the details of their hosts including addresses and credentials, and an `instructor_inventory.txt` file will be created listing all the student machines.
 
 
 ### AWS Teardown ###
