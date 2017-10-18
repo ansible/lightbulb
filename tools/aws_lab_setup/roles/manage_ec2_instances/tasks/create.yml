@@ -14,7 +14,7 @@
     ansible_port: "{{ ssh_port }}"
     groups: lab_hosts,control_nodes
   with_items: "{{ instances.results }}"
-  when: "'control' in item.invocation.module_args.instance_tags.Name"
+  when: "'ansible' in item.invocation.module_args.instance_tags.Name"
   changed_when: no
   tags:
     - always
@@ -28,7 +28,7 @@
     ansible_port: "{{ ssh_port }}"
     groups: lab_hosts,managed_nodes
   with_items: "{{ instances.results }}"
-  when: "'control' not in item.invocation.module_args.instance_tags.Name"
+  when: "'ansible' not in item.invocation.module_args.instance_tags.Name"
   changed_when: no
   tags:
     - always

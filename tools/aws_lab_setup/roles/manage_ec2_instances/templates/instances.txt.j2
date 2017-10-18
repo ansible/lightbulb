@@ -8,7 +8,7 @@ ansible_port={{ ssh_port }}
 [web]
 {% for grouper, list in instances.results|groupby('item') if grouper[0] == item %}
 {% for vm in list %}
-{% if 'control' not in vm.invocation.module_args.instance_tags.Name and 'haproxy' not in vm.invocation.module_args.instance_tags.Name%}
+{% if 'ansible' not in vm.invocation.module_args.instance_tags.Name and 'haproxy' not in vm.invocation.module_args.instance_tags.Name%}
 {{ vm.invocation.module_args.instance_tags.Name | regex_replace('.*-(node)(\\d)', '\\1-\\2') }} ansible_host={{ vm.tagged_instances[0].public_ip }}
 {% endif %}
 {% endfor %}
@@ -17,7 +17,7 @@ ansible_port={{ ssh_port }}
 [control]
 {% for grouper, list in instances.results|groupby('item') if grouper[0] == item %}
 {% for vm in list %}
-{% if 'control' in vm.invocation.module_args.instance_tags.Name %}
+{% if 'ansible' in vm.invocation.module_args.instance_tags.Name %}
 {{ vm.invocation.module_args.instance_tags.Name | regex_replace('.*-([\\w]*)', '\\1') }} ansible_host={{ vm.tagged_instances[0].public_ip }}
 {% endif %}
 {% endfor %}
