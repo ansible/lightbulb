@@ -1,7 +1,7 @@
 Ansible AWS training provisioner
 ================================
 
-This is an automated lab setup for Ansible training. It creates five nodes per user in the `users` list.
+This is an automated lab setup for Ansible training. It creates four nodes per user in the `users` list.
 
 * One control node from which Ansible will be executed from and where Ansible Tower can be installed
 * Three web nodes that coincide with the three nodes in lightbulb's original design
@@ -82,29 +82,42 @@ To set up the lab for Ansible training, follow these steps.
 
 12. Create a `users.yml` by copying `sample-users.yml` and adding all your students:
 
-__(email)__
-```yaml
-users:
-  - name: Bod Barker
-    username: bbarker
-    email: bbarker@acme.com
+    __(email)__
+    ```yaml
+    users:
+      - name: Bod Barker
+        username: bbarker
+        email: bbarker@acme.com
 
-  - name: Jane Smith
-    username: jsmith
-    email: jsmith@acme.com
-```
+      - name: Jane Smith
+        username: jsmith
+        email: jsmith@acme.com
+    ```
 
-__(no email)__
-```yaml
-users:
-  - name: Student01
-    username: student01
-    email: instructor@acme.com
+    __(no email)__
+    ```yaml
+    users:
+      - name: Student01
+        username: student01
+        email: instructor@acme.com
 
-  - name: Student02
-    username: student02
-    email: instructor@acme.com
-```
+      - name: Student02
+        username: student02
+        email: instructor@acme.com
+    ```
+    **(no email) NOTE:**  If using generic users, you can generate the corresponding
+`users.yml` file from the command line by creating a 'STUDENTS' variable
+containing the number of "environments" you want, and then populating the file.
+For example:
+
+        STUDENTS=30;
+        echo "users:" > users.yml &&
+        for NUM in $(seq -f "%02g" 1 $STUDENTS); do
+          echo "  - name: Student${NUM}" >> users.yml
+          echo "    username: student${NUM}" >> users.yml
+          echo "    email: instructor@acme.com" >> users.yml
+          echo >> users.yml
+        done
 
 13. Run the playbook:
 
@@ -130,7 +143,7 @@ __(no email)__ If you disabled email in your `extra_vars.yml` file, you will nee
 
 The `teardown_lab.yml` playbook deletes all the training instances as well as local inventory files.
 
-To destroy all the EC2 instaances after training is complete:
+To destroy all the EC2 instances after training is complete:
 
 1. Run the playbook:
 
