@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="css/theme/ansible.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+
 
   </head>
   <body>
@@ -43,7 +45,7 @@
       </section>
         <section>
           <h2>What You Will Learn</h2>
-          <p>Ansible Tower by Red Hat helps you scale IT automation, manage complex deployments and speed productivity. Centralize and control your IT infrastructure with a visual dashboard, role-based access control, job scheduling and graphical inventory management.</p><br>
+          <p>Red Hat<sup>&reg;</sup> Ansible<sup>&reg;</sup> Tower helps you scale IT automation, manage complex deployments and speed productivity. Centralize and control your IT infrastructure with a visual dashboard, role-based access control, job scheduling and graphical inventory management.</p><br>
           <ul>
             <li>What is Ansible Tower</li>
             <li>How Ansible Tower Works</li>
@@ -66,15 +68,15 @@
               <li>All Ansible automations are <strong>centrally logged</strong>, ensuring <strong>complete auditability and compliance</strong></li>
             </ul>
             <aside class="notes">
-              <p>Ansible Tower by Red Hat offers the control around ansible automations in the form of RBAC, Job Scheduling, security abstraction from the user and API integrations with other systems.</p>
-              <p>In Tower, all Ansible job launches are tracked and logged centrally. What was changed and when it was changed can be viewed, exported to other logging capabilities and controlled within allowances of a user's access based on role.</p>
+              <p>Red Hat Ansible Tower offers the control around ansible automations in the form of RBAC, Job Scheduling, security abstraction from the user and API integrations with other systems.</p>
+              <p>In Ansible Tower, all Ansible job launches are tracked and logged centrally. What was changed and when it was changed can be viewed, exported to other logging capabilities and controlled within allowances of a user's access based on role.</p>
             </aisde>
         </section>
         <section>
           <img src="images/ansible-tower-platform-diagram.svg">
           <aside class="notes">
-            <p>Ansible Core brought you simple and powerful automation, Tower provides a visual interface to scale out that power. Run jobs against multiple inventories at the same time and schedule jobs to run when you want them too.</p>
-            <p>With Core, everyone has their own playbooks stored locally or in their own SCM tool. With Tower, everyone's playbooks can be centralized to one location. Control what teams can see what with RBAC to resources and projects.</p>
+            <p>Ansible Core brought you simple and powerful automation, Ansible Tower provides a visual interface to scale out that power. Run jobs against multiple inventories at the same time and schedule jobs to run when you want them too.</p>
+            <p>With Core, everyone has their own playbooks stored locally or in their own SCM tool. With Ansible Tower, everyone's playbooks can be centralized to one location. Control what teams can see what with RBAC to resources and projects.</p>
             <p>Launch playbooks with the click of a button and see the expected results for that same job to compare and confirm the desired outcome.
           </aside>
         </section>
@@ -87,7 +89,7 @@
         </section>
         <section>
           <h2>Installing Ansible Tower</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 # the most common and preferred way of
 # installation for RHEL (Preferred) or Ubuntu
 $ wget https://bit.ly/ansibletower
@@ -96,10 +98,11 @@ $ wget https://bit.ly/ansibletower
 # RHEL (and select derivatives) at
 $ wget https://bit.ly/ansibletowerbundle
 
-# looking for a specific version? navigate to http://releases.ansible.com/ansible-tower to see all the versions available for download
+# looking for a specific version? navigate to http://releases.ansible.com/ansible-tower
+# to see all the versions available for download
           </code></pre>
           <aside class="notes">
-            <p>Installation methods listed here are the most common used. Please note: Do not install Ansible Core via pip before installing Tower. Tower expects Ansible Core to be installed via package manager - and it will do this for you.</p>
+            <p>Installation methods listed here are the most common used. Please note: Do not install Ansible Core via pip before installing Ansible Tower. Ansible Tower expects Ansible Core to be installed via package manager - and it will do this for you.</p>
             <p>The standard installer can be used with normal internet access but if you are in a restricted network environment, the bundled installer will be your best choice. Please note that there the bundled installer currently only supports RHEL Based systems.</p>
             <p>There are also Vagrant Images and AWS AMIs available. To find out more, visit ansible.com/tower-trial</p>
           </aside>
@@ -115,7 +118,7 @@ $ wget https://bit.ly/ansibletowerbundle
           <aside class="notes">
             <p>Unlike Ansible Core, Ansible Tower cannot be installed locally on your laptop, it must be installed in a server environment.</p>
             <p>Other HTML5 compliant web browsers may work but are not fully tested or supported.</p>
-            <p>10 GB of the 20 GB requirement must be dedicated to /var/, where Tower stores its files and working directories (dedicating less space will cause the installation to fail)</p>
+            <p>10 GB of the 20 GB requirement must be dedicated to /var/, where Ansible Tower stores its files and working directories (dedicating less space will cause the installation to fail)</p>
           </aside>
         </section>
         <section>
@@ -131,7 +134,7 @@ $ wget https://bit.ly/ansibletowerbundle
               <li>pg_password</li>
               <li>rabbitmq_password</li>
             </ul>
-            <p>You are setting the admin password because the admin user account will be the only account at the beginning that can access your Tower instance.</p>
+            <p>You are setting the admin password because the admin user account will be the only account at the beginning that can access your Ansible Tower instance.</p>
             <p>You are setting the postgres password so that tower will have access to the database that is created</p>
             <p>And you are setting rabbitmq password so that rabbitmq will be able to <p>
           </aside>
@@ -140,7 +143,7 @@ $ wget https://bit.ly/ansibletowerbundle
           <h1>Workshop: <br/>Installing Ansible Tower</h1>
           <aside class="notes">
             <p>See</p>
-            <pre><code>workshops/tower_install</code></pre>
+            <pre class="language-yaml"><code>workshops/tower_install</code></pre>
             <p>in the Ansible Lightbulb repo.</p>
             <p>It's solution and addition details can be found in <code>facilitator/solutions/tower_install.md</code>.</p>
           </aside>
@@ -158,7 +161,7 @@ $ wget https://bit.ly/ansibletowerbundle
               <li>Role Based Access Control (RBAC)</li>
             </ul>
           <aside class="notes">
-            <p>We now have ansible tower installed on a VM, but before we can get started with automating in Tower, we need to learn how some of the key features of it work.</p>
+            <p>We now have Ansible Tower installed on a VM, but before we can get started with automating in Ansible Tower, we need to learn how some of the key features of it work.</p>
             <p>Listed are some of the key features that we are going to be discussing in the coming slides. </p>
           </aside>
         </section>
@@ -166,28 +169,28 @@ $ wget https://bit.ly/ansibletowerbundle
           <h2 style="text-align:center">Dashboard and User Interface</h2>
           <div style="text-align: center;"><img src="images/ansible-tower3-monitor-1x.png"/></div>
           <aside class="notes">
-            <p>The Tower dashboard provides a heads-up NOC-style display and a friendly graphical framework for your IT orchestration needs. Across the top-left side of the Tower Dashboard, administrators can quickly navigate to their Projects, Inventories, Job Templates, and Jobs.</p>
+            <p>The Ansible Tower dashboard provides a heads-up NOC-style display and a friendly graphical framework for your IT orchestration needs. Across the top-left side of the Ansible Tower Dashboard, administrators can quickly navigate to their Projects, Inventories, Job Templates, and Jobs.</p>
             <p>Across the top-right side of this interface, administrators can access the tools they need to configure organizations, users, groups, and permissions as well as view related documentation, access portal mode, and log out.</p>
           </aside>
         </section>
         <section>
           <h2>User Base</h2><br>
-            <p>A <strong>user</strong> is an account to access Tower and its services given the permissions granted to it.</p>
+            <p>A <strong>user</strong> is an account to access Ansible Tower and its services given the permissions granted to it.</p>
             <p>An <strong>organization</strong> is a logical collection of users, teams, projects, inventories and more. All entities belong to an organization with the exception of users.</p>
             <p><strong>Teams</strong> provide a means to implement role-based access control schemes and delegate responsibilities across organizations.</p>
             <aside class="notes">
               <p>Users are individuals and can be added to teams and or organizations. There are 3 types of users: Normal User, System Auditor and System Administrator.</p>
               <p>A normal user has read write access limited to the resources they are able to access.</p>
-              <p>A system auditor implicitly inherit the read-only capability for all objects within the Tower environment.</p>
-              <p>A system administrator (also known as Superuser) has admin, read, and write privileges over the entire Tower installation. A System Administrator is typically responsible for managing all aspects of Tower and delegating responsibilities for day-to-day work to various Users.
-              <p>An organization is is a logical collection of Users, Teams, Projects, and Inventories, and is the highest level in the Tower object hierarchy.</p>
+              <p>A system auditor implicitly inherit the read-only capability for all objects within the Ansible Tower environment.</p>
+              <p>A system administrator (also known as Superuser) has admin, read, and write privileges over the entire Ansible Tower installation. A System Administrator is typically responsible for managing all aspects of Ansible Tower and delegating responsibilities for day-to-day work to various Users.
+              <p>An organization is is a logical collection of Users, Teams, Projects, and Inventories, and is the highest level in the Ansible Tower object hierarchy.</p>
               <p>A Team is a subdivision of an organization with associated users, projects, credentials, and permissions. Teams provide a means to implement role-based access control schemes and delegate responsibilities across organizations. </p>
               <p>The userbase plays an important part in implementing role-based access control schemes across your organization.</p>
             </aside>
         </section>
         <section>
           <h2>Credentials</h2>
-          <p>Credentials are utilized by Tower for authentication with various external resources:</p>
+          <p>Credentials are utilized by Ansible Tower for authentication with various external resources:</p>
           <ul>
             <li>Connecting to <strong>remote machines</strong> to run jobs</li>
             <li>Syncing with <strong>inventory</strong> sources</li>
@@ -196,15 +199,15 @@ $ wget https://bit.ly/ansibletowerbundle
           </ul>
           <p>Centralized management of various credentials allows end users to leverage a  secret without ever exposing that secret to them.</p>
           <aside class="notes">
-            <p>Credentials are utilized by Tower for authentication when launching Jobs against machines, synchronizing with inventory sources, and importing project content from a version control system.</p>
-            <p>Tower credentials are imported and stored encrypted in Tower, and are not retrievable in plain text on the command line by any user.</p>
+            <p>Credentials are utilized by Ansible Tower for authentication when launching Jobs against machines, synchronizing with inventory sources, and importing project content from a version control system.</p>
+            <p>Ansible Tower credentials are imported and stored encrypted in Ansible Tower, and are not retrievable in plain text on the command line by any user.</p>
             <p>You can grant users and teams the ability to use these credentials, without actually exposing the credential to the user.</p>
-            <p>If you have a user move to a different team or leave the organization, you don’t have to re-key all of your systems just because that credential was available in Tower.</p>
+            <p>If you have a user move to a different team or leave the organization, you don’t have to re-key all of your systems just because that credential was available in Ansible Tower.</p>
           </aside>
         </section>
         <section>
           <h2>Inventory</h2>
-          <p>Inventory is a collection of hosts (nodes) with associated data and groupings that Tower can connect to and manage.</p>
+          <p>Inventory is a collection of hosts (nodes) with associated data and groupings that Ansible Tower can connect to and manage.</p>
           <ul>
             <li>Hosts (nodes)</li>
             <li>Groups</li>
@@ -213,19 +216,19 @@ $ wget https://bit.ly/ansibletowerbundle
           </ul>
           <aside class="notes">
           <p>Inventory is a collection of the hosts (nodes) with associated metadata and groupings that Ansible can connect and manage. An inventory source can be static files or dynamically retreived from an external system.</p>
-          <p>In Tower, there are many features that you can take advantage of in regards to inventory. Groups, all be them not new in the ansible space, are now more easily manipulated and created. Groups can be nested and this allows for you to copy or move the group to a different group.</p>
-          <p>You also have the ability in Ansible Tower to setup a dynamic inventory within Tower. We will talk more in depth about dynamic inventories here in a few minutes.</p>
+          <p>In Ansible Tower, there are many features that you can take advantage of in regards to inventory. Groups, all be them not new in the ansible space, are now more easily manipulated and created. Groups can be nested and this allows for you to copy or move the group to a different group.</p>
+          <p>You also have the ability in Ansible Tower to setup a dynamic inventory within Ansible Tower. We will talk more in depth about dynamic inventories here in a few minutes.</p>
         </aside>
         </section>
         <section>
           <h2>Projects</h2>
-          <p>A Project is a logical collection of Ansible Playbooks, represented in Tower.</p>
-          <p>You can manage Playbooks and Playbook directories by placing them in a <strong>source code management system</strong> supported by Tower, including Git, Subversion, and Mercurial.</li>
+          <p>A Project is a logical collection of Ansible Playbooks, represented in Ansible Tower.</p>
+          <p>You can manage Playbooks and Playbook directories by placing them in a <strong>source code management system</strong> supported by Ansible Tower, including Git, Subversion, and Mercurial.</li>
           <aside class="notes">
             <p>As a refresher from the core presentation, a Project is a logical collection of Ansible playbooks. </p>
-            <p>In Tower, you can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Tower server, or by placing your playbooks into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.</p>
+            <p>In Ansible Tower, you can manage playbooks and playbook directories by either placing them manually under the Project Base Path on your Ansible Tower server, or by placing your playbooks into a source code management (SCM) system supported by Ansible Tower, including Git, Subversion, and Mercurial.</p>
             <p>Managing your projects with a SCM is recommended to ensure that only those with assigned access to the repository can change the playbook before execution, and for the extra layer of accountability and change control it provides.</p>
-            <p>Within Tower, there are a few new things that you can do with your projects.</p>
+            <p>Within Ansible Tower, there are a few new things that you can do with your projects.</p>
             <ul>
               <li>Update: If configured for a particular project, you can invoke an immediate update to source control.</li>
               <li>Schedule: If configured for a particular project , you can schedule an update from source control.</li>
@@ -237,7 +240,7 @@ $ wget https://bit.ly/ansibletowerbundle
           <h2>Job Templates</h2>
           <p>A job template is a definition and set of parameters for running an Ansible Playbook. <br><br>Job templates are useful to <strong>execute</strong> the same job many times and encourage the <strong>reuse</strong> of Ansible Playbook content and collaboration between teams.</p>
           <aside class="notes">
-            <p>While the REST API allows for the execution of jobs directly, Tower requires that you first create a job template.</p>
+            <p>While the REST API allows for the execution of jobs directly, Ansible Tower requires that you first create a job template.</p>
             <p>To create a job template, there are some things that are required. You will need to have:
               <ul>
                 <li>Name</li>
@@ -253,13 +256,13 @@ $ wget https://bit.ly/ansibletowerbundle
             <p>Options such as Enable privilege escaltion, enable provisioning callbacks and enable concurrent jobs.</p>
              <ul>
                 <li>Enable Privilege Escalation: If enabled, run this playbook as an administrator. This is the equivalent of passing the --become option to the ansible-playbook command.</li>
-                <li>Allow Provisioning Callbacks: Enable a host to call back to Tower via the Tower API and invoke the launch of a job from this job template.</li>
-                <li>Allow Provisioning Callbacks: Enable a host to call back to Tower via the Tower API and invoke the launch of a job from this job template.</li>
+                <li>Allow Provisioning Callbacks: Enable a host to call back to Ansible Tower via the Ansible Tower API and invoke the launch of a job from this job template.</li>
+                <li>Allow Provisioning Callbacks: Enable a host to call back to Ansible Tower via the Ansible Tower API and invoke the launch of a job from this job template.</li>
           </aside>
         </section>
         <section>
           <h2>Jobs</h2>
-          <p>A job is an instance of Tower launching an Ansible Playbook against an inventory of hosts.</p>
+          <p>A job is an instance of Ansible Tower launching an Ansible Playbook against an inventory of hosts.</p>
             <ul>
               <li>Job results can be easily viewed</li>
               <li>View the standard out for a more in-depth look</li>
@@ -276,9 +279,9 @@ $ wget https://bit.ly/ansibletowerbundle
         </section>
         <section>
           <h2>Role Based Access Control (RBAC)</h2>
-          <p>Role-Based Access Controls (RBAC) are built into Ansible Tower and allow administrators to <strong>delegate access</strong> to server inventories, organizations, and more. These controls allow Tower to help you <strong>increase security</strong> and <strong>streamline management</strong> of your Ansible automation.</p>
+          <p>Role-Based Access Controls (RBAC) are built into Ansible Tower and allow administrators to <strong>delegate access</strong> to server inventories, organizations, and more. These controls allow Ansible Tower to help you <strong>increase security</strong> and <strong>streamline management</strong> of your Ansible automation.</p>
           <aside class="notes">
-            <p>RBAC is at the core of how Tower scales organizations while increasing the security of automating.</p>
+            <p>RBAC is at the core of how Ansible Tower scales organizations while increasing the security of automating.</p>
             <p>By delegating access to resources within tower, you are removing an element of human error. Users can only view what they are permitted to see and can only run jobs against inventories that they are permitted to act against.</p>
             <p>(increase security) </p>
             <p>Streamline management</p>
@@ -304,7 +307,7 @@ $ wget https://bit.ly/ansibletowerbundle
             <h1>Workshop:<br/>Ansible Tower Basic Setup<br>&amp; Your First Job Run</h1>
             <aside class="notes">
               <p>See</p>
-              <pre><code>workshops/tower_basic_setup</code></pre>
+              <pre class="language-yaml"><code>workshops/tower_basic_setup</code></pre>
               <p>in the Ansible Lightbulb repo.</p>
             </aside>
           </section>
@@ -326,36 +329,176 @@ $ wget https://bit.ly/ansibletowerbundle
           <section data-state="title alt">
             <h1>Demo:<br/>Ansible Tower Dynamic Inventory</h1>
             <aside class="notes speaker">
-              <p>Setup a cloud credential in Tower to (presumably) AWS EC2 and then manually trigger an inventory update. Show the inventory in the Tower UI. Note how it generated groups and job templates can be setup to run inventory updates before executing.</p>
+              <p>Setup a cloud credential in Ansible Tower to (presumably) AWS EC2 and then manually trigger an inventory update. Show the inventory in the Ansible Tower UI. Note how it generated groups and job templates can be setup to run inventory updates before executing.</p>
               <p>Alternatively you can open a terminal window and use Ansible core to demonstrate dyanmic inventory at work. Assuming you have your local credentials setup, run the inventory script and pipe it to less. Then run an ad-hoc ping command using <code>-i</code> switch to call your dynamic inventory.</p>
             </aside>
           </section>
         </section>
         <section>
-          <h2>More with Ansible Tower</h2>
-          <ul>
-            <li>User Surveys (Self-Service)</li>
-            <li>Job Scheduling</li>
-            <li>Notifications</li>
-            <li>Ad-Hoc Commands</li>
-            <li>Workflows (New in v3.1)</li>
-            <li>System Scanning</li>
-            <li>Logging Aggregation (New in v3.1)</li>
-            <li>Advanced Configuration Options</li>
-          </ul>
-          <aside class="notes speaker">
-						<p>Make sure to visit docs.ansible.com to learn about the following advanced topics for Ansible Tower:</p>
-						<ul>
-							<li>User Surveys allow for job templates to be created with input from your end users at runtime. This allows for unique variable structures to each run, based on input from the person executing the job template.</li>
-						  <li>Job scheduling is just that: The ability to schedule when tower executes a job template - and not just job templates you create. You can also schedule inventory updates, scan jobs, and SCM project updates.</li>
-						  <li>Notifications allow for Tower to reach out via standard plugins such as email, chat/messaging, or custom API call to report returns on job runs, failures of jobs, or other needed info for your teams.</li>
-							<li>Ad-Hoc commands allow you to run a single ansible task against your inventory, from one machine to all if needed.</li>
-							<li>Workflows are a new feature in Tower 3.1 that allow for decisioning and daisy-chaining of job templates to create a full automation workflow across your projects. They allow for job templates to be triggered both on success and on failure, creating a fully featured automation tool with decisioning capabilities in case of failure.</li>
-							<li>System Scanning is a special type of job template that creates a repository of data over time to track changes on hosts in your inventory. You can track things such as files, packages installed or create custom data points to track.</li>
-							<li>Logging aggregation features new in 3.1 allow for Tower's runtime logging and scan data to be shipped to a variety of Enterprise Logging applications. Included in the integration is support for Splunk, Loggly, elasticache and other useful log aggregator and analysis tools.</li>
-							<li>Advanced Configuration Options include things such as external databases, LDAP/AD authentication, disaster recovery and clustering (New in v3.1) schemes.</li>
-						</ul>
-          </aside>
+          <section>
+            <h2>More with Ansible Tower</h2>
+            <ul>
+              <li>Job Status Updates</li>
+              <li>Activity Stream</li>
+              <li>Integrated Notifications</li>
+              <li>Schedule Jobs</li>
+              <li>Manage and Track Your Inventory</li>
+              <li>Self Service IT (User Surveys)</li>
+              <li>Remote Command Execution</li>
+              <li>External Logging</li>
+              <li>Multi-Playbook Workflows</li>
+            </ul>
+            <aside class="notes">
+            <p>What we've shown you so far are only the basics of what Ansible Tower can do to scale the automation activity in your organization. Here are some other features that have been added to Tower.</p>
+            <p>You can navigate down into slides with more detail on each or return to these at a later date when you the time.</p>
+            </aside>
+          </section>
+
+          <!-- NEW SLIDES BEGIN HERE -->
+          <section>
+            <h2>Job Status Update</h2>
+            <div class="columns">
+              <div class="col">
+                  <p>Heads-up NOC-style <strong>automation dashboard</strong> displays everything going on in your Ansible environment.</p>
+              </div>
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/job-status-update.png" alt="" />
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Activity Stream</h2>
+            <div class="columns">
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/activity-stream.png" alt="" />
+              </div>
+              <div class="col">
+                  <p>Securely stores every Job that runs, and enables you to view them later, or export details through Ansible Tower’s API.</p>
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Integrated Notifications</h2>
+            <div class="columns">
+              <div class="col">
+                  <p>Stay informed of your automation status via integrated notifications. Connect Slack, Hipchat, SMS, email and more. </p>
+              </div>
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/integrated-notifications.png" alt="" />
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Schedule Jobs</h2>
+            <div class="columns">
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/schedule-jobs.png" alt="" />
+              </div>
+              <div class="col">
+                  <p>Enables you to any Job now, later, or forever.</p>
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Manage and Track Your Inventory</h2>
+            <div class="columns">
+              <div class="col">
+                  <p>Ansible Tower’s <strong>inventory syncing</strong> and <strong>provisioning callbacks</strong> allow nodes to request configuration on demand, enabling autoscaling.</p>
+              </div>
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/manage-track-inventory.png" alt="" />
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Self Service IT</h2>
+            <div class="columns">
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/self-service-it.png" alt="" />
+              </div>
+              <div class="col">
+                  <p>Ansible Tower lets you launch Playbooks with just a single click. It can prompt you for variables, let you choose from available secure credentials and monitor the resulting deployments.</p>
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Remote Command Execution</h2>
+            <div class="columns">
+              <div class="col">
+                  <p>Run simple tasks on any hosts with Ansible Tower's <strong>remote command execution</strong>. Add users or groups, reset passwords, restart a malfunctioning service or patch a critical security issue, quickly.</p>
+              </div>
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/remote-command-execution.png" alt="" />
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>External Logging</h2>
+            <div class="columns">
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/external-logging.png" alt="" />
+              </div>
+              <div class="col">
+                  <p>Connect Ansible Tower to your external logging and analytics provider to perform analysis of automation and event correlation across your entire environment.</p>
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Multi-Playbook Workflows</h2>
+            <div class="columns">
+              <div class="col">
+                  <p>Ansible Tower’s multi-Playbook workflows chains any number of Playbooks together to create a single workflow. Different Jobs can be run depending on success or failure of the prior Playbook.</p>
+              </div>
+              <div class="col" style="flex-grow: 10;">
+                  <img src="images/tower/multi-playbook-workflows.png" alt="" />
+              </div>
+            </div>
+            <aside class="notes speaker">
+
+            </aside>
+          </section>
+
+          <!-- NEW SLIDES END HERE -->
         </section>
         <section>
           <h2>Next Steps</h2>
@@ -386,7 +529,9 @@ $ wget https://bit.ly/ansibletowerbundle
           { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js' },
           { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js' },
           { src: 'plugin/notes/notes.js', async: true },
-          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js'},
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-yaml.min.js'}
+          //{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ]
       });
     </script>

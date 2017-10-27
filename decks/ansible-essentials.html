@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="css/theme/ansible.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css">
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+
 
   </head>
   <body>
@@ -199,7 +201,7 @@
         </section>
         <section>
           <h2>Installing Ansible</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 # the most common and preferred way of
 # installation
 $ sudo pip install ansible
@@ -345,7 +347,7 @@ $ sudo apt-get install ansible
         </section>
         <section>
           <h2>Modules Documentation</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 # List out all modules installed
 $ ansible-doc -l
 ...
@@ -404,7 +406,7 @@ Options (= is mandatory):
         </section>
         <section>
           <h2>Static Inventory Example</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 10.42.0.2
 10.42.0.6
 10.42.0.7
@@ -419,7 +421,7 @@ host.example.com
         </section>
         <section>
           <h2>Static Inventory Example</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 [control]
 control ansible_host=10.42.0.2
 
@@ -475,7 +477,7 @@ ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
         </section>
         <section>
           <h2>Ad-Hoc Commands</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 # check all my inventory hosts are ready to be
 # managed by Ansible
 $ ansible all -m ping
@@ -498,7 +500,7 @@ $ ansible web -m command -a &quot;uptime&quot;
         <section>
           <h2>Sidebar: Discovered Facts</h2>
           <p>Facts are bits of information derived from examining a host systems that are stored as variables for later use in a play.</p>
-          <pre><code>
+          <pre class="language-yaml"><code>
 $ ansible localhost -m setup
 localhost | success >> {
   "ansible_facts": {
@@ -525,7 +527,7 @@ localhost | success >> {
             <h1>Demo Time: <br/>Ad-Hoc Commands</h1>
             <aside class="notes">
               <p>To demonstrate ad-hoc commands in action, open an SSH session to your control host and run the ad-hoc commands in the previous slides.</p>
-              <pre><code>
+              <pre class="language-yaml"><code>
 $ ansible all -m ping
 $ ansible localhost -m setup
 $ ansible web -m command -a &quot;uptime&quot;
@@ -611,7 +613,7 @@ $ ansible web -m command -a &quot;uptime&quot;
         </section>
         <section>
           <h2>Example Tasks in a Play</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 tasks:
 - name: httpd package is present
   yum:
@@ -650,7 +652,7 @@ tasks:
         </section>
         <section>
           <h2>Example Handler Task in a Play</h2>
-          <pre><code data-noescape>
+          <pre class="language-yaml"><code data-noescape>
 tasks:
 - name: httpd package is present
   yum:
@@ -684,7 +686,7 @@ tasks:
         </section>
         <section>
           <h2>Playbook Example</h2>
-          <pre><code data-noescape>
+          <pre class="language-yaml"><code data-noescape>
 ---
 - name: install and start apache
   hosts: web
@@ -715,7 +717,7 @@ tasks:
 
         <section>
           <h2>Human-Meaningful Naming</h2>
-          <pre><code data-noescape>
+          <pre class="language-yaml"><code data-noescape>
  ---
  - <mark>name: install and start apache</mark>
    hosts: web
@@ -747,7 +749,7 @@ tasks:
 
         <section>
           <h2>Host Selector</h2>
-          <pre><code data-noescape>
+          <pre class="language-yaml"><code data-noescape>
 ---
 - name: install and start apache
   <mark>hosts: web</mark>
@@ -779,7 +781,7 @@ tasks:
         </section>
         <section>
           <h2>Privilege Escalation</h2>
-          <pre><code data-noescape>
+          <pre class="language-yaml"><code data-noescape>
 ---
 - name: install and start apache
   hosts: web
@@ -810,7 +812,7 @@ tasks:
         </section>
         <section>
           <h2>Play Variables</h2>
-          <pre><code data-noescape>
+          <pre class="language-yaml"><code data-noescape>
 ---
 - name: install and start apache
   hosts: web
@@ -841,7 +843,7 @@ tasks:
         </section>
         <section>
           <h2>Tasks</h2>
-          <pre><code data-noescape>
+          <pre class="language-yaml"><code data-noescape>
 ---
 - name: install and start apache
   hosts: web
@@ -924,7 +926,7 @@ tasks:
           <section>
             <h2>Loops</h2>
             <p>Loops can do one task on multiple things, such as create a lot of users, install a lot of packages, or repeat a polling step until a certain result is reached.</p>
-            <pre><code data-noescape>
+            <pre class="language-yaml"><code data-noescape>
 - yum:
     name: <mark>&quot;{{ item }}&quot;</mark>
     state: latest
@@ -940,7 +942,7 @@ tasks:
           <section>
             <h2>Conditionals</h2>
             <p>Ansible supports the conditional execution of a task based on the run-time evaluation of variable, fact, or previous task result.</p>
-            <pre><code data-noescape>
+            <pre class="language-yaml"><code data-noescape>
 - yum:
     name: httpd
     state: latest
@@ -955,7 +957,7 @@ tasks:
           <section>
             <h2>Tags</h2>
             <p>Tags are useful to be able to run a subset of a playbook on-demand.</p>
-            <pre><code data-noescape>
+            <pre class="language-yaml"><code data-noescape>
 - yum:
     name: &quot;{{ item }}&quot;
     state: latest
@@ -979,7 +981,7 @@ tasks:
           <section>
             <h2>Blocks</h2>
             <p>Blocks cut down on repetitive task directives, allow for logical grouping of tasks and even in play error handling.</p>
-            <pre><code data-noescape>
+            <pre class="language-yaml"><code data-noescape>
 - <mark>block:</mark>
   - yum:
       name: &quot;{{ item }}&quot;
@@ -1032,7 +1034,7 @@ tasks:
         </section>
         <section>
           <h2>Project with Embedded Roles Example</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 site.yml
 roles/
    common/
@@ -1058,7 +1060,7 @@ roles/
         </section>
         <section>
           <h2>Project with Embedded Roles Example</h2>
-          <pre><code>
+          <pre class="language-yaml"><code>
 # site.yml
 ---
 - hosts: web
@@ -1126,7 +1128,9 @@ roles/
           { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js' },
           { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js' },
           { src: 'plugin/notes/notes.js', async: true },
-          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js'},
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-yaml.min.js'}
+          //{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ]
       });
     </script>
