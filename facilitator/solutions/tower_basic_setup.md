@@ -1,7 +1,5 @@
 # Workshop: Ansible Tower Basic Setup
 
-**THIS WORKSHOP SOLUTION IS CURRENTLY A WORK IN PROGRESS**
-
 Here students are tasked with installing and activating a new single integrated instance of Ansible Tower. The assignment will show students how they can setup an instance of Ansible Tower themselves to run an existing playbook for testing, demos and their own proof-of-concepts.
 
 #### Tips
