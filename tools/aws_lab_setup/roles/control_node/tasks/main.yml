@@ -12,6 +12,7 @@
       - vim
       - git
       - wget
+      - nano
 
     state: latest
     enablerepo: epel-testing
