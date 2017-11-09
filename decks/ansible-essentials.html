@@ -644,7 +644,7 @@ tasks:
         <section>
           <h2>Handler Tasks</h2>
           <p>Handlers are special tasks that run at the end of a play if notified by another task when a change occurs.</p>
-          <blockquote>If a configuration file gets changed notify a service restart task that it needs to run.</blockquote>
+          <blockquote>If a package gets installed or updated, notify a service restart task that it needs to run.</blockquote>
           <aside class="notes">
             <p>Normal tasks run sequentially; handler tasks run on notification of a change and will only run once at the end of a play.</p>
             <p>For more information see <a href="http://docs.ansible.com/ansible/playbooks_intro.html#handlers-running-operations-on-change">Handler Tasks</a>.</p>
