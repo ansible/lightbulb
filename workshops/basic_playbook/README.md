@@ -18,7 +18,7 @@
 
 ### Before You Begin
 
-If you're not familar with the structure and authoring YAML files take a moment to read thru the Ansible [YAML Syntax](http://docs.ansible.com/ansible/YAMLSyntax.html) guide.
+If you're not familiar with the structure and authoring YAML files take a moment to read thru the Ansible [YAML Syntax](http://docs.ansible.com/ansible/YAMLSyntax.html) guide.
 
 #### NOTE
 
@@ -45,7 +45,7 @@ While developing the playbook use the `--syntax-check` to check your work and de
 #### Extra Credit
 
 1. Add a smoke test to your playbook using the `uri` module that test nginx is serving the sample home page.
-1. Create a seperate playbook that stops and removes nginx along with its configuration file and home page.
+1. Create a separate playbook that stops and removes nginx along with its configuration file and home page.
 
 ### Resources
 

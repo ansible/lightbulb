@@ -5,7 +5,7 @@
 * Ansible Modules
 * Facts
 * Inventory and Groups
-* `ansible` command-line options: ```-i -m -a -b --limit```
+* `ansible` command-line options: `-i -m -a -b --limit`
 
 ### What You Will Learn
 

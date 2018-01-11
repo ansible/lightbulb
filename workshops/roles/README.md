@@ -22,7 +22,7 @@ This assignment should result in a drop in replacement that is portable and more
 
 #### Extra Credit
 
-1. Refactor and merge the Nginx remove and uninstall playbook from the Basic Playbook Extra Credit assignments into your "nginx-simple" role. Create a seperate playbook to execute that function of the role.
+1. Refactor and merge the Nginx remove and uninstall playbook from the Basic Playbook Extra Credit assignments into your "nginx-simple" role. Create a separate playbook to execute that function of the role.
 
 ### Resources
 

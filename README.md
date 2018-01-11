@@ -6,9 +6,9 @@ Lightbulb began life as the content that supported Ansible's training program be
 
 This content is now taking on a new life as a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal workshop training in various forms -- instructor-led, hands-on or self-paced.
 
-Over time lightbulb will be expanded to include advanced and developer topics in addition to expanding beyond linux server automation and into Windows and network automation.
+Over time Lightbulb will be expanded to include advanced and developer topics in addition to expanding beyond linux server automation and into Windows and network automation.
 
-To support these objectives, the project provides a lab provisioner tool for creating an environment to present and work with lightbulb content.
+To support these objectives, the project provides a lab provisioner tool for creating an environment to present and work with Lightbulb content.
 
 ### What's Provided
 
@@ -22,7 +22,7 @@ The Ansible Lightbulb project has been designed to be used as a toolkit and best
 
 #### Examples
 
-The content in `examples/` is the heart of what lightbulb has to offer. They are complete Ansible playbooks that demonstrate the most fundamental features and most common use patterns.
+The content in `examples/` is the heart of what Lightbulb has to offer. They are complete Ansible playbooks that demonstrate the most fundamental features and most common use patterns.
 
 These examples are an excellent educational reference for communicating how Ansible works in a clear, focused and consistent manner using recommended best practices.
 
@@ -42,17 +42,17 @@ The content of `decks/` are collection of presentation decks using the [reveal.j
 
 Lightbulb provides a lab provisioner utility for creating a personal lab environment for each student. Currently only Amazon Web Services (AWS) is supported in us-east-1 and us-west-1 with the foundation to support other regions in place.
 
-**Coming Soon.** Vagrant support for self-paced learning is planned. Legacy support from the previous generation of lightbulb remains, but is in need of an overhaul.
+**Coming Soon.** Vagrant support for self-paced learning is planned. Legacy support from the previous generation of Lightbulb remains, but is in need of an overhaul.
 
 #### Facilitator Guide
 
 `facilitator/` includes documentation on recommended ways Lightbulb content can be assembled and used for a wide range of purposes and scenarios.
 
-If you are planning on using lightbulb for some sort of informal training on automating with Ansible [this documentation](facilitator/README.md) should be your next stop.
+If you are planning on using Lightbulb for some sort of informal training on automating with Ansible [this documentation](facilitator/README.md) should be your next stop.
 
 ### Requirements
 
-True to its philosophy and The Ansible Way, Lightbulb has been developed so that using lightbulb is as simple and low-overhead as possible. Requirements depend on the format and delivery of the lightbulb content.
+True to its philosophy and The Ansible Way, Lightbulb has been developed so that using Lightbulb is as simple and low-overhead as possible. Requirements depend on the format and delivery of the Lightbulb content.
 
 * Modern HTML5 Standard Compliant Web Browser
 * A recent stable version of Python 2.7 and the latest stable version of the boto libraries.
@@ -64,7 +64,7 @@ True to its philosophy and The Ansible Way, Lightbulb has been developed so that
 
 For hands-on or self-paced training, students should have working knowledge of using SSH and command line shell (BASH). The ability to SSH from their personal laptop to a lab environment hosted in a public cloud can also be required based on the format and presentation of the context.
 
-For demos and instrcutor-led exercises, conceptual understanding of linux system admin, DevOps and distributed application architecture is all that is required.
+For demos and instructor-led exercises, conceptual understanding of linux system admin, DevOps and distributed application architecture is all that is required.
 
 ### Reference
 

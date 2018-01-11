@@ -14,7 +14,7 @@
 
 ### Before You Begin
 
-If you're not familar with the structure and authoring YAML files take a moment to read thru the Ansible [YAML Syntax](http://docs.ansible.com/ansible/YAMLSyntax.html) guide.
+If you're not familiar with the structure and authoring YAML files take a moment to read thru the Ansible [YAML Syntax](http://docs.ansible.com/ansible/YAMLSyntax.html) guide.
 
 #### NOTE
 

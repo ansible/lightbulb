@@ -12,9 +12,9 @@ If you haven't read it already, start with the [Ansible Lightbulb README](../REA
 
 We also recommend reading about [the Lightbulb philosophy](../PHILOSOPHY.md) for effectively communicating and delivering informal training on Ansible in the same spirit that it has become known for and highly successful.
 
-If you are already somewhat familar with automating with Ansible, we recommend that you are also familiar with the best practices this content incorporates. See [this blog post](https://www.ansible.com/blog/ansible-best-practices-essentials) and [video presentation from AnsibleFest Brooklyn (October 2016)](https://www.ansible.com/ansible-best-practices).
+If you are already somewhat familiar with automating with Ansible, we recommend that you are also familiar with the best practices this content incorporates. See [this blog post](https://www.ansible.com/blog/ansible-best-practices-essentials) and [video presentation from AnsibleFest Brooklyn (October 2016)](https://www.ansible.com/ansible-best-practices).
 
-The Lightbulb project provides a lab provisioner tool for creating an environment to present and work with lightbulb content. Currently the provisioner only supports provisioning lab environments using Amazon Web Services. (A Vagrant option will be developed particularly for self-paced learning.) See the [Ansible AWS Lab Provisioner README](../tools/aws_lab_setup/README.md) for details on requirements, setup and configuration.
+The Lightbulb project provides a lab provisioner tool for creating an environment to present and work with Lightbulb content. Currently the provisioner only supports provisioning lab environments using Amazon Web Services. (A Vagrant option will be developed particularly for self-paced learning.) See the [Ansible AWS Lab Provisioner README](../tools/aws_lab_setup/README.md) for details on requirements, setup and configuration.
 
 ## Lightbulb Modules
 
@@ -52,7 +52,7 @@ For a basic linux server automation use `decks/ansible-essentials.html` and only
 
 Besides walking students through these examples, the facilitator of this module will also be asked to install Ansible using pip and demonstrate some ad-hoc commands use. Installing Ansible is optional though highly recommended as it shows how easy it is to get started.
 
-An alternative option for delivering this module to a more sophisticated audience is to use the Nginx variants of the apache examples instead:
+An alternative option for delivering this module to a more sophisticated audience is to use the Nginx variants of the Apache examples instead:
 
 * nginx-simple-playbook
 * nginx-basic-playbook
@@ -125,7 +125,7 @@ We recommend the lab environments be made up of a single "control" host in a gro
 
 **Run Time**: 1 Hour
 
-**Prerequsites**: Ansible Essentials Workshop or Ansible Essentials Hands-On Workshop
+**Prerequisites**: Ansible Essentials Workshop or Ansible Essentials Hands-On Workshop
 
 This module is designed to provide some valuable instruction on using Ansible Tower with a limited amount of time and/or resources. It is also ideal for addressing large audiences where the overhead of provisioning and supporting the use of individual labs required to execute hands-on workshops is not feasible. This module is also ideal for remote instruction like webinars.
 
@@ -156,7 +156,7 @@ Only the facilitator of the workshop needs a lab environment making this module 
 
 **Run Time**: 2 Hours
 
-**Prerequsites**: Ansible Essentials Workshop or Ansible Essentials Hands-On Workshop
+**Prerequisites**: Ansible Essentials Workshop or Ansible Essentials Hands-On Workshop
 
 This module is designed to provide some valuable instruction on using Ansible Tower with a limited amount of time and/or resources. It is also ideal for addressing large audiences where the overhead of provisioning and supporting the use of individual labs required to execute hands-on workshops is not feasible. This module is also ideal for remote instruction like webinars.
 
@@ -170,7 +170,7 @@ For automating with Ansible Tower use DECK FILE HERE and only navigate to the ri
 
 ##### Examples
 
-The example(s) here are mostly at the facilitator's discretion. We recommend the apache-roles or nginx-roles example since those are the most sophisticated one students are exposed to in the Essentials workshops that should have preceeded this module.
+The example(s) here are mostly at the facilitator's discretion. We recommend the apache-roles or nginx-roles example since those are the most sophisticated one students are exposed to in the Essentials workshops that should have preceded this module.
 
 ##### Workshops
 

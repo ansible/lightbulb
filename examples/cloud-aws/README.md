@@ -4,8 +4,8 @@ This intermediate-level Ansible playbook example demonstrates the common tasks f
 
 This example demonstrates a few other best practices and intermediate techniques:
 
-* **Compound Playbook.** This example shows the use of a playbook, `site.yml`, combining other playbooks, `provision.yml` and `setup.yml`, using play level 'include' statements. Splitting provisioning and configuration plays into seperate files is a recommended best practice. By doing so, users have more flexibility to what the run without needing tags and wrapping blocks of tasks with conditionals. This seperation can be used to promote reuse, but enabling the mixing and matching of various playbooks.
-* **Controling Debug Message Display.** There is a debug task in `provison.yml` using the optional `verbosity` parameter. Avoiding the unecessary display of debugging messages avoids confusion and is just good hygene. In this implementation, the debug message won't be displayed unless the playbook is run in verbose mode level 1 or greater.
+* **Compound Playbook.** This example shows the use of a playbook, `site.yml`, combining other playbooks, `provision.yml` and `setup.yml`, using play level 'include' statements. Splitting provisioning and configuration plays into separate files is a recommended best practice. By doing so, users have more flexibility to what the run without needing tags and wrapping blocks of tasks with conditionals. This separation can be used to promote reuse, but enabling the mixing and matching of various playbooks.
+* **Controlling Debug Message Display.** There is a debug task in `provison.yml` using the optional `verbosity` parameter. Avoiding the unnecessary display of debugging messages avoids confusion and is just good hygiene. In this implementation, the debug message won't be displayed unless the playbook is run in verbose mode level 1 or greater.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ The following variables must be properly set for this example to run properly.
 
 * `ec2_region`: A valid AWS region name such as "us-east-2" or "ap-southeast-1" or "eu-west-2."
 
-* `ec2_key_name`: An existing AWS keyname from your account to use when provisoning instances.
+* `ec2_key_name`: An existing AWS keyname from your account to use when provisioning instances.
 
 ### Optional
 

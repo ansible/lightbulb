@@ -58,7 +58,7 @@
             <p>This deck is designed to provide students with direct introductory instruction and guidance to beginning to automate with Ansible. It is the starting point for students intent on becoming more proficient with Ansible through other Lightbulb modules and their own usage.</p>
             <p>This deck supports lecture and hands-on forms of presenting this material. </p>
             <p>Allow 2 hours to deliver the lecture-based form and 4 hours for stopping to do the workshop assignments. To access the additional slides for delivering the workshops, navigate down when available. </p>
-            <p>See the <a href="../facilitator/README.md">Ansible Lighttbulb facilitator&rsquo;s guide</a> for more details on using this deck and it&rsquo;s associated material.</p>
+            <p>See the <a href="../facilitator/README.md">Ansible Lightbulb facilitator&rsquo;s guide</a> for more details on using this deck and it&rsquo;s associated material.</p>
           </aside>
         </section>
         <section>
@@ -82,7 +82,7 @@
             <aside class="notes">
               <p>Ansible has a number of qualities that make it the most rapidly growing automation platform in the world. </p>
               <p><strong>Ansible is simple.</strong> Playbooks are human and machine readable, no special coding skills required &ndash; and even people in your IT organization that don’t know Ansible can read an Ansible playbook and understand what’s happening.</p>
-              <p>This simplicity also means that it&rsquo;s easy to install and get startedto do real work with it quickly &ndash; usually in just minutes. </p>
+              <p>This simplicity also means that it&rsquo;s easy to install and get started to do real work with it quickly &ndash; usually in just minutes. </p>
               <p>Ansible also works like you think &ndash; tasks are always executed in order. All together, the simplicity ensures that you can get started quickly.</p>
               <p><strong>Ansible is powerful.</strong> Simplicity is great, but to be really useful, you also need the powerful features that ensure you can model even the most complex of IT workflows.</p>
               <p>Ansible is complete automation, able to deploy apps, manage orchestration, and configure the infrastructure, networks, operating systems, and services that you’re already using today. </p>
@@ -187,7 +187,7 @@
           <img src="images/ansible-automation-diagram.svg"/>
           <aside class="notes">
             <p>Ansible is complete automation. It&apos;s not just configuration management, It&apos;s provisioning infrastructure, deploying applications, and orchestrating actions against all layers of IT infrastructure in a single tool.</p>
-            <p>Ansibles capabilities allow you to orchestrate the entire application and environment lifecycle, regardless of where It&apos;s deployed.</p>
+            <p>Ansible's capabilities allow you to orchestrate the entire application and environment lifecycle, regardless of where It&apos;s deployed.</p>
           </aside>
         </section>
         <section>
@@ -196,7 +196,7 @@
           <aside class="notes">
             <p>What can you do with Ansible? Nearly anything. Ansible is the Swiss Army knife of DevOps, capable of handling many powerful automation tasks with the flexibility to adapt to many environments and workflows.</p>
             <p>Many folks like to categorize Ansible as a configuration manager, and although yes, Ansible can do that, it&quot;s just the tip of the iceberg. When you couple configuration management with orchestration, you can start to model complicated multi-tier deployments with ease.</p>
-            <p>With Ansible, once soneone on your team automates something, everyone on the team now knows how to do it.</p>
+            <p>With Ansible, once someone on your team automates something, everyone on the team now knows how to do it.</p>
           </aside>
         </section>
         <section>
@@ -216,22 +216,22 @@ $ sudo apt-get install ansible
           </code></pre>
           <aside class="notes">
             <p>As open source, Ansible is freely-available thru numerous means and can be installed in minutes with only a few requirements that most system already have. The installation methods listed here are the most commonly used.</p>
-            <p>Currently Ansible can be run from any machine with Python 2.6 or 2.7 installed. Python 3 support is in tech preview as of version 2.2. Windows isn’t supported for the control machine.</p>
+            <p>Currently Ansible can be run from any machine with Python 2.6 or 2.7 installed. Python 3 support is in tech preview as of version 2.2. Windows isn't supported for the control machine.</p>
             <p>The requirements of nodes being managed by Ansible vary based on the type and access used to work with them. Ansible needs a way to communicate, which is normally ssh or winrm though other means such as RESTful APIs and specialized connection types may be necessary. Linux servers will need Python 2.6 or later. Windows serves need PowerShell 3.</p>
-            <p>For more details see <a href="http://docs.ansible.com/ansible/intro_installation.html">the Installation page</a> in the Ansible documenation.
+            <p>For more details see <a href="http://docs.ansible.com/ansible/intro_installation.html">the Installation page</a> in the Ansible documentation.
           </aside>
         </section>
         <section>
           <section data-state="title alt">
           <h1>Demo Time: <br/>Installing Ansible</h1>
           <aside class="notes">
-            <p>To demonstrate how easy it is to install Ansible, open an SSH session to your control host and install ansible using one of the methods in the previous slide. Once complete do a <code>$ ansible --version</code>.</p>
+            <p>To demonstrate how easy it is to install Ansible, open an SSH session to your control host and install Ansible using one of the methods in the previous slide. Once complete do a <code>$ ansible --version</code>.</p>
           </aside>
           </section>
           <section data-state="title alt">
             <h1>Workshop: <br/>Installing Ansible</h1>
             <aside class="notes">
-              <p>This brief exercise demonstrates how easy it can be to install and configure ansible and begin automating.</p>
+              <p>This brief exercise demonstrates how easy it can be to install and configure Ansible and begin automating.</p>
               <p>See <code>workshops/ansible_install</code> in the Ansible Lightbulb repo for this workshop&apos;s assignment. It's solution and addition details can be found in <code>facilitator/solutions/ansible_install.md</code>.</p>
             </aside>
           </section>
@@ -248,7 +248,7 @@ $ sudo apt-get install ansible
           <img src="images/how-ansible-works-diagram-02.svg" />
           <aside class="notes">
             <p>Playbooks are written in YAML and are used to invoke Ansible modules to perform tasks that are executed sequentially i.e top to bottom. They can describe a policy you want your remote systems to enforce, or a set of steps in a general IT workflow. Playbooks are like an instruction manual and describe the state of environment.</p>
-            <p>For more details see <a href="http://docs.ansible.com/ansible/playbooks.html">the Playbook page</a> in the Ansible documenation.</p>
+            <p>For more details see <a href="http://docs.ansible.com/ansible/playbooks.html">the Playbook page</a> in the Ansible documentation.</p>
           </aside>
         </section>
         <section>
@@ -281,7 +281,7 @@ $ sudo apt-get install ansible
           <img src="images/how-ansible-works-diagram-05.svg" />
           <aside class="notes">
             <p>Your inventory of hosts are your raw material. They are a list of nodes and associated meta data that Ansible can automate.</p>
-            <p>Inventory lists can be built and stored several different ways, including static files, or can be dynamically-generated from an an external source.</p>
+            <p>Inventory lists can be built and stored several different ways, including static files, or can be dynamically-generated from an external source.</p>
             <p>You can also specify variables as part of an inventory list. For instance, set a particular host key that’s needed to log into that system remotely.  Inventories are ultimately lists of things you want to automate across.</p>
             <p>Here in this slide was see an example of a simple static inventory list of three hosts (webserver1, webserver2 and dbserver1) in two groups (web and db).</p>
             <p>For more details see the <a href="http://docs.ansible.com/ansible/intro_inventory.html">Inventory</a> page in the Ansible documentation.</p>
@@ -326,7 +326,7 @@ $ sudo apt-get install ansible
           </div>
           <aside class="notes">
             <p>If playbooks are the instruction manual for setting up and managing your infrastructure, Ansible modules are the tools in your toolkit.</p>
-            <p>We&rsquo;ve already discussed, Ansible modules. They are the &ldquo;batteries&rdquo; and the &ldquo;tools in a users toolkit.&rdquo;</p>
+            <p>We've already discussed, Ansible modules. They are the &ldquo;batteries&rdquo; and the &ldquo;tools in a users toolkit.&rdquo;</p>
             <p>While there are hundreds of modules at your disposal out-of-the-box these are the most common ones.</p>
             <p>Playbook tasks and how they relate to modules will be covered ahead. Tasks are the application of a module to perform a specific unit of work.</p>
           </aside>
@@ -374,7 +374,7 @@ Options (= is mandatory):
         </aside>
         <section>
           <h2>Modules: Run Commands</h2>
-          <p>If Ansible doesn’t have a module that suits your needs there are the “run command” modules:</p><br>
+          <p>If Ansible doesn't have a module that suits your needs there are the “run command” modules:</p><br>
           <ul>
             <li><b>command</b>: Takes the command and executes it on the host. The most secure and predictable.</li>
             <li><b>shell</b>: Executes through a shell like <code>/bin/sh</code> so you can use pipes etc. Be careful.</li>
@@ -383,7 +383,7 @@ Options (= is mandatory):
           </ul>
           <p><br><b>NOTE:</b> Unlike standard modules, run commands have no concept of desired state and should only be used as a last resort.</p>
           <aside class="notes">
-            <p>&quot;Run commands&quot; are what we collectively call these modules that enable users to do commandline operations in different ways. They’re a great catch all mechanism for getting things done, but they should be used sparingly and as a last resort. The reasons are many and varied.</p>
+            <p>&quot;Run commands&quot; are what we collectively call these modules that enable users to do command-line operations in different ways. They’re a great catch all mechanism for getting things done, but they should be used sparingly and as a last resort. The reasons are many and varied.</p>
             <p>The overuse of run commands is common amongst those just becoming familiar with Ansible for automating their work. They use <code>shell</code> to fire off a bash command they already know without stopping to look at the Ansible docs. That works well enough initially, but it undermines the value of automating with Ansible and sets things up for problems down the road. <b>As a best practice, always check the hundreds of Ansible shipping modules for what you need and use those first and run commands as a last resort.</b></p>
             <p><b>NOTE:</b> <code>shell</code> allows for IO redirection such as pipes. This is why It&apos;s best practice to use <code>command</code> unless they need to pipe something. It also best practice to <strong>never</strong> pass user input or variables thru a run command.</p>
           </aside>
@@ -400,8 +400,8 @@ Options (= is mandatory):
           <aside class="notes">
             <p>We've already discussed inventory in our review of Ansible's key components.</p>
             <p>Inventory consists of hosts, groups, inventory specific data. Inventory can either be static or dynamic.</p>
-            <p>Inventory is a collection of the hosts (nodes) with associated metadata and groupings that Ansible can connect and manage. An inventory source can be static files or dynamically retreived from an external system.</p>
-            <p>You can specify a different inventory file using the <code>-i &lt;path&gt;</code> option on the commandline or your Ansible configuration file.</p>
+            <p>Inventory is a collection of the hosts (nodes) with associated metadata and groupings that Ansible can connect and manage. An inventory source can be static files or dynamically retrieved from an external system.</p>
+            <p>You can specify a different inventory file using the <code>-i &lt;path&gt;</code> option on the command-line or your Ansible configuration file.</p>
           </aside>
         </section>
         <section>
@@ -415,8 +415,8 @@ Options (= is mandatory):
 host.example.com
           </code></pre>
           <aside class="notes">
-            <p>Static inventory is the easiest source to get started with. This example shows a static inventory source in It&rsquo;s simplist form &ndash; a single file with a list of IP addresses or hostnames.</p>
-            <p><strong>NOTE:</strong> Ansible infers a localhost is present even if it is not explictly listed. This is why you can actually run Ansible without a inventory source. Ansible will only be able to operate on the localhost where it is being run.</p>
+            <p>Static inventory is the easiest source to get started with. This example shows a static inventory source in It&rsquo;s simplest form &ndash; a single file with a list of IP addresses or hostnames.</p>
+            <p><strong>NOTE:</strong> Ansible infers a localhost is present even if it is not explicitly listed. This is why you can actually run Ansible without a inventory source. Ansible will only be able to operate on the localhost where it is being run.</p>
           </aside>
         </section>
         <section>
@@ -437,14 +437,14 @@ ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
           </code></pre>
           <aside class="notes">
             <p>The example shown here is a more practical and common example of a static inventory file.</p>
-            <p>Static inventory files are expresed in INI format. The headings in brackets are group names, which are used in classifying systems and deciding what systems you are controlling at what times and for what purpose. Hosts can belong to multiple groups and groups can be members of other groups. (The latter is not shown here.)</p>
+            <p>Static inventory files are expressed in INI format. The headings in brackets are group names, which are used in classifying systems and deciding what systems you are controlling at what times and for what purpose. Hosts can belong to multiple groups and groups can be members of other groups. (The latter is not shown here.)</p>
             <p>NOTE: This example contains variables, a topic we haven't touched on just yet. We'll go into them on the next slide.</p>
             <p>Other noteworthy attributes in our example:</p>
             <ul>
               <li><code>ansible_host</code> is an example of a host variable.</li>
               <li>Hosts can be assigned arbitrary human-meaningful names or aliases such as "control" and "haproxy". Ansible will instead use the value of <code>ansible_host</code> (one of several <a href="http://docs.ansible.com/ansible/playbooks_variables.html#magic-variables-and-how-to-access-information-about-other-hosts">&quot;magic&quot; inventory variables</a>) as the network address to connect.</li>
               <li>Static inventory files can support character ranges such as &quot;node-[1:3]&quot;</li>
-              <li>Like localhost, Ansible infers an &quot;all&quot; group is present. As its name implies, all inventory hosts are memebers of this group.</li>
+              <li>Like localhost, Ansible infers an &quot;all&quot; group is present. As its name implies, all inventory hosts are members of this group.</li>
               <li>The heading &quot;all:vars&quot; is an example of group variable assignment using two more &quot;magic&quot; variables, <code>ansible_ssh_private_key_file</code> and <code>ansible_user</code>.</li>
             </ul>
             <p>This example just covers the basics. There's a lot more to inventory that is not covered here. See the <a href="http://docs.ansible.com/ansible/intro_inventory.html">Ansible inventory documentation</a> for more details.</p>
@@ -468,10 +468,10 @@ ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
               <li><b>-b, --become</b><br/>Run ad-hoc command with elevated rights such as sudo, the default method</li>
               <li><b>-e EXTRA_VARS, --extra-vars=EXTRA_VARS</b><br/>Set additional variables as key=value or YAML/JSON</li>
               <li><b>--version</b><br/>Display the version of Ansible</li>
-              <li><b>--help</b><br/>Display the MAN page for the ansible tool</li>
+              <li><b>--help</b><br/>Display the MAN page for the Ansible tool</li>
             </ul>
             <aside class="notes">
-              <p>This slide shows essential commanline options for running ad-hoc commands that will be useful in our upcoming workshop assignment.</p>
+              <p>This slide shows essential command-line options for running ad-hoc commands that will be useful in our upcoming workshop assignment.</p>
             </aside>
           </section>
         </section>
@@ -518,7 +518,7 @@ localhost | success >> {
           </code></pre>
           <aside class="notes">
             <p>The second ad-hoc command example from the prior slide provides the following JSON output of a localhost facts run.</p>
-            <p>Facts are bits of information derived from examining a host systems that are stored as variables for later use. An example of this might be the ip address of the host, or what operating system it is running. The facts Ansible will discover about a host is extensive. What's shown here is just a small sample. Run <code>ansible localhost -m setup</code> for a more complete represenation.</p>
+            <p>Facts are bits of information derived from examining a host systems that are stored as variables for later use. An example of this might be the IP address of the host, or what operating system it is running. The facts Ansible will discover about a host is extensive. What's shown here is just a small sample. Run <code>ansible localhost -m setup</code> for a more complete representation.</p>
             <p>Ansible collects facts using the <code>setup</code> module. By default, Ansible will run the <code>setup</code> module before any other tasks are executed in a playbook. These facts can be referenced by subsequent automation tasks on a per host-basis during the playbook run.</p>
           </aside>
         </section>
@@ -590,7 +590,7 @@ $ ansible web -m command -a &quot;uptime&quot;
           </div>
           <aside class="notes">
             <p>If variables of the same name are defined in multiple sources, they get overwritten in a certain and specific order. This is why this variable precedence is important to understand.</p>
-            <p>There are 16 levels of variable precedence as of Ansible 2.x. The <code>extra_vars</code> (passed thru the commandline) always take precedence vs. role defaults which will always get overridden by any other source. The previous inventory example defines vars at 13 and 14 (higlighted in the list) in the variable precedence chain.</p>
+            <p>There are 16 levels of variable precedence as of Ansible 2.x. The <code>extra_vars</code> (passed thru the command-line) always take precedence vs. role defaults which will always get overridden by any other source. The previous inventory example defines vars at 13 and 14 (highlighted in the list) in the variable precedence chain.</p>
             <p>It&apos;s a good idea to limit the different sources where a specific variable is being set. While Ansible's variable precedence handling is comprehensive and well-defined, it can laborious to keep the resolution of multiple sources straight.</p>
             <p>NOTE: The inventory variables sources showed in the static inventory example a couple of slides back are in bold type.</p>
           </aside>
@@ -607,7 +607,7 @@ $ ansible web -m command -a &quot;uptime&quot;
             <li><b>git</b>: Clone a source code repository</li>
           </ul>
           <aside class="notes">
-            <p>We&apos;ve already reviewed modules, the batteries and tools Ansible provides. Tasks are the specific application of a module to perform a unit of automation.</p>
+            <p>We've already reviewed modules, the batteries and tools Ansible provides. Tasks are the specific application of a module to perform a unit of automation.</p>
             <p>Here we see a list of examples of common modules being applied to do something.</p>
           <aside>
         </section>
@@ -672,7 +672,7 @@ tasks:
     state: restarted
           </code></pre>
           <aside class="notes">
-            <p>Here is our previous example with a few slight modifications that have bene highlighted.</p>
+            <p>Here is our previous example with a few slight modifications that have been highlighted.</p>
             <p>In this version of our example, we add a <code>notify</code> keyword to the first task to trigger a handler task if it returns &quot;changed&quot; as being true. The third tasks now is under a &quot;handlers&quot; section that signifies that the handler task will run on notification at the end of the play of change occurs during the first task.</p>
           </aside>
         </section>
@@ -681,7 +681,7 @@ tasks:
           <p>Plays are ordered sets of tasks to execute against host selections from your inventory. A playbook is a file containing one or more plays.</p>
           <aside class="notes">
             <p>Playbooks are text files that contain one or more plays that are expressed in YAML. A play defines target hosts and a task list that are executed sequentially (i.e top to bottom) to achieve a certain state on those hosts.</p>
-            <p>For more details see <a href="http://docs.ansible.com/ansible/playbooks.html">the Playbook page</a> in the Ansible documenation.</p>
+            <p>For more details see <a href="http://docs.ansible.com/ansible/playbooks.html">the Playbook page</a> in the Ansible documentation.</p>
           </aside>
         </section>
         <section>
@@ -774,9 +774,9 @@ tasks:
       state: started
           </code></pre>
           <aside class="notes">
-            <p>The Ansible play host selector defines which nodes in the inventory the automation is targetting.</p>
-            <p>In this example, a single group of &quot;web&quot; is being targetted. Ansible supports targetting intersections, unions and filters of multiple groups or hosts though.</p>
-            <p>For more details see <a href="http://docs.ansible.com/ansible/intro_patterns.html">the host selector Patterns page</a> in the Ansible documenation.</p>
+            <p>The Ansible play host selector defines which nodes in the inventory the automation is targeting.</p>
+            <p>In this example, a single group of &quot;web&quot; is being targeted. Ansible supports targeting intersections, unions and filters of multiple groups or hosts though.</p>
+            <p>For more details see <a href="http://docs.ansible.com/ansible/intro_patterns.html">the host selector Patterns page</a> in the Ansible documentation.</p>
           </aside>
         </section>
         <section>
@@ -807,7 +807,7 @@ tasks:
           </code></pre>
           <aside class="notes">
             <p>Ansible allows you to &quot;become&quot; another user or with elevated rights to execute a task or an entire play (shown above). This is done using existing privilege escalation tools, which you probably already use or have configured, like sudo (the default), su, pfexec, doas, pbrun, dzdo, ksu and others.</p>
-            <p>For more details see <a href="http://docs.ansible.com/ansible/become.html">the Privilege Escalation page</a> in the Ansible documenation.</p>
+            <p>For more details see <a href="http://docs.ansible.com/ansible/become.html">the Privilege Escalation page</a> in the Ansible documentation.</p>
           </aside>
         </section>
         <section>
@@ -882,7 +882,7 @@ tasks:
           <section data-state="title alt">
             <h1>Workshop: <br/>Your First Playbook</h1>
             <aside class="notes">
-              <p>This assignment provides a quick introduction to playbook structure to give them a feel for how Ansible works, but in pratice is too simplistic to be useful.</p>
+              <p>This assignment provides a quick introduction to playbook structure to give them a feel for how Ansible works, but in practice is too simplistic to be useful.</p>
               <p>See <code>workshops/simple_playbook</code> in the Ansible Lightbulb repo.</p>
               <p>Note: If your time is limited, this is a workshop you can skip. We'll cover this and more topics in the next workshop.</p>
             </aside>
@@ -900,7 +900,7 @@ tasks:
               <li>Blocks</li>
             </ul>
             <aside class="notes">
-              <p>We only have covered the most essential capabiltites of what can be done with a playbook so far.</p>
+              <p>We only have covered the most essential capabilities of what can be done with a playbook so far.</p>
               <p>Here we list a few more though this is still far from all there is. There&apos;s many other powerful playbook features for handling less common though vital automation workflows. No need to learn everything at once. You can start small and pick up more features over time as you need them.</p>
             </aside>
           </section>
@@ -951,7 +951,7 @@ tasks:
             <aside class="notes">
               <p>Conditionals are another instance of Jinja2 in action within Ansible plays themselves. In the provided example &quot;ansible_os_family&quot; is a fact variable Ansible will set.</p>
               <p>There are other forms of conditional clauses, but <code>when</code> is usually all that is needed.</p>
-              <p>NOTE: Conditional clauses are consdered to be raw Jinja2 expression without double curly braces.</p>
+              <p>NOTE: Conditional clauses are considered to be raw Jinja2 expression without double curly braces.</p>
             </aside>
           </section>
           <section>
@@ -1005,7 +1005,7 @@ tasks:
           <section data-state="title alt">
             <h1>Demo Time: <br/>A More Practical Playbook</h1>
             <aside class="notes">
-              <p>The simple playbook we examined gave us a sense of the structure of a playbook and how they work, but in reality was too simlistic to be practical. Here we look at a basic playbook that it more complete to what users will commonly do with Ansible.</p>
+              <p>The simple playbook we examined gave us a sense of the structure of a playbook and how they work, but in reality was too simplistic to be practical. Here we look at a basic playbook that it more complete to what users will commonly do with Ansible.</p>
               <p>Walk thru the site.yml playbook in <code>examples/apache-basic-playbook</code> and note the added logic and its function. Then, run the playbook on the control host.</p>
               <p>Don't forget to reverse what this playbook does before continuing to not interfere with later demos and workshops.</p>
             </aside>
@@ -1078,7 +1078,7 @@ roles/
           <p>Ansible Galaxy is a hub for finding, reusing and sharing Ansible content.</p>
           <p>Jump-start your automation project with content contributed and reviewed by the Ansible community.</p>
           <aside class="notes speaker">
-            <p>Ansible Galaxy refers to the Galaxy website, a hub for finding, downloading, and sharing community developed roles. Downloading roles from Galaxy is a great way to jumpstart your automation projects.
+            <p>Ansible Galaxy refers to the Galaxy website, a hub for finding, downloading, and sharing community developed roles. Downloading roles from Galaxy is a great way to jump-start your automation projects.
             <p>Galaxy also refers to a command line tool, <code>ansible-galaxy</code>, for installing, creating and managing roles from the Galaxy website or directly from a git based SCM. You can also use it to create a new role, remove roles, or perform tasks on the Galaxy website.</p>
           </aside>
         </section>
@@ -1093,7 +1093,7 @@ roles/
             <section data-state="title alt">
               <h1>Workshop: <br/>Your First Roles</h1>
               <aside class="notes">
-                <p>Here students are tasked with refactoring their previous work from the Practical Playbook workshop into a role and modifying their playbook accordingly. We intentioinally avoid introducing any new tasks or functionality otherwise. The objective here is to focus students specifically on how roles are structured and develop.</p>
+                <p>Here students are tasked with refactoring their previous work from the Practical Playbook workshop into a role and modifying their playbook accordingly. We intentionally avoid introducing any new tasks or functionality otherwise. The objective here is to focus students specifically on how roles are structured and develop.</p>
                 <p>You should emphasize the value of roles in better organizing playbooks as they grow in sophistication and making Ansible automation more portable and reusable than a basic playbook.</p>
                 <p>See <code>workshops/roles</code> in the Ansible Lightbulb repo.</p>
               </aside>

@@ -4,7 +4,7 @@ Here students are tasked with installing and activating a new single integrated 
 
 #### Tips
 
-This workshop can be presented in a classroom setting as a guided exercises to save a bit of time. The faciltator has the students follow along as they step thru each part of the corresponding demo.
+This workshop can be presented in a classroom setting as a guided exercises to save a bit of time. The facilitator has the students follow along as they step thru each part of the corresponding demo.
 
 Stepping thru the solution provides an excellent opportunity to briefly mention other features in Tower such as schedule jobs not explored in this workshop assignment.
 
@@ -25,7 +25,7 @@ Once you have put in the necessary information for one host, click Save and it w
 ![final inventory](../images/finalized_inv.png)
 
 #### 2
-Credentials are essential in automating with ansible. To create a credential within Ansible Tower, select the gear in the top right hand corner of the screen. This will take you to the admin where you can select credentials box. This will display any current credentials you have in your Tower instance. To create a new credential, simply click +Add. This will bring up a new page where you can enter the relevant information for your credential. Since we are creating a machine credential, we will select machine from the Type dropdown and enter the needed information. Once done, select save and your credential will be saved.
+Credentials are essential in automating with Ansible. To create a credential within Ansible Tower, select the gear in the top right hand corner of the screen. This will take you to the admin where you can select credentials box. This will display any current credentials you have in your Tower instance. To create a new credential, simply click +Add. This will bring up a new page where you can enter the relevant information for your credential. Since we are creating a machine credential, we will select machine from the Type drop-down and enter the needed information. Once done, select save and your credential will be saved.
 ![creating machine credential](../images/LBcreatingcred.png)
 
 #### 3
@@ -33,11 +33,11 @@ Adding a project to Ansible Tower so that you can use your playbooks is very sim
 ![creating a project](../images/project_creation.png)
 
 #### 4
-Job templates are a visual realization of the ansible-playbook command and all flags you can utilize when executing from the command line. Everything you used on the command line, such as calling the invenotry or specifying a credential is done here. Creating a job template is simple and direct. Everything you need for it is outlined but has extra options and capabilities to make it even more powerful. To create a Job Template, simply select "Templates" tile from the top of your Ansible Tower dashboard. This will bring you to the Templates page where any current templates you have created will be shown. To create a new one, click the +Add drop down box and select Job Templates. Here, everything that you can add to your Job Templates can be found here. The portions that are denoted with a * are a required option, things such as credentials, which project and playbook you want to use are all needed before you can save the Template.
+Job templates are a visual realization of the `ansible-playbook` command and all flags you can utilize when executing from the command line. Everything you used on the command line, such as calling the inventory or specifying a credential is done here. Creating a job template is simple and direct. Everything you need for it is outlined but has extra options and capabilities to make it even more powerful. To create a Job Template, simply select "Templates" tile from the top of your Ansible Tower dashboard. This will bring you to the Templates page where any current templates you have created will be shown. To create a new one, click the +Add drop down box and select Job Templates. Here, everything that you can add to your Job Templates can be found here. The portions that are denoted with a * are a required option, things such as credentials, which project and playbook you want to use are all needed before you can save the Template.
 ![creating job template](../images/job_template.png)
 
 #### 5
-Launching a Job Template in Ansible Tower is easy. If you are starting from your Ansible Tower dashboard, just select Templates and the templates that you have created will be there (including the one that you just created for the previous example) Once you are at the templates page, next to each template, there is a rocket. Once you click that, Ansible Tower will start to execute that job. Launching a task in ansible tower is that simple.
+Launching a Job Template in Ansible Tower is easy. If you are starting from your Ansible Tower dashboard, just select Templates and the templates that you have created will be there (including the one that you just created for the previous example) Once you are at the templates page, next to each template, there is a rocket. Once you click that, Ansible Tower will start to execute that job. Launching a task in Ansible tower is that simple.
 ![launch job template](../images/running_job.png)
 
 #### 5.a
@@ -76,9 +76,9 @@ Creating users is simple and easy. To get other people on your team involved, se
 ### Assign Execution Permission
 Assigning permissions to users on what they can and cannot do, what they can and cannot see is crucial to the Ansible Tower story. Role Based Access Control (RBAC) is at the core of how Tower scales organizations while increasing the security of automating. By delegating access to resources within tower, you are removing an element of human error.
 
-Assigning Execution permissions is a big step in implementing RBAC throughout your team. To add execution permissions for users on a Job Template, navigate to the job template that you would like te user(s) to have execution permission on. Once you are on the editing page for this job template (pencil) select the "Permissions" box at the top then click the "+Add" box on the right hand side.
+Assigning Execution permissions is a big step in implementing RBAC throughout your team. To add execution permissions for users on a Job Template, navigate to the job template that you would like the user(s) to have execution permission on. Once you are on the editing page for this job template (pencil) select the "Permissions" box at the top then click the "+Add" box on the right hand side.
 
-This will display a box that displays users and teams within your Organization. Select the Users box (Tower does by default) then select the user you wish to add to the Job Template. This will prompt a drop down selection to appear for the role. From that dropdown box, select "Execute" and hit Save.
+This will display a box that displays users and teams within your Organization. Select the Users box (Tower does by default) then select the user you wish to add to the Job Template. This will prompt a drop down selection to appear for the role. From that drop-down box, select "Execute" and hit Save.
 
 It is done! That user know has execution privileges on that Job Template!
 ![adding extra vars](../images/add_perms.png)

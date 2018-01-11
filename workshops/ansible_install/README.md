@@ -7,12 +7,12 @@
 
 ### What You Will Learn
 
-* How easy it is to install and configure ansible for yourself.
+* How easy it is to install and configure Ansible for yourself.
 
 ### The Assignment
 
-1. Use pip to install the ansible package and its dependencies to you control machine.
-2. Display the ansible version and man page to STDOUT.
+1. Use pip to install the Ansible package and its dependencies to you control machine.
+2. Display the Ansible version and man page to STDOUT.
 3. In `~/.ansible.cfg` file (create the file if it doesn't exist already) do the following:
     * Create a new directory `~/.ansible/retry-files` and set `retry_files_save_path` to it.
     * Set the Ansible system `forks` to 10

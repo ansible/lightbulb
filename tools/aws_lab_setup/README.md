@@ -4,8 +4,8 @@ Ansible AWS training provisioner
 This is an automated lab setup for Ansible training. It creates four nodes per user in the `users` list.
 
 * One control node from which Ansible will be executed from and where Ansible Tower can be installed
-* Three web nodes that coincide with the three nodes in lightbulb's original design
-* And one node where `haproxy` is installed (via lightbulb lesson)
+* Three web nodes that coincide with the three nodes in Lightbulb's original design
+* And one node where `haproxy` is installed (via Lightbulb lesson)
 
 **NOTE**: Because of [a bug introduced in Ansible v2.2.1](https://github.com/ansible/lightbulb/issues/112) you will need to run this provisioner with v2.3.2 or higher.
 
@@ -58,7 +58,7 @@ To set up the lab for Ansible training, follow these steps.
 
         pip install passlib
 
-10. Clone the lightbulb repo:
+10. Clone the Lightbulb repo:
 
         git clone https://github.com/ansible/lightbulb.git
         cd lightbulb/tools/aws_lab_setup
