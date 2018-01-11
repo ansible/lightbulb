@@ -34,7 +34,7 @@ To set up the lab for Ansible training, follow these steps.
 
         ssh-add ~/.ssh/ansible.pem
 
-3. Create an [Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).  Save the ID and key for later.
+3. Create an [Access Key ID and Secret Access Key](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) (you should be using IAM and [not your AWS account directly](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html)).  Save the ID and key for later.
 
 4. Create Amazon VPC.   Use the wizard and just accept the defaults.   It should create a VPC and a subnet. Save this info for later.
 
