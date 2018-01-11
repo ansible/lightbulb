@@ -9,7 +9,7 @@
         name: nginx
         state: stopped
       ignore_errors: yes
-      
+
     - name: nginx package is absent
       yum:
         name: nginx

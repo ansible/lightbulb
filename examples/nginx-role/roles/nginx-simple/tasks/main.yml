@@ -13,7 +13,7 @@
     state: present
   notify: restart nginx service
 
-- name: latest default.conf is present 
+- name: latest default.conf is present
   template:
     src: templates/nginx.conf.j2
     dest: /etc/nginx/nginx.conf

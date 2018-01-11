@@ -37,15 +37,15 @@
       region: "{{ ec2_region }}"
       vpc_id: "{{ network.vpc.id }}"
       state: present
-    register: igw 
-   
+    register: igw
+
   - name: vpc public subnet route table is present
     ec2_vpc_route_table:
       region: "{{ ec2_region }}"
       vpc_id: "{{ network.vpc.id }}"
       tags:
         Name: "{{ ec2_stack_name }}-public"
-      subnets: 
+      subnets:
         - "{{ vpc_subnet.subnet.id }}"
       routes:
         - dest: 0.0.0.0/0

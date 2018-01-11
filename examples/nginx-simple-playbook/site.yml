@@ -13,7 +13,7 @@
   - name: latest index.html is present
     copy:
       src: files/index.html
-      dest: /usr/share/nginx/html 
+      dest: /usr/share/nginx/html
 
   - name: nginx service is started
     service:

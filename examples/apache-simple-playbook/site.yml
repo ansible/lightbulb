@@ -4,7 +4,7 @@
   become: yes
 
   tasks:
-  - name: httpd package is present 
+  - name: httpd package is present
     yum:
       name: httpd
       state: present
