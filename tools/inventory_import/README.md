@@ -1,22 +1,28 @@
-Static Inventory Importer
+# Static Inventory Importer
+
 ================================
 This playbook helps students import their local, static inventory into Ansible Tower.
 
-## Usage ##
+## Usage
+
 This playbook users the tower-cli tool and it's associated Ansible modules to create an inventory, groups, and then hosts with a special type of loop: `with_inventory_hostnames`
 
-### Pre-requisites ###
+### Pre-requisites
 
 In order for this play to work, you must have already completed the following:
+
 * The Ansible Tower install exercise
 * Logged in using the password you set for the admin user
 * Applied your license key
 
-### Setup ###
+### Setup
+
 Assuming a standard setup of the Lightbulb environment -- meaning you've followed the guides here or an instructors directions -- the only item you need to adjust in `inventory_import.yml` is the value for `tower_host_password` on line 5. This is the same value that you set as your admin accounts password.
 
-### Running the playbook ###
+### Running the playbook
+
 Once you've modified the `tower_host_password` value, you can run the playbook normally as your student user:
+
 ```yaml
 [student1@~]$ansible-playbook lightbulb/tools/inventory_import/inventory_import.yml
 ```
@@ -24,7 +30,7 @@ Once you've modified the `tower_host_password` value, you can run the playbook n
 Once that's done, you can check under the Inventory tab in Ansible Tower and you should now have 2 inventory groups:
 ![created inventory](./images/created_inventory.png)
 
-### Next steps ###
+### Next steps
 
 Tower-cli does not currently support creating hosts under a group, so they'll need to be moved individually to the appropriate group.
 

@@ -153,7 +153,6 @@ Only the facilitator of the workshop needs a lab environment making this module 
 
 **Scenario**: Providing hands-on instruction to students with limited experience with Ansible Tower on how it works and how it can be used to facilitate and manage Ansible automation in their organization.
 
-
 **Run Time**: 2 Hours
 
 **Prerequisites**: Ansible Essentials Workshop or Ansible Essentials Hands-On Workshop

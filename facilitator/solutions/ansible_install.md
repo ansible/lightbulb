@@ -6,9 +6,9 @@ NOTE: If and how you conduct this workshop depends on how you configured the pro
 
 We use pip because it's OS independent and always has the absolute latest stable release of Ansible. Other package repos such as EPEL can sometime lag behind for days or even weeks. For this reason, Ansible by Red Hat recommends using PIP.
 
-### Solution
+## Solution
 
-Each student will need to SSH into their "control" machine using the host IP, user and password provided to them in their lab environment inventory file. 
+Each student will need to SSH into their "control" machine using the host IP, user and password provided to them in their lab environment inventory file.
 
 From that control machine:
 
@@ -27,7 +27,7 @@ vi ~/.ansible.cfg
 
 ```
 
-#### NOTE
+## NOTE
 
 Depending how the lab provisioner was run, students may already have Ansible on their control machines. You can still have them run Ansible with `--version` and `--help` options to check they can ssh into their control box and prove Ansible is indeed present.
 

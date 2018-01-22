@@ -4,7 +4,7 @@ This brief exercise demonstrates Ansible in-action at it's most basic and simple
 
 This workshop is also a good way to verify their lab environments are properly configured before going forward.
 
-### Solution
+## Solution
 
 The following commands are the solution for the workshop and extra credit assignments.
 
@@ -27,6 +27,6 @@ ansible all -m command -a "uptime"
 ansible all -m ping --limit '!control'
 ```
 
-#### NOTE
+### NOTE
 
 You will need to make sure each student successfully installed the EPEL repo here. Later workshop assignments ask students to install Nginx. Without EPEL enabled on each web host `yum` will not be able to locate the package.

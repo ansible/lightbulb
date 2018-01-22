@@ -1,4 +1,4 @@
-# cloud-aws 
+# cloud-aws
 
 This intermediate-level Ansible playbook example demonstrates the common tasks for provisioning EC2 server instances into an Amazon Web Services VPC. Once provisioned this example will use an existing role (apache-role) to deploy and setup an application service on the instances in the stack.
 
@@ -19,7 +19,7 @@ Before running this playbook example, you should know about what variables it us
 
 The following variables must be properly set for this example to run properly.
 
-* `ec2_stack_name`: A unique name for your application stack. The stack name is used as a prefix for many other resources that will get created using this playbook. 
+* `ec2_stack_name`: A unique name for your application stack. The stack name is used as a prefix for many other resources that will get created using this playbook.
 
 * `ec2_region`: A valid AWS region name such as "us-east-2" or "ap-southeast-1" or "eu-west-2."
 
