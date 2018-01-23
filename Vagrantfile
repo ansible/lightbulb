@@ -1,83 +1,69 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-VAGRANTFILE_API_VERSION = "2"
+$NODES=4
+$NODEMEM=256
+# Overwrite host locale in ssh session
+ENV["LC_ALL"] = "en_US.UTF-8"
 
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |cluster|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
+# All Vagrant configuration is done here.
+Vagrant.configure("2") do |cluster|
+  # The most common configuration options are documented and commented below.
+  # For more refer to https://www.vagrantup.com/docs/vagrantfile/
 
   # Every Vagrant virtual environment requires a box to build off of.
 
-cluster.vm.define "ansible-node" do |config|
-  config.vm.box = "centos/7"
-  config.ssh.insert_key = false
-  config.ssh.forward_agent = true
-  config.vm.provider :virtualbox do |vb, override|
-    vb.customize ["modifyvm", :id, "--memory", "128"]
-    vb.customize ["modifyvm", :id, "--cpus", "1"]
+  # The ordering of these 2 lines expresses a preference for a hypervisor
+  cluster.vm.provider "virtualbox"
+  cluster.vm.provider "libvirt"
+  cluster.vm.provider "vmware_fusion"
+
+  # Avoid using the Virtualbox guest additions
+  cluster.vm.synced_folder ".", "/vagrant", disabled: true
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    cluster.vbguest.auto_update = false
   end
-  config.vm.hostname = "ansible-node"
-  config.vm.network :private_network, ip: "10.42.0.2"
-end
 
+  # For convenience, testing and instruction, all you need is 'vagrant up'
+  # Every vagrant box comes with a user 'vagrant' with password 'vagrant'
+  # Every vagrant box has the root password 'vagrant'
 
-cluster.vm.define "node-1" do |config|
-  config.vm.box = "centos/7"
-  config.ssh.insert_key = false
-  config.vm.provider :virtualbox do |vb, override|
-    vb.customize ["modifyvm", :id, "--memory", "256"]
-    vb.customize ["modifyvm", :id, "--cpus", "1"]
+  # This vagrant box is downloaded from https://vagrantcloud.com/centos/7
+  # Other variants https://app.vagrantup.com/boxes/search
+  cluster.vm.box = "centos/7"
+  cluster.ssh.insert_key = false
+  # Don't install your own key (you might not have it)
+  # Use this: $HOME/.vagrant.d/insecure_private_key
+
+  # host to run ansible and tower
+  cluster.vm.define "ansible", primary: true do |config|
+    config.vm.hostname = "ansible"
+    config.vm.network :private_network, ip: "10.42.0.2"
+    config.ssh.forward_agent = true
+    config.vm.provider :virtualbox do |vb, override|
+      vb.customize [
+        "modifyvm", :id,
+        "--name", "ansible",
+        "--memory", "2048",
+        "--cpus", 1
+      ]
+    end
   end
-  config.vm.hostname = "node-1"
-  config.vm.network :private_network, ip: "10.42.0.6"
-end
 
-cluster.vm.define "node-2" do |config|
-  config.vm.box = "centos/7"
-  config.ssh.insert_key = false
-  config.vm.provider :virtualbox do |vb, override|
-    vb.customize ["modifyvm", :id, "--memory", "256"]
-    vb.customize ["modifyvm", :id, "--cpus", "1"]
+  # hosts to run ansible-core
+  (1..$NODES).each do |i|
+    cluster.vm.define "node-#{i}" do |node|
+      node.vm.hostname = "node-#{i}"
+      node.vm.box = "centos/7"
+      node.vm.network :private_network, ip: "10.42.0.#{i+5}"
+      node.vm.provider :virtualbox do |vb, override|
+      vb.customize [
+        "modifyvm", :id,
+        "--name", "node-#{i}",
+        "--memory", "#$NODEMEM",
+        "--cpus", 1
+      ]
+      end
+    end
   end
-  config.vm.hostname = "node-2"
-  config.vm.network :private_network, ip: "10.42.0.7"
-end
-
-cluster.vm.define "node-3" do |config|
-  config.vm.box = "centos/7"
-  #config.vm.box = "ubuntu/trusty64"
-  config.ssh.insert_key = false
-  config.vm.provider :virtualbox do |vb, override|
-    vb.customize ["modifyvm", :id, "--memory", "256"]
-    vb.customize ["modifyvm", :id, "--cpus", "1"]
-  end
-  config.vm.hostname = "node-3"
-  config.vm.network :private_network, ip: "10.42.0.8"
-end
-
-cluster.vm.define "node-4" do |config|
-  config.vm.box = "centos/7"
-  config.ssh.insert_key = false
-  config.vm.provider :virtualbox do |vb, override|
-    vb.customize ["modifyvm", :id, "--memory", "256"]
-    vb.customize ["modifyvm", :id, "--cpus", "1"]
-  end
-  config.vm.hostname = "node-4"
-  config.vm.network :private_network, ip: "10.42.0.100"
-end
-
-
-cluster.vm.define "tower" do |config|
-  config.vm.box = "ansible/tower"
-  config.ssh.insert_key = false
-  config.vm.provider :virtualbox do |vb, override|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
-    vb.customize ["modifyvm", :id, "--cpus", "1"]
-  end
-  config.vm.hostname = "tower"
-end
-
 end
