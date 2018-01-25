@@ -2,7 +2,7 @@
 
 Here students are tasked with developing their first complete playbook. The assignment approximates the tasks they will typical need to take in order to deploy and configure a single application service using Nginx.
 
-The "simple" lightbulb examples, students may or may not have done depending on agenda, provide a quick introduction to playbook structure to give them a feel for how Ansible works, but in practice are too simplistic to be useful.
+The "simple" Lightbulb examples, students may or may not have done depending on agenda, provide a quick introduction to playbook structure to give them a feel for how Ansible works, but in practice are too simplistic to be useful.
 
 ## Tips
 
