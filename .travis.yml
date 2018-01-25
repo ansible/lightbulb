@@ -1,0 +1,11 @@
+sudo: true
+
+before_install:
+  #- sudo apt-get update -qq
+  #- sudo -H pip install ansible
+  #- sudo -H pip install ansible-lint
+  - gem install mdl
+
+script:
+  - mdl -c .mdlrc .
+ #- find . -name "*.yml" | xargs -i ansible-lint -v  {}

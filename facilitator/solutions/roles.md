@@ -1,7 +1,6 @@
 # Workshop: Roles
 
-Here students are tasked with refactoring their previous work from the Basic Playbook workshop into a role and modifying their playbook accordingly. We intentioinally avoid introducing any new tasks or functionality otherwise. The objective here is to focus students specifically on how roles are structured and develop.
-
+Here students are tasked with refactoring their previous work from the Basic Playbook workshop into a role and modifying their playbook accordingly. We intentionally avoid introducing any new tasks or functionality otherwise. The objective here is to focus students specifically on how roles are structured and develop.
 
 You should emphasize the value of roles in better organizing playbooks as they grow in sophistication and making Ansible automation more portable and reusable than a basic playbook.
 

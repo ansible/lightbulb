@@ -10,8 +10,8 @@ Once downloaded, configured and the `setup.sh` is started, is will take a few mi
 
 ## Solution
 
-1. Retreive the latest version of Tower from the Ansible Tower releases archive.
-1. Unarchive the retreived Ansible Tower archive.
+1. Retrieve the latest version of Tower from the Ansible Tower releases archive.
+1. Unarchive the retrieved Ansible Tower archive.
     * i.e. `tar -vxzf towerlatest`
 1. Change directories to the one created by the expanded Tower software archive.
 1. Edit the `inventory` file with passwords for admin, message queue and the postgres database will use while setting up. These are represented by these inventory variables:

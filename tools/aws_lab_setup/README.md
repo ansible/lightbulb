@@ -14,7 +14,6 @@ This is an automated lab setup for Ansible training. It creates four nodes per u
 
 The `provision_lab.yml` playbook creates instances, configures them for password authentication, creates an inventory file for each user with their IPs and credentials. An instructor inventory file is also created in the current directory which will let the instructor access the nodes of any student by simply targeting the username as a host group. The lab is created in `us-east-1` by default.  Currently only works with `us-east-1`, `us-west-1`, `eu-west-1`, `ap-southeast-1`, `ap-southeast-2`, `ap-south-1` and `ap-northeast-1`.
 
-
 ### Email Options
 
 This provisioner by default will send email to participants/students containing information about their lab environment including IPs and credentials. This configuration requires that each participant register for the workshop using their full name and email address.   Alternatively, you can use generic accounts for workshops.  This method offers the advantage of enabling the facilitator to handle "walk-ins" and is a simpler method overall in terms of collecting participant information.
@@ -36,7 +35,6 @@ To set up the lab for Ansible training, follow these steps.
         ssh-add ~/.ssh/ansible.pem
 
 1. Create an [Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).  Save the ID and key for later.
-
 
 1. Create Amazon VPC.   Use the wizard and just accept the defaults.   It should create a VPC and a subnet. Save this info for later.
 
@@ -61,7 +59,6 @@ To set up the lab for Ansible training, follow these steps.
         pip install passlib
 
 1. Clone the lightbulb repo:
-
 
         git clone https://github.com/ansible/lightbulb.git
         cd lightbulb/tools/aws_lab_setup

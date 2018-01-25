@@ -37,7 +37,7 @@ There are a few other variables present whose value you can override if needed.
 
 * `ec2_exact_count`: The number of EC2 instances that should be present. Using the `ec2` module, this playbook will create and terminate instances as needed. Default: 1
 
-* `ec2_private_key_file`: The path to the private key associated with the `ec2_key_name` used to launch the instances if you need it. If undefined, it is ommited from dynamic inventory group "web".
+* `ec2_private_key_file`: The path to the private key associated with the `ec2_key_name` used to launch the instances if you need it. If undefined, it is omitted from dynamic inventory group "web".
 
 ## Usage
 

@@ -1,7 +1,6 @@
 # Workshop: Simple Playbook
 
-This assignment provides a quick introduction to playbook structure to give them a feel for how Ansible works, but in pratice is too simplistic to be useful.
-
+This assignment provides a quick introduction to playbook structure to give them a feel for how Ansible works, but in practice is too simplistic to be useful.
 
 ## Tips
 
