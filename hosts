@@ -2,9 +2,9 @@
 ansible ansible_host=10.42.0.2
 
 [web]
-node-1 ansible_host=10.42.0.3
-node-2 ansible_host=10.42.0.4
-node-3 ansible_host=10.42.0.5
+node-1 ansible_host=10.42.0.6
+node-2 ansible_host=10.42.0.7
+node-3 ansible_host=10.42.0.8
 
 [all:vars]
 ansible_user=vagrant

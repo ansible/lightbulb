@@ -426,7 +426,7 @@ host.example.com
 control ansible_host=10.42.0.2
 
 [web]
-node-[1:3] ansible_host=10.42.0.[3:6]
+node-[1:3] ansible_host=10.42.0.[6:8]
 
 [haproxy]
 haproxy ansible_host=10.42.0.100
@@ -444,7 +444,7 @@ ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
               <li><code>ansible_host</code> is an example of a host variable.</li>
               <li>Hosts can be assigned arbitrary human-meaningful names or aliases such as "control" and "haproxy". Ansible will instead use the value of <code>ansible_host</code> (one of several <a href="http://docs.ansible.com/ansible/playbooks_variables.html#magic-variables-and-how-to-access-information-about-other-hosts">&quot;magic&quot; inventory variables</a>) as the network address to connect.</li>
               <li>Static inventory files can support character ranges such as &quot;node-[1:3]&quot;</li>
-              <li>Like localhost, Ansible infers an &quot;all&quot; group is present. As its name implies, all inventory hosts are memebers of this group.</li>
+              <li>Like localhost, Ansible infers an &quot;all&quot; group is present. As its name implies, all inventory hosts are members of this group.</li>
               <li>The heading &quot;all:vars&quot; is an example of group variable assignment using two more &quot;magic&quot; variables, <code>ansible_ssh_private_key_file</code> and <code>ansible_user</code>.</li>
             </ul>
             <p>This example just covers the basics. There's a lot more to inventory that is not covered here. See the <a href="http://docs.ansible.com/ansible/intro_inventory.html">Ansible inventory documentation</a> for more details.</p>
