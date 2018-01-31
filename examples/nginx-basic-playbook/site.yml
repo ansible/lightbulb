@@ -1,7 +1,7 @@
 # In keeping things simple, this example assumes the epel repo is enabled on each node
 ---
-- hosts: web
-  name: install and start nginx with wsgi
+- name: install and start nginx with wsgi
+  hosts: web
   become: yes
   vars:
     nginx_packages:

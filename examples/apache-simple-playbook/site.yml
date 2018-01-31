@@ -1,6 +1,6 @@
 ---
-- hosts: web
-  name: install and start apache
+- name: install and start apache
+  hosts: web
   become: yes
 
   tasks:

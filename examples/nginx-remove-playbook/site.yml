@@ -1,6 +1,6 @@
 ---
-- hosts: web
-  name: removes nginx with wsgi
+- name: removes nginx with wsgi
+  hosts: web
   become: yes
 
   tasks:
