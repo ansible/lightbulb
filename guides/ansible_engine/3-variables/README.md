@@ -39,7 +39,7 @@ Add a play definition and some variables to your playbook.  These include addtio
 
 ```yml
 ---
-- name: This is a play within a playbook
+- name: install and start apache
   hosts: web
   become: yes
   vars:
@@ -166,7 +166,7 @@ Your new, improved playbook is done! Let's take a second look to make sure every
 ```yml
 {% raw %}
 ---
-- name: This is a play within a playbook
+- name: install and start apache
   hosts: web
   become: yes
   vars:

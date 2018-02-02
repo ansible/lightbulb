@@ -1,6 +1,6 @@
 # In keeping things simple, this example assumes the epel repo is enabled on each node
 ---
-- name: This is a Playbook
+- name: install and start nginx via role
   hosts: web
   become: yes
   roles:

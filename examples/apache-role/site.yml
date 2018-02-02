@@ -1,5 +1,5 @@
 ---
-- name: This is a Playbook
+- name: install and start apache via role
   hosts: web
   become: yes
   roles:

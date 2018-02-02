@@ -115,7 +115,7 @@ Add the play definition and the invocation of a single role.
 
 ```yml
 ---
-- name: This is my role-based playbook
+- name: install and start apache via role
   hosts: web
   become: yes
 

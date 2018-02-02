@@ -1,5 +1,5 @@
 ---
-- name: This is a play within a playbook
+- name: install and start apache
   hosts: web
   become: yes
   vars:
