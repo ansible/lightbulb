@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$NODES=4
+$NODES=3
 $NODEMEM=256
 # Overwrite host locale in ssh session
 ENV["LC_ALL"] = "en_US.UTF-8"
