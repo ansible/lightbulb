@@ -9,7 +9,7 @@
       name: httpd
       state: present
 
-  - name: latest httpd.conf file is present
+  - name: latest index.html file is present
     copy:
       src: files/index.html
       dest: /var/www/html/
