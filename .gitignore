@@ -5,7 +5,7 @@ extra_vars.yml
 instructor*
 .vagrant/*
 ansible.cfg
-hosts
+inventory.ini
 TODO
 TODO.md
 bak/
