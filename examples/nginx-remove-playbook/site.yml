@@ -1,26 +1,26 @@
 ---
-- name: removes nginx with wsgi
+- name: Ensure nginx with wsgi is removed
   hosts: web
   become: yes
 
   tasks:
-    - name: nginx service is stopped
+    - name: Ensure nginx service is stopped
       service:
         name: nginx
         state: stopped
       ignore_errors: yes
 
-    - name: nginx package is absent
+    - name: Ensure nginx package is absent
       yum:
         name: nginx
         state: absent
 
-    - name: uwsgi package is absent
+    - name: Ensure uwsgi package is absent
       pip:
         name: uwsgi
         state: absent
 
-    - name: files created by nginx-simple are absent
+    - name: Ensure files created by nginx-simple are absent
       file:
         name: "{{ item }}"
         state: absent

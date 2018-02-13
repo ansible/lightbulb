@@ -115,7 +115,7 @@ Add the play definition and the invocation of a single role.
 
 ```yml
 ---
-- name: install and start apache via role
+- name: Ensure apache is installed and started via role
   hosts: web
   become: yes
 
@@ -168,7 +168,7 @@ Create your role handler in `roles/apache-simple/handlers/main.yml`.
 ```yml
 ---
 # handlers file for apache-simple
-- name: restart apache service
+- name: Ensure apache service is restarted
   service:
     name: httpd
     state: restarted
@@ -183,30 +183,30 @@ Add tasks to your role in `roles/apache-simple/tasks/main.yml`.
 {% raw %}
 ---
 # tasks file for apache-simple
-- name: install httpd packages
+- name: Ensure httpd packages are installed
   yum:
     name: "{{ item }}"
     state: present
   with_items: "{{ httpd_packages }}"
   notify: restart apache service
 
-- name: create site-enabled directory
+- name: Ensure site-enabled directory is created
   file:
     name: /etc/httpd/conf/sites-enabled
     state: directory
 
-- name: copy httpd.conf
+- name: Copy httpd.conf
   template:
     src: templates/httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
   notify: restart apache service
 
-- name: copy index.html
+- name: Copy index.html
   template:
     src: templates/index.html.j2
     dest: /var/www/html/index.html
 
-- name: start httpd
+- name: Ensure httpd is started
   service:
     name: httpd
     state: started

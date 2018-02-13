@@ -1,5 +1,5 @@
 ---
-- name: servers are provisioned in vpc
+- name: Ensure servers are provisioned in vpc
   hosts: localhost
   gather_facts: false
   vars:
@@ -10,7 +10,7 @@
     ec2_az: a
 
   tasks:
-  - name: vpc is present
+  - name: Ensure vpc is present
     ec2_vpc_net:
       state: present
       region: "{{ ec2_region }}"
@@ -20,7 +20,7 @@
         tool: ansible
     register: network
 
-  - name: vpc subnet is present
+  - name: Ensure vpc subnet is present
     ec2_vpc_subnet:
       region: "{{ ec2_region }}"
       state: present
@@ -32,14 +32,14 @@
       vpc_id: "{{ network.vpc.id }}"
     register: vpc_subnet
 
-  - name: vpc internet gateway is present
+  - name: Ensure vpc internet gateway is present
     ec2_vpc_igw:
       region: "{{ ec2_region }}"
       vpc_id: "{{ network.vpc.id }}"
       state: present
     register: igw
 
-  - name: vpc public subnet route table is present
+  - name: Ensure vpc public subnet route table is present
     ec2_vpc_route_table:
       region: "{{ ec2_region }}"
       vpc_id: "{{ network.vpc.id }}"
@@ -51,7 +51,7 @@
         - dest: 0.0.0.0/0
           gateway_id: "{{ igw.gateway_id }}"
 
-  - name: vpc security group is present
+  - name: Ensure vpc security group is present
     ec2_group:
       name: "{{ ec2_stack_name }}-webservers"
       region: "{{ ec2_region }}"
@@ -71,14 +71,14 @@
           to_port: 443
           cidr_ip: 0.0.0.0/0
 
-  - name: search for the latest centos7 ami
+  - name: Search for the latest centos7 ami
     ec2_ami_find:
       owner: "410186602215"
       region: "{{ ec2_region }}"
       name: "CentOS Linux 7 x86_64 HVM EBS*"
     register: find_results
 
-  - name: exact count of stack ec2 instances running
+  - name: Get exact count of stack ec2 instances running
     ec2:
       key_name: "{{ ec2_key_name }}"
       group: "{{ ec2_stack_name }}-webservers"
@@ -101,23 +101,23 @@
       assign_public_ip: true
     register: ec2
 
-  - name: display stack instances info
+  - name: Display stack instances info
     debug:
       var: ec2
       verbosity: 1
 
-  - name: all instances are ready
+  - name: Ensure all instances are ready
     wait_for:
       port: 22
       host: "{{ item.public_ip }}"
       search_regex: OpenSSH
     with_items: "{{ ec2.tagged_instances }}"
 
-  - name: pause to let cloud init to complete
+  - name: Pause to let cloud init to complete
     pause:
       seconds: 90
 
-  - name: build group of instances
+  - name: Build group of instances
     add_host:
       name: "{{ item.public_dns_name }}"
       groups: web

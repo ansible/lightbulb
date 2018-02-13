@@ -1,21 +1,21 @@
 # In keeping things simple, this example assumes the epel repo is enabled on each node
 ---
-- name: install and start nginx
+- name: Ensure nginx is installed and started
   hosts: web
   become: yes
 
   tasks:
-  - name: nginx package is present
+  - name: Ensure nginx package is present
     yum:
       name: nginx
       state: present
 
-  - name: latest index.html is present
+  - name: Ensure latest index.html is present
     copy:
       src: files/index.html
       dest: /usr/share/nginx/html
 
-  - name: nginx service is started
+  - name: Ensure nginx service is started
     service:
       name: nginx
       state: started

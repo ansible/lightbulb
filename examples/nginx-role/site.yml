@@ -1,6 +1,6 @@
 # In keeping things simple, this example assumes the epel repo is enabled on each node
 ---
-- name: install and start nginx via role
+- name: Ensure nginx is installed and started via role
   hosts: web
   become: yes
   roles:

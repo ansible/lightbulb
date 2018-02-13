@@ -27,7 +27,7 @@ Now that you are editing `site.yml`, let's begin by defining the play and then u
 
 ```yml
 ---
-- name: install and start apache
+- name: Ensure apache is installed and started
   hosts: web
   become: yes
 ```
@@ -43,17 +43,17 @@ Now that we've defined your play, let's add some tasks to get some things done. 
 
 ```yml
   tasks:
-  - name: httpd package is present
+  - name: Ensure httpd package is present
     yum:
       name: httpd
       state: present
 
-  - name: latest httpd.conf file is present
+  - name: Ensure latest httpd.conf file is present
     copy:
       src: files/index.html
       dest: /var/www/html/
 
-  - name: httpd is started
+  - name: Ensure httpd is started
     service:
       name: httpd
       state: started
@@ -63,7 +63,7 @@ Now that we've defined your play, let's add some tasks to get some things done. 
 * `- name:` Each task requires a name which will print to standard output when you run your playbook. It's considered best practice to give all your plays and tasks concise and human-meaningful descriptions.
 
 ```yml
-- name: httpd package is present
+- name: Ensure httpd package is present
   yum:
     name: httpd
     state: present
@@ -72,7 +72,7 @@ Now that we've defined your play, let's add some tasks to get some things done. 
 * These four lines are calling the Ansible module *yum* to install httpd. [Click here](http://docs.ansible.com/ansible/yum_module.html) to see all options for the yum module.
 
 ```yml
-- name: latest httpd.conf file is present
+- name: Ensure latest httpd.conf file is present
   copy:
     src: files/index.html
     dest: /var/www/html/
@@ -81,7 +81,7 @@ Now that we've defined your play, let's add some tasks to get some things done. 
 * These four lines ensure that the `httpd.conf` file is copied over to the target node. [Click here](http://docs.ansible.com/ansible/copy_module.html) to see all options for the copy module.
 
 ```yml
-- name: httpd is started
+- name: Ensure httpd is started
   service:
     name: httpd
     state: started
@@ -158,22 +158,22 @@ In the meantime, your completed playbook should look like this example below. (T
 
 ```yml
 ---
-- name: install and start apache
+- name: Ensure apache is installed and started
   hosts: web
   become: yes
 
   tasks:
-  - name: httpd package is present
+  - name: Ensure httpd package is present
     yum:
       name: httpd
       state: present
 
-  - name: latest httpd.conf file is present
+  - name: Ensure latest httpd.conf file is present
     copy:
       src: files/index.html
       dest: /var/www/html/
 
-  - name: httpd is started
+  - name: Ensure httpd is started
     service:
       name: httpd
       state: started

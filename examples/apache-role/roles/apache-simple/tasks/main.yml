@@ -1,24 +1,24 @@
 ---
 # tasks file for apache
-- name: httpd packages are present
+- name: Ensure httpd packages are present
   yum:
     name: "{{ item }}"
     state: present
   with_items: "{{ httpd_packages }}"
   notify: restart apache service
 
-- name: latest httpd.conf file is present
+- name: Ensure latest httpd.conf file is present
   template:
     src: httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
   notify: restart apache service
 
-- name: latest index.html file is present
+- name: Ensure latest index.html file is present
   template:
     src: index.html.j2
     dest: /var/www/html/index.html
 
-- name: httpd service is started and enabled
+- name: Ensure httpd service is started and enabled
   service:
     name: httpd
     state: started

@@ -39,7 +39,7 @@ Add a play definition and some variables to your playbook.  These include addtio
 
 ```yml
 ---
-- name: install and start apache
+- name: Ensure apache is installed and started
   hosts: web
   become: yes
   vars:
@@ -57,7 +57,7 @@ Add a new task called *httpd packages are present*:
 ```yml
 {% raw %}
   tasks:
-    - name: httpd packages are present
+    - name: Ensure httpd packages are present
       yum:
         name: "{{ item }}"
         state: present
@@ -98,23 +98,23 @@ curl -O https://raw.githubusercontent.com/ansible/lightbulb/master/examples/apac
 Add some file tasks and a service task to your playbook.
 
 ```yml
-- name: site-enabled directory is present
+- name: Ensure site-enabled directory is present
   file:
     name: /etc/httpd/conf/sites-enabled
     state: directory
 
-- name: latest httpd.conf is present
+- name: Ensure latest httpd.conf is present
   template:
     src: templates/httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
   notify: restart apache service
 
-- name: latest index.html is present
+- name: Ensure latest index.html is present
   template:
     src: templates/index.html.j2
     dest: /var/www/html/index.html
 
-- name: httpd is started and enabled
+- name: Ensure httpd is started and enabled
   service:
     name: httpd
     state: started
@@ -143,7 +143,7 @@ Define a handler.
 
 ```yml
 handlers:
-  - name: restart apache service
+  - name: restart-apache-service
     service:
       name: httpd
       state: restarted
@@ -166,7 +166,7 @@ Your new, improved playbook is done! Let's take a second look to make sure every
 ```yml
 {% raw %}
 ---
-- name: install and start apache
+- name: Ensure apache is installed and started
   hosts: web
   become: yes
   vars:
@@ -177,37 +177,37 @@ Your new, improved playbook is done! Let's take a second look to make sure every
     apache_max_keep_alive_requests: 115
 
   tasks:
-    - name: httpd packages are present
+    - name: Ensure httpd packages are present
       yum:
         name: "{{ item }}"
         state: present
       with_items: "{{ httpd_packages }}"
-      notify: restart apache service
+      notify: restart-apache-service
 
-    - name: site-enabled directory is present
+    - name: Ensure site-enabled directory is present
       file:
         name: /etc/httpd/conf/sites-enabled
         state: directory
 
-    - name: latest httpd.conf is present
+    - name: Ensure latest httpd.conf is present
       template:
         src: templates/httpd.conf.j2
         dest: /etc/httpd/conf/httpd.conf
-      notify: restart apache service
+      notify: restart-apache-service
 
-    - name: latest index.html is present
+    - name: Ensure latest index.html is present
       template:
         src: templates/index.html.j2
         dest: /var/www/html/index.html
 
-    - name: httpd is started and enabled
+    - name: Ensure httpd is started and enabled
       service:
         name: httpd
         state: started
         enabled: yes
 
   handlers:
-    - name: restart apache service
+    - name: restart-apache-service
       service:
         name: httpd
         state: restarted
