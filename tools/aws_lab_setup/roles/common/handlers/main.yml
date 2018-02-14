@@ -1,4 +1,4 @@
-- name: Ensure ssh is restarted
+- name: restart sshd
   service:
     name: "{{ common_ssh_service_name }}"
     state: restarted
@@ -18,7 +18,7 @@
     timeout: 500
     delay: 40
 
-- name: Restart firewalld
+- name: restart firewalld
   service:
     name: "{{ firewalld_service }}"
     state: restarted

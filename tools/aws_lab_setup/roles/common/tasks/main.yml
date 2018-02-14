@@ -17,7 +17,7 @@
     validate: "{{ item.validate | default(omit) }}"
     backup: no
   with_items: "{{ common_node_config_options }}"
-  notify: restart ssh
+  notify: restart sshd
   tags:
     - ssh
     - sudo
