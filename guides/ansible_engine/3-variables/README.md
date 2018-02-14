@@ -62,7 +62,7 @@ Add a new task called *httpd packages are present*:
         name: "{{ item }}"
         state: present
       with_items: "{{ httpd_packages }}"
-      notify: restart apache service
+      notify: restart-apache-service
 {% endraw %}
 ```
 
@@ -74,7 +74,7 @@ Add a new task called *httpd packages are present*:
 * `httpd_packages` You are defining a list-type variable called `httpd_packages**.  What follows is a list of those packages
 * {% raw %}`{{ item }}`{% endraw %} You are telling Ansible that this will expand into a list item like `httpd` and `mod_wsgi`.
 * {% raw %}`with_items: "{{ httpd_packages }}`{% endraw %} This is your loop which is instructing Ansible to perform this task on every `item` in `httpd_packages`
-* `notify: restart apache service` This statement is a `handler`, so we'll come back to it in Section 3.
+* `notify: restart-apache-service` This statement is a `handler`, so we'll come back to it in Section 3.
 
 ---
 
@@ -107,7 +107,7 @@ Add some file tasks and a service task to your playbook.
   template:
     src: templates/httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
-  notify: restart apache service
+  notify: restart-apache-service
 
 - name: Ensure latest index.html is present
   template:
@@ -155,7 +155,7 @@ handlers:
 > A handler is only executed when it is triggered by a task.
 
 * `handler:` This is telling the *play* that the `tasks:` are over, and now we are defining `handlers:`. Everything below that looks the same as any other task, i.e. you give it a name, a module, and the options for that module.  This is the definition of a handler.
-* `notify: restart apache service` This triggers the handler as mentioned above. The `nofify` statement is the invocation of a handler by name. In the above created playbook, a `notify` statement was already added to the `latest httpd.conf is present` task.
+* `notify: restart-apache-service` This triggers the handler as mentioned above. The `nofify` statement is the invocation of a handler by name. In the above created playbook, a `notify` statement was already added to the `latest httpd.conf is present` task.
 
 ---
 

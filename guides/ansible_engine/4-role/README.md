@@ -188,7 +188,7 @@ Add tasks to your role in `roles/apache-simple/tasks/main.yml`.
     name: "{{ item }}"
     state: present
   with_items: "{{ httpd_packages }}"
-  notify: restart apache service
+  notify: restart-apache-service
 
 - name: Ensure site-enabled directory is created
   file:
@@ -199,7 +199,7 @@ Add tasks to your role in `roles/apache-simple/tasks/main.yml`.
   template:
     src: templates/httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
-  notify: restart apache service
+  notify: restart-apache-service
 
 - name: Copy index.html
   template:
