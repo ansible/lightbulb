@@ -24,7 +24,7 @@
       pip:
         name: uwsgi
         state: present
-      notify: restart nginx service
+      notify: restart-nginx-service
 
     - name: Ensure latest default.conf is present
       template:

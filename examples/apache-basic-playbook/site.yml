@@ -15,7 +15,7 @@
         name: "{{ item }}"
         state: present
       with_items: "{{ httpd_packages }}"
-      notify: restart apache service
+      notify: restart-apache-service
 
     - name: Ensure site-enabled directory is present
       file:
