@@ -1,4 +1,4 @@
 ---
 # defaults file for nginx
 nginx_test_message: This is a test message
-nginx_keepalive_timeout: 115
+nginx_webserver_port: 80

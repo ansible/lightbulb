@@ -10,7 +10,7 @@ A common question that is asked "when do I put a variable in defaults instead of
 
 If a variable holds a data that someone using the role may want to override anyway numbers of ways, then it's best stored under `defaults/`. If a variable holds data that is internal to the function of the role and rarely (or in practice should never) be modified, then it's best stored under `vars/` where its much hard to be overridden by other variables sources.
 
-Applying these guidelines to this assignment, `nginx_packages` would go in `vars/` while `nginx_test_message` and `nginx_keepalive_timeout` would go in `defaults/`.
+Applying these guidelines to this assignment, `nginx_packages` would go in `vars/` while `nginx_test_message` and `nginx_webserver_port` would go in `defaults/`.
 
 ## NOTE
 

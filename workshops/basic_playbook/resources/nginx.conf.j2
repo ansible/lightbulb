@@ -25,7 +25,7 @@ http {
     sendfile            on;
     tcp_nopush          on;
     tcp_nodelay         on;
-    keepalive_timeout   {{ nginx_keepalive_timeout | default(65) }};
+    keepalive_timeout   115;
     types_hash_max_size 2048;
 
     include             /etc/nginx/mime.types;
@@ -37,8 +37,8 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     server {
-        listen       80 default_server;
-        listen       [::]:80 default_server;
+        listen       {{ nginx_webserver_port }} default_server;
+        listen       [::]:{{ nginx_webserver_port }} default_server;
         server_name  _;
         root         /usr/share/nginx/html;
 

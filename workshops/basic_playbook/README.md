@@ -28,7 +28,7 @@ You will need to assure each host in "web" group has setup the EPEL repository t
 
 Create an Ansible playbook that will assure nginx is present, configured and running on all hosts in the "web" group:
 
-1. Has variables for `nginx_test_message` and `nginx_keepalive_timeout`.
+1. Has variables for `nginx_test_message` and `nginx_webserver_port`.
 1. Assures that the following yum packages are present on the each web host:
   * nginx
   * python-pip
@@ -36,7 +36,7 @@ Create an Ansible playbook that will assure nginx is present, configured and run
   * gcc
 1. Assure that the uwsgi pip package is present on each host.
 1. Generate a host-specific home page with the value of `nginx_test_message` for each host using the provided `index.html.j2` template.
-1. Generate a configuration with the value of `nginx_keepalive_timeout` for each host using the provided `nginx.conf.j2` template.
+1. Generate a configuration with the value of `nginx_webserver_port` for each host using the provided `nginx.conf.j2` template.
 1. Assure that nginx is running on each host.
 1. The playbook should restart nginx if the homepage or configuration file is altered.
 

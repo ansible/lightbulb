@@ -10,7 +10,7 @@
       - python-devel
       - gcc
     nginx_test_message: This is a test message
-    nginx_keepalive_timeout: 115
+    nginx_webserver_port: 80
 
   tasks:
     - name: Ensure nginx packages are present
@@ -47,7 +47,7 @@
     # smoke test that nginx came up and is serving home page
     - name: Ensure proper response from localhost can be received
       uri:
-        url: http://localhost/
+        url: "http://localhost:{{ nginx_webserver_port }}/"
         return_content: yes
       register: response
       until: 'nginx_test_message in response.content'
