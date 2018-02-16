@@ -1,7 +1,5 @@
 # The Ansible Lightbulb Facilitator's Guide
 
-**NOTE**: This document is mostly complete however Lightbulb v2 is still a work in progress and some parts are not complete yet.
-
 The Ansible Lightbulb project is an effort to provide a reference and educational content for rapidly communicating and learning Ansible and Ansible Tower essentials. Lightbulb has been designed as a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal workshop training in various forms -- instructor-led, hands-on or self-paced.
 
 This guide covers different ways Ansible suggests they are assembled for various scenarios.
