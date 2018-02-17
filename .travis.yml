@@ -1,10 +1,22 @@
 sudo: true
 
+addons:
+  apt:
+    sources:
+    - sourceline: deb https://vagrant-deb.linestarve.com/ any main
+      key_url: "https://pgp.mit.edu/pks/lookup?op=get&search=0xCE3F3DE92099F7A4"
+    packages:
+    - vagrant
+
+services:
+- docker
+
 before_install:
   #- sudo apt-get update -qq
   #- sudo -H pip install ansible
   #- sudo -H pip install ansible-lint
   - gem install mdl
+  - vagrant up --provider=docker
 
 script:
   - mdl -c .mdlrc .

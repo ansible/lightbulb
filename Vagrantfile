@@ -17,6 +17,7 @@ Vagrant.configure("2") do |cluster|
   cluster.vm.provider "virtualbox"
   cluster.vm.provider "libvirt"
   cluster.vm.provider "vmware_fusion"
+  cluster.vm.provider "docker"
 
   # Avoid using the Virtualbox guest additions
   cluster.vm.synced_folder ".", "/vagrant", disabled: true
@@ -28,19 +29,21 @@ Vagrant.configure("2") do |cluster|
   # Every vagrant box comes with a user 'vagrant' with password 'vagrant'
   # Every vagrant box has the root password 'vagrant'
 
-  # This vagrant box is downloaded from https://vagrantcloud.com/centos/7
-  # Other variants https://app.vagrantup.com/boxes/search
-  cluster.vm.box = "centos/7"
-  cluster.ssh.insert_key = false
-  # Don't install your own key (you might not have it)
-  # Use this: $HOME/.vagrant.d/insecure_private_key
-
   # host to run ansible and tower
   cluster.vm.define "ansible", primary: true do |config|
     config.vm.hostname = "ansible"
     config.vm.network :private_network, ip: "10.42.0.2"
-    config.ssh.forward_agent = true
     config.vm.provider :virtualbox do |vb, override|
+      # This vagrant box is downloaded from https://vagrantcloud.com/centos/7
+      # Other variants https://app.vagrantup.com/boxes/search
+      vb.box = "centos/7"
+
+      cluster.ssh.insert_key = false
+      # Don't install your own key (you might not have it)
+      # Use this: $HOME/.vagrant.d/insecure_private_key
+      
+      config.ssh.forward_agent = true
+
       vb.customize [
         "modifyvm", :id,
         "--name", "ansible",
@@ -48,21 +51,34 @@ Vagrant.configure("2") do |cluster|
         "--cpus", 1
       ]
     end
+    config.vm.provider :docker do |vb, override|
+      config.ssh.username = "root"
+      config.ssh.password = "root"
+      vb.has_ssh = true
+      vb.image = "sickp/centos-sshd:7"
+    end
   end
 
   # hosts to run ansible-core
   (1..$NODES).each do |i|
     cluster.vm.define "node-#{i}" do |node|
       node.vm.hostname = "node-#{i}"
-      node.vm.box = "centos/7"
       node.vm.network :private_network, ip: "10.42.0.#{i+5}"
       node.vm.provider :virtualbox do |vb, override|
-      vb.customize [
-        "modifyvm", :id,
-        "--name", "node-#{i}",
-        "--memory", "#$NODEMEM",
-        "--cpus", 1
-      ]
+        vb.box = "centos/7"
+
+        vb.customize [
+          "modifyvm", :id,
+          "--name", "node-#{i}",
+          "--memory", "#$NODEMEM",
+          "--cpus", 1
+        ]
+      end
+      node.vm.provider :docker do |vb, override|
+        node.ssh.username = "root"
+        node.ssh.password = "root"
+        vb.has_ssh = true
+        vb.image = "sickp/centos-sshd:7"
       end
     end
   end
