@@ -14,7 +14,7 @@ This guide consits of multiple exercises, it is strongly recommended to run them
 * [Exercise 1 - Running Ad-hoc commands](1-adhoc)
 * [Exercise 2 - Writing Your First playbook](2-playbook)
 * [Exercise 3 - Using Variables, Loops, and Handlers](3-variables)
-* [Exercise 4 - Roles: Making your playbooks reusable](4-roles)
+* [Exercise 4 - Roles: Making your playbooks reusable](4-role)
 
 ## Additional information
 
