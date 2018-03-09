@@ -12,7 +12,7 @@
   delegate_to: localhost
   become: no
   wait_for:
-    port: "{{ ssh_port }}"
+    port: "{{ ssh_port | default('22') }}"
     host: "{{ ansible_host }}"
     search_regex: OpenSSH
     timeout: 500
