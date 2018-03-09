@@ -11,7 +11,7 @@
     name: "{{ item.invocation.module_args.instance_tags.Name }}"
     ansible_host: "{{ item.tagged_instances[0].public_ip }}"
     ansible_user: "{{ ec2_login_names[item.item.1.type] }}"
-    ansible_port: "{{ ssh_port }}"
+    ansible_port: "{{ ssh_port | default('22') }}"
     groups: lab_hosts,control_nodes
   with_items: "{{ instances.results }}"
   when: "'ansible' in item.invocation.module_args.instance_tags.Name"
@@ -25,7 +25,7 @@
     name: "{{ item.invocation.module_args.instance_tags.Name }}"
     ansible_host: "{{ item.tagged_instances[0].public_ip }}"
     ansible_user: "{{ ec2_login_names[item.item.1.type] }}"
-    ansible_port: "{{ ssh_port }}"
+    ansible_port: "{{ ssh_port | default('22') }}"
     groups: lab_hosts,managed_nodes
   with_items: "{{ instances.results }}"
   when: "'ansible' not in item.invocation.module_args.instance_tags.Name"
