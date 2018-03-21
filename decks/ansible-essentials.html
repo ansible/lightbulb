@@ -554,11 +554,11 @@ $ ansible web -m command -a &quot;uptime&quot;
             <li>Discovered facts</li>
             <li>Roles</li>
           </ul>
+          <aside class="notes">
+            <p>While automation exists to make it easier to make things repeatable, all of your systems are not exactly alike.</p>
+            <p>Variables are used to store metadata for each host drawing from numerous sources. For example variable may be for things like facts or file paths or package versions.</p>
+          </aside>
         </section>
-        <aside class="notes">
-          <p>While automation exists to make it easier to make things repeatable, all of your systems are not exactly alike.</p>
-          <p>Variables are used to store metadata for each host drawing from numerous sources. For example variable may be for things like facts or file paths or package versions.</p>
-        </aside>
         <section>
           <h2>Variable Precedence</h2>
           <p>The order in which the same variable from different sources will override each other.</p>
