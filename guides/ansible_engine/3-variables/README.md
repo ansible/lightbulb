@@ -48,6 +48,7 @@ Add a play definition and some variables to your playbook.  These include addtio
       - mod_wsgi
     apache_test_message: This is a test message
     apache_max_keep_alive_requests: 115
+    apache_webserver_port: 80
 ```
 
 ### Step 3
@@ -175,6 +176,7 @@ Your new, improved playbook is done! Let's take a second look to make sure every
       - mod_wsgi
     apache_test_message: This is a test message
     apache_max_keep_alive_requests: 115
+    apache_webserver_port: 80
 
   tasks:
     - name: Ensure httpd packages are present
