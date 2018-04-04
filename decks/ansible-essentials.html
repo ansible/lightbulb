@@ -666,7 +666,7 @@ tasks:
     dest: /var/www/html/
 
 <mark>handlers:</mark>
-- name: restart httpd
+- name: restart-httpd
   service:
     name: httpd
     state: restarted

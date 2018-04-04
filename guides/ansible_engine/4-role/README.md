@@ -168,7 +168,7 @@ Create your role handler in `roles/apache-simple/handlers/main.yml`.
 ```yml
 ---
 # handlers file for apache-simple
-- name: Ensure apache service is restarted
+- name: restart-apache-service
   service:
     name: httpd
     state: restarted
