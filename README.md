@@ -42,6 +42,8 @@ The content of `decks/` are collection of presentation decks using the [reveal.j
 
 Lightbulb provides a lab provisioner utility for creating a personal lab environment for each student. Currently only Amazon Web Services (AWS) is supported in us-east-1 and us-west-1 with the foundation to support other regions in place.
 
+The provisioner and the documentation how to use it can be found in `tools/aws_lab_setup/`.
+
 **Coming Soon.** Vagrant support for self-paced learning is planned. Legacy support from the previous generation of Lightbulb remains, but is in need of an overhaul.
 
 ## Facilitator Guide
