@@ -58,5 +58,5 @@ While developing the playbook use the `--syntax-check` to check your work and de
 * [pip module](http://docs.ansible.com/ansible/pip_module.html)
 * [template module](http://docs.ansible.com/ansible/template_module.html)
 * [service module](http://docs.ansible.com/ansible/service_module.html)
-* [uri module](http://docs.ansible.com/ansible/template_module.html)
+* [uri module](http://docs.ansible.com/ansible/uri_module.html)
 * [file module](http://docs.ansible.com/ansible/file_module.html)
