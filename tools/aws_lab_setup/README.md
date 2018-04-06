@@ -1,7 +1,5 @@
 # Ansible AWS training provisioner
 
-================================
-
 This is an automated lab setup for Ansible training. It creates four nodes per user in the `users` list.
 
 * One control node from which Ansible will be executed from and where Ansible Tower can be installed
@@ -28,15 +26,15 @@ To set up the lab for Ansible training, follow these steps.
 
 1. Create an Amazon AWS account.
 
-1. Create an ssh key pair called 'ansible'. (To create go Services -> EC2 -> Network & Security -> Key Pairs) Download the private key to your `.ssh` directory, e.g. to `.ssh/ansible.pem`. Alternatively, you can upload your own public key into AWS.
+1. In AWS, create an ssh key pair called 'ansible': In the AWS management console, click on "Services" on top of the page. In the menu that opens, click on "EC2". In the EC2 dashboard, on the left side, underneath "Network & Security" pick "Key Pairs". Download the private key to your `.ssh` directory, e.g. to `.ssh/ansible.pem`. Alternatively, you can upload your own public key into AWS.
 
       If using an AWS generated key add it to the ssh-agent:
 
         ssh-add ~/.ssh/ansible.pem
 
-1. Create an [Access Key ID and Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).  Save the ID and key for later.
+1. Create an Access Key ID and Secret Access Key. Save the ID and key for later. See [AWSHELP](aws-directions/AWSHELP.md) for a detailed howto.
 
-1. Create Amazon VPC.   Use the wizard and just accept the defaults.   It should create a VPC and a subnet. Save this info for later.
+1. Create Amazon VPC. Use the wizard and just accept the defaults. It should create a VPC and a subnet. Save this info for later. To do so, in the AWS management console click on "Services", and underneath "Networking & Content Delivery" pick "VPC". In the new dashboard, click on "Start VPC Wizard" and follow the guide. Accept all default, but providing a meaningful VPC name helps if others use the same AWS account.
 
 1. Install `boto` and `boto3`.
 
