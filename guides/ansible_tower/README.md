@@ -2,14 +2,11 @@
 
 This guide is part of lightbulb, a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal workshop training in various forms -- instructor-led, hands-on or self-paced.
 
-## Presentation
+The focus of this guide is on the set up and usage of Ansible Tower.
 
-The presentation deck accompanying this course can be found at:
-[Ansible Tower Intro Lightbulb Deck](../../decks/intro-to-ansible-tower.html)
+## Ansible Tower Exercises
 
-## Ansible Engine Exercises
-
-This guide consits of multiple exercises, it is strongly recommended to run them one after the other. They are self-explaining and can be run at self pace.
+There are multiple exercises available. It is strongly recommended to run them one after the other. They are self-explaining and can be run at self pace.
 
 * [Exercise 1 - Installing Ansible Tower](1-install)
 * [Exercise 2 - Configuring Ansible Tower](2-config)
