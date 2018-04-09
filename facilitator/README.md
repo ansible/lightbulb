@@ -131,7 +131,7 @@ This module is designed to provide some valuable instruction on using Ansible To
 
 #### Presentation Deck
 
-For automating with Ansible Tower use DECK FILE HERE and only navigate to the right. Going down will take you through the more in-depth content and workshops of the Introduction to Ansible Tower Hands-On Workshop.
+For automating with Ansible Tower use `decks/intro-to-ansible-tower.html` and only navigate to the right. Going down will take you through the more in-depth content and workshops of the Introduction to Ansible Tower Hands-On Workshop.
 
 #### Examples & Workshops
 
@@ -161,7 +161,7 @@ This module is designed to provide some valuable instruction on using Ansible To
 
 #### Presentation Deck
 
-For automating with Ansible Tower use DECK FILE HERE and only navigate to the right. Going down will take you thru the more in-depth content and workshops of the Introduction to Ansible Tower Hands-On Workshop.
+For a basic linux server automation use `decks/intro-to-ansible-tower.html` navigating down when given the option.
 
 #### Examples & Workshops
 
