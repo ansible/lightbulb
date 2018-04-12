@@ -87,7 +87,7 @@ Click on PROJECTS
 
 ### Step 2
 
-Select ADD ![Add button](at_add.png)
+Click on ADD ![Add button](at_add.png), select Inventory.
 
 ### Step 3
 
@@ -121,7 +121,7 @@ Click on INVENTORIES
 
 ### Step 2
 
-Select ADD ![Add button](at_add,png)
+Select ADD ![Add button](at_add.png)
 
 ### Step 3
 

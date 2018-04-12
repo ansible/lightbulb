@@ -70,8 +70,9 @@ Now that you’ve sucessfully created your Job Template, you are ready to launch
 Select TEMPLATES
 
 ---
-**NOTE**: Alternative way to navigate to TEMPLATES
-Alternatively, if you haven't navigated away from the job templates creation page, you can scroll down to see all existing job templates
+**NOTE**: Alternative way to navigate to TEMPLATES:
+
+If you haven't navigated away from the job templates creation page you can scroll down to see all existing job templates
 
 ---
 
@@ -93,19 +94,11 @@ Select LAUNCH ![Survey launch button](at_survey_launch.png)
 
 Wait and watch the execution of the job.
 
-One of the first things you will notice is the summary section.  This gives you details about your job such as who launched it, what playbook it's running, what the status is, i.e. pending, running, or complete. You’ll also notice the `apache_test_message` being passed in the field EXTRA VARIABLES.
+One of the first things you will notice is the summary section.  This gives you details about your job such as who launched it, what playbook it's running, what the status is, i.e. pending, running, or complete. You’ll also notice the `apache_test_message` being passed in the field EXTRA VARIABLES in the text box on the left bottom side. To the right, you can view standard output; the same way you could if you were running `ansible-playbook` from the command line.
 
 ![Job Summary](at_job_status.png)
 
-Scrolling down, you will be able to see details on the play and each task in the playbook.
-
-![Play and Task Details](at_job_tasklist.png)
-
-To the right, you can view standard output; the same way you could if you were running `ansible-playbook` from the command line.
-
-![Job Standard Output](at_job_stdout.png)
-
-You can also click on the nodes in the standard output under a specific task for additional information.
+You can also click on each task in the standard output to get more details.
 
 ### Step 6
 

@@ -18,6 +18,6 @@ There are multiple exercises available. It is strongly recommended to run them o
 * [Ansible Tower Administration Guide](http://docs.ansible.com/ansible-tower/latest/html/administration/index.html)
 
 ---
-![Ansible Tower](ansible-tower-logo.png)
+![Ansible Tower](ansible_tower_logo.png)
 
 Red Hat® Ansible® Tower is a fully supported product built on the simple, powerful and agentless foundation capabilities derived from the Ansible project.  Please visit [ansible.com](https://www.ansible.com/tower) for more information.
