@@ -1,0 +1,120 @@
+section {
+    padding: 40px 0px;
+}
+
+.theme-dark,
+.theme-dark *{
+    color: #fff;
+}
+
+.theme-bg-gray{
+    background-color: #cac8c8;
+}
+
+.theme-bg-darkgray{
+    background-color: #a2a1a1;
+}
+
+.btn {
+    border-radius: 0px;
+    text-align: center;
+    padding: 10px 20px;
+    margin-bottom: 0px;
+}
+
+.btn.btn-block {
+    display: block;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    background-color: #a2a1a1;
+    color: #fff;
+    padding: 30px;
+}
+
+.btn.btn-secondary {
+    background-color: #cac8c8;
+}
+
+.btn.btn-ghost{
+    border: 1px solid #fff;
+    color: #fff;
+    background: transparent;
+}
+
+
+.page-header {
+    background: #c00;
+}
+
+.page-header h1 {
+    font-size: 21px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.page-header h2 {
+    font-size: 1em;
+    font-weight: 300;
+}
+
+
+.main-content h1{
+    color: #333;
+}
+
+.main-content h2{
+    color: #cc0000;
+}
+
+.main-content h3, .main-content h4, .main-content h5, .main-content h6 {
+    color: #c00;
+}
+
+
+footer.site-footer{
+    background-color: #212121;
+    padding: 80px 0px;
+    font-size: 0.7em;
+    color: #fff;
+    font-weight: 300;
+}    
+    
+    
+
+@media screen and (min-width: 768px){
+
+    .page-header h1 {
+        font-size: 24px;
+    }
+    
+    .main-content {
+        font-size: 1.125rem;
+    }
+}
+
+
+
+/* theme overrides */
+
+@media screen and (max-width: 42em){
+    .main-content {
+        padding: 2rem 0px;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 64em) and (min-width: 42em){
+    .main-content {
+        padding: 2rem 0px;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 64em){
+    .main-content {
+        max-width: none;
+        font-size: 1.1rem;
+    }
+}
