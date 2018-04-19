@@ -202,17 +202,19 @@
         <section>
           <h2>Installing Ansible</h2>
           <pre class="language-yaml"><code>
-# the most common and preferred way of
-# installation
-$ sudo pip install ansible
-
-# you will need the extras repo configured on
+# the best way to install Ansible on
 # CentOS, RHEL, or Scientific Linux
+# is to configure the EPEL repository
+# and install Ansible directly
 $ sudo yum install ansible
 
-# you will need the PPA repo configured on
-# Debian or Ubuntu
+# on Debian or Ubuntu you will need the PPA
+# repo configured
 $ sudo apt-get install ansible
+
+# on all other platforms it can be
+# installed via pip
+$ sudo pip install ansible
           </code></pre>
           <aside class="notes">
             <p>As open source, Ansible is freely-available thru numerous means and can be installed in minutes with only a few requirements that most system already have. The installation methods listed here are the most commonly used.</p>
