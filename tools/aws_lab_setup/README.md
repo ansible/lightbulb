@@ -1,6 +1,6 @@
 # Ansible AWS training provisioner
 
-This is an automated lab setup for Ansible training. It creates four nodes per user in the `users` list.
+This provisioner automatically sets up lab environments for Ansible training. It creates four nodes per student/user.
 
 * One control node from which Ansible will be executed from and where Ansible Tower can be installed
 * Three web nodes that coincide with the three nodes in Lightbulb's original design
@@ -10,9 +10,9 @@ This is an automated lab setup for Ansible training. It creates four nodes per u
 
 ## AWS Setup
 
-The `provision_lab.yml` playbook creates instances, configures them for password authentication, creates an inventory file for each user with their IPs and credentials. An instructor inventory file is also created in the current directory which will let the instructor access the nodes of any student by simply targeting the username as a host group. The lab is created in `us-east-1` by default.  Currently only works with `us-east-1`, `us-west-1`, `eu-west-1`, `ap-southeast-1`, `ap-southeast-2`, `ap-south-1` and `ap-northeast-1`.
+The setup of the environments is done via Ansible playbooks, the actual VMs are set up on AWS. The `provision_lab.yml` playbook creates instances, configures them for password authentication and creates an inventory file for each user with their IPs and credentials. An instructor inventory file is also created in the current directory which will let the instructor access the nodes of any student by simply targeting the username as a host group. The lab is created in `us-east-1` by default.  Currently the setup only works with `us-east-1`, `us-west-1`, `eu-west-1`, `ap-southeast-1`, `ap-southeast-2`, `ap-south-1` and `ap-northeast-1`.
 
-### Email Options
+## Email Options
 
 This provisioner by default will send email to participants/students containing information about their lab environment including IPs and credentials. This configuration requires that each participant register for the workshop using their full name and email address.   Alternatively, you can use generic accounts for workshops.  This method offers the advantage of enabling the facilitator to handle "walk-ins" and is a simpler method overall in terms of collecting participant information.
 
@@ -20,9 +20,11 @@ Steps included in this guide will be tagged with __(email)__ to denote it as a s
 
 **WARNING** Emails are sent _every_ time the playbook is run. To prevent emails from being sent on subsequent runs of the playbook, add `email: no` to `extra_vars.yml`.
 
-### Lab Configuration
+## How To Set Up Lab Environments
 
-To set up the lab for Ansible training, follow these steps.
+### One-Time Preparations
+
+To set up lab environments for Ansible training, follow these steps.
 
 1. Create an Amazon AWS account.
 
@@ -34,7 +36,7 @@ To set up the lab for Ansible training, follow these steps.
 
 1. Create an Access Key ID and Secret Access Key. Save the ID and key for later. See [AWSHELP](aws-directions/AWSHELP.md) for a detailed howto.
 
-1. Create Amazon VPC. Use the wizard and just accept the defaults. It should create a VPC and a subnet. Save this info for later. To do so, in the AWS management console click on "Services", and underneath "Networking & Content Delivery" pick "VPC". In the new dashboard, click on "Start VPC Wizard" and follow the guide. Accept all default, but providing a meaningful VPC name helps if others use the same AWS account.
+1. Create an Amazon VPC: in the AWS management console click on "Services", and underneath "Networking & Content Delivery" pick "VPC". In the new dashboard, click on "Start VPC Wizard" and follow the guide. Accept all default, but providing a meaningful VPC name helps if others use the same AWS account. After the creation of the VPC, search for the VPC and write down the "VPC ID". Also, on the left side of the VPC dashboard pick "Subnets", filter the table for your VPC and write down the "Subnet ID".
 
 1. Install `boto` and `boto3`.
 
@@ -60,6 +62,10 @@ To set up the lab for Ansible training, follow these steps.
 
         git clone https://github.com/ansible/lightbulb.git
         cd lightbulb/tools/aws_lab_setup
+
+### Steps To Provision the Lab Environments
+
+1. Update your current installation of the lightbulb repo
 
 1. Define the following variables, either in a file passed in using `-e @extra_vars.yml` or directly in a `vars` section in `aws_lab_setup\infra-aws.yml`:
 
@@ -135,13 +141,7 @@ __(no email)__ If you disabled email in your `extra_vars.yml` file, you will nee
 1. Use [github gist](https://gist.github.com/) to upload `lightbulb/tools/aws_lab_setup/instructors_inventory`.
 1. Use [http://goo.gl](http://goo.gl) to shorten the URL to make it more consumable
 
-## Accessing student documentation and slides
-
-* A student guide and instructor slides are already hosted at [http://ansible-workshop.redhatgov.io](http://ansible-workshop.redhatgov.io) . (NOTE:  This guide is evolving and newer workshops can be previewed at [http://ansible.redhatgov.io](http://ansible.redhatgov.io) . This new version is currently being integrated with the Lightbulb project)
-* Here you will find student instructions broken down into exercises as well as the presentation decks under the __Additional Resources__ drop down.
-* During the workshop, it is recommended that you have a second device or printed copy of the student guide.  Previous workshops have demonstrated that unless you've memorized all of it, you'll likely need to refer to the guide, but your laptop will be projecting the slide decks.  Some students will fall behind and you'll need to refer back to other exercises/slides without having to change the projection for the entire class.
-
-### AWS Teardown
+### Teardown The Lab Environments
 
 The `teardown_lab.yml` playbook deletes all the training instances as well as local inventory files.
 
@@ -150,3 +150,11 @@ To destroy all the EC2 instances after training is complete:
 1. Run the playbook:
 
         ansible-playbook teardown_lab.yml -e @extra_vars.yml -e @users.yml
+
+## Accessing student documentation and slides
+
+* A student guide and instructor slides are already hosted at [http://ansible-workshop.redhatgov.io](http://ansible-workshop.redhatgov.io) . (NOTE:  This guide is evolving and newer workshops can be previewed at [http://ansible.redhatgov.io](http://ansible.redhatgov.io) . This new version is currently being integrated with the Lightbulb project)
+* Here you will find student instructions broken down into exercises as well as the presentation decks under the __Additional Resources__ drop down.
+* During the workshop, it is recommended that you have a second device or printed copy of the student guide.  Previous workshops have demonstrated that unless you've memorized all of it, you'll likely need to refer to the guide, but your laptop will be projecting the slide decks.  Some students will fall behind and you'll need to refer back to other exercises/slides without having to change the projection for the entire class.
+
+
