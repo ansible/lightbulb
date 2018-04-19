@@ -1,4 +1,4 @@
-- name: Send email to students with inventroy attached
+- name: Send email to students with inventory attached
   delegate_to: localhost
   sendgrid:
     username: "{{ sendgrid_user | default(omit) }}"
