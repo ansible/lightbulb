@@ -247,4 +247,4 @@ If successful, you should see standard output that looks very similar to the fol
 
 ---
 
-[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Guide](../README.md)

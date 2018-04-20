@@ -1,6 +1,6 @@
-# Ansible Lightbulb - Ansible Engine
+# Ansible Lightbulb - Ansible Engine Guide
 
-This guide is part of lightbulb, a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal workshop training in various forms -- instructor-led, hands-on or self-paced.
+This guide is part of lightbulb, a multi-purpose toolkit for effectively demonstrating Ansible's capabilities or providing informal trainings in various forms -- instructor-led, hands-on or self-paced.
 
 The focus of this guide is on the set up and usage of Ansible Engine.
 
@@ -15,7 +15,7 @@ There are multiple exercises available. It is strongly recommended to run them o
 
 ## Additional information
 
-Additional information about Ansible, how to get started and where to proceed after this workshop, have a look at the following sources:
+Additional information about Ansible, how to get started and where to proceed after this guide, have a look at the following sources:
 
 * [Ansible Getting Started](http://docs.ansible.com/ansible/latest/intro_getting_started.html)
 
