@@ -37,3 +37,7 @@ While developing the playbook use the `--syntax-check` to check your work and de
 * [yum module](http://docs.ansible.com/ansible/yum_module.html)
 * [file module](http://docs.ansible.com/ansible/file_module.html)
 * [service module](http://docs.ansible.com/ansible/service_module.html)
+
+---
+
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)

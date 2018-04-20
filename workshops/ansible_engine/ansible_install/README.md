@@ -21,3 +21,7 @@
 
 * [Ansible Installation](http://docs.ansible.com/ansible/intro_installation.html)
 * [Ansible Configuration File](http://docs.ansible.com/ansible/intro_configuration.html)
+
+---
+
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)

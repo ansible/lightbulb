@@ -45,3 +45,7 @@ Setup a self-service user simulation with the playbook
 * Create a "Normal" user with the name "someuser"
 * Assign the new user "Execute" permissions on the "Nginx Role Example" job template
 * Create a user survey on the job template that enables users to update the test message on the home page
+
+---
+
+[Click Here to return to the Ansible Lightbulb - Ansible Tower Workshop](../README.md)

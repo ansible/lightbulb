@@ -60,3 +60,7 @@ While developing the playbook use the `--syntax-check` to check your work and de
 * [service module](http://docs.ansible.com/ansible/service_module.html)
 * [uri module](http://docs.ansible.com/ansible/uri_module.html)
 * [file module](http://docs.ansible.com/ansible/file_module.html)
+
+---
+
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)

@@ -38,3 +38,7 @@ Perform the following operations using ad-hoc commands:
 * [yum module](http://docs.ansible.com/ansible/yum_module.html)
 * [command module](http://docs.ansible.com/ansible/command_module.html)
 * [Introduction To Ad-Hoc Commands](http://docs.ansible.com/ansible/intro_adhoc.html)
+
+---
+
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)
