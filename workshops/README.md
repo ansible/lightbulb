@@ -2,17 +2,17 @@
 
 The workshops are a collection of assignments for learning how to automate with Ansible. The workshops are introduced by the decks and are assigned to the students during the presentations.
 
-## How to use those
+The workshops are set up as exercises to be done by the participants, and are most suitable for smaller audiences.
 
-## Order to do the Engine workshops
+## Available Workshops
 
-* [Ansible installation](workshops/ansible_install)
-* [Ad-Hoc commands](workshops/adhoc_commands)
-* [Simple playbook](workshops/simple_playbook)
-* [Basic playbook](workshops/basic_playbook)
-* [Roles](workshops/roles)
+Currently there are two workshops available:
 
-## Order to do the Tower workshops
+* [Ansible Engine](ansible_engine/README.md)
+* [Ansible Tower](ansible_tower/README.md)
 
-* [Tower installation](workshops/tower_install)
-* [Tower basic setup](workshops/tower_basic_setup)
+## Additional information
+
+Additional information about Ansible, how to get started and where to proceed after this workshop, have a look at the following sources:
+
+* [Ansible Getting Started](http://docs.ansible.com/ansible/latest/intro_getting_started.html)

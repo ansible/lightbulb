@@ -104,4 +104,4 @@ You know you were successful if you are able to browse to your Ansible Tower's u
 
 ---
 
-[Click Here to return to the Ansible Lightbulb - Ansible Tower Workshop](../README.md)
+[Click Here to return to the Ansible Lightbulb - Ansible Tower Guide](../README.md)

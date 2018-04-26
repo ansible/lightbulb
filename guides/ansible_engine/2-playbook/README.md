@@ -181,4 +181,4 @@ In the meantime, your completed playbook should look like this example below. (T
 
 ---
 
-[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Guide](../README.md)

@@ -247,4 +247,4 @@ You should now have a completed playbook, `site.yml` with a single role called `
 
 ---
 
-[Click Here to return to the Ansible Lightbulb - Ansible Engine Workshop](../README.md)
+[Click Here to return to the Ansible Lightbulb - Ansible Engine Guide](../README.md)

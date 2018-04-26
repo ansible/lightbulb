@@ -118,4 +118,4 @@ At this point in the workshop, you've experienced the core functionality of Ansi
 
 ---
 
-[Click Here to return to the Ansible Lightbulb - Ansible Tower Workshop](../README.md)
+[Click Here to return to the Ansible Lightbulb - Ansible Tower Guide](../README.md)

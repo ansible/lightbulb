@@ -26,3 +26,7 @@ Install Ansible Tower on your controller machine using the [latest installer](ht
 * [Ansible Tower Quick Installation Guide](http://docs.ansible.com/ansible-tower/latest/html/quickinstall/index.html)
 * [Import a License](http://docs.ansible.com/ansible-tower/latest/html/userguide/import_license.html)
 * [Ansible Tower Ping API Endpoint](http://docs.ansible.com/ansible-tower/3.0.3/html/towerapi/ping.html)
+
+---
+
+[Click Here to return to the Ansible Lightbulb - Ansible Tower Workshop](../README.md)
