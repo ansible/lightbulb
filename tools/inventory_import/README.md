@@ -1,6 +1,5 @@
 # Static Inventory Importer
 
-================================
 This playbook helps students import their local, static inventory into Ansible Tower.
 
 ## Usage
@@ -30,7 +29,7 @@ Once you've modified the `tower_host_password` value, you can run the playbook n
 Once that's done, you can check under the Inventory tab in Ansible Tower and you should now have 2 inventory groups:
 ![created inventory](./images/created_inventory.png)
 
-### Next steps
+## Next steps
 
 Tower-cli does not currently support creating hosts under a group, so they'll need to be moved individually to the appropriate group.
 
