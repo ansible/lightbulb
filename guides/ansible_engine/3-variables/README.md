@@ -236,7 +236,7 @@ cd ~/apache-basic-playbook
 Run your playbook
 
 ```bash
-ansible-playbook -i ./inventory.ini site.yml
+ansible-playbook site.yml
 ```
 
 ## Section 2: Review

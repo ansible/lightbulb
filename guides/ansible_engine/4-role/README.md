@@ -94,13 +94,6 @@ In this section, we will separate out the major parts of your playbook including
 
 ### Step 1
 
-Copy the `inventory.ini` file:
-
-```bash
-cd ~/apache-role
-cp ~/apache-basic-playbook/inventory.ini inventory.ini
-```
-
 Make a copy of `site.yml` which was written in the last exercise to the current directory.
 
 ```bash
@@ -234,7 +227,7 @@ Now that you've successfully separated your original playbook into a role, let's
 Run the playbook.
 
 ```bash
-ansible-playbook -i ./inventory.ini site.yml
+ansible-playbook site.yml
 ```
 
 If successful, your standard output should look similar to the figure below.
