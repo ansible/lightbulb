@@ -6,8 +6,6 @@ This provisioner automatically sets up lab environments for Ansible training. It
 * Three web nodes that coincide with the three nodes in Lightbulb's original design
 * And one node where `haproxy` is installed (via Lightbulb lesson)
 
-**NOTE**: Because of [a bug introduced in Ansible v2.2.1](https://github.com/ansible/lightbulb/issues/112) you will need to run this provisioner with v2.3.2 or higher.
-
 ## AWS Setup
 
 The setup of the environments is done via Ansible playbooks, the actual VMs are set up on AWS. The `provision_lab.yml` playbook creates instances, configures them for password authentication and creates an inventory file for each user with their IPs and credentials. An instructor inventory file is also created in the current directory which will let the instructor access the nodes of any student by simply targeting the username as a host group. The lab is created in `us-east-1` by default.  Currently the setup only works with `us-east-1`, `us-west-1`, `eu-west-1`, `ap-southeast-1`, `ap-southeast-2`, `ap-south-1` and `ap-northeast-1`.
@@ -35,8 +33,6 @@ To set up lab environments for Ansible training, follow these steps.
         ssh-add ~/.ssh/ansible.pem
 
 1. Create an Access Key ID and Secret Access Key. Save the ID and key for later. See [AWSHELP](aws-directions/AWSHELP.md) for a detailed howto.
-
-1. Create an Amazon VPC: in the AWS management console click on "Services", and underneath "Networking & Content Delivery" pick "VPC". In the new dashboard, click on "Start VPC Wizard" and follow the guide. Accept all default, but providing a meaningful VPC name helps if others use the same AWS account. After the creation of the VPC, search for the VPC and write down the "VPC ID". Also, on the left side of the VPC dashboard pick "Subnets", filter the table for your VPC and write down the "Subnet ID".
 
 1. Install `boto` and `boto3`.
 
@@ -72,9 +68,8 @@ To set up lab environments for Ansible training, follow these steps.
       ```yaml
       ec2_key_name: username                # SSH key in AWS to put in all the instances
       ec2_region: us-west-1                 # region where the nodes will live
+      ec2_az: us-east-1a                    # the availability zone
       ec2_name_prefix: TRAINING-LAB         # name prefix for all the VMs
-      ec2_vpc_id: vpc-1234aaaa              # EC2 VPC ID in your region
-      ec2_vpc_subnet_id: subnet-5678bbbb    # EC2 subnet ID in your VPC
       admin_password: changeme123           # Set this to something better if you'd like. Defaults to 'LearnAnsible[two digit month][two digit year]', e.g., LearnAnsible0416
       ## Optional Variables
       email: no                             # Set this if you wish to disable email
@@ -133,6 +128,8 @@ For example:
 1. Check on the EC2 console and you should see instances being created like:
 
         TRAINING-LAB-<student_username>-node1|2|3|haproxy|tower|control
+
+In your EC2 console you will also see that a VPC was automatically created with a corresponding subnet.
 
 __(email)__ If successful all your students will be emailed the details of their hosts including addresses and credentials, and an `instructor_inventory.txt` file will be created listing all the student machines.
 

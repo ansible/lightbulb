@@ -1,7 +1,7 @@
 - name: Wait for instances to finish initializing
   pause:
     seconds: 90
-  when: instances | changed
+  when: instances is changed
   tags:
     - always
     - provision
@@ -33,6 +33,14 @@
   tags:
     - always
     - provision
+
+- name: Wait for Ansible connection to all hosts
+  wait_for_connection:
+    delay: 0
+    timeout: 400
+  when: instances is changed
+  delegate_to: "{{ item }}"
+  loop: "{{ groups.lab_hosts }}"
 
 - name: Set local username to create on instances
   set_fact:

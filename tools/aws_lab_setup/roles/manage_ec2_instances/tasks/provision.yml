@@ -1,0 +1,172 @@
+- block:
+  - name: Set EC2 security group type
+    set_fact:
+      ec2_security_group: insecure_all
+
+  - name: Create EC2 security group
+    ec2_group:
+      name: "{{ ec2_security_group }}"
+      description: all ports open
+      region: "{{ ec2_region }}"
+      vpc_id: "{{ ec2_vpc_id }}"
+      rules:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+    when: ec2_exact_count >= 1
+    tags:
+      - always
+      - provision
+  when: ec2_vpc_id is defined
+
+- block: 
+  - name: Create AWS VPC {{ ec2_name_prefix }}-vpc
+    ec2_vpc_net:
+      name: "{{ ec2_name_prefix }}-vpc"
+      cidr_block: "{{ec2_subnet}}"
+      region: "{{ ec2_region }}"
+      tags:
+        Username: "{{ lightbulb_user }}"
+        Info: "Username that provisioned this-> {{ lightbulb_user }}"
+        Lightbulb: "This was provisioned through the lightbulb provisioner"
+    register: create_vpc
+    until: create_vpc is not failed
+    retries: 5
+    tags:
+      - provision
+
+  - name: Create EC2 security group for VPC named {{ ec2_name_prefix }}-vpc
+    ec2_group:
+      name: "{{ ec2_name_prefix }}-insecure_all"
+      description: all ports open
+      region: "{{ ec2_region }}"
+      vpc_id: "{{create_vpc.vpc.id}}"
+      tags:
+        Username: "{{ lightbulb_user }}"
+        Info: "Username that provisioned this-> {{ lightbulb_user }}"
+        Lightbulb: "This was provisioned through the lightbulb provisioner"
+      rules:
+        - proto: 47
+          to_port: -1
+          from_port: -1
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp 
+          to_port: 443 
+          from_port: 443 
+          cidr_ip: 0.0.0.0/0
+        - proto: icmp
+          to_port: -1
+          from_port: -1
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          to_port: 80
+          from_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          to_port: 22
+          from_port: 22
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+    when: ec2_exact_count >= 1
+    tags:
+      - provision
+
+  - name: Create subnet for {{ ec2_name_prefix }}-vpc
+    ec2_vpc_subnet:
+      region: "{{ ec2_region }}"
+      az: "{{ ec2_az }}"
+      vpc_id: "{{ create_vpc.vpc.id }}"
+      cidr: "{{ ec2_subnet }}"
+      wait_timeout: 600
+      resource_tags:
+        Name: "{{ ec2_name_prefix }}-subnet"
+        Username: "{{ lightbulb_user }}"
+        Info: "Username that provisioned this-> {{ lightbulb_user }}"
+        Lightbulb: "This was provisioned through the lightbulb provisioner"
+    register: create_subnet
+    until: create_subnet is not failed
+    retries: 15
+    tags:
+      - provision
+
+  - name: VPC internet gateway is present for {{ create_vpc.vpc.id }}
+    ec2_vpc_igw:
+      region: "{{ ec2_region }}"
+      vpc_id: "{{ create_vpc.vpc.id }}"
+      tags:
+        Username: "{{ lightbulb_user }}"
+        Info: "Username that provisioned this-> {{ lightbulb_user }}"
+        lightbulb: "This was provisioned through the lightbulb provisioner"
+    register: igw
+    tags:
+      - provision
+
+  - name: VPC public subnet route table is present for {{ create_vpc.vpc.id }}
+    ec2_vpc_route_table:
+      region: "{{ ec2_region }}"
+      vpc_id: "{{ create_vpc.vpc.id }}"
+      subnets:
+        - "{{ create_subnet.subnet.id }}"
+      routes:
+        - dest: 0.0.0.0/0
+          gateway_id: "{{ igw.gateway_id }}"
+      tags:
+        Username: "{{ lightbulb_user }}"
+        Info: "Username that provisioned this-> {{ lightbulb_user }}"
+        Lightbulb: "This was provisioned through the lightbulb provisioner"
+    register: routetable
+    until: routetable is not failed
+    retries: 5
+    tags:
+      - provision
+
+  - name: Set variables for instance creation dynamically since VPC was not supplied by user
+    set_fact:
+      ec2_vpc_id: "{{ create_vpc.vpc.id }}"
+      ec2_security_group: "{{ ec2_name_prefix }}-insecure_all"
+      ec2_vpc_subnet_id: "{{ create_subnet.subnet.id }}"
+    tags:
+      - provision
+  when: ec2_vpc_id is undefined
+
+- name: Create EC2 instances
+  ec2:
+    assign_public_ip: yes
+    key_name: "{{ ec2_key_name }}"
+    group: "{{ ec2_security_group }}"
+    instance_type: "{{ ec2_instance_types[item.1.type].size }}"
+    image: "{{ ec2_instance_types[item.1.type].ami_id }}"
+    region: "{{ ec2_region }}"
+    exact_count: "{{ ec2_exact_count }}"
+    count_tag:
+      Name: "{{ ec2_name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
+    instance_tags:
+      Name: "{{ ec2_name_prefix }}-{{ item.0.username }}-{{ item.1.name }}"
+      Workshop: "{{ec2_name_prefix}}"
+      Username: "{{ lightbulb_user }}"
+      Info: "Username that provisioned this-> {{ lightbulb_user }}"
+      Linklight: "This was provisioned through the lightbulb provisioner"
+    wait: "{{ ec2_wait }}"
+    vpc_subnet_id: "{{ ec2_vpc_subnet_id | default(omit) }}"
+    volumes:
+      - device_name: /dev/sda1
+        volume_type: gp2
+        volume_size: "{{ ec2_instance_types[item.1.type].disk_space }}"
+        delete_on_termination: true
+  with_nested:
+    - "{{ users }}"
+    - "{{ ec2_lab_node_types }}"
+  register: instances
+  tags:
+    - always
+    - provision
+
+- name: Include tasks only needed when creating instances
+  include_tasks: create.yml
+  when: ec2_exact_count >= 1
+  tags:
+    - provision
