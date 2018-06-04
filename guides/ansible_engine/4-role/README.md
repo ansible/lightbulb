@@ -5,7 +5,7 @@ While it is possible to write a Playbook in one very large file, eventually you�
 When you start to think about it – tasks, handlers, variables, and so on – begin to form larger concepts. You start to think about modeling what something is,
 
 * It’s no longer "apply THIS to these hosts"
-* You say "these hosts are are webservers".
+* You say "these hosts are webservers".
 
 Roles build on the idea of include files and provide Ansible with a way to load tasks, handlers, and variables from external files. The files that define a role have specific names and are organized in a rigid directory structure.
 
