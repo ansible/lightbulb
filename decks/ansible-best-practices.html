@@ -52,27 +52,31 @@
           </svg>
           <h2>THE ANSIBLE WAY</h2>
           <aside class="notes">
-            <p>“When I talk about how to develop automation solutions with Ansible, I begin by highlighting the philosophy behind its design. <strong>All Ansible best practices relate back to this thinking in one way or another.</strong> </p>
+            <p>"When I talk about how to develop automation solutions with Ansible, I begin by highlighting the philosophy behind its design. <strong>All Ansible best practices relate back to this thinking in one way or another.</strong> </p>
             <p>Ansible is the Swiss Army knife of DevOps, capable of handling many powerful automation tasks with the flexibility to adapt to many environments and workflows.</p>
             <p><strong>Not all approaches are created equal though.</strong></p>
-            <p>Don't let yours undermine the simplicity and power of Ansible. Based on actual experiences helping Ansible users, we'll show you what to do, and what not to do, to create the most reliable, resilient, and easy-to-manage solutions.”</p>
+            <p>Don't let yours undermine the simplicity and power of Ansible. Based on actual experiences helping Ansible users, we'll show you what to do, and what not to do, to create the most reliable, resilient, and easy-to-manage solutions."</p>
           </aside>
         </section>
 
         <section data-state="cover">
-          <h2>Complexity Kills Productivity.</h2>
-          <p>That's not just a marketing slogan. We really mean it and believe that. We strive to reduce complexity in how we've designed Ansible tools and encourage you to do the same. <strong>Strive for simplification in what you automate.</strong></p>
+          <h2>Principal 1</h2>
+          <h2>Complexity Kills Productivity</h2>
+          <p>That's not just a marketing slogan. We really mean it and believe that. We strive to reduce complexity in how we've designed Ansible tools and encourage you to do the same.</p>
+          <p> <strong>Strive for simplification in what you automate.</strong></p>
           <aside class="notes speaker"></aside>
         </section>
 
         <section data-state="cover">
-          <h2>Optimize For Readability.</h2>
+          <h2>Principal 2</h2>
+          <h2>Optimize For Readability</h2>
           <p>If done properly, it can be the documentation of your workflow automation.</p>
           <aside class="notes speaker"></aside>
         </section>
 
         <section data-state="cover">
-          <h2>Think Declaratively.</h2>
+          <h2>Principal 3</h2>
+          <h2>Think Declaratively</h2>
           <p>Ansible is a desired state engine by design. If you're trying to "write code" in your plays and roles, you're setting yourself up for failure. Our YAML-based playbooks were never meant to be for programming.</p>
           <aside class="notes speaker"></aside>
         </section>
@@ -97,7 +101,7 @@
 
         <section>
             <h2>Workflow</h2>
-            <h3>Do It with Style</h3>
+            <h3>Do it with Style</h3>
             <ul>
               <li>Create a style guide for developers</li>
               <li>Consistency in:
@@ -113,8 +117,8 @@
             <aside class="notes">
               <p>Style guides promote standards, reusability, and longevity of Ansible content.</p>
 
-              <p>“Creating automation workflows.”</p>
-              <p>“Grammar”</p>
+              <p>"Creating automation workflows."</p>
+              <p>"Grammar"</p>
 
               <p>Mention code reviews.</p>
             </aisde>
@@ -125,12 +129,14 @@
             <h3>The Ansible Way</h3>
 
             <p class="monospace">
-              basic-project/<br/>
-              ├── inventory<br/>
-              │   ├── group_vars<br/>
-              │   ├── host_vars<br/>
-              │   └── hosts<br/>
-              └── site.yml
+                basic-project<br/>
+                ├── inventory<br/>
+                │   ├── group_vars<br/>
+                │   │   └── web.yml<br/>
+                │   ├── host_vars<br/>
+                │   │   └── db1.yml<br/>
+                │   └── hosts<br/>
+                └── site.yml<br/>
             </p>
 
             <aside class="notes">
@@ -148,17 +154,17 @@
             <h2>Project Layouts: Organizational Roles</h2>
 
             <p class="monospace">
-              myapp/<br/>
+              myapp<br/>
               ├── roles<br/>
               │   ├── myapp<br/>
               │   │   ├── tasks<br/>
               │   │   │   └── main.yml<br/>
-              │   │   └── etc.etc<br/>
+              │   │   └── ...<br/>
               │   ├── nginx<br/>
-              │   │   └── etc.etc<br/>
+              │   │   └── ...<br/>
               │   └── proxy<br/>
-              │       └── etc.etc<br/>
-              └── site.yml
+              │       └── ...<br/>
+              └── site.yml<br/>
             </p>
 
             <aside class="notes"></aside>
@@ -183,7 +189,7 @@
             <h2>Inventory</h2>
             <h3>Give inventory nodes human-meaningful names rather than IPs or DNS hostnames.</h3>
             <p>&nbsp;</p>
-
+            <!-- FIXME format so it's clearer that these are two versions of the same file -->
             <div class="columns monospace text-small">
                 <div class="col" style="flex-grow:1;">
                   <p>
@@ -232,6 +238,11 @@
                     <br/>
                     [web]<br/>
                     web[1:4]<br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    db1 = db, east, dev<br/>
                   </p>
                 </div>
                 <div class="col">
@@ -283,7 +294,7 @@
               <p>Where: a datacenter or region</p>
               <p>When: development stage </p>
 
-              <p>Note the use of the ranges shorthand under the “what”</p>
+              <p>Note the use of the ranges shorthand under the "what"</p>
 
               <p>While more groups are generally better, you can have too much of a good thing.</p>
 
@@ -320,7 +331,7 @@
           <h3>Proper variable naming can make plays more readable and avoid variable name conflicts</h3>
           <ul>
             <li>Use descriptive, unique human-meaningful variable names</li>
-            <li>Prefix role variables with it’s “owner” such as a role name or package</li>
+            <li>Prefix role variables with it’s "owner" such as a role name or package</li>
           </ul>
           <pre class="language-yaml"><code>
   apache_max_keepalive: 25
@@ -331,7 +342,7 @@
           <aside class="notes">
             <p>Talk about flat naming space by design.</p>
 
-            <p>Highlight how if we just used “port” you could end up configuring you could create port conflict when your apache and tomcat servers both try to listen to port 80. By  prefixing the apache and tomcat port, they stay seperate...</p>
+            <p>Highlight how if we just used "port" you could end up configuring you could create port conflict when your apache and tomcat servers both try to listen to port 80. By  prefixing the apache and tomcat port, they stay seperate...</p>
 
             <p>This is where having something in your style guide and some documentation comes in handy. </p>
 
@@ -376,7 +387,7 @@
         git:
           accept_hostkey: yes
           clone: yes
-          dest: /home/{{ username }}/lightbulb
+          dest: /home/{{ username }}/exampleapp
           key_file: /home/{{ username }}/.ssh/id_rsa
           repo: git@github.com:example/apprepo.git
               </code></pre>
@@ -413,15 +424,15 @@
   - name: Clone student lesson app for a user
     host: nodes
     vars:
-      user_home: /home/{{ username }}
-      user_ssh: "{{ user_home }}/.ssh"
-      deploy_key: "{{ user_ssh }}/id_rsa"
-      app_dest: "{{ user_home }}/exampleapp"
+      user_home_dir: "/home/{{ username }}"
+      user_ssh_dir: "{{ user_home_dir }}/.ssh"
+      deploy_key: "{{ user_ssh_dir }}/id_rsa"
+      app_dir: "{{ user_home_dir }}/exampleapp"
     tasks:
       - name: Create ssh dir
         file:
           state: directory
-          path: "{{ user_ssh }}"
+          path: "{{ user_ssh_dir }}"
 
       - name: Set Deployment Key
         copy:
@@ -430,7 +441,7 @@
 
       - name: Clone repo
         git:
-          dest: "{{ app_dest }}"
+          dest: "{{ app_dir }}"
           key_file: "{{ deploy_key }}"
           repo: git@github.com:example/exampleapp.git
           accept_hostkey: yes
@@ -442,7 +453,7 @@
               <h3>Exhibit B</h3>
               <ul class="text-small">
                 <li>Parameters values are set thru values away from the task and can be overridden.</li>
-                <li>Human meaningful variables “document” what’s getting plugged into a task parameter</li>
+                <li>Human meaningful variables "document" what’s getting plugged into a task parameter</li>
                 <li>More easily refactored into a role</li>
               </ul>
             </div>
@@ -519,7 +530,7 @@
             </code></pre>
 
             <aside class="notes">
-              <p>This refactored version of the last example uses what’s called YAML folded syntax to “stack” the first task with the line that ran off our screen. It’s an improvement in that it reduces horizontal scrolling and lines running off your screen, but it still breaks syntax highlighting and we can do better. If you are going this far with white spacing though why not go all the way?</p>
+              <p>This refactored version of the last example uses what’s called YAML folded syntax to "stack" the first task with the line that ran off our screen. It’s an improvement in that it reduces horizontal scrolling and lines running off your screen, but it still breaks syntax highlighting and we can do better. If you are going this far with white spacing though why not go all the way?</p>
             </aside>
         </section>
 
@@ -661,6 +672,7 @@
           <h3>Focus avoids complexity</h3>
           <ul>
             <li>Keep plays and playbooks focused. Multiple simple ones are better than having a huge single playbook full of conditionals.</li>
+            <li>Follow the Linux principle of do one thing, and one thing well</li>
           </ul>
 
           <aside class="notes">
@@ -714,20 +726,12 @@
 
         <section>
           <h2>Plays & Tasks</h2>
-          <h3>Use blocks to  reduce verbosity and repetitive task declarations.</h3>
-          <pre class="language-yaml"><code>
-  - name: check for proper response
-    block:
-      EXAMPLE HERE
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Plays & Tasks</h2>
           <h3>Use run commands sparingly</h3>
           <ul>
-            <li>Use the run command modules like shell and command as a last resort</li>
-            <li>Use the command module unless you really need I/O redirection that shell permits -- but be very careful.</li>
+              <li>Use the run command modules like <span class="monospace">shell</span> and <span class="monospace">command</span> as a last resort</li>
+              <li>The <span class="monospace">command</span> module is generally safer</li>
+              <li>The <span class="monospace">shell</span> module should only be used for I/O redirect</li>
+
           </ul>
 
           <aside class="notes">
@@ -803,9 +807,9 @@
           </code></pre>
 
           <aside class="notes">
-<p>Here “certify” is a fictitious command line tool to illustrate an in-house private tool an organization may have developed for its own use.</p>
+<p>Here "certify" is a fictitious command line tool to illustrate an in-house private tool an organization may have developed for its own use.</p>
 
-<p>This example is a good example of “coding” in your playbooks. That pattern being something like:</p>
+<p>This example is a good example of "coding" in your playbooks. That pattern being something like:</p>
 
 <ul>
     Perform a task and register its return and perhaps ignore any errors to handle them later.
@@ -821,7 +825,7 @@
           <h2>Plays & Tasks</h2>
           <h3>Develop your own module</h3>
           <pre class="language-yaml"><code>
-  - hosts: all
+- hosts: all
    vars:
      cert_store: /etc/mycerts
      cert_name: my cert
@@ -883,6 +887,7 @@
                 <div class="col">
                   <h4>Things to avoid:</h4>
                   <ul class="text-small">
+                    <li>Anything that can be done directly in Ansible</li>
                     <li>Managing variables in a template</li>
                     <li>Extensive and intricate conditionals</li>
                     <li>Conditional logic based on embedded hostnames</li>
@@ -913,13 +918,13 @@
             <h2>Roles</h2>
             <ul>
               <li>Like playbooks -- keep roles purpose and function focused</li>
-              <li>Use a roles/ subdirectory for roles developed for organizational clarity in a single project</li>
+              <li>Use a <span class="monospace">roles/<span> subdirectory for roles developed for organizational clarity in a single project</li>
               <li>Follow the Ansible Galaxy pattern for roles that are to be shared beyond a single project</li>
               <li>Limit role dependencies</li>
             </ul>
 
             <aside class="notes">
-              <p>One “thing” per role — being able to understand the structure</p>
+              <p>One "thing" per role — being able to understand the structure</p>
               <p>Loosely coupled</p>
             </aside>
         </section>
@@ -952,8 +957,17 @@
         </section>
 
         <section>
+            <!--- FIXME What is this for -->
             <h2>Next Steps</h2>
             <h3>Next Steps</h3>
+        </section>
+
+        <section>
+            <h2>Thank You!</h2>
+            <ul>
+                <li>Complexity Kills Productivity</li>
+                <li>Optimize For Readability</li>
+                <li>Think Declaratively</li>
         </section>
 
       </div>
