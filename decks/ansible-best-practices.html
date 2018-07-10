@@ -42,6 +42,17 @@
           <h1>Ansible Best Practices: The Essentials</h1>
           <!--p>NAME HERE, TITLE HERE</p>
           <p>COMPANY HERE</p-->
+          <aside class="notes">
+              <ul>
+                <li>That's me, what about you</li>
+                <li>SHOW OF HANDS: Who's just starting out with Ansible</li>
+                <li>SHOW OF HANDS: Who has a complex system that they want to simplify</li>
+                <li>SHOW OF HANDS: Who's got more they want to automate with Ansible</li>
+                <li>SHOW OF HANDS: Who's a contributor - raised PRs (modules, bugs, docs) - Thank you</li>
+                <li>SHOW OF HANDS: Who considers themselves an expert?</li>
+              </ul>
+
+          </aside>
         </section>
         <section>
           <h2>What You Will Learn</h2>
@@ -66,7 +77,22 @@
             <p>"When I talk about how to develop automation solutions with Ansible, I begin by highlighting the philosophy behind its design. <strong>All Ansible best practices relate back to this thinking in one way or another.</strong> </p>
             <p>Ansible is the Swiss Army knife of DevOps, capable of handling many powerful automation tasks with the flexibility to adapt to many environments and workflows.</p>
             <p><strong>Not all approaches are created equal though.</strong></p>
-            <p>Don't let yours undermine the simplicity and power of Ansible. Based on actual experiences helping Ansible users, we'll show you what to do, and what not to do, to create the most reliable, resilient, and easy-to-manage solutions."</p>
+           <p>Don't let yours undermine the simplicity and power of Ansible. Based on actual experiences helping Ansible users, we'll show you what to do, and what not to do, to create the most reliable, resilient, and easy-to-manage solutions."</p>
+           <p>These aren't just my views, this presentation is based on the collective knowledge built up over the years from: Engineers, consultants, feedback from the field, and community at large. What did and did not work</p>
+           <p>The Ansible Way:</p>
+           <ul>
+               <li>Before we get into the technical details</li>
+               <li>"The Ansible Way"</li>
+               <li>This is a bit of philosophical discussion</li>
+               <li>There are three principals I will make over the next three slides</li>
+               <li>Every best practice is based on one or more of these principals</li>
+               <li>Ansible is very flexible, though not all approaches are created equally</li>
+               <li>Some ways will allow you to get a lot more from your automation,</li>
+               <li>Don't let your approach undermine the simplicity and power of Ansible.</li>
+               <li>Based on actual experiences helping Ansible users, we'll show you what to do, and what not to do, to create the most reliable, resilient, and easy-to-manage solutions.</li>
+               <li>So let's get started with the first principal...</li>
+           <ul>
+
           </aside>
         </section>
 
@@ -75,21 +101,48 @@
           <h2>Complexity Kills Productivity</h2>
           <p>That's not just a marketing slogan. We really mean it and believe that. We strive to reduce complexity in how we've designed Ansible tools and encourage you to do the same.</p>
           <p> <strong>Strive for simplification in what you automate.</strong></p>
-          <aside class="notes speaker"></aside>
+          <aside class="notes speaker">
+              <ul>
+                  <li>As an engineer, I don't really do marketing slogans</li>
+                  <li>Start simple, avoid overengineering</li>
+                  <li>For those from a Linux background you may be familiar with the idea of "Do one thing and do it well"</li>
+                  <li>Moving from an existing process, take the time to simplify it, what are the actual components and dependencies, how do they relate. What's common</li>
+                  <li>If you have a complex hairball system at the moment, you don't want to end up with an automated hairball</li>
+                  <li>SHOW OF HANDS: Any Perl programmers in the audience?, next slide is just for you...</li>
+          </aside>
         </section>
 
         <section data-state="cover">
           <h2>Principal 2</h2>
           <h2>Optimize For Readability</h2>
           <p>If done properly, it can be the documentation of your workflow automation.</p>
-          <aside class="notes speaker"></aside>
+          <aside class="notes speaker">
+              <ul>
+                  <li>Ever been asked how something works, you show them the docs, then go, oh we've changed that a bit. Assuming you've even got documentation</li>
+                  <li>Not an issue with Ansible, as Playbooks are readable. People can find out for themselves</li>
+                  <li>Even if you've never used Ansible before, still understandable</li>
+                  <li>Helps avoid design and implementation issues by having easy to follow Playbooks and Roles</li>
+                  <li>Anyone work in an organization where audits are part of your life? Really simple with Ansible</li>
+                  <li>Aim when designing and writing playbooks is to make them understandable by non-Ansible users</li>
+              </ul>
+
+          </aside>
         </section>
 
         <section data-state="cover">
           <h2>Principal 3</h2>
           <h2>Think Declaratively</h2>
           <p>Ansible is a desired state engine by design. If you're trying to "write code" in your plays and roles, you're setting yourself up for failure. Our YAML-based playbooks were never meant to be for programming.</p>
-          <aside class="notes speaker"></aside>
+          <aside class="notes speaker">
+              <ul>
+                  <li>Ansible is a desired state engine</li>
+                  <li>Playbooks define the <b>state</b> you want the system to look like at the end (want x installed at a specific version and started)</li>
+                  <li>The <b>how</b> this should be achieved is internal to Ansible. Service module looks what type of init/upstart/SystemD is available and starts the service.</li>
+                  <li>If you find yourself trying to "program" in YAML Playbooks, this is generally an indication you've gone down the wrong route</li>
+              </ul>
+
+
+          </aside>
         </section>
 
         <section>
@@ -105,9 +158,23 @@
               </li>
             </ul>
             <aside class="notes">
-              <p>Treat your Ansible content like code, put it in version control. While Ansible content is not code, it is still text and ideal for version control. [Expand on version control workflows -- branch, tags, code reviews etc]  The Ansible Tower automation workflow is optimized for use with SCM systems such as git, subversion and mercurial so you will definitely will want to do this if that’s where. </p>
-              <p>[EXPAND] Start simple, roles and playbooks, and inventory, in one place, then push out the roles you want to share into individual repos and manage with requirements.yml.</p>
-            </aisde>
+                <ul>
+                    <li>Playbooks are not code, however they should be treated like code</li>
+                    <li>Use your existing workflows</li>
+                    <li>Put it all in version control</li>
+                    <li>[Expand on version control workflows -- branch, tags, code reviews etc]</li>
+                    <li>The Ansible Tower automation workflow is optimized for use with SCM systems such as git, subversion and mercurial so you will definitely will want to do this if that’s where.</li>
+                    <li>As Playbooks are text, they work really well in Version Control, you can look through history, see when and how things have changed over time</li>
+                    <li>Want to know when you upgraded the version of a library you install, just do a`git blame` on the line in the Playbook</li>
+                    <li>Code reviews are great</li>
+                    <ul>
+                        <li>Shares knowledge</li>
+                        <li>Gets feedback</li>
+                        <li>Other people outside you team can understand how to hints are setup</li>
+                        <li>end up with better design</li>
+                    </ul>
+                </ul>
+            </aside>
         </section>
 
         <section>
@@ -127,12 +194,13 @@
             </ul>
             <aside class="notes">
               <p>Style guides promote standards, reusability, and longevity of Ansible content.</p>
-
+              <p>The same principles should be applied to your Ansible roles and playbooks</p>
               <p>"Creating automation workflows."</p>
               <p>"Grammar"</p>
 
               <p>Mention code reviews.</p>
-            </aisde>
+              <p>SHOW OF HANDS: Who has code reviews, keep hands up if you review playbooks?</p>
+            </aside>
         </section>
 
         <section>
@@ -157,7 +225,7 @@
 
               <p>One stack or application?</p>
 
-              <p>Later -- RBAC control implications?</p>
+              <p>Later -- RBAC (Role Based Access Control) control implications?</p>
             </aside>
         </section>
 
@@ -178,7 +246,14 @@
               └── site.yml<br/>
             </p>
 
-            <aside class="notes"></aside>
+            <aside class="notes">
+                <p>We will talk more about roles later</p>
+                <p>Organizational role as they help you group and organize the plays rather than having a single multi-thousand line YAML file</p>
+                <p>Roles: A very good way to bundle up a collection of related assets to do a specific piece of automation.</p>
+                <p>These roles can be shared between projects.</p>
+                <p>Great when you start to iterate over your design and modularize and factor out into reusable blocks</p>
+
+            </aside>
         </section>
 
         <section>
