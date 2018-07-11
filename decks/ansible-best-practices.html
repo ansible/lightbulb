@@ -268,7 +268,15 @@
               └── site.yml
             </p>
 
-            <aside class="notes"></aside>
+            <aside class="notes">
+                <ul>
+                    <li>You can mix and match from these three project layouts, take what works for your company and how you work</li>
+                    <li>Allows you to share and standardize roles between projects</li>
+                    <li>requirements.yml - manifest to allow you to share</li>
+                    <li>If your company standardizes on a certain webserver , so you can share these roles internally.</li>
+                    <li>Allows you to reference roles from elsewhere, either internally or the Ansible Galaxy project</li>
+                </ul>
+            </aside>
         </section>
 
         <section>
@@ -308,6 +316,7 @@
             <aside class="notes">
               <p>A meaningful inventory hostname can point to a resolvable address, making inventory and ansible-playbook output easier to read and understand.</p>
               <p>Important to end users not familiar with your host naming schemes… improves readability.</p>
+              <p>Use "aliasing" function to create a map from a human readable name to IP</p>
             </aside>
         </section>
 
@@ -368,23 +377,20 @@
             </div>
 
             <aside class="notes">
-              <p>This is a common pattern we’ve seen in shops with sophisticated Ansible automation workflows.</p>
+              <p>This is a common pattern we’ve seen in organisations with sophisticated Ansible automation workflows. We know it also works well for smaller setups</p>
 
+              <p><b>What:</b> an application, stack or microservice. Specify what roles to run</p>
+              <p><b>Where:</b> a datacenter or region. Talk to local DNS, storage, etc</p>
+              <p><b>When:</b> development stage. Don't allow testing to access production resources</p>
+              <p>Define your groups as shown here, let Ansible do the work to combine the groups
               <p>Explain what we have here -- static inventory groups with host aliases we saw in the previous slide.</p>
-
               <p>Inventory groups allow you to separate your systems into what, where and when. Let the Ansible host selectors query your inventory and do the work of creating unions, intersections and filter.</p>
-
               <p>Hosts can belong to as many groups. Ansible inventory does not have to be a hierarchy.</p>
-
-              <p>What: an application, stack or microservice</p>
-              <p>Where: a datacenter or region</p>
-              <p>When: development stage </p>
-
-              <p>Note the use of the ranges shorthand under the "what"</p>
-
+              <p>Note the use of the ranges shorthand under the “what”: development, testing, production</p>
+              <p>Get Ansible to tell you which all the development database servers in the east coast are, you don't need to maintain this.</p>
               <p>While more groups are generally better, you can have too much of a good thing.</p>
-
               <p>(Dynamic tagging? Need to resolve.)</p>
+              <p>EXAMPLE: See someone trying to maintain the groups manually and get really stressed about missing hosts</p>
             </aside>
         </section>
 
@@ -408,7 +414,9 @@
 
 
             <aside class="notes">
-              <p>Static inventory if fine when you’re starting out or managing a relatively small environment that doesn’t change often such as a development environment. Dynamic inventory is an imperative when is come to large environments especially dynamic ones using public/private/hybrid cloud technology.</p>
+                <p>Static inventory if fine when you’re starting out or managing a relatively small environment that doesn’t change often such as a development environment. Dynamic inventory is an imperative when is come to large environments especially dynamic ones using public/private/hybrid cloud technology.</p>
+                <p>Ansible ships with dynamic inventory scripts for most major cloud providers</p>
+                <p>Fairly easy to write your own to pull data from whatever database/text files you are using locally</p>
             </aside>
         </section>
 
@@ -426,13 +434,12 @@
           </pre></code>
 
           <aside class="notes">
-            <p>Talk about flat naming space by design.</p>
-
-            <p>Highlight how if we just used "port" you could end up configuring you could create port conflict when your apache and tomcat servers both try to listen to port 80. By  prefixing the apache and tomcat port, they stay seperate...</p>
-
+            <p>All about increasing readability, therefore reducing possible bugs.</p>
+            <p>Human readable - that term again</p>
+            <p>Ansible by design has a flat naming space, to make it simple. Avoids issues around variable context &amp; scope as you see in Object Orientation</p>
+            <p>Makes it a lot easier to grep over the code base</p>
+            <p>Highlight how if we just used "port" you could end up configuring you could create port conflict when your Apache and Tomcat servers both try to listen to port 80. By prefixing the apache and tomcat port, they stay separate...</p>
             <p>This is where having something in your style guide and some documentation comes in handy. </p>
-
-            <p>Improves readability.</p>
           </aside>
         </section>
 
@@ -489,10 +496,11 @@
           </div>
 
           <aside class="notes">
-            <p>This works just fine but…</p>
+            <p>This works just fine however</p>
 
             <ul>
                 <li>/home/… is repeated throughout. If changed it will require multiple edits. Yes we have bulk copy and replace.</li>
+                <li>{{ username }} - means a variable called username</li>
                 <li>Not clear what the params the play is working with without reading thru</li>
                 <li>Parameters like the local path to clone the repo cannot be modified without changing the play. This alone is the most valuable reason alone for doing this even if the others don’t matter. </li>
             </ul>
@@ -552,7 +560,8 @@
                 <li>User home can be set once and used by other variables.</li>
                 <li>Human-meaningful variable names make what you’re feeding into each task parameter easier to understand.</li>
                 <li>You can easily override any of the variables to change the default behaviour of the play.</li>
-                <li>Bonus: Makes refactoring a play into a role easier.</li>
+                <li>Just looking at the vars section tells you what parts of the system get changed</li>
+                <li>Bonus: Makes refactoring a play into a role easier - overide `user_home_dir`, or `app_dir` when calling the role and it will do the right thing</li>
             </ul>
 
             <p>INSERT COMMAND LINE EXAMPLE. Setup root user?</p>
@@ -590,6 +599,7 @@
 
             <aside class="notes">
               <p>Vertical scanning is easier to spot parameters and what is being passed.</p>
+              <p>Doesn't even fit on my slide</p>
               <p>Reduces the amount of horizontal scrolling the eyes must do. Modules such as ec2 that require a lot of parameters create long lines scroll off the screen which is really inefficient and makes it hard to read.</p>
               <p>Syntax highlighting is suboptimal -- Ansible overloads key=value notation onto the standard python YAML parser. A YAML parser sees all of those key value.</p>
             </aside>
@@ -616,6 +626,7 @@
             </code></pre>
 
             <aside class="notes">
+              <p>Notice the greater-than symbol after yum</p>
               <p>This refactored version of the last example uses what’s called YAML folded syntax to "stack" the first task with the line that ran off our screen. It’s an improvement in that it reduces horizontal scrolling and lines running off your screen, but it still breaks syntax highlighting and we can do better. If you are going this far with white spacing though why not go all the way?</p>
             </aside>
         </section>
@@ -702,7 +713,14 @@
             </div>
 
             <aside class="notes">
-              <p>Here we have a simple example of a working a play. It works fine but what is happening here? yum is installing what? is service starting or shutting down something? what was this play supposed to do anyways?  If you just wrote this play you know now or maybe you forgot. Others will have no clue unless they open the playbook and look to become familiar with it.</p>
+                <ul>
+                    <li>Here we have a simple example of a working a play.</li>
+                    <li>It works fine but what is happening here?</li>
+                    <li>Is yum installing or removing something?</li>
+                    <li>Is service starting or shutting down something?</li>
+                    <li>What was this play supposed to do anyways?  If you just wrote this play you know now or maybe you forgot.</li>
+                    <li>If when running this something fails you'd have no idea from the output, you'd need to open the playbook</li>
+                </ul>
             </aside>
         </section>
 
@@ -749,7 +767,12 @@
             </div>
 
             <aside class="notes">
-              <p>Here is the same play with names. By adding descriptive human-meaningful names to the play declaration and tasks we get output that give you  and users of this automation better feedback and clarity to what is being performed. </p>
+                <ul>
+                    <li>Here is the same play with names.</li>
+                    <li>By adding descriptive human-meaningful names to the play declaration and tasks we get output that give you  and users of this automation better feedback and clarity to what is being performed.</li>
+                    <li>From the name of the Playbook, line 2, we know what the rest of the playbook will do without having to read it.</li>
+                    <li>Can help keep focus</li>
+              </ul>
             </aside>
         </section>
 
@@ -763,8 +786,10 @@
 
           <aside class="notes">
             <p>Monoliths!</p>
-
-            <p>As your automation grows in sophistication and scope refactor your plays -- includes & roles to compose automation workflows.</p>
+            <p>Multiple small roles</p>
+            <p>EXAMPLE: One customer had one playbook for the entire stack,thousands of lines long, crazy, depending on the variables passed in. Impossible to manage, maintain, or know what is going on</p>
+            <p>As your automation grows in sophistication and scope refactor your plays -- includes &amp; roles to compose automation workflows.</p>
+            <p>When refactoring run your roles in checkmode to see</p>
           </aside>
         </section>
 
@@ -787,7 +812,7 @@
           <aside class="notes">
             <p>Debugging messages and variable dumps in your plays can be helpful when you are developing or debugging automation automation, but not all the time. Displaying debugging pollutes the standard usage with a lot of noise. It can also scare anxious end users that don’t trust this automation stuff when some JSON dump of information explodes onto their screens.</p>
 
-            <p>The verbosity parameter was added to the debug module in v2.1. </p>
+            <p>The verbosity parameter was added to the debug module in v2.1.</p>
           </aside>
         </section>
 
@@ -806,7 +831,10 @@
           </code></pre>
 
           <aside class="notes">
-            <p>Just because a service started or an instances has initialized -- maybe it hit an error initializing and crashed. Use modules like uri and wait_for to smoke test that they are ready to go. </p>
+            <p>EXAMPLE: lock file, permissions, something else running on the port</p>
+            <p>Just because a service started or an instances has initialized -- maybe it hit an error initializing and crashed. Use modules like uri and wait_for to smoke test that they are ready to go.</p>
+            <p>reties +delays = polling, so if the server is ready soon we don't have to wait the full time, better than <span class="monospace">sleep 10</span></p>
+</li>
           </aside>
         </section>
 
@@ -826,6 +854,7 @@
             <p>Explain how run command modules have no concept of state.  (See slide from essentials deck here.) </p>
 
             <p>Command will escape redirection characters such a pipe so they cannot be embedded in a variable and used for something malicious. You really shouldn’t be using a variable provided by a user anyway.</p>
+            <p>Even more important when using privileges - security</p>
           </aside>
         </section>
 
@@ -867,6 +896,10 @@
               </code></pre>
             </div>
           </div>
+          <aside class="notes">
+              <p>Just because you know how to do something in bash doesn’t mean you don’t need a module. Again, run commands have no sense of desired state. There is a lot going in the modules. A lot goes into making things easy. (FIXME Quote from under the hood deck here?)  The yum module doesn’t just issue a yum command. The service module sniffs out the host OS and even version to use the proper tools and switches.</p>
+              <p>Modules are split into categories and topics. Have a look at these categories: file, system, utils</p>
+          </aside>
         </section>
 
         <section>
@@ -893,17 +926,14 @@
           </code></pre>
 
           <aside class="notes">
-<p>Here "certify" is a fictitious command line tool to illustrate an in-house private tool an organization may have developed for its own use.</p>
-
-<p>This example is a good example of "coding" in your playbooks. That pattern being something like:</p>
-
-<ul>
-    Perform a task and register its return and perhaps ignore any errors to handle them later.
-    <li>Parse/search the registered return as the parameter or conditional of a later task</li>
-    <li>Rise and repeat.</li>
-</ul>
-
-<p>Sometimes this cannot be avoided because a module doesn’t exist and you need something fast. In that case...</p>
+              <p>Here "certify" is a fictitious command line tool to illustrate an in-house private tool an organization may have developed for its own use.</p>
+              <p>T  his example is a good example of "coding" in your playbooks. That pattern being something like:</p>
+              <ol>
+                  <li>Perform a task and register its return and perhaps ignore any errors to handle them later.</li>
+                  <li>Parse/search the registered return as the parameter or conditional of a later task</li>
+                  <li>Rise and repeat</li>
+              </ol>
+              <p>Sometimes this cannot be avoided because a module doesn’t exist and you need something fast. In that case...</p>
           </aside>
         </section>
 
@@ -924,17 +954,15 @@
        name: "{{ cert_name }}"
        cert_store: "{{ cert_store }}"
           </code></pre>
+          See <a href="https://docs.ansible.com/ansible/devel/dev_guide/">ansible.com/devel/dev_guide</a>
 
           <aside class="notes">
-<p>Modules do the heavy lifting in Ansible. Modules and playbooks work together to provide a simple and easy to read  abstraction from the underlying complexity and sophistication that give Ansible it’s power. </p>
-
-<p>Modules provide access to the full power of a proper programming language (typically python) and its ecosystem. </p>
-
-<p>Also note, that you can (and should) do many operations in a module and present that as one task.  The previous example’s function was more verbose, harder to read and was spread across multiple tasks.</p>
-
-<p>Modules follow this CRUD pattern typically. Clean. (???)</p>
-
-<p>http://docs.ansible.com/ansible/developing_modules.html</p>
+              <p>Modules do the heavy lifting in Ansible.</p>
+              <p>Modules and playbooks work together to provide a simple and easy to read abstraction from the underlying complexity and sophistication that give Ansible it’s power</p>
+              <p>Modules provide access to the full power of a proper programming language (typically Python) and its ecosystem. </p>
+              <p>Also note, that you can (and should) do many operations in a module and present that as one task. The previous example’s function was more verbose, harder to read and was spread across multiple tasks.</p>
+              <p>Modules follow this CRUD (Create, read, update and delete) pattern typically.</p>
+              <p>https://docs.ansible.com/ansible/devel/dev_guide/</p>
           </aside>
         </section>
 
@@ -953,7 +981,9 @@
             - include: configure.yml
           </p>
           <aside class="notes">
-            <p>Helpful if you are using different cloud providers -- whether public or private or hybrid -- vagrant or bare metal you can apply the same configuration to different computing platforms and environments.</p>
+            <p>Helpful if you are using different cloud providers</p>
+            <p>Change cloud provider or virtualization framework</p>
+            <p>Use different provisioning in development vs production</p>
           </aside>
         </section>
 
@@ -982,7 +1012,9 @@
                 </div>
             </div>
             <aside class="notes">
-              <p>Expand upon Jinja2 being powerful. There is a bit of grey and a zen to deciding how to how to design your templates. Strive for simplicity. complexity kills.</p>
+                <p>From Django project, widely used Python library</p>
+                <p>Expand upon Jinja2 being powerful. There is a bit of grey and a zen to deciding how to how to design your templates. Strive for simplicity. complexity kills.</p>
+                <p>avoid: anything that can be done directly in Ansible - such as groups</p>
             </aside>
         </section>
 
@@ -992,11 +1024,13 @@
             <ul>
               <li>Label template output files as being generated by Ansible</li>
               <li>Consider using the ansible_managed variable with the comment filter</li>
+              <li>Especially important when you are starting out and not everything is Ansible managed</li>
             </ul>
             <p class="monospace" style="margin-left: 2em;">{{ ansible_managed | comment }}</p>
 
             <aside class="notes">
               <p>This is useful to tell users that a file has been placed by Ansible and manual changes are likely to be overwritten.</p>
+              <p>Avoids someone manually changing a file and Ansible clobbering that change when it reruns</p>
             </aside>
         </section>
 
@@ -1011,6 +1045,7 @@
 
             <aside class="notes">
               <p>One "thing" per role — being able to understand the structure</p>
+              <p>Linux principle of do one thing, and one thing well</p>
               <p>Loosely coupled</p>
             </aside>
         </section>
@@ -1018,12 +1053,16 @@
         <section>
             <h2>Roles</h2>
             <ul>
-                <li>Use <span class="monospace">ansible-galaxy</span> init to start your roles...</li>
+                <li>Use <span class="monospace">ansible-galaxy init</span> to start your roles...</li>
                 <li>...then remove unneeded directories and stub files</li>
                 <li>Use <span class="monospace">ansible-galaxy</span> to install your roles -- even private ones</li>
                 <li>Use a roles files (i.e. <span class="monospace">requirements.yml</span>) to manifest any external roles your project is using</li>
                 <li>Always peg a role to a specific version such as a tag or commit</li>
             </ul>
+            <aside class="notes">
+                <p>EXAMPLE: Don't leave empty files</p>
+                <p>EXAMPLE: Peg versions</p>
+            </aside>
         </section>
 
         <section>
@@ -1042,6 +1081,28 @@
             </aside>
         </section>
 
+        <section>
+            <h2>Thank You!</h2>
+            <ul>
+                <li>Complexity Kills Productivity</li>
+                <li>Optimize For Readability</li>
+                <li>Think Declaratively</li>
+            <aside class="notes">
+                <p>Check remaining time</p>
+                <p>So I know after these presentations you sometimes think, "I see what he's saying, but my setup is fairly horrible" it "I've got so much to do and not enough time"</p>
+                <p>Story time</p>
+                <p>Backstory: every developer had a high spec blade for running VMs on</p>
+                <p>Whenever someone joined we just did a disk copy of the previous system, then hacked around in /etc</p>
+                <p>Oh, and a hundred blades in we upgraded from 10.04 to 12.04</p>
+                <p>Noticed a few issues: Fix playbooks for- ldap, ntp,</p>
+                <p>Common packages</p>
+                <p>Everytime we spotted an issue we wrote a small isolated playbook to fix it across the whole server estate</p>
+                <p>Did a fresh, preseed install, ran the fix roles, iterated till I had a working system</p>
+                <p>Desktops - Blade + gnome</p>
+                <p>India & Madrid - group_vars/india.yml</p>
+
+            </aside>
+        </section>
         <section>
             <!--- FIXME What is this for -->
             <h2>Next Steps</h2>
