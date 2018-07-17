@@ -42,6 +42,23 @@
           <h1>Ansible Best Practices: The Essentials</h1>
           <!--p>NAME HERE, TITLE HERE</p>
           <p>COMPANY HERE</p-->
+        </section>
+        <section data-state="cover">
+            <h2>Who am I?</h2>
+        <pre class="language-yaml"><code>
+  name: John Barker
+  aliases: gundalow
+  title: Principal Software Engineer
+  org: Ansible, by Red Hat
+  start_date: 2016
+  roles:
+    - network
+    - testing
+    - community
+  freenode: gundalow
+  github: gundalow
+  twitter: the_gundalow
+          </pre></code>
           <aside class="notes">
               <ul>
                 <li>That's me, what about you</li>
@@ -49,22 +66,12 @@
                 <li>SHOW OF HANDS: Who has a complex system that they want to simplify</li>
                 <li>SHOW OF HANDS: Who's got more they want to automate with Ansible</li>
                 <li>SHOW OF HANDS: Who's a contributor - raised PRs (modules, bugs, docs) - Thank you</li>
-                <li>SHOW OF HANDS: Who considers themselves an expert?</li>
+                <li>SHOW OF HANDS: Who considers themselves an expert? - Excellent, you can answer the difficult Q&A at the end</li>
               </ul>
 
           </aside>
         </section>
-        <section>
-          <h2>What You Will Learn</h2>
-          <p>Ansible is capable of handling many powerful automation tasks with the flexibility to adapt to many environments and workflows. With Ansible, users can very quickly get up and running to do real work.<br><br></p>
-          <ul>
-            <li>The three core principals for playbook creation</li>
-            <li>How to avoid common pit falls</li>
-          </ul>
-          <aside class="notes">
-            <p>fixme</p>
-          </aside>
-        </section>
+
         <section class="text-center" data-state="cover">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300" viewBox="-449 450 125 125" style="enable-background:new -449 450 125 125;" xml:space="preserve">
             <g id="XMLID_3_">
@@ -136,7 +143,7 @@
           <aside class="notes speaker">
               <ul>
                   <li>Ansible is a desired state engine</li>
-                  <li>Playbooks define the <b>state</b> you want the system to look like at the end (want x installed at a specific version and started)</li>
+                  <li>Playbooks define the <b>state</b> you want the system to look like at the end (want Apache installed at a specific version and started)</li>
                   <li>The <b>how</b> this should be achieved is internal to Ansible. Service module looks what type of init/upstart/SystemD is available and starts the service.</li>
                   <li>If you find yourself trying to "program" in YAML Playbooks, this is generally an indication you've gone down the wrong route</li>
               </ul>
@@ -159,7 +166,7 @@
             </ul>
             <aside class="notes">
                 <ul>
-                    <li>Playbooks are not code, however they should be treated like code</li>
+                    <li>As I mentioned earlier, playbooks are not code, however they should be treated like code</li>
                     <li>Use your existing workflows</li>
                     <li>Put it all in version control</li>
                     <li>[Expand on version control workflows -- branch, tags, code reviews etc]</li>
@@ -927,7 +934,7 @@
 
           <aside class="notes">
               <p>Here "certify" is a fictitious command line tool to illustrate an in-house private tool an organization may have developed for its own use.</p>
-              <p>T  his example is a good example of "coding" in your playbooks. That pattern being something like:</p>
+              <p>This example is a good example of "coding" in your playbooks. That pattern being something like:</p>
               <ol>
                   <li>Perform a task and register its return and perhaps ignore any errors to handle them later.</li>
                   <li>Parse/search the registered return as the parameter or conditional of a later task</li>
