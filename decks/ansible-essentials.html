@@ -932,12 +932,12 @@ tasks:
 - yum:
     name: <mark>&quot;{{ item }}&quot;</mark>
     state: latest
-  <mark>with_items:</mark>
+  <mark>loop:</mark>
   <mark>- httpd</mark>
   <mark>- mod_wsgi</mark>
             </code></pre>
             <aside class="notes">
-              <p>This example demonstrates a basic loop with <code>with_items</code>. The loop sets a variable called &quot;item&quot;, a template variable courtesy of the embedded Jinja2 template engine, with the list value that is in context.</p>
+              <p>This example demonstrates a basic loop with <code>loop</code>. The loop sets a variable called &quot;item&quot;, a template variable courtesy of the embedded Jinja2 template engine, with the list value that is in context.</p>
               <p>There are many different and specialized types of task loops to work with. See the <a href="http://docs.ansible.com/ansible/playbooks_loops.html">Loops documentation</a> to go deeper.</p>
             </aside>
           </section>
@@ -963,7 +963,7 @@ tasks:
 - yum:
     name: &quot;{{ item }}&quot;
     state: latest
-  with_items:
+  loop:
   - httpd
   - mod_wsgi
   <mark>tags:</mark>
@@ -988,7 +988,7 @@ tasks:
   - yum:
       name: &quot;{{ item }}&quot;
       state: latest
-    with_items:
+    loop:
     - httpd
     - mod_wsgi
 
