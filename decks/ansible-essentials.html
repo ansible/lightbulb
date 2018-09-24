@@ -617,7 +617,7 @@ $ ansible web -m command -a &quot;uptime&quot;
           <h2>Example Tasks in a Play</h2>
           <pre class="language-yaml"><code>
 tasks:
-- name: Ensure httpd package is present
+- name: Ensure httpd package is latest
   yum:
     name: httpd
     state: latest
@@ -656,7 +656,7 @@ tasks:
           <h2>Example Handler Task in a Play</h2>
           <pre class="language-yaml"><code data-noescape>
 tasks:
-- name: Ensure httpd package is present
+- name: Ensure httpd package is latest
   yum:
     name: httpd
     state: latest
@@ -668,7 +668,7 @@ tasks:
     dest: /var/www/html/
 
 <mark>handlers:</mark>
-- name: restart-httpd
+- name: restart httpd
   service:
     name: httpd
     state: restarted
