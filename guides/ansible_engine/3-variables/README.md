@@ -155,7 +155,7 @@ handlers:
 
 > A handler is only executed when it is triggered by a task.
 
-* `handler:` This is telling the *play* that the `tasks:` are over, and now we are defining `handlers:`. Everything below that looks the same as any other task, i.e. you give it a name, a module, and the options for that module.  This is the definition of a handler.
+* `handlers:` This is telling the *play* that the `tasks:` are over, and now we are defining `handlers:`. Everything below that looks the same as any other task, i.e. you give it a name, a module, and the options for that module.  This is the definition of a handler.
 * `notify: restart-apache-service` This triggers the handler as mentioned above. The `nofify` statement is the invocation of a handler by name. In the above created playbook, a `notify` statement was already added to the `latest httpd.conf is present` task.
 * naming of handlers: We do recommend to name handlers in a consistent way. A tested and proven method is to name all handlers in lower case and with dashes instead of spaces.
 
