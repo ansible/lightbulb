@@ -39,6 +39,8 @@ Instructor notes on the execution and solution to all workshops can be found in 
 
 The content of `decks/` are collection of presentation decks using the [reveal.js framework](http://lab.hakim.se/reveal-js/) for delivering instructor-led or hands-on instruction.
 
+The presentations can be viewed at [ansible.github.io/lightbulb](http://ansible.github.io/lightbulb/)
+
 ### Guides
 
 The `guides/` provide closely guided exercises with a lower barrier to entry. These are suitable for beginners or larger audiences. People can follow the guides on their own pace, and usually need very limited support is required during the execution of such labs.
