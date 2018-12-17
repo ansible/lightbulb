@@ -33,8 +33,8 @@ Now that you are editing `site.yml`, let's begin by defining the play and then u
 ```
 
 * `---` Defines the beginning of YAML
-* `hosts: web` Defines the host group in your inventory on which this play will run against
 * `name: install and start apache` This describes our play
+* `hosts: web` Defines the host group in your inventory on which this play will run against
 * `become: yes` Enables user privilege escalation.  The default is sudo, but su, pbrun, and [several others](http://docs.ansible.com/ansible/become.html) are also supported.
 
 ## Section 3: Adding Tasks to Your Play
@@ -48,7 +48,7 @@ Now that we've defined your play, let's add some tasks to get some things done. 
       name: httpd
       state: present
 
-  - name: Ensure latest httpd.conf file is present
+  - name: Ensure latest index.html file is present
     copy:
       src: files/index.html
       dest: /var/www/html/
@@ -78,7 +78,7 @@ Now that we've defined your play, let's add some tasks to get some things done. 
     dest: /var/www/html/
 ```
 
-* These four lines ensure that the `httpd.conf` file is copied over to the target node. [Click here](http://docs.ansible.com/ansible/copy_module.html) to see all options for the copy module.
+* These four lines ensure that the `index.html` file is copied over to the target node. [Click here](http://docs.ansible.com/ansible/copy_module.html) to see all options for the copy module.
 
 ```yml
 - name: Ensure httpd is started
