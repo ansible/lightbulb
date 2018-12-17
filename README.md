@@ -1,5 +1,7 @@
 # Ansible Lightbulb
 
+[![Docs & Slides](https://img.shields.io/badge/docs-latest-brightgreen.svg)](http://ansible.github.io/lightbulb/) [![Ansible Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Ansible-silver.svg)](https://docs.ansible.com/ansible/latest/community/code_of_conduct.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+
 The Ansible Lightbulb project is an effort to provide a content toolkit and educational reference for effectively communicating and teaching Ansible topics.
 
 Lightbulb began life as the content that supported Ansible's training program before it joined the Red Hat family focused solely on Linux server automation.
