@@ -72,7 +72,7 @@ Now that we've defined your play, let's add some tasks to get some things done. 
 * These four lines are calling the Ansible module *yum* to install httpd. [Click here](http://docs.ansible.com/ansible/yum_module.html) to see all options for the yum module.
 
 ```yml
-- name: Ensure latest httpd.conf file is present
+- name: Ensure latest index.html file is present
   copy:
     src: files/index.html
     dest: /var/www/html/
@@ -168,7 +168,7 @@ In the meantime, your completed playbook should look like this example below. (T
       name: httpd
       state: present
 
-  - name: Ensure latest httpd.conf file is present
+  - name: Ensure latest index.html file is present
     copy:
       src: files/index.html
       dest: /var/www/html/
