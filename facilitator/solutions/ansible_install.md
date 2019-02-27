@@ -15,7 +15,7 @@ From that control machine:
 ```bash
 sudo yum install -y ansible
 
-ansible --verison
+ansible --version
 
 ansible --help
 
